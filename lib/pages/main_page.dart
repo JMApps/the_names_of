@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_names_of/data/database_query.dart';
+import 'package:the_names_of/model/name_item.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -9,6 +11,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  var _databaseQuery = DatabaseQuery();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,31 +37,41 @@ class _MainPageState extends State<MainPage> {
           icon: Icon(CupertinoIcons.bars),
         ),
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Scrollbar(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildTextWithLine('Имена', Color(0xFFEF5350)),
-                _buildGridNamesContainer(),
-                _buildTextWithButton('/names', Color(0xFFEF5350)),
-                _buildTextWithLine('Толкование имён', Color(0xFF66BB6A)),
-                _buildGridTafsirContainer(),
-                _buildTextWithButton('/tafsirs', Color(0xFF66BB6A)),
-                _buildTextWithLine(
-                    'Краткое изложение основ', Color(0xFFFFA726)),
-                _buildGridContentContainer(),
-                _buildTextWithButton('/contents', Color(0xFFFFA726)),
-                _buildTextWithLine('Викторина', Color(0xFF42A5F5)),
-                _buildGridQuizContainer(),
-                _buildTextWithButton('/quiz', Color(0xFF42A5F5)),
-              ],
-            ),
-          ),
-        ),
+      body: FutureBuilder<List>(
+        future: _databaseQuery.getAllNames(),
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: Scrollbar(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildTextWithLine('Имена', Color(0xFFEF5350)),
+                          _buildGridNamesContainer(snapshot),
+                          _buildTextWithButton('/names', Color(0xFFEF5350)),
+                          _buildTextWithLine(
+                              'Толкование имён', Color(0xFF66BB6A)),
+                          _buildGridTafsirContainer(),
+                          _buildTextWithButton('/tafsirs', Color(0xFF66BB6A)),
+                          _buildTextWithLine(
+                              'Краткое изложение основ', Color(0xFFFFA726)),
+                          _buildGridContentContainer(),
+                          _buildTextWithButton('/contents', Color(0xFFFFA726)),
+                          _buildTextWithLine('Викторина', Color(0xFF42A5F5)),
+                          _buildGridQuizContainer(),
+                          _buildTextWithButton('/quiz', Color(0xFF42A5F5)),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
+                );
+        },
       ),
     );
   }
@@ -99,18 +113,22 @@ class _MainPageState extends State<MainPage> {
               color: Colors.black,
             ),
           ),
-          MaterialButton(
+          FlatButton.icon(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18),
             ),
             color: color,
-            child: Text(
+            label: Text(
               'Перейти...',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
+            ),
+            icon: Icon(
+              CupertinoIcons.chevron_right_circle_fill,
+              color: Colors.white,
             ),
             onPressed: () {},
           ),
@@ -119,38 +137,63 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  // Grid names container
-  Widget _buildGridNamesContainer() {
+  /// CONTAINER NAMES */
+  Widget _buildGridNamesContainer(AsyncSnapshot snapshot) {
     return Container(
-      height: 125,
+      height: 150,
       child: GridView.builder(
-          padding: EdgeInsets.zero,
-          scrollDirection: Axis.horizontal,
-          itemCount: 15,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
-          itemBuilder: (context, index) {
-            return _buildNameItem();
-          }),
+        padding: EdgeInsets.zero,
+        scrollDirection: Axis.horizontal,
+        itemCount: snapshot.data.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1, childAspectRatio: 0.5),
+        itemBuilder: (context, index) {
+          return _buildNameItem(snapshot.data[index]);
+        },
+      ),
     );
   }
 
-  Widget _buildNameItem() {
+  Widget _buildNameItem(NameItem item) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8),
-      decoration: BoxDecoration(
+      child: InkWell(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.red[100],
-      ),
-      child: Center(
-        child: ListTile(
-          title: Text('Name arabic'),
-          subtitle: Text('Name Translation'),
+        splashColor: Colors.red[600],
+        child: Ink(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.red[300],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                '${item.nameArabic}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+              Text(
+                '${item.nameTranscription}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+              Text(
+                '${item.nameTranslation}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+            ],
+          ),
         ),
+        onTap: () {},
       ),
     );
   }
 
+  /// CONTAINER TAFSIRS */
   Widget _buildGridTafsirContainer() {
     return Container(
       height: 250,
@@ -182,6 +225,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
+  /// CONTAINER CONTENTS */
   Widget _buildGridContentContainer() {
     return Container(
       height: 250,
@@ -213,6 +257,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
+  /// CONTAINER QUIZ */
   Widget _buildGridQuizContainer() {
     return Container(
       height: 125,
