@@ -223,10 +223,8 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         onTap: () {
-          Navigator.of(context, rootNavigator: true).pushNamed(
-            '/names',
-            arguments: ListNameArguments(item.id),
-          );
+          Navigator.of(context, rootNavigator: true)
+              .pushNamed('/names', arguments: ListNameArguments(item.id));
         },
       ),
     );
