@@ -10,6 +10,15 @@ class NamesPage extends StatefulWidget {
 class _NamesPageState extends State<NamesPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Список имён'),
+        centerTitle: true,
+        backgroundColor: Colors.red[400],
+      ),
+      body: Container(
+        color: Colors.red[50],
+      ),
+    );
   }
 }

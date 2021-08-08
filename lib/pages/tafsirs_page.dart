@@ -10,6 +10,15 @@ class TafsirsPage extends StatefulWidget {
 class _TafsirsPageState extends State<TafsirsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Разъяснение имён'),
+        centerTitle: true,
+        backgroundColor: Colors.green[400],
+      ),
+      body: Container(
+        color: Colors.green[50],
+      ),
+    );
   }
 }

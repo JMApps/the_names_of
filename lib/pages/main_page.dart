@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:the_names_of/arguments/list_content_arguments.dart';
+import 'package:the_names_of/arguments/list_name_argument.dart';
+import 'package:the_names_of/arguments/list_tafsir_arguments.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/content_item.dart';
 import 'package:the_names_of/model/name_item.dart';
@@ -159,7 +162,9 @@ class _MainPageState extends State<MainPage> {
               CupertinoIcons.chevron_right_circle_fill,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).pushNamed('$route');
+            },
           ),
         ],
       ),
@@ -193,7 +198,7 @@ class _MainPageState extends State<MainPage> {
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.red[300],
+            color: Colors.red[200],
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -217,7 +222,12 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ),
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context, rootNavigator: true).pushNamed(
+            '/names',
+            arguments: ListNameArguments(item.id),
+          );
+        },
       ),
     );
   }
@@ -247,7 +257,7 @@ class _MainPageState extends State<MainPage> {
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.green[300],
+            color: Colors.green[200],
           ),
           child: Padding(
             padding: const EdgeInsets.all(8),
@@ -282,7 +292,12 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
         ),
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context, rootNavigator: true).pushNamed(
+            '/tafsirs',
+            arguments: ListTafsirArguments(item.id),
+          );
+        },
       ),
     );
   }
@@ -312,7 +327,7 @@ class _MainPageState extends State<MainPage> {
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.orange[300],
+            color: Colors.orange[200],
           ),
           child: Padding(
             padding: const EdgeInsets.all(8),
@@ -348,6 +363,12 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
         ),
+        onTap: () {
+          Navigator.of(context, rootNavigator: true).pushNamed(
+            '/contents',
+            arguments: ListContentArguments(item.id),
+          );
+        },
       ),
     );
   }
@@ -372,38 +393,31 @@ class _MainPageState extends State<MainPage> {
   Widget _buildQuizItem(NameItem item) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8),
-      child: InkWell(
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        splashColor: Colors.blue[600],
-        child: Ink(
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.blue[300],
+        color: Colors.blue[200],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            '${item.nameArabic}',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                '${item.nameArabic}',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
-              ),
-              Text(
-                '${item.nameTranscription}',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
-              ),
-              Text(
-                '${item.nameTranslation}',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
-              ),
-            ],
+          Text(
+            '${item.nameTranscription}',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
           ),
-        ),
-        onTap: () {},
+          Text(
+            '${item.nameTranslation}',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
+          ),
+        ],
       ),
     );
   }

@@ -10,6 +10,15 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Викторина'),
+        centerTitle: true,
+        backgroundColor: Colors.blue[400],
+      ),
+      body: Container(
+        color: Colors.blue[50],
+      ),
+    );
   }
 }
