@@ -30,6 +30,18 @@ class _NamesPageState extends State<NamesPage> {
     args = ModalRoute.of(context)!.settings.arguments as ListNameArguments?;
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color(0xFFD32F2F),
+                Color(0xFFE57373),
+              ],
+            ),
+          ),
+        ),
         title: Text('Список имён'),
         centerTitle: true,
         backgroundColor: Colors.red[400],
@@ -54,8 +66,8 @@ class _NamesPageState extends State<NamesPage> {
                       begin: Alignment.topLeft,
                       end: Alignment.topRight,
                       colors: [
-                        Color(0xFFFFCDD2),
                         Color(0xFFFFEBEE),
+                        Color(0xFFFFFFFF),
                       ],
                     ),
                   ),
@@ -90,7 +102,7 @@ class _NamesPageState extends State<NamesPage> {
       elevation: 1,
       shadowColor: Colors.red[200],
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,6 +123,45 @@ class _NamesPageState extends State<NamesPage> {
               '${item.nameTranslation}',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 8),
+            Divider(
+              indent: 16,
+              endIndent: 16,
+              color: Colors.red,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.play_arrow_rounded,
+                    color: Colors.red[500],
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    CupertinoIcons.doc_on_doc,
+                    color: Colors.red[500],
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.share,
+                    color: Colors.red[500],
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.image,
+                    color: Colors.red[500],
+                  ),
+                  onPressed: () {},
+                ),
+              ],
             ),
           ],
         ),
