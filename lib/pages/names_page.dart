@@ -1,8 +1,12 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:share/share.dart';
 import 'package:the_names_of/arguments/list_name_argument.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/name_item.dart';
@@ -19,6 +23,7 @@ class _NamesPageState extends State<NamesPage> {
   late ListNameArguments? args;
   final _itemScrollController = ItemScrollController();
   var random = Random();
+  final _screenshotController = ScreenshotController();
 
   @override
   void initState() {
@@ -49,7 +54,7 @@ class _NamesPageState extends State<NamesPage> {
           IconButton(
             icon: Icon(CupertinoIcons.arrow_2_squarepath),
             onPressed: () {
-              scrollToIndex(
+              _scrollToIndex(
                 random.nextInt(99),
               );
             },
@@ -159,7 +164,9 @@ class _NamesPageState extends State<NamesPage> {
                     Icons.image,
                     color: Colors.red[500],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _takeScreenshot(item);
+                  },
                 ),
               ],
             ),
@@ -169,10 +176,59 @@ class _NamesPageState extends State<NamesPage> {
     );
   }
 
-  scrollToIndex(int index) async {
+  _scrollToIndex(int index) async {
     await _itemScrollController.scrollTo(
         index: index,
         duration: Duration(seconds: 1),
         curve: Curves.easeInOutCubic);
+  }
+
+  Widget _forScreen(NameItem item) {
+    return Screenshot(
+      controller: _screenshotController,
+      child: AspectRatio(
+        aspectRatio: MediaQuery.of(context).size.aspectRatio * 5,
+        child: Card(
+          margin: EdgeInsets.all(16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 1,
+          shadowColor: Colors.red[200],
+          child: Column(
+            children: [
+              SizedBox(height: 16),
+              Text(
+                '${item.nameArabic}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20, color: Colors.red),
+              ),
+              SizedBox(height: 8),
+              Text(
+                '${item.nameTranscription}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20, color: Colors.green),
+              ),
+              SizedBox(height: 8),
+              Text(
+                '${item.nameTranslation}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20),
+              ),
+              SizedBox(height: 16)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _takeScreenshot(NameItem item) async {
+    final unit8List =
+        await _screenshotController.captureFromWidget(_forScreen(item));
+    String tempPath = (await getTemporaryDirectory()).path;
+    File file = File('$tempPath/image_${item.id}.jpg');
+    await file.writeAsBytes(unit8List);
+    await Share.shareFiles([file.path]);
   }
 }
