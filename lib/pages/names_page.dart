@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:the_names_of/arguments/list_name_argument.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/name_item.dart';
