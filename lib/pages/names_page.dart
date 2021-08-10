@@ -52,7 +52,6 @@ class _NamesPageState extends State<NamesPage> {
         ),
         title: Text('Список имён'),
         centerTitle: true,
-        backgroundColor: Colors.red[400],
         actions: [
           IconButton(
             icon: Icon(CupertinoIcons.arrow_2_squarepath),
@@ -115,6 +114,7 @@ class _NamesPageState extends State<NamesPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: 8),
             Text(
               '${item.nameArabic}',
               textAlign: TextAlign.center,
