@@ -19,14 +19,17 @@ class NamesPage extends StatefulWidget {
 }
 
 class _NamesPageState extends State<NamesPage> {
-  var _databaseQuery = DatabaseQuery();
-  late ListNameArguments? args;
-  final _itemScrollController = ItemScrollController();
   var random = Random();
+  late ListNameArguments? args;
+  var _databaseQuery = DatabaseQuery();
+  final _itemScrollController = ItemScrollController();
   final _screenshotController = ScreenshotController();
 
   @override
   void initState() {
+    Future.delayed(Duration(milliseconds: 500), () {
+      _scrollToIndex(args!.id! - 1);
+    });
     super.initState();
   }
 
@@ -191,7 +194,7 @@ class _NamesPageState extends State<NamesPage> {
         child: Card(
           margin: EdgeInsets.all(16),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(15),
           ),
           elevation: 1,
           shadowColor: Colors.red[200],
