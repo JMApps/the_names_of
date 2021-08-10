@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/ayah_item.dart';
 import 'package:the_names_of/model/name_item.dart';
@@ -17,6 +18,8 @@ class _TafsirsPageState extends State<TafsirsPage> {
   var _pageController = PageController();
   var _databaseQuery = DatabaseQuery();
 
+  int _selectedPage = 0;
+
   @override
   void dispose() {
     _pageController.dispose();
@@ -25,6 +28,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
 
   @override
   Widget build(BuildContext context) {
+    _pageController = PageController(initialPage: _selectedPage);
     return Scaffold(
       appBar: AppBar(
         title: Text('Разъяснение имён'),
@@ -42,13 +46,37 @@ class _TafsirsPageState extends State<TafsirsPage> {
             ],
           ),
         ),
-        child: _buildTafsirPage(),
+        child: Column(
+          children: [
+            Container(
+              width: 100,
+              padding: EdgeInsets.all(8),
+              child: PageViewDotIndicator(
+                currentItem: _selectedPage,
+                count: 65,
+                selectedColor: Color(0xFF2E7D32),
+                unselectedColor: Colors.grey,
+                duration: Duration(milliseconds: 200),
+                size: Size(8, 8),
+                unselectedSize: Size(5, 5),
+              ),
+            ),
+            Expanded(
+              child: _buildTafsirPage(),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildTafsirPage() {
     return PageView.builder(
+      onPageChanged: (page) {
+        setState(() {
+          _selectedPage = page;
+        });
+      },
       controller: _pageController,
       itemCount: 65,
       itemBuilder: (context, index) {
@@ -70,18 +98,24 @@ class _TafsirsPageState extends State<TafsirsPage> {
     return FutureBuilder(
       future: _databaseQuery.getChapterNames(pageNumber + 1),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return ListView.builder(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: BouncingScrollPhysics(),
-          itemCount: snapshot.data?.length ?? 1,
-          itemBuilder: (context, index) {
-            return snapshot.hasData
-                ? _buildNameItem(snapshot.data[index])
-                : Center(
-                    child: CircularProgressIndicator(),
-                  );
-          },
+        return Container(
+          height: 200,
+          child: GridView.builder(
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            itemCount: snapshot.data?.length ?? 1,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1, childAspectRatio: 0.5),
+            itemBuilder: (context, index) {
+              return snapshot.hasData
+                  ? _buildNameItem(snapshot.data[index])
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    );
+            },
+          ),
         );
       },
     );
