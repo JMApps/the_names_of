@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
+import 'package:the_names_of/arguments/list_tafsir_arguments.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/ayah_item.dart';
 import 'package:the_names_of/model/name_item.dart';
@@ -17,8 +18,9 @@ class TafsirsPage extends StatefulWidget {
 class _TafsirsPageState extends State<TafsirsPage> {
   var _pageController = PageController();
   var _databaseQuery = DatabaseQuery();
+  late ListTafsirArguments? args;
 
-  int _selectedPage = 0;
+  late int _selectedPage;
 
   @override
   void dispose() {
@@ -28,6 +30,8 @@ class _TafsirsPageState extends State<TafsirsPage> {
 
   @override
   Widget build(BuildContext context) {
+    args = ModalRoute.of(context)!.settings.arguments as ListTafsirArguments?;
+    _selectedPage = args != null ? args!.id! - 1 : 0;
     _pageController = PageController(initialPage: _selectedPage);
     return Scaffold(
       appBar: AppBar(
