@@ -110,7 +110,7 @@ class _NamesPageState extends State<NamesPage> {
       elevation: 1,
       shadowColor: Colors.red[200],
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
