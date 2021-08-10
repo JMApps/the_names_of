@@ -42,6 +42,13 @@ class DatabaseQuery {
     return chapterTafsir!;
   }
 
+  Future<List<TafsirItem>> getChapterTafsirs(int id) async {
+    var dbClient = await con.db;
+    var res = await dbClient.query('Table_of_tafsirs', where: '_id == $id');
+    List<TafsirItem>? chapterTafsir = res.isNotEmpty ? res.map((c) => TafsirItem.fromMap(c)).toList() : null;
+    return chapterTafsir!;
+  }
+
   Future<List<ContentItem>> getContents() async {
     var dbClient = await con.db;
     var res = await dbClient.query('Table_of_contents');
