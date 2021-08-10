@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
               end: Alignment.topRight,
               colors: [
                 Color(0xFF1565C0),
-                Color(0xFF2196F3),
+                Color(0xFF1E88E5),
               ],
             ),
           ),
