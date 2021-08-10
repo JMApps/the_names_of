@@ -9,15 +9,15 @@ class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => MainPage());
+        return MaterialPageRoute(builder: (_) => MainPage(), settings: routeSettings);
       case '/names':
-        return MaterialPageRoute(builder: (_) => NamesPage());
+        return MaterialPageRoute(builder: (_) => NamesPage(), settings: routeSettings);
       case '/tafsirs':
-        return MaterialPageRoute(builder: (_) => TafsirsPage());
+        return MaterialPageRoute(builder: (_) => TafsirsPage(), settings: routeSettings);
       case '/contents':
-        return MaterialPageRoute(builder: (_) => ContentPage());
+        return MaterialPageRoute(builder: (_) => ContentPage(), settings: routeSettings);
       case '/quiz':
-        return MaterialPageRoute(builder: (_) => QuizPage());
+        return MaterialPageRoute(builder: (_) => QuizPage(), settings: routeSettings);
       default:
         throw Exception('Invalid route');
     }
