@@ -28,7 +28,9 @@ class _NamesPageState extends State<NamesPage> {
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: 500), () {
-      _scrollToIndex(args!.id! - 1);
+      if (args?.id! != null) {
+        _scrollToIndex(args!.id! - 1);
+      }
     });
     super.initState();
   }
