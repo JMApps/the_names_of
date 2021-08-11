@@ -16,28 +16,45 @@ class TafsirsPage extends StatefulWidget {
 }
 
 class _TafsirsPageState extends State<TafsirsPage> {
-  var _pageController = PageController();
+  var _pageViewController = PageController();
+  var _pageNameController = PageController();
+  var _pageAyahController = PageController();
   var _databaseQuery = DatabaseQuery();
   late ListTafsirArguments? args;
 
-  late int _selectedPage;
+  int _selectedPage = 0;
+  int _selectedName = 0;
+  int _selectedAyah = 0;
 
   @override
   void dispose() {
-    _pageController.dispose();
+    _pageViewController.dispose();
+    _pageNameController.dispose();
+    _pageAyahController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context)!.settings.arguments as ListTafsirArguments?;
-    _selectedPage = args != null ? args!.id! - 1 : 0;
-    _pageController = PageController(initialPage: _selectedPage);
+    _pageViewController =
+        PageController(initialPage: args != null ? args!.id! - 1 : 0);
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color(0xFF388E3C),
+                Color(0xFF81C784),
+              ],
+            ),
+          ),
+        ),
         title: Text('Разъяснение имён'),
         centerTitle: true,
-        backgroundColor: Colors.green[400],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -50,77 +67,72 @@ class _TafsirsPageState extends State<TafsirsPage> {
             ],
           ),
         ),
-        child: Column(
-          children: [
-            Container(
-              width: 100,
-              padding: EdgeInsets.all(8),
-              child: PageViewDotIndicator(
-                currentItem: _selectedPage,
-                count: 65,
-                selectedColor: Color(0xFF2E7D32),
-                unselectedColor: Colors.grey,
-                duration: Duration(milliseconds: 200),
-                size: Size(8, 8),
-                unselectedSize: Size(5, 5),
-              ),
-            ),
-            Expanded(
-              child: _buildTafsirPage(),
-            ),
-          ],
-        ),
+        child: _buildTafsirPage(),
       ),
     );
   }
 
   Widget _buildTafsirPage() {
-    return PageView.builder(
-      onPageChanged: (page) {
-        setState(() {
-          _selectedPage = page;
-        });
-      },
-      controller: _pageController,
-      itemCount: 65,
-      itemBuilder: (context, index) {
-        return SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildListNames(index),
-              _buildListAyahs(index),
-              _buildTafsir(index),
-            ],
+    return Column(
+      children: [
+        _buildDotIndicator(_selectedPage, 65, Colors.green),
+        Expanded(
+          child: PageView.builder(
+            onPageChanged: (page) {
+              setState(() {
+                _selectedPage = page;
+              });
+            },
+            controller: _pageViewController,
+            itemCount: 65,
+            itemBuilder: (context, index) {
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    _buildListNames(index),
+                    _buildListAyahs(index),
+                    _buildTafsir(index),
+                  ],
+                ),
+              );
+            },
           ),
-        );
-      },
+        ),
+      ],
     );
   }
 
-  Widget _buildListNames(int pageNumber) {
-    return FutureBuilder(
-      future: _databaseQuery.getChapterNames(pageNumber + 1),
+  Widget _buildListNames(int pageIndex) {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getChapterNames(pageIndex + 1),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return Container(
-          height: 200,
-          child: GridView.builder(
-            shrinkWrap: true,
-            padding: EdgeInsets.zero,
-            scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
-            itemCount: snapshot.data?.length ?? 1,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1, childAspectRatio: 0.5),
-            itemBuilder: (context, index) {
-              return snapshot.hasData
-                  ? _buildNameItem(snapshot.data[index])
-                  : Center(
-                      child: CircularProgressIndicator(),
-                    );
-            },
-          ),
-        );
+        return snapshot.hasData
+            ? Column(
+                children: [
+                  Container(
+                    height: 200,
+                    child: PageView.builder(
+                      controller: _pageNameController,
+                      scrollDirection: Axis.horizontal,
+                      physics: ClampingScrollPhysics(),
+                      itemCount: snapshot.data!.length,
+                      onPageChanged: (page) {
+                        setState(() {
+                          _selectedName = page;
+                        });
+                      },
+                      itemBuilder: (context, index) {
+                        return _buildNameItem(snapshot.data![index]);
+                      },
+                    ),
+                  ),
+                  _buildDotIndicator(
+                      _selectedName, snapshot.data!.length, Colors.red),
+                ],
+              )
+            : SizedBox();
       },
     );
   }
@@ -128,7 +140,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
   Widget _buildNameItem(NameItem item) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(15),
       ),
       elevation: 1,
       shadowColor: Colors.red[200],
@@ -163,23 +175,38 @@ class _TafsirsPageState extends State<TafsirsPage> {
     );
   }
 
-  Widget _buildListAyahs(int pageNumber) {
-    return FutureBuilder(
-      future: _databaseQuery.getChapterAyahs(pageNumber + 1),
+  Widget _buildListAyahs(int pageIndex) {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getChapterAyahs(pageIndex + 1),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return ListView.builder(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: BouncingScrollPhysics(),
-          itemCount: snapshot.data?.length ?? 1,
-          itemBuilder: (context, index) {
-            return snapshot.hasData
-                ? _buildAyahItem(snapshot.data[index])
-                : Center(
-                    child: SizedBox(),
-                  );
-          },
-        );
+        return snapshot.hasData
+            ? Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    child: PageView.builder(
+                      controller: _pageAyahController,
+                      physics: BouncingScrollPhysics(),
+                      itemCount: snapshot.data!.length,
+                      onPageChanged: (page) {
+                        setState(() {
+                          _selectedAyah = page;
+                        });
+                      },
+                      itemBuilder: (context, index) {
+                        return snapshot.hasData
+                            ? _buildAyahItem(snapshot.data[index])
+                            : SizedBox();
+                      },
+                    ),
+                  ),
+                  snapshot.data!.length > 0
+                      ? _buildDotIndicator(
+                          _selectedAyah, snapshot.data!.length, Colors.red)
+                      : SizedBox(),
+                ],
+              )
+            : SizedBox();
       },
     );
   }
@@ -187,15 +214,15 @@ class _TafsirsPageState extends State<TafsirsPage> {
   Widget _buildAyahItem(AyahItem item) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(15),
       ),
       elevation: 1,
       shadowColor: Colors.red[200],
       child: Padding(
         padding: const EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 8),
             Align(
@@ -231,22 +258,20 @@ class _TafsirsPageState extends State<TafsirsPage> {
     );
   }
 
-  Widget _buildTafsir(int pageNumber) {
+  Widget _buildTafsir(int pageIndex) {
     return FutureBuilder(
-      future: _databaseQuery.getChapterTafsirs(pageNumber + 1),
+      future: _databaseQuery.getChapterTafsirs(pageIndex + 1),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return ListView.builder(
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
-          itemCount: snapshot.data?.length ?? 1,
-          itemBuilder: (context, index) {
-            return snapshot.hasData
-                ? _buildTafsirItem(snapshot.data[index])
-                : Center(
-                    child: SizedBox(),
-                  );
-          },
-        );
+        return snapshot.hasData
+            ? ListView.builder(
+                shrinkWrap: true,
+                physics: BouncingScrollPhysics(),
+                itemCount: snapshot.data?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return _buildTafsirItem(snapshot.data[index]);
+                },
+              )
+            : SizedBox();
       },
     );
   }
@@ -272,6 +297,21 @@ class _TafsirsPageState extends State<TafsirsPage> {
             )
           },
         ),
+      ),
+    );
+  }
+
+  Widget _buildDotIndicator(int selectPage, int count, Color selectedColor) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: PageViewDotIndicator(
+        currentItem: selectPage,
+        count: count,
+        selectedColor: selectedColor,
+        unselectedColor: Colors.grey,
+        duration: Duration(milliseconds: 200),
+        size: Size(8, 8),
+        unselectedSize: Size(5, 5),
       ),
     );
   }
