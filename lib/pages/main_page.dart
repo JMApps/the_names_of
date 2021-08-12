@@ -42,6 +42,12 @@ class _MainPageState extends State<MainPage> {
           onPressed: () {},
           icon: Icon(CupertinoIcons.bars),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(CupertinoIcons.bitcoin_circle),
+          ),
+        ],
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -51,55 +57,18 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildTextWithLine('Имена', Color(0xFFEF5350)),
-                FutureBuilder<List>(
-                  future: _databaseQuery.getAllNames(),
-                  builder: (context, snapshot) {
-                    return snapshot.hasData
-                        ? _buildGridNamesContainer(snapshot)
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          );
-                  },
-                ),
-                _buildTextWithButton('/names', Color(0xFFEF5350)),
-                _buildTextWithLine('Разъяснение имён', Color(0xFF66BB6A)),
-                FutureBuilder<List>(
-                  future: _databaseQuery.getAllChapterTafsirs(),
-                  builder: (context, snapshot) {
-                    return snapshot.hasData
-                        ? _buildGridTafsirContainer(snapshot)
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          );
-                  },
-                ),
-                _buildTextWithButton('/tafsirs', Color(0xFF66BB6A)),
-                _buildTextWithLine(
-                    'Краткое изложение основ', Color(0xFFFFA726)),
-                FutureBuilder<List>(
-                  future: _databaseQuery.getContents(),
-                  builder: (context, snapshot) {
-                    return snapshot.hasData
-                        ? _buildGridContentContainer(snapshot)
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          );
-                  },
-                ),
-                _buildTextWithButton('/contents', Color(0xFFFFA726)),
-                _buildTextWithLine('Викторина', Color(0xFF42A5F5)),
-                FutureBuilder<List>(
-                  future: _databaseQuery.getAllNames(),
-                  builder: (context, snapshot) {
-                    return snapshot.hasData
-                        ? _buildGridQuizContainer(snapshot)
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          );
-                  },
-                ),
-                _buildTextWithButton('/quiz', Color(0xFF42A5F5)),
+                _buildTextWithLine('Краткое изложение основ', Color(0xFFEF6C00)),
+                _buildGridContentContainer(),
+                _buildTextWithButton('/contents', Color(0xFFFB8C00)),
+                _buildTextWithLine('Имена', Color(0xFFC62828)),
+                _buildGridNamesContainer(),
+                _buildTextWithButton('/names', Color(0xFFE53935)),
+                _buildTextWithLine('Разъяснение имён', Color(0xFF2E7D32)),
+                _buildGridTafsirContainer(),
+                _buildTextWithButton('/tafsirs', Color(0xFF43A047)),
+                _buildTextWithLine('Викторина', Color(0xFF1565C0)),
+                _buildGridQuizContainer(),
+                _buildTextWithButton('/quiz', Color(0xFF1E88E5)),
               ],
             ),
           ),
@@ -171,20 +140,129 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  /// CONTAINER NAMES */
-  Widget _buildGridNamesContainer(AsyncSnapshot snapshot) {
+  /// CONTAINER CONTENTS */
+  Widget _buildGridContentContainer() {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getAllContents(),
+      builder: (context, AsyncSnapshot snapshot) {
+        return snapshot.hasData
+            ? Container(
+                height: 250,
+                child: GridView.builder(
+                    padding: EdgeInsets.zero,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: snapshot.data!.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1, childAspectRatio: 0.7),
+                    itemBuilder: (context, index) {
+                      return _buildContentItem(snapshot.data![index]);
+                    }),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
+    );
+  }
+
+  Widget _buildContentItem(ContentItem item) {
     return Container(
-      height: 150,
-      child: GridView.builder(
-        padding: EdgeInsets.zero,
-        scrollDirection: Axis.horizontal,
-        itemCount: snapshot.data.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1, childAspectRatio: 0.5),
-        itemBuilder: (context, index) {
-          return _buildNameItem(snapshot.data[index]);
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(15),
+        splashColor: Colors.orange[600],
+        child: Ink(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.orange[200],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 16, top: 16, right: 16),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    FloatingActionButton(
+                      onPressed: null,
+                      mini: true,
+                      backgroundColor: Colors.orange[700],
+                      child: Text(
+                        '${item.id}',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: Text(
+                        '${item.contentTitle}',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 16),
+                  child: Html(
+                    data: '${item.content}',
+                    style: {
+                      '#': Style(
+                        fontSize: FontSize(18),
+                        textAlign: TextAlign.start,
+                        textOverflow: TextOverflow.fade,
+                      ),
+                      'small': Style(
+                        fontSize: FontSize(14),
+                        color: Colors.grey[700],
+                      ),
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        onTap: () {
+          Navigator.of(context, rootNavigator: true).pushNamed(
+            '/contents',
+            arguments: ListContentArguments(item.id),
+          );
         },
       ),
+    );
+  }
+
+  /// CONTAINER NAMES */
+  Widget _buildGridNamesContainer() {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getAllNames(),
+      builder: (context, AsyncSnapshot snapshot) {
+        return snapshot.hasData
+            ? Container(
+                height: 150,
+                child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1, childAspectRatio: 0.5),
+                  itemBuilder: (context, index) {
+                    return _buildNameItem(snapshot.data![index]);
+                  },
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
     );
   }
 
@@ -200,7 +278,203 @@ class _MainPageState extends State<MainPage> {
             borderRadius: BorderRadius.circular(15),
             color: Colors.red[200],
           ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: FloatingActionButton(
+                  onPressed: null,
+                  mini: true,
+                  backgroundColor: Colors.red[600],
+                  child: Text(
+                    '${item.id}',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '${item.nameArabic}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Text(
+                    '${item.nameTranscription}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Text(
+                    '${item.nameTranslation}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        onTap: () {
+          Navigator.of(context, rootNavigator: true)
+              .pushNamed('/names', arguments: ListNameArguments(item.id));
+        },
+      ),
+    );
+  }
+
+  /// CONTAINER TAFSIRS */
+  Widget _buildGridTafsirContainer() {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getAllChapterTafsirs(),
+      builder: (context, AsyncSnapshot snapshot) {
+        return snapshot.hasData
+            ? Container(
+                height: 250,
+                child: GridView.builder(
+                    padding: EdgeInsets.zero,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: snapshot.data!.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1, childAspectRatio: 0.7),
+                    itemBuilder: (context, index) {
+                      return _buildTafsirItem(snapshot.data![index]);
+                    }),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
+    );
+  }
+
+  Widget _buildTafsirItem(TafsirItem item) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(15),
+        splashColor: Colors.green[600],
+        child: Ink(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.green[200],
+          ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 16, top: 16, right: 16),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    FloatingActionButton(
+                      onPressed: null,
+                      mini: true,
+                      backgroundColor: Colors.green[700],
+                      child: Text(
+                        '${item.id}',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: Text(
+                        '${item.tafsirTitle}',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 16),
+                  child: Html(
+                    data: '${item.tafsirContent}',
+                    style: {
+                      '#': Style(
+                        fontSize: FontSize(18),
+                        textAlign: TextAlign.start,
+                        textOverflow: TextOverflow.fade,
+                      ),
+                      'small': Style(
+                        fontSize: FontSize(14),
+                        color: Colors.grey[700],
+                      ),
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        onTap: () {
+          Navigator.of(context, rootNavigator: true).pushNamed(
+            '/tafsirs',
+            arguments: ListTafsirArguments(item.id),
+          );
+        },
+      ),
+    );
+  }
+
+  /// CONTAINER QUIZ */
+  Widget _buildGridQuizContainer() {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getAllNames(),
+      builder: (context, AsyncSnapshot snapshot) {
+        return snapshot.hasData
+            ? Container(
+                height: 150,
+                child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1, childAspectRatio: 0.5),
+                  itemBuilder: (context, index) {
+                    return _buildQuizItem(snapshot.data![index]);
+                  },
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
+    );
+  }
+
+  Widget _buildQuizItem(NameItem item) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.blue[200],
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: FloatingActionButton(
+              onPressed: null,
+              mini: true,
+              backgroundColor: Colors.blue[600],
+              child: Text(
+                '${item.id}',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              ),
+            ),
+          ),
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -220,197 +494,6 @@ class _MainPageState extends State<MainPage> {
                 style: TextStyle(fontSize: 18),
               ),
             ],
-          ),
-        ),
-        onTap: () {
-          Navigator.of(context, rootNavigator: true)
-              .pushNamed('/names', arguments: ListNameArguments(item.id));
-        },
-      ),
-    );
-  }
-
-  /// CONTAINER TAFSIRS */
-  Widget _buildGridTafsirContainer(AsyncSnapshot snapshot) {
-    return Container(
-      height: 250,
-      child: GridView.builder(
-          padding: EdgeInsets.zero,
-          scrollDirection: Axis.horizontal,
-          itemCount: snapshot.data.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1, childAspectRatio: 0.7),
-          itemBuilder: (context, index) {
-            return _buildTafsirItem(snapshot.data[index]);
-          }),
-    );
-  }
-
-  Widget _buildTafsirItem(TafsirItem item) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(15),
-        splashColor: Colors.green[600],
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.green[200],
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    '${item.tafsirTitle}',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-                  ),
-                ),
-                Expanded(
-                  child: Html(
-                    data: '${item.tafsirContent}',
-                    style: {
-                      '#': Style(
-                        fontSize: FontSize(18),
-                        maxLines: 10,
-                        textOverflow: TextOverflow.ellipsis,
-                      ),
-                      'small': Style(
-                        fontSize: FontSize(14),
-                        color: Colors.grey[700],
-                      ),
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        onTap: () {
-          Navigator.of(context, rootNavigator: true)
-              .pushNamed('/tafsirs', arguments: ListTafsirArguments(item.id));
-        },
-      ),
-    );
-  }
-
-  /// CONTAINER CONTENTS */
-  Widget _buildGridContentContainer(AsyncSnapshot snapshot) {
-    return Container(
-      height: 250,
-      child: GridView.builder(
-          padding: EdgeInsets.zero,
-          scrollDirection: Axis.horizontal,
-          itemCount: snapshot.data.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1, childAspectRatio: 0.7),
-          itemBuilder: (context, index) {
-            return _buildContentItem(snapshot.data[index]);
-          }),
-    );
-  }
-
-  Widget _buildContentItem(ContentItem item) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(15),
-        splashColor: Colors.orange[600],
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.orange[200],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    '${item.contentTitle}',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-                  ),
-                ),
-                Expanded(
-                  child: Html(
-                    data: '${item.content}',
-                    style: {
-                      '#': Style(
-                        fontSize: FontSize(18),
-                        textAlign: TextAlign.start,
-                        maxLines: 10,
-                        textOverflow: TextOverflow.ellipsis,
-                      ),
-                      'small': Style(
-                        fontSize: FontSize(14),
-                        color: Colors.grey[700],
-                      ),
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        onTap: () {
-          Navigator.of(context, rootNavigator: true).pushNamed(
-            '/contents',
-            arguments: ListContentArguments(item.id),
-          );
-        },
-      ),
-    );
-  }
-
-  /// CONTAINER QUIZ */
-  Widget _buildGridQuizContainer(AsyncSnapshot snapshot) {
-    return Container(
-      height: 150,
-      child: GridView.builder(
-        padding: EdgeInsets.zero,
-        scrollDirection: Axis.horizontal,
-        itemCount: snapshot.data.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1, childAspectRatio: 0.5),
-        itemBuilder: (context, index) {
-          return _buildQuizItem(snapshot.data[index]);
-        },
-      ),
-    );
-  }
-
-  Widget _buildQuizItem(NameItem item) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8),
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.blue[200],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            '${item.nameArabic}',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18),
-          ),
-          Text(
-            '${item.nameTranscription}',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18),
-          ),
-          Text(
-            '${item.nameTranslation}',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18),
           ),
         ],
       ),
