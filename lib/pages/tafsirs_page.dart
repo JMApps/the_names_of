@@ -17,20 +17,15 @@ class TafsirsPage extends StatefulWidget {
 
 class _TafsirsPageState extends State<TafsirsPage> {
   var _pageViewController = PageController();
-  var _pageNameController = PageController();
-  var _pageAyahController = PageController();
+
   var _databaseQuery = DatabaseQuery();
   late ListTafsirArguments? args;
 
   int _selectedPage = 0;
-  int _selectedName = 0;
-  int _selectedAyah = 0;
 
   @override
   void dispose() {
     _pageViewController.dispose();
-    _pageNameController.dispose();
-    _pageAyahController.dispose();
     super.dispose();
   }
 
@@ -59,48 +54,45 @@ class _TafsirsPageState extends State<TafsirsPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
             colors: [
               Color(0xFFE8F5E9),
               Color(0xFFFFFFFF),
             ],
           ),
         ),
-        child: _buildTafsirPage(),
+        child: Container(
+            child: Column(
+          children: [
+            _buildDotIndicator(_selectedPage, 65, Colors.green),
+            Expanded(
+              child: _buildTafsirPage(),
+            ),
+          ],
+        )),
       ),
     );
   }
 
   Widget _buildTafsirPage() {
-    return Column(
-      children: [
-        _buildDotIndicator(_selectedPage, 65, Colors.green),
-        Expanded(
-          child: PageView.builder(
-            onPageChanged: (page) {
-              setState(() {
-                _selectedPage = page;
-              });
-            },
-            controller: _pageViewController,
-            itemCount: 65,
-            itemBuilder: (context, index) {
-              return SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    _buildListNames(index),
-                    _buildListAyahs(index),
-                    _buildTafsir(index),
-                  ],
-                ),
-              );
-            },
+    return PageView.builder(
+      onPageChanged: (page) {
+        setState(() {
+          _selectedPage = page;
+        });
+      },
+      controller: _pageViewController,
+      itemCount: 65,
+      itemBuilder: (context, index) {
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildListNames(index),
+              _buildListAyahs(index),
+              _buildTafsir(index),
+            ],
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 
@@ -109,28 +101,14 @@ class _TafsirsPageState extends State<TafsirsPage> {
       future: _databaseQuery.getChapterNames(pageIndex + 1),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return snapshot.hasData
-            ? Column(
-                children: [
-                  Container(
-                    height: 200,
-                    child: PageView.builder(
-                      controller: _pageNameController,
-                      scrollDirection: Axis.horizontal,
-                      physics: ClampingScrollPhysics(),
-                      itemCount: snapshot.data!.length,
-                      onPageChanged: (page) {
-                        setState(() {
-                          _selectedName = page;
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        return _buildNameItem(snapshot.data![index]);
-                      },
-                    ),
-                  ),
-                  _buildDotIndicator(
-                      _selectedName, snapshot.data!.length, Colors.red),
-                ],
+            ? ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: ClampingScrollPhysics(),
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return _buildNameItem(snapshot.data![index]);
+                },
               )
             : SizedBox();
       },
@@ -143,32 +121,62 @@ class _TafsirsPageState extends State<TafsirsPage> {
         borderRadius: BorderRadius.circular(15),
       ),
       elevation: 1,
-      shadowColor: Colors.red[200],
-      child: Padding(
-        padding: const EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      shadowColor: Colors.green,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          gradient: LinearGradient(
+            begin: Alignment.centerRight,
+            end: Alignment.centerLeft,
+            colors: [
+              Color(0xFFE8F5E9),
+              Color(0xFFFFFFFF),
+            ],
+          ),
+        ),
+        padding: EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
+        child: Stack(
+          alignment: Alignment.center,
           children: [
-            SizedBox(height: 8),
-            Text(
-              '${item.nameArabic}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, color: Colors.red),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: FloatingActionButton(
+                heroTag: item.nameAudio,
+                onPressed: null,
+                elevation: 3,
+                mini: true,
+                backgroundColor: Colors.green[300],
+                child: Text(
+                  '${item.id}',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+              ),
             ),
-            SizedBox(height: 8),
-            Text(
-              '${item.nameTranscription}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, color: Colors.green),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 8),
+                Text(
+                  '${item.nameArabic}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, color: Colors.red),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  '${item.nameTranscription}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, color: Colors.green),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  '${item.nameTranslation}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(height: 8),
+              ],
             ),
-            SizedBox(height: 8),
-            Text(
-              '${item.nameTranslation}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: 8),
           ],
         ),
       ),
@@ -180,31 +188,16 @@ class _TafsirsPageState extends State<TafsirsPage> {
       future: _databaseQuery.getChapterAyahs(pageIndex + 1),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return snapshot.hasData
-            ? Column(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    child: PageView.builder(
-                      controller: _pageAyahController,
-                      physics: BouncingScrollPhysics(),
-                      itemCount: snapshot.data!.length,
-                      onPageChanged: (page) {
-                        setState(() {
-                          _selectedAyah = page;
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        return snapshot.hasData
-                            ? _buildAyahItem(snapshot.data[index])
-                            : SizedBox();
-                      },
-                    ),
-                  ),
-                  snapshot.data!.length > 0
-                      ? _buildDotIndicator(
-                          _selectedAyah, snapshot.data!.length, Colors.red)
-                      : SizedBox(),
-                ],
+            ? ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: ClampingScrollPhysics(),
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return snapshot.hasData
+                      ? _buildAyahItem(snapshot.data[index])
+                      : SizedBox();
+                },
               )
             : SizedBox();
       },
@@ -217,9 +210,20 @@ class _TafsirsPageState extends State<TafsirsPage> {
         borderRadius: BorderRadius.circular(15),
       ),
       elevation: 1,
-      shadowColor: Colors.red[200],
-      child: Padding(
-        padding: const EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
+      shadowColor: Colors.red,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color(0xFFFFEBEE),
+              Color(0xFFFFFFFF),
+            ],
+          ),
+        ),
+        padding: EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -282,7 +286,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
         borderRadius: BorderRadius.circular(15.0),
       ),
       elevation: 1,
-      shadowColor: Colors.red[200],
+      shadowColor: Colors.grey,
       child: Padding(
         padding: EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
         child: Html(
