@@ -57,7 +57,8 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildTextWithLine('Краткое изложение основ', Color(0xFFEF6C00)),
+                _buildTextWithLine(
+                    'Краткое изложение основ', Color(0xFFEF6C00)),
                 _buildGridContentContainer(),
                 _buildTextWithButton('/contents', Color(0xFFFB8C00)),
                 _buildTextWithLine('Имена', Color(0xFFC62828)),
@@ -185,6 +186,7 @@ class _MainPageState extends State<MainPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     FloatingActionButton(
+                      heroTag: item.contentTitle,
                       onPressed: null,
                       mini: true,
                       backgroundColor: Colors.orange[700],
@@ -284,6 +286,7 @@ class _MainPageState extends State<MainPage> {
               Align(
                 alignment: Alignment.topLeft,
                 child: FloatingActionButton(
+                  heroTag: item.nameArabic,
                   onPressed: null,
                   mini: true,
                   backgroundColor: Colors.red[600],
@@ -370,6 +373,7 @@ class _MainPageState extends State<MainPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     FloatingActionButton(
+                      heroTag: item.tafsirTitle,
                       onPressed: null,
                       mini: true,
                       backgroundColor: Colors.green[700],
@@ -465,6 +469,7 @@ class _MainPageState extends State<MainPage> {
           Align(
             alignment: Alignment.topLeft,
             child: FloatingActionButton(
+              heroTag: item.id,
               onPressed: null,
               mini: true,
               backgroundColor: Colors.blue[600],
