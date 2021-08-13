@@ -171,7 +171,7 @@ class _MainPageState extends State<MainPage> {
       margin: EdgeInsets.symmetric(horizontal: 8),
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
-        splashColor: Colors.orange[600],
+        splashColor: Colors.orange,
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -189,7 +189,7 @@ class _MainPageState extends State<MainPage> {
                       heroTag: item.contentTitle,
                       onPressed: null,
                       mini: true,
-                      backgroundColor: Colors.orange[700],
+                      backgroundColor: Colors.orange,
                       child: Text(
                         '${item.id}',
                         style: TextStyle(
@@ -273,7 +273,7 @@ class _MainPageState extends State<MainPage> {
       margin: EdgeInsets.symmetric(horizontal: 8),
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
-        splashColor: Colors.red[600],
+        splashColor: Colors.red,
         child: Ink(
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
@@ -289,7 +289,7 @@ class _MainPageState extends State<MainPage> {
                   heroTag: item.nameArabic,
                   onPressed: null,
                   mini: true,
-                  backgroundColor: Colors.red[600],
+                  backgroundColor: Colors.red,
                   child: Text(
                     '${item.id}',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
@@ -358,7 +358,7 @@ class _MainPageState extends State<MainPage> {
       margin: EdgeInsets.symmetric(horizontal: 8),
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
-        splashColor: Colors.green[600],
+        splashColor: Colors.green,
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -376,7 +376,7 @@ class _MainPageState extends State<MainPage> {
                       heroTag: item.tafsirTitle,
                       onPressed: null,
                       mini: true,
-                      backgroundColor: Colors.green[700],
+                      backgroundColor: Colors.green,
                       child: Text(
                         '${item.id}',
                         style: TextStyle(
@@ -472,7 +472,7 @@ class _MainPageState extends State<MainPage> {
               heroTag: item.id,
               onPressed: null,
               mini: true,
-              backgroundColor: Colors.blue[600],
+              backgroundColor: Colors.blue,
               child: Text(
                 '${item.id}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
