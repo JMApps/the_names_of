@@ -134,6 +134,7 @@ class _ContentPageState extends State<ContentPage> {
             borderRadius: BorderRadius.circular(15),
           ),
           elevation: 1,
+          shadowColor: Colors.orange,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
