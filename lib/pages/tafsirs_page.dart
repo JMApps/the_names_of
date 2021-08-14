@@ -83,13 +83,15 @@ class _TafsirsPageState extends State<TafsirsPage> {
       controller: _pageViewController,
       itemCount: 65,
       itemBuilder: (context, index) {
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildListNames(index),
-              _buildListAyahs(index),
-              _buildTafsir(index),
-            ],
+        return Scrollbar(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _buildListNames(index),
+                _buildListAyahs(index),
+                _buildTafsir(index),
+              ],
+            ),
           ),
         );
       },

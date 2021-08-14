@@ -82,11 +82,8 @@ class _NamesPageState extends State<NamesPage> {
                   ),
                   child: _buildListNames(snapshot),
                 )
-              : Container(
-                  color: Colors.red[50],
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+              : Center(
+                  child: CircularProgressIndicator(),
                 );
         },
       ),
@@ -94,12 +91,14 @@ class _NamesPageState extends State<NamesPage> {
   }
 
   Widget _buildListNames(AsyncSnapshot snapshot) {
-    return ScrollablePositionedList.builder(
-      itemScrollController: _itemScrollController,
-      itemCount: snapshot.data.length,
-      itemBuilder: (context, index) {
-        return _buildNameItem(snapshot.data[index]);
-      },
+    return Scrollbar(
+      child: ScrollablePositionedList.builder(
+        itemScrollController: _itemScrollController,
+        itemCount: snapshot.data.length,
+        itemBuilder: (context, index) {
+          return _buildNameItem(snapshot.data[index]);
+        },
+      ),
     );
   }
 
