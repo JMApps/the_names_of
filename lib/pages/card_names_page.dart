@@ -119,10 +119,39 @@ class _CardNamesPageState extends State<CardNamesPage> {
             ),
           ),
           child: Center(
-            child: Text(
-              '${item.nameArabic}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, color: Colors.grey[800]),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Container(
+                    margin: EdgeInsets.all(8),
+                    width: 25,
+                    height: 25,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${item.id}',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Text(
+                  '${item.nameArabic}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30, color: Colors.grey[800]),
+                ),
+              ],
             ),
           ),
         ),
@@ -148,6 +177,30 @@ class _CardNamesPageState extends State<CardNamesPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  margin: EdgeInsets.all(8),
+                  width: 25,
+                  height: 25,
+                  decoration: BoxDecoration(
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${item.id}',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Text(
                 '${item.nameTranscription}',
                 textAlign: TextAlign.center,
