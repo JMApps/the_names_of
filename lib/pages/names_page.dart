@@ -109,73 +109,99 @@ class _NamesPageState extends State<NamesPage> {
       ),
       elevation: 1,
       shadowColor: Colors.red[200],
-      child: Padding(
-        padding: const EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 8),
-            Text(
-              '${item.nameArabic}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, color: Colors.red),
-            ),
-            SizedBox(height: 8),
-            Text(
-              '${item.nameTranscription}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, color: Colors.green),
-            ),
-            SizedBox(height: 8),
-            Text(
-              '${item.nameTranslation}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: 8),
-            Divider(
-              indent: 16,
-              endIndent: 16,
+      child: Stack(
+        alignment: Alignment.topLeft,
+        children: [
+          Container(
+            margin: EdgeInsets.all(8),
+            width: 25,
+            height: 25,
+            decoration: BoxDecoration(
               color: Colors.red,
+              borderRadius: BorderRadius.all(
+                Radius.circular(50),
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: Center(
+              child: Text(
+                '${item.id}',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.play_arrow_rounded,
-                    color: Colors.red[500],
-                  ),
-                  onPressed: () {},
+                SizedBox(height: 8),
+                Text(
+                  '${item.nameArabic}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, color: Colors.red),
                 ),
-                IconButton(
-                  icon: Icon(
-                    CupertinoIcons.doc_on_doc,
-                    color: Colors.red[500],
-                  ),
-                  onPressed: () {},
+                SizedBox(height: 8),
+                Text(
+                  '${item.nameTranscription}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, color: Colors.green),
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.share,
-                    color: Colors.red[500],
-                  ),
-                  onPressed: () {},
+                SizedBox(height: 8),
+                Text(
+                  '${item.nameTranslation}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.image,
-                    color: Colors.red[500],
-                  ),
-                  onPressed: () {
-                    _takeScreenshot(item);
-                  },
+                SizedBox(height: 8),
+                Divider(
+                  indent: 16,
+                  endIndent: 16,
+                  color: Colors.red,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.play_arrow_rounded,
+                        color: Colors.red[500],
+                      ),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        CupertinoIcons.doc_on_doc,
+                        color: Colors.red[500],
+                      ),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.share,
+                        color: Colors.red[500],
+                      ),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.image,
+                        color: Colors.red[500],
+                      ),
+                      onPressed: () {
+                        _takeScreenshot(item);
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -190,8 +216,10 @@ class _NamesPageState extends State<NamesPage> {
   Widget _forScreen(NameItem item) {
     return Screenshot(
       controller: _screenshotController,
-      child: AspectRatio(
-        aspectRatio: MediaQuery.of(context).size.aspectRatio * 5,
+      child: Container(
+        padding: EdgeInsets.all(8),
+        width: MediaQuery.of(context).size.width,
+        height: 300,
         child: Card(
           margin: EdgeInsets.all(16),
           shape: RoundedRectangleBorder(
@@ -200,26 +228,65 @@ class _NamesPageState extends State<NamesPage> {
           elevation: 1,
           shadowColor: Colors.red[200],
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 16),
               Text(
                 '${item.nameArabic}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, color: Colors.red),
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.red,
+                  fontFamily: 'Arabic',
+                ),
               ),
               SizedBox(height: 8),
               Text(
                 '${item.nameTranscription}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, color: Colors.green),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.green,
+                  fontFamily: 'Gilroy',
+                ),
               ),
               SizedBox(height: 8),
               Text(
                 '${item.nameTranslation}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Gilroy',
+                ),
               ),
-              SizedBox(height: 16)
+              SizedBox(height: 16),
+              Divider(
+                indent: 16,
+                endIndent: 16,
+                color: Colors.black,
+              ),
+              Text(
+                'Имена Аллаха',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Gilroy',
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/apps.png'),
+                      Transform.scale(
+                          scale: 0.70,
+                          child: Image.asset('assets/images/app_icon.png')),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
