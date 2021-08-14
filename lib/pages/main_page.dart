@@ -334,17 +334,17 @@ class _MainPageState extends State<MainPage> {
                   Text(
                     '${item.nameArabic}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 22, fontFamily: 'Arabic'),
                   ),
                   Text(
                     '${item.nameTranscription}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, color: Colors.green[900]),
+                    style: TextStyle(fontSize: 20, color: Colors.green[900]),
                   ),
                   Text(
                     '${item.nameTranslation}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ],
               ),
@@ -556,17 +556,24 @@ class _MainPageState extends State<MainPage> {
               Text(
                 '${item.nameArabic}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.red),
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.red,
+                  fontFamily: 'Arabic',
+                ),
               ),
               Text(
                 '${item.nameTranscription}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey[700],
+                ),
               ),
               Text(
                 '${item.nameTranslation}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 20),
               ),
             ],
           ),
@@ -650,17 +657,26 @@ class _MainPageState extends State<MainPage> {
                   Text(
                     '${item.nameArabic}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontFamily: 'Arabic',
+                    ),
                   ),
                   Text(
                     '${item.nameTranscription}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, color: Colors.green),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.green,
+                    ),
                   ),
                   Text(
                     '${item.nameTranslation}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, color: Colors.grey[800]),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.grey[800],
+                    ),
                   ),
                 ],
               ),

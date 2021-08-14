@@ -162,7 +162,11 @@ class _TafsirsPageState extends State<TafsirsPage> {
                 Text(
                   '${item.nameArabic}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, color: Colors.red),
+                  style: TextStyle(
+                    fontSize: 23,
+                    color: Colors.red,
+                    fontFamily: 'Arabic',
+                  ),
                 ),
                 SizedBox(height: 8),
                 Text(
@@ -236,7 +240,11 @@ class _TafsirsPageState extends State<TafsirsPage> {
               child: Text(
                 '${item.ayahArabic}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, color: Colors.red),
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.red,
+                  fontFamily: 'Arabic',
+                ),
               ),
             ),
             SizedBox(height: 8),

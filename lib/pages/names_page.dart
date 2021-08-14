@@ -143,7 +143,11 @@ class _NamesPageState extends State<NamesPage> {
                 Text(
                   '${item.nameArabic}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, color: Colors.red),
+                  style: TextStyle(
+                    fontSize: 23,
+                    color: Colors.red,
+                    fontFamily: 'Arabic',
+                  ),
                 ),
                 SizedBox(height: 8),
                 Text(

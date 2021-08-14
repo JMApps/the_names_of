@@ -103,8 +103,8 @@ class _CardNamesPageState extends State<CardNamesPage> {
       front: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
-          side: BorderSide(width: 1, color: Colors.grey),
         ),
+        elevation: 1,
         child: Container(
           height: 150,
           decoration: BoxDecoration(
@@ -149,7 +149,11 @@ class _CardNamesPageState extends State<CardNamesPage> {
                 Text(
                   '${item.nameArabic}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 30, color: Colors.grey[800]),
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.grey[800],
+                    fontFamily: 'Arabic',
+                  ),
                 ),
               ],
             ),
@@ -158,8 +162,9 @@ class _CardNamesPageState extends State<CardNamesPage> {
       ),
       back: Card(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: BorderSide(width: 1, color: Colors.grey)),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 1,
         child: Container(
           height: 150,
           decoration: BoxDecoration(
@@ -204,7 +209,10 @@ class _CardNamesPageState extends State<CardNamesPage> {
               Text(
                 '${item.nameTranscription}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30, color: Colors.teal[700]),
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.teal[700],
+                ),
               ),
               SizedBox(height: 8),
               Text(
