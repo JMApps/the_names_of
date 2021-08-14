@@ -339,7 +339,7 @@ class _MainPageState extends State<MainPage> {
                   Text(
                     '${item.nameTranscription}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: Colors.green[900]),
                   ),
                   Text(
                     '${item.nameTranslation}',
@@ -556,12 +556,12 @@ class _MainPageState extends State<MainPage> {
               Text(
                 '${item.nameArabic}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, color: Colors.red),
               ),
               Text(
                 '${item.nameTranscription}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, color: Colors.grey[700]),
               ),
               Text(
                 '${item.nameTranslation}',
@@ -655,12 +655,12 @@ class _MainPageState extends State<MainPage> {
                   Text(
                     '${item.nameTranscription}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: Colors.green),
                   ),
                   Text(
                     '${item.nameTranslation}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: Colors.grey[800]),
                   ),
                 ],
               ),
