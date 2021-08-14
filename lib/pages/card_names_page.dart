@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -77,11 +78,8 @@ class _CardNamesPageState extends State<CardNamesPage> {
                   ),
                   child: _buildListCardNames(snapshot),
                 )
-              : Container(
-                  color: Colors.red[50],
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+              : Center(
+                  child: CircularProgressIndicator(),
                 );
         },
       ),
@@ -89,48 +87,80 @@ class _CardNamesPageState extends State<CardNamesPage> {
   }
 
   Widget _buildListCardNames(AsyncSnapshot snapshot) {
-    return ScrollablePositionedList.builder(
-      itemScrollController: _itemScrollController,
-      itemCount: snapshot.data.length,
-      itemBuilder: (context, index) {
-        return _buildCardNameItem(snapshot.data[index]);
-      },
+    return Scrollbar(
+      child: ScrollablePositionedList.builder(
+        itemScrollController: _itemScrollController,
+        itemCount: snapshot.data.length,
+        itemBuilder: (context, index) {
+          return _buildCardNameItem(snapshot.data[index]);
+        },
+      ),
     );
   }
 
   Widget _buildCardNameItem(NameItem item) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      elevation: 1,
-      shadowColor: Colors.red[200],
-      child: Padding(
-        padding: const EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 4),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 8),
-            Text(
+    return FlipCard(
+      front: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: BorderSide(width: 1, color: Colors.grey),
+        ),
+        child: Container(
+          height: 150,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.topLeft,
+              colors: [
+                Color(0xFFD6D6D6),
+                Color(0xFFFAFAFA),
+              ],
+            ),
+          ),
+          child: Center(
+            child: Text(
               '${item.nameArabic}',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, color: Colors.red),
+              style: TextStyle(fontSize: 30, color: Colors.grey[800]),
             ),
-            SizedBox(height: 8),
-            Text(
-              '${item.nameTranscription}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, color: Colors.green),
+          ),
+        ),
+      ),
+      back: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+            side: BorderSide(width: 1, color: Colors.grey)),
+        child: Container(
+          height: 150,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color(0xFFD6D6D6),
+                Color(0xFFFAFAFA),
+              ],
             ),
-            SizedBox(height: 8),
-            Text(
-              '${item.nameTranslation}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30),
-            ),
-            SizedBox(height: 8),
-          ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '${item.nameTranscription}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, color: Colors.teal[700]),
+              ),
+              SizedBox(height: 8),
+              Text(
+                '${item.nameTranslation}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30),
+              ),
+            ],
+          ),
         ),
       ),
     );
