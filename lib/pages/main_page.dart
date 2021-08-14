@@ -193,15 +193,24 @@ class _MainPageState extends State<MainPage> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    FloatingActionButton(
-                      heroTag: item.contentTitle,
-                      onPressed: null,
-                      mini: true,
-                      backgroundColor: Colors.orange,
-                      child: Text(
-                        '${item.id}',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${item.id}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -297,14 +306,24 @@ class _MainPageState extends State<MainPage> {
             children: [
               Align(
                 alignment: Alignment.topLeft,
-                child: FloatingActionButton(
-                  heroTag: item.nameArabic,
-                  onPressed: null,
-                  mini: true,
-                  backgroundColor: Colors.red,
-                  child: Text(
-                    '${item.id}',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${item.id}',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -388,15 +407,24 @@ class _MainPageState extends State<MainPage> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    FloatingActionButton(
-                      heroTag: item.tafsirTitle,
-                      onPressed: null,
-                      mini: true,
-                      backgroundColor: Colors.green,
-                      child: Text(
-                        '${item.id}',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${item.id}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -489,15 +517,24 @@ class _MainPageState extends State<MainPage> {
                 padding: const EdgeInsets.all(8),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: FloatingActionButton(
-                    heroTag: item.id,
-                    onPressed: null,
-                    mini: true,
-                    backgroundColor: Colors.blue,
-                    child: Text(
-                      '${item.id}',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${item.id}',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -585,14 +622,24 @@ class _MainPageState extends State<MainPage> {
             children: [
               Align(
                 alignment: Alignment.topLeft,
-                child: FloatingActionButton(
-                  heroTag: item.nameArabic,
-                  onPressed: null,
-                  mini: true,
-                  backgroundColor: Colors.grey,
-                  child: Text(
-                    '${item.id}',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${item.id}',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
