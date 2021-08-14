@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:the_names_of/arguments/list_card_name_arguments.dart';
 import 'package:the_names_of/arguments/list_content_arguments.dart';
 import 'package:the_names_of/arguments/list_name_argument.dart';
 import 'package:the_names_of/arguments/list_tafsir_arguments.dart';
@@ -70,6 +71,9 @@ class _MainPageState extends State<MainPage> {
                 _buildTextWithLine('Викторина', Color(0xFF1565C0)),
                 _buildGridQuizContainer(),
                 _buildTextWithButton('/quiz', Color(0xFF1E88E5)),
+                _buildTextWithLine('Карточки', Color(0xFF424242)),
+                _buildGridCardNamesContainer(),
+                _buildTextWithButton('/cards', Color(0xFF616161)),
               ],
             ),
           ),
@@ -167,8 +171,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildContentItem(ContentItem item) {
-    return Container(
+    return Card(
       margin: EdgeInsets.symmetric(horizontal: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+        side: BorderSide(width: 1, color: Colors.orange),
+      ),
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
         splashColor: Colors.orange,
@@ -269,8 +277,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildNameItem(NameItem item) {
-    return Container(
+    return Card(
       margin: EdgeInsets.symmetric(horizontal: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+        side: BorderSide(width: 1, color: Colors.red),
+      ),
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
         splashColor: Colors.red,
@@ -354,8 +366,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildTafsirItem(TafsirItem item) {
-    return Container(
+    return Card(
       margin: EdgeInsets.symmetric(horizontal: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+        side: BorderSide(width: 1, color: Colors.green),
+      ),
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
         splashColor: Colors.green,
@@ -456,28 +472,45 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildQuizItem(NameItem item) {
-    return Container(
+    return Card(
       margin: EdgeInsets.symmetric(horizontal: 8),
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
+      color: Colors.blue[200],
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.blue[200],
+        side: BorderSide(width: 1, color: Colors.blue),
       ),
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: FloatingActionButton(
-              heroTag: item.id,
-              onPressed: null,
-              mini: true,
-              backgroundColor: Colors.blue,
-              child: Text(
-                '${item.id}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: FloatingActionButton(
+                    heroTag: item.id,
+                    onPressed: null,
+                    mini: true,
+                    backgroundColor: Colors.blue,
+                    child: Text(
+                      '${item.id}',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
               ),
-            ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Checkbox(
+                  onChanged: (bool? value) {},
+                  value: true,
+                  activeColor: Colors.green,
+                ),
+              )
+            ],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -501,6 +534,96 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  /// CONTAINER NAMES */
+  Widget _buildGridCardNamesContainer() {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getAllNames(),
+      builder: (context, AsyncSnapshot snapshot) {
+        return snapshot.hasData
+            ? Container(
+                height: 150,
+                child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1, childAspectRatio: 0.5),
+                  itemBuilder: (context, index) {
+                    return _buildCardNameItem(snapshot.data![index]);
+                  },
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
+    );
+  }
+
+  Widget _buildCardNameItem(NameItem item) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+        side: BorderSide(width: 1, color: Colors.grey),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(15),
+        splashColor: Colors.grey,
+        child: Ink(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.white,
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: FloatingActionButton(
+                  heroTag: item.nameArabic,
+                  onPressed: null,
+                  mini: true,
+                  backgroundColor: Colors.grey,
+                  child: Text(
+                    '${item.id}',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '${item.nameArabic}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Text(
+                    '${item.nameTranscription}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Text(
+                    '${item.nameTranslation}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        onTap: () {
+          Navigator.of(context, rootNavigator: true)
+              .pushNamed('/cards', arguments: ListCardNameArguments(item.id));
+        },
       ),
     );
   }

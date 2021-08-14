@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/pages/card_names_page.dart';
 import 'package:the_names_of/pages/content_page.dart';
 import 'package:the_names_of/pages/main_page.dart';
 import 'package:the_names_of/pages/names_page.dart';
@@ -18,6 +19,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => ContentPage(), settings: routeSettings);
       case '/quiz':
         return MaterialPageRoute(builder: (_) => QuizPage(), settings: routeSettings);
+      case '/cards':
+        return MaterialPageRoute(builder: (_) => CardNamesPage(), settings: routeSettings);
       default:
         throw Exception('Invalid route');
     }
