@@ -181,27 +181,30 @@ class _NamesPageState extends State<NamesPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     audioPlayer.builderRealtimePlayingInfos(
-                        builder: (context, realtimePLayingInfo) {
-                          audioPlayer.playlistAudioFinished.listen((onFinished) {
-
-                          });
-                      return IconButton(
-                        icon: Icon(
-                          realtimePLayingInfo.isPlaying &&
-                                  _assignPlayValue(item.id! -1)
-                              ? CupertinoIcons.stop_circle
-                              : CupertinoIcons.play_circle,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {
-                          if (!realtimePLayingInfo.isPlaying) {
-                            audioPlayer.playlistPlayAtIndex(item.id! -1);
-                          } else {
-                            audioPlayer.playOrPause();
-                          }
-                        },
-                      );
-                    }),
+                      builder: (context, realtimePLayingInfo) {
+                        return IconButton(
+                          icon: Icon(
+                            realtimePLayingInfo.isPlaying &&
+                                    _assignPlayValue(item.id! - 1)
+                                ? CupertinoIcons.stop_circle
+                                : CupertinoIcons.play_circle,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {
+                            if (audioPlayer.readingPlaylist!.currentIndex ==
+                                item.id! - 1) {
+                              if (realtimePLayingInfo.isPlaying) {
+                                audioPlayer.pause();
+                              } else {
+                                audioPlayer.play();
+                              }
+                            } else {
+                              audioPlayer.playlistPlayAtIndex(item.id! - 1);
+                            }
+                          },
+                        );
+                      },
+                    ),
                     IconButton(
                       icon: Icon(
                         CupertinoIcons.doc_on_doc,
