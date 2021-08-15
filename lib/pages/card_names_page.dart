@@ -106,7 +106,7 @@ class _CardNamesPageState extends State<CardNamesPage> {
         ),
         elevation: 1,
         child: Container(
-          height: 150,
+          height: 250,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             gradient: LinearGradient(
@@ -150,7 +150,7 @@ class _CardNamesPageState extends State<CardNamesPage> {
                   '${item.nameArabic}',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 40,
                     color: Colors.grey[800],
                     fontFamily: 'Arabic',
                   ),
@@ -166,7 +166,7 @@ class _CardNamesPageState extends State<CardNamesPage> {
         ),
         elevation: 1,
         child: Container(
-          height: 150,
+          height: 250,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             gradient: LinearGradient(
@@ -178,49 +178,51 @@ class _CardNamesPageState extends State<CardNamesPage> {
               ],
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  margin: EdgeInsets.all(8),
-                  width: 25,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    color: Colors.teal,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(50),
+          child: Padding(
+            padding: EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    width: 25,
+                    height: 25,
+                    decoration: BoxDecoration(
+                      color: Colors.teal,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '${item.id}',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
+                    child: Center(
+                      child: Text(
+                        '${item.id}',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                '${item.nameTranscription}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.teal[700],
+                Text(
+                  '${item.nameTranscription}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: Colors.teal[700],
+                  ),
                 ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                '${item.nameTranslation}',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30),
-              ),
-            ],
+                SizedBox(height: 8),
+                Text(
+                  '${item.nameTranslation}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 28),
+                ),
+              ],
+            ),
           ),
         ),
       ),
