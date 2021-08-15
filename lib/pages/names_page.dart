@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -24,15 +25,23 @@ class _NamesPageState extends State<NamesPage> {
   var _databaseQuery = DatabaseQuery();
   final _itemScrollController = ItemScrollController();
   final _screenshotController = ScreenshotController();
+  late AssetsAudioPlayer audioPlayer;
 
   @override
   void initState() {
+    audioPlayer = AssetsAudioPlayer();
     Future.delayed(Duration(milliseconds: 500), () {
       if (args?.id! != null) {
         _scrollToIndex(args!.id! - 1);
       }
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
   }
 
   @override
@@ -91,10 +100,11 @@ class _NamesPageState extends State<NamesPage> {
   }
 
   Widget _buildListNames(AsyncSnapshot snapshot) {
+    _setupPlayer(snapshot);
     return Scrollbar(
       child: ScrollablePositionedList.builder(
         itemScrollController: _itemScrollController,
-        itemCount: snapshot.data.length,
+        itemCount: snapshot.data!.length,
         itemBuilder: (context, index) {
           return _buildNameItem(snapshot.data[index]);
         },
@@ -170,31 +180,46 @@ class _NamesPageState extends State<NamesPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.play_arrow_rounded,
-                        color: Colors.red[500],
-                      ),
-                      onPressed: () {},
-                    ),
+                    audioPlayer.builderRealtimePlayingInfos(
+                        builder: (context, realtimePLayingInfo) {
+                          audioPlayer.playlistAudioFinished.listen((onFinished) {
+
+                          });
+                      return IconButton(
+                        icon: Icon(
+                          realtimePLayingInfo.isPlaying &&
+                                  _assignPlayValue(item.id! -1)
+                              ? CupertinoIcons.stop_circle
+                              : CupertinoIcons.play_circle,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {
+                          if (!realtimePLayingInfo.isPlaying) {
+                            audioPlayer.playlistPlayAtIndex(item.id! -1);
+                          } else {
+                            audioPlayer.playOrPause();
+                          }
+                        },
+                      );
+                    }),
                     IconButton(
                       icon: Icon(
                         CupertinoIcons.doc_on_doc,
-                        color: Colors.red[500],
+                        color: Colors.red,
                       ),
                       onPressed: () {},
                     ),
                     IconButton(
                       icon: Icon(
                         Icons.share,
-                        color: Colors.red[500],
+                        color: Colors.red,
                       ),
                       onPressed: () {},
                     ),
                     IconButton(
                       icon: Icon(
                         Icons.image,
-                        color: Colors.red[500],
+                        color: Colors.red,
                       ),
                       onPressed: () {
                         _takeScreenshot(item);
@@ -305,5 +330,21 @@ class _NamesPageState extends State<NamesPage> {
     File file = File('$tempPath/image_${item.id}.jpg');
     await file.writeAsBytes(unit8List);
     await Share.shareFiles([file.path]);
+  }
+
+  _setupPlayer(AsyncSnapshot snapshot) {
+    var myList = List<Audio>.generate(snapshot.data!.length,
+        (i) => Audio('assets/audios/${snapshot.data[i].nameAudio}.mp3'));
+
+    audioPlayer.open(
+        Playlist(
+          audios: myList,
+        ),
+        autoStart: false,
+        loopMode: LoopMode.none);
+  }
+
+  bool _assignPlayValue(index) {
+    return audioPlayer.readingPlaylist!.currentIndex == index ? true : false;
   }
 }
