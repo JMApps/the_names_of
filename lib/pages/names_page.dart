@@ -305,18 +305,22 @@ class _NamesPageState extends State<NamesPage> {
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/images/apps.png'),
-                      Transform.scale(
-                          scale: 0.70,
-                          child: Image.asset('assets/images/app_icon.png')),
-                    ],
-                  ),
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: null,
+                      icon: Image.asset('assets/images/apps.png'),
+                      iconSize: 50,
+                    ),
+                    IconButton(
+                      onPressed: null,
+                      icon: Image.asset('assets/images/app_icon.png'),
+                      iconSize: 35,
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -329,7 +333,10 @@ class _NamesPageState extends State<NamesPage> {
   _takeScreenshot(NameItem item) async {
     final unit8List =
         await _screenshotController.captureFromWidget(_forScreen(item));
-    String tempPath = (await getTemporaryDirectory()).path;
+    String tempPath = (Platform.isAndroid
+            ? await getExternalStorageDirectory()
+            : await getApplicationSupportDirectory())!
+        .path;
     File file = File('$tempPath/image_${item.id}.jpg');
     await file.writeAsBytes(unit8List);
     await Share.shareFiles([file.path]);
