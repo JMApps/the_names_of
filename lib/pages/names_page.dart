@@ -186,7 +186,7 @@ class _NamesPageState extends State<NamesPage> {
                           icon: Icon(
                             realtimePLayingInfo.isPlaying &&
                                     _assignPlayValue(item.id! - 1)
-                                ? CupertinoIcons.stop_circle
+                                ? CupertinoIcons.pause_circle
                                 : CupertinoIcons.play_circle,
                             color: Colors.red,
                           ),
