@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/pages/main_page.dart';
+import 'package:the_names_of/pages/root_page.dart';
 import 'package:the_names_of/router/app_router.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Gilroy',
         primarySwatch: Colors.blue,
       ),
-      home: MainPage(),
+      home: RootPage(),
     );
   }
 }
