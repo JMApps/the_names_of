@@ -8,7 +8,10 @@ class SupportProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(CupertinoIcons.bitcoin_circle),
+      icon: Icon(
+        CupertinoIcons.bitcoin_circle,
+        color: Colors.white,
+      ),
       onPressed: () {
         showDialog(
           context: context,
@@ -22,7 +25,10 @@ class SupportProjectPage extends StatelessWidget {
               children: [
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: Icon(CupertinoIcons.bitcoin_circle),
+                  leading: Icon(
+                    CupertinoIcons.bitcoin_circle,
+                    color: Colors.blue,
+                  ),
                   title: Text(
                     'Bitcoin',
                     style: _itemTitleTextStyle,
@@ -48,7 +54,10 @@ class SupportProjectPage extends StatelessWidget {
                 ),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: Icon(CupertinoIcons.money_dollar_circle),
+                  leading: Icon(
+                    CupertinoIcons.money_dollar_circle,
+                    color: Colors.blue,
+                  ),
                   title: Text(
                     'Monero',
                     style: _itemTitleTextStyle,
@@ -82,7 +91,7 @@ class SupportProjectPage extends StatelessWidget {
 
   final _itemTitleTextStyle = TextStyle(fontSize: 20, fontFamily: 'Gilroy');
   final _itemSubtitleTextStyle =
-      TextStyle(fontSize: 18, fontFamily: 'Gilroy', color: Colors.grey[800]);
+      TextStyle(fontSize: 18, fontFamily: 'Gilroy', color: Colors.grey[600]);
 
   _snackMessage(BuildContext context, String clipMessage) {
     ScaffoldMessenger.of(context).showSnackBar(
