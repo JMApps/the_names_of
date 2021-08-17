@@ -10,6 +10,7 @@ import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/content_item.dart';
 import 'package:the_names_of/model/name_item.dart';
 import 'package:the_names_of/model/tafsir_item.dart';
+import 'package:the_names_of/pages/support_project_page.dart';
 
 class MainPage extends StatefulWidget {
   final zoomDrawerController;
@@ -49,124 +50,7 @@ class _MainPageState extends State<MainPage> {
           },
         ),
         actions: [
-          IconButton(
-            icon: Icon(CupertinoIcons.bitcoin_circle),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => new AlertDialog(
-                  title: Text(
-                    'Поддержать проект!',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                  content: Flexible(
-                    flex: 1,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Card(
-                          elevation: 1,
-                          shadowColor: Colors.blue,
-                          child: Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SelectableText(
-                                  'Bitcoin:\n\n13B9fMAxXFCSkLnkHFNrA2D2xAZtyMaWxy',
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                                TextButton.icon(
-                                  icon: Icon(
-                                    CupertinoIcons.bitcoin_circle,
-                                    color: Colors.blue,
-                                  ),
-                                  label: Text(
-                                    'Скопировать адрес',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  onPressed: () {
-                                    FlutterClipboard.copy(
-                                        '13B9fMAxXFCSkLnkHFNrA2D2xAZtyMaWxy');
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        backgroundColor: Colors.blue,
-                                        content: Text(
-                                          'Адрес скопирован',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        duration: Duration(milliseconds: 500),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Card(
-                          elevation: 1,
-                          shadowColor: Colors.red,
-                          child: Flexible(
-                            flex: 1,
-                            child: Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                                children: [
-                                  SelectableText(
-                                    'Monero:\n\n87zyaJCihgg2r8mSbXKE1uj4iqPp8hqQkWMdr2SbBVmGchjVNACEDDtEV1tB79cK1q2bC8h8Sy3BMVQLfWCSfyBjLjqkJB7',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  TextButton.icon(
-                                    icon: Icon(
-                                      CupertinoIcons.money_dollar_circle,
-                                      color: Colors.red,
-                                    ),
-                                    label: Text(
-                                      'Скопировать адрес',
-                                      style: TextStyle(
-                                          fontSize: 18, color: Colors.red),
-                                    ),
-                                    onPressed: () {
-                                      FlutterClipboard.copy(
-                                          '87zyaJCihgg2r8mSbXKE1uj4iqPp8hqQkWMdr2SbBVmGchjVNACEDDtEV1tB79cK1q2bC8h8Sy3BMVQLfWCSfyBjLjqkJB7');
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          backgroundColor: Colors.red,
-                                          content: Text(
-                                            'Адрес скопирован',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          duration: Duration(milliseconds: 500),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  actions: [
-                    MaterialButton(
-                      child: Text(
-                        'Закрыть',
-                        style: TextStyle(color: Colors.red, fontSize: 18),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context, rootNavigator: true).pop();
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
+          SupportProjectPage(),
         ],
       ),
       body: Container(
