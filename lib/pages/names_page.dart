@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -210,14 +211,23 @@ class _NamesPageState extends State<NamesPage> {
                         CupertinoIcons.doc_on_doc,
                         color: Colors.red,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        FlutterClipboard.copy(
+                          '${item.nameArabic}\n${item.nameTranscription}\n${item.nameTranslation}',
+                        );
+                        _snackMessage();
+                      },
                     ),
                     IconButton(
                       icon: Icon(
                         Icons.share,
                         color: Colors.red,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Share.share(
+                          '${item.nameArabic}\n${item.nameTranscription}\n${item.nameTranslation}',
+                        );
+                      },
                     ),
                     IconButton(
                       icon: Icon(
@@ -356,5 +366,21 @@ class _NamesPageState extends State<NamesPage> {
 
   bool _assignPlayValue(index) {
     return audioPlayer.readingPlaylist!.currentIndex == index ? true : false;
+  }
+
+  _snackMessage() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(
+          'Скопировано',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+          ),
+        ),
+        duration: Duration(milliseconds: 500),
+      ),
+    );
   }
 }
