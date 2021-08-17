@@ -27,6 +27,7 @@ class _NamesPageState extends State<NamesPage> {
   final _itemScrollController = ItemScrollController();
   final _screenshotController = ScreenshotController();
   late AssetsAudioPlayer audioPlayer;
+  List<dynamic> listNames = [];
 
   @override
   void initState() {
@@ -75,45 +76,51 @@ class _NamesPageState extends State<NamesPage> {
           ),
         ],
       ),
-      body: FutureBuilder<List>(
-        future: _databaseQuery.getAllNames(),
-        builder: (context, snapshot) {
-          return snapshot.hasData
-              ? Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.topRight,
-                      colors: [
-                        Color(0xFFFFEBEE),
-                        Color(0xFFFFFFFF),
-                      ],
-                    ),
+      body: _buildFutureList(false),
+    );
+  }
+
+  Widget _buildFutureList(bool shuffle) {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getAllNames(),
+      builder: (context, snapshot) {
+        return snapshot.hasData
+            ? Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                      Color(0xFFFFEBEE),
+                      Color(0xFFFFFFFF),
+                    ],
                   ),
-                  child: _buildListNames(snapshot),
-                )
-              : Center(
-                  child: CircularProgressIndicator(),
-                );
-        },
-      ),
+                ),
+                child: _buildListNames(snapshot),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
     );
   }
 
   Widget _buildListNames(AsyncSnapshot snapshot) {
     _setupPlayer(snapshot);
+    listNames = snapshot.data!;
+    listNames.shuffle();
     return Scrollbar(
       child: ScrollablePositionedList.builder(
         itemScrollController: _itemScrollController,
         itemCount: snapshot.data!.length,
         itemBuilder: (context, index) {
-          return _buildNameItem(snapshot.data[index]);
+          return _buildNameItem(listNames[index], index);
         },
       ),
     );
   }
 
-  Widget _buildNameItem(NameItem item) {
+  Widget _buildNameItem(NameItem item, int index) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -135,7 +142,7 @@ class _NamesPageState extends State<NamesPage> {
             ),
             child: Center(
               child: Text(
-                '${item.id}',
+                '${index + 1}',
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
