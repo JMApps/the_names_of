@@ -1,8 +1,6 @@
-import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:the_names_of/arguments/list_card_name_arguments.dart';
 import 'package:the_names_of/arguments/list_content_arguments.dart';
 import 'package:the_names_of/arguments/list_name_argument.dart';
 import 'package:the_names_of/arguments/list_tafsir_arguments.dart';
@@ -102,7 +100,7 @@ class _MainPageState extends State<MainPage> {
           Expanded(
             child: Divider(
               indent: 8,
-              color: Colors.black,
+              color: color,
             ),
           ),
         ],
@@ -119,7 +117,7 @@ class _MainPageState extends State<MainPage> {
           Expanded(
             child: Divider(
               endIndent: 8,
-              color: Colors.black,
+              color: color,
             ),
           ),
           FlatButton.icon(
@@ -618,78 +616,70 @@ class _MainPageState extends State<MainPage> {
         borderRadius: BorderRadius.circular(15),
         side: BorderSide(width: 1, color: Colors.grey),
       ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(15),
-        splashColor: Colors.grey,
-        child: Ink(
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.white,
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(50),
-                    ),
+      child: Ink(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.white,
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50),
                   ),
-                  child: Center(
-                    child: Text(
-                      '${item.id}',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
+                ),
+                child: Center(
+                  child: Text(
+                    '${item.id}',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
                     ),
                   ),
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    '${item.nameArabic}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontFamily: 'Arabic',
-                    ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '${item.nameArabic}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontFamily: 'Arabic',
                   ),
-                  Text(
-                    '${item.nameTranscription}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.green,
-                    ),
+                ),
+                Text(
+                  '${item.nameTranscription}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.green,
                   ),
-                  Text(
-                    '${item.nameTranslation}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.grey[800],
-                    ),
+                ),
+                Text(
+                  '${item.nameTranslation}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey[800],
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
-        onTap: () {
-          Navigator.of(context, rootNavigator: true)
-              .pushNamed('/cards', arguments: ListCardNameArguments(item.id));
-        },
       ),
     );
   }
