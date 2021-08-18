@@ -27,7 +27,6 @@ class _NamesPageState extends State<NamesPage> {
   final _itemScrollController = ItemScrollController();
   final _screenshotController = ScreenshotController();
   late AssetsAudioPlayer audioPlayer;
-  List<dynamic> listNames = [];
 
   @override
   void initState() {
@@ -359,7 +358,7 @@ class _NamesPageState extends State<NamesPage> {
 
   _setupPlayer(AsyncSnapshot snapshot) {
     var myList = List<Audio>.generate(snapshot.data!.length,
-        (i) => Audio('assets/audios/${snapshot.data[i].nameAudio}.mp3'));
+        (i) => Audio('assets/audios/name${snapshot.data![i].id}.mp3'));
 
     audioPlayer.open(
         Playlist(
