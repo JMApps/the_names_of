@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,10 @@ class _CardNamesPageState extends State<CardNamesPage> {
   late ListCardNameArguments? args;
   var _databaseQuery = DatabaseQuery();
   final _itemScrollController = ItemScrollController();
+  late AssetsAudioPlayer audioPlayer;
+  List<dynamic> listNames = [];
+  List<Audio> listAudios = [];
+  bool _fontBackBackFrontState = false;
 
   @override
   void initState() {
@@ -28,6 +33,7 @@ class _CardNamesPageState extends State<CardNamesPage> {
         _scrollToIndex(args!.id! - 1);
       }
     });
+    audioPlayer = AssetsAudioPlayer();
     super.initState();
   }
 
@@ -52,6 +58,14 @@ class _CardNamesPageState extends State<CardNamesPage> {
         centerTitle: true,
         actions: [
           IconButton(
+            icon: Icon(CupertinoIcons.creditcard_fill),
+            onPressed: () {
+              setState(() {
+                _fontBackBackFrontState = !_fontBackBackFrontState;
+              });
+            },
+          ),
+          IconButton(
             icon: Icon(CupertinoIcons.arrow_2_squarepath),
             onPressed: () {
               _scrollToIndex(
@@ -61,172 +75,272 @@ class _CardNamesPageState extends State<CardNamesPage> {
           ),
         ],
       ),
-      body: FutureBuilder<List>(
-        future: _databaseQuery.getAllNames(),
-        builder: (context, snapshot) {
-          return snapshot.hasData
-              ? Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.topRight,
-                      colors: [
-                        Color(0xFFE0E0E0),
-                        Color(0xFFFFFFFF),
-                      ],
-                    ),
+      body: _buildFutureCardNames(),
+    );
+  }
+
+  Widget _buildFutureCardNames() {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getAllNames(),
+      builder: (context, snapshot) {
+        return snapshot.hasData
+            ? Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                      Color(0xFFE0E0E0),
+                      Color(0xFFFFFFFF),
+                    ],
                   ),
-                  child: _buildListCardNames(snapshot),
-                )
-              : Center(
-                  child: CircularProgressIndicator(),
-                );
-        },
-      ),
+                ),
+                child: _buildListCardNames(snapshot),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
     );
   }
 
   Widget _buildListCardNames(AsyncSnapshot snapshot) {
+    _setupPlayer(snapshot);
+    listNames = snapshot.data!;
     return Scrollbar(
       child: ScrollablePositionedList.builder(
         itemScrollController: _itemScrollController,
         itemCount: snapshot.data.length,
         itemBuilder: (context, index) {
-          return _buildCardNameItem(snapshot.data[index]);
+          return _buildCardNameItem(listNames[index], index);
         },
       ),
     );
   }
 
-  Widget _buildCardNameItem(NameItem item) {
+  Widget _buildCardNameItem(NameItem item, int index) {
     return FlipCard(
-      front: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        elevation: 1,
-        child: Container(
-          height: 250,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.topLeft,
-              colors: [
-                Color(0xFFD6D6D6),
-                Color(0xFFFAFAFA),
-              ],
-            ),
-          ),
-          child: Center(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    margin: EdgeInsets.all(8),
-                    width: 25,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${item.id}',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Text(
-                  '${item.nameArabic}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: Colors.grey[800],
-                    fontFamily: 'Arabic',
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+      front: _fontBackBackFrontState
+          ? _buildBackCard(item, index)
+          : _buildFrontCard(item, index),
+      back: _fontBackBackFrontState
+          ? _buildFrontCard(item, index)
+          : _buildBackCard(item, index),
+    );
+  }
+
+  Widget _buildFrontCard(NameItem item, int index) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
       ),
-      back: Card(
-        shape: RoundedRectangleBorder(
+      elevation: 1,
+      child: Container(
+        height: 250,
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-        ),
-        elevation: 1,
-        child: Container(
-          height: 250,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-              colors: [
-                Color(0xFFD6D6D6),
-                Color(0xFFFAFAFA),
-              ],
-            ),
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.topLeft,
+            colors: [
+              Color(0xFFD6D6D6),
+              Color(0xFFFAFAFA),
+            ],
           ),
-          child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    width: 25,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: Colors.teal,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50),
+        ),
+        child: Center(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  margin: EdgeInsets.all(16),
+                  width: 35,
+                  height: 35,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${index + 1}',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        '${item.id}',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: audioPlayer.builderRealtimePlayingInfos(
+                    builder: (context, realtimePLayingInfo) {
+                      return IconButton(
+                        iconSize: 35,
+                        icon: Icon(
+                          realtimePLayingInfo.isPlaying &&
+                                  _assignPlayValue(index)
+                              ? CupertinoIcons.stop_circle
+                              : CupertinoIcons.play_circle,
+                          color: Colors.grey[700],
                         ),
-                      ),
-                    ),
+                        onPressed: () {
+                          if (audioPlayer.readingPlaylist!.currentIndex ==
+                              index) {
+                            if (realtimePLayingInfo.isPlaying) {
+                              audioPlayer.stop();
+                            } else {
+                              audioPlayer.playlistPlayAtIndex(index);
+                            }
+                          } else {
+                            audioPlayer.playlistPlayAtIndex(index);
+                          }
+                        },
+                      );
+                    },
                   ),
                 ),
-                Text(
-                  '${item.nameTranscription}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Colors.teal[700],
-                  ),
+              ),
+              Text(
+                '${item.nameArabic}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 40,
+                  color: Colors.grey[800],
+                  fontFamily: 'Arabic',
                 ),
-                SizedBox(height: 8),
-                Text(
-                  '${item.nameTranslation}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 28),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildBackCard(NameItem item, int index) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      elevation: 1,
+      child: Container(
+        height: 250,
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors: [
+              Color(0xFFD6D6D6),
+              Color(0xFFFAFAFA),
+            ],
+          ),
+        ),
+        child: Center(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  margin: EdgeInsets.all(8),
+                  width: 35,
+                  height: 35,
+                  decoration: BoxDecoration(
+                    color: Colors.teal[700],
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${index + 1}',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: audioPlayer.builderRealtimePlayingInfos(
+                  builder: (context, realtimePLayingInfo) {
+                    return IconButton(
+                      iconSize: 35,
+                      icon: Icon(
+                        realtimePLayingInfo.isPlaying && _assignPlayValue(index)
+                            ? CupertinoIcons.stop_circle
+                            : CupertinoIcons.play_circle,
+                        color: Colors.teal[700],
+                      ),
+                      onPressed: () {
+                        if (audioPlayer.readingPlaylist!.currentIndex ==
+                            index) {
+                          if (realtimePLayingInfo.isPlaying) {
+                            audioPlayer.stop();
+                          } else {
+                            audioPlayer.playlistPlayAtIndex(index);
+                          }
+                        } else {
+                          audioPlayer.playlistPlayAtIndex(index);
+                        }
+                      },
+                    );
+                  },
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '${item.nameTranscription}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Colors.teal[700],
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    '${item.nameTranslation}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 28),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _setupPlayer(AsyncSnapshot snapshot) {
+    var myList = List<Audio>.generate(snapshot.data!.length,
+        (i) => Audio('assets/audios/${snapshot.data[i].nameAudio}.mp3'));
+
+    audioPlayer.open(
+        Playlist(
+          audios: myList,
+        ),
+        autoStart: false,
+        loopMode: LoopMode.none);
+  }
+
+  bool _assignPlayValue(index) {
+    return audioPlayer.readingPlaylist!.currentIndex == index ? true : false;
   }
 
   _scrollToIndex(int index) async {
