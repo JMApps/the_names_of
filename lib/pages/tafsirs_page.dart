@@ -32,8 +32,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context)!.settings.arguments as ListTafsirArguments?;
-    _pageViewController =
-        PageController(initialPage: args != null ? args!.id! - 1 : 0);
+    _pageViewController = PageController(initialPage: args != null ? args!.id! - 1 : 0);
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -102,17 +101,19 @@ class _TafsirsPageState extends State<TafsirsPage> {
     return FutureBuilder<List>(
       future: _databaseQuery.getChapterNames(pageIndex + 1),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return snapshot.hasData
-            ? ListView.builder(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                physics: ClampingScrollPhysics(),
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  return _buildNameItem(snapshot.data![index]);
-                },
-              )
-            : SizedBox();
+        return snapshot.hasData ? _buildChapterNamesList(snapshot) : SizedBox();
+      },
+    );
+  }
+
+  Widget _buildChapterNamesList(AsyncSnapshot snapshot) {
+    return ListView.builder(
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      physics: ClampingScrollPhysics(),
+      itemCount: snapshot.data!.length,
+      itemBuilder: (context, index) {
+        return _buildNameItem(snapshot.data![index]);
       },
     );
   }
@@ -142,15 +143,25 @@ class _TafsirsPageState extends State<TafsirsPage> {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: FloatingActionButton(
-                heroTag: item.nameAudio,
-                onPressed: null,
-                elevation: 3,
-                mini: true,
-                backgroundColor: Colors.green[300],
-                child: Text(
-                  '${item.id}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              child: Container(
+                margin: EdgeInsets.all(8),
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  color: Colors.green[300],
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '${item.id}',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
