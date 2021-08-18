@@ -23,7 +23,6 @@ class _CardNamesPageState extends State<CardNamesPage> {
   final _itemScrollController = ItemScrollController();
   late AssetsAudioPlayer audioPlayer;
   List<dynamic> listNames = [];
-  List<Audio> listAudios = [];
   bool _fontBackBackFrontState = false;
 
   @override
@@ -62,6 +61,7 @@ class _CardNamesPageState extends State<CardNamesPage> {
             onPressed: () {
               setState(() {
                 _fontBackBackFrontState = !_fontBackBackFrontState;
+                _setupPlayer();
               });
             },
           ),
@@ -105,8 +105,9 @@ class _CardNamesPageState extends State<CardNamesPage> {
   }
 
   Widget _buildListCardNames(AsyncSnapshot snapshot) {
-    _setupPlayer(snapshot);
     listNames = snapshot.data!;
+    listNames.shuffle();
+    _setupPlayer();
     return Scrollbar(
       child: ScrollablePositionedList.builder(
         itemScrollController: _itemScrollController,
@@ -327,9 +328,9 @@ class _CardNamesPageState extends State<CardNamesPage> {
     );
   }
 
-  _setupPlayer(AsyncSnapshot snapshot) {
-    var myList = List<Audio>.generate(snapshot.data!.length,
-        (i) => Audio('assets/audios/${snapshot.data[i].nameAudio}.mp3'));
+  _setupPlayer() {
+    var myList = List<Audio>.generate(listNames.length,
+        (i) => Audio('assets/audios/${listNames[i].nameAudio}.mp3'));
 
     audioPlayer.open(
         Playlist(
