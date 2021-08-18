@@ -107,14 +107,12 @@ class _NamesPageState extends State<NamesPage> {
 
   Widget _buildListNames(AsyncSnapshot snapshot) {
     _setupPlayer(snapshot);
-    listNames = snapshot.data!;
-    listNames.shuffle();
     return Scrollbar(
       child: ScrollablePositionedList.builder(
         itemScrollController: _itemScrollController,
         itemCount: snapshot.data!.length,
         itemBuilder: (context, index) {
-          return _buildNameItem(listNames[index], index);
+          return _buildNameItem(snapshot.data![index], index);
         },
       ),
     );
@@ -193,21 +191,21 @@ class _NamesPageState extends State<NamesPage> {
                         return IconButton(
                           icon: Icon(
                             realtimePLayingInfo.isPlaying &&
-                                    _assignPlayValue(item.id! - 1)
-                                ? CupertinoIcons.pause_circle
+                                    _assignPlayValue(index)
+                                ? CupertinoIcons.stop_circle
                                 : CupertinoIcons.play_circle,
                             color: Colors.red,
                           ),
                           onPressed: () {
                             if (audioPlayer.readingPlaylist!.currentIndex ==
-                                item.id! - 1) {
+                                index) {
                               if (realtimePLayingInfo.isPlaying) {
-                                audioPlayer.pause();
+                                audioPlayer.stop();
                               } else {
-                                audioPlayer.play();
+                                audioPlayer.playlistPlayAtIndex(index);
                               }
                             } else {
-                              audioPlayer.playlistPlayAtIndex(item.id! - 1);
+                              audioPlayer.playlistPlayAtIndex(index);
                             }
                           },
                         );
