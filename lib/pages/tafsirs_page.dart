@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -20,8 +21,15 @@ class _TafsirsPageState extends State<TafsirsPage> {
 
   var _databaseQuery = DatabaseQuery();
   late ListTafsirArguments? args;
+  late AssetsAudioPlayer audioPlayer;
 
   int _selectedPage = 0;
+
+  @override
+  void initState() {
+    audioPlayer = AssetsAudioPlayer();
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -32,7 +40,8 @@ class _TafsirsPageState extends State<TafsirsPage> {
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context)!.settings.arguments as ListTafsirArguments?;
-    _pageViewController = PageController(initialPage: args != null ? args!.id! - 1 : 0);
+    _pageViewController =
+        PageController(initialPage: args != null ? args!.id! - 1 : 0);
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -113,12 +122,13 @@ class _TafsirsPageState extends State<TafsirsPage> {
       physics: ClampingScrollPhysics(),
       itemCount: snapshot.data!.length,
       itemBuilder: (context, index) {
-        return _buildNameItem(snapshot.data![index]);
+        _setupPlayer(snapshot, index);
+        return _buildNameItem(snapshot.data![index], index);
       },
     );
   }
 
-  Widget _buildNameItem(NameItem item) {
+  Widget _buildNameItem(NameItem item, int index) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -141,6 +151,32 @@ class _TafsirsPageState extends State<TafsirsPage> {
         child: Stack(
           alignment: Alignment.center,
           children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: audioPlayer.builderRealtimePlayingInfos(
+                builder: (context, realtimePLayingInfo) {
+                  return IconButton(
+                    icon: Icon(
+                      realtimePLayingInfo.isPlaying && _assignPlayValue(index)
+                          ? CupertinoIcons.stop_circle
+                          : CupertinoIcons.play_circle,
+                      color: Colors.red,
+                    ),
+                    onPressed: () {
+                      if (realtimePLayingInfo.current!.index == index) {
+                        if (realtimePLayingInfo.isPlaying) {
+                          audioPlayer.stop();
+                        } else {
+                          audioPlayer.playlistPlayAtIndex(index);
+                        }
+                      } else {
+                        audioPlayer.playlistPlayAtIndex(index);
+                      }
+                    },
+                  );
+                },
+              ),
+            ),
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
@@ -339,5 +375,23 @@ class _TafsirsPageState extends State<TafsirsPage> {
         unselectedSize: Size(5, 5),
       ),
     );
+  }
+
+  _setupPlayer(AsyncSnapshot snapshot, int index) {
+    var myList = List<Audio>.generate(
+      snapshot.data!.length,
+      (i) => Audio('assets/audios/${snapshot.data![index].nameAudio}.mp3'),
+    );
+
+    audioPlayer.open(
+        Playlist(
+          audios: myList,
+        ),
+        autoStart: false,
+        loopMode: LoopMode.none);
+  }
+
+  bool _assignPlayValue(index) {
+    return audioPlayer.readingPlaylist!.currentIndex == index ? true : false;
   }
 }
