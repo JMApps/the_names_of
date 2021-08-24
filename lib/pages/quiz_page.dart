@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:the_names_of/data/category_provider.dart';
+import 'package:the_names_of/data/quiz_category_provider.dart';
 import 'package:the_names_of/data/quiz_database_helper.dart';
 
 class QuizPage extends StatefulWidget {
@@ -98,7 +98,7 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         onTap: () {
-
+          Navigator.pushNamed(context, '/quiz_questions');
         },
       ),
     );
