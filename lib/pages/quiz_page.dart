@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:the_names_of/data/quiz_category_provider.dart';
-import 'package:the_names_of/data/quiz_database_helper.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({Key? key}) : super(key: key);
@@ -48,8 +46,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget _buildQuizCategoriesList() {
-    return FutureBuilder<List<QuizCategories>?>(
-      future: getQuizCategories(),
+    return FutureBuilder<List>(
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -75,7 +72,7 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
-  Widget _buildItemCategory(QuizCategories item) {
+  Widget _buildItemCategory() {
     return Card(
       elevation: 1,
       shadowColor: Colors.blue,
@@ -98,15 +95,9 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         onTap: () {
-          Navigator.pushNamed(context, '/quiz_questions');
+          //Navigator.pushNamed(context, '/quiz_questions');
         },
       ),
     );
-  }
-
-  Future<List<QuizCategories>?> getQuizCategories() async {
-    var db = await copyDB();
-    var result = await CategoryProvider().getQuizCategories(db);
-    return result;
   }
 }
