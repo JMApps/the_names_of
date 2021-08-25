@@ -3,6 +3,7 @@ import 'package:the_names_of/pages/card_names_page.dart';
 import 'package:the_names_of/pages/content_page.dart';
 import 'package:the_names_of/pages/names_page.dart';
 import 'package:the_names_of/pages/quiz_page.dart';
+import 'package:the_names_of/pages/quiz_question_page.dart';
 import 'package:the_names_of/pages/root_page.dart';
 import 'package:the_names_of/pages/tafsirs_page.dart';
 
@@ -21,12 +22,15 @@ class AppRouter {
       case '/contents':
         return MaterialPageRoute(
             builder: (_) => ContentPage(), settings: routeSettings);
-      case '/quiz':
-        return MaterialPageRoute(
-            builder: (_) => QuizPage(), settings: routeSettings);
       case '/cards':
         return MaterialPageRoute(
             builder: (_) => CardNamesPage(), settings: routeSettings);
+      case '/quiz':
+        return MaterialPageRoute(
+            builder: (_) => QuizPage(), settings: routeSettings);
+      case '/quiz_question':
+        return MaterialPageRoute(
+            builder: (_) => QuizQuestionPage(), settings: routeSettings);
       default:
         throw Exception('Invalid route');
     }

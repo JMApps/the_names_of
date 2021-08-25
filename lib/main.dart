@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:the_names_of/pages/root_page.dart';
 import 'package:the_names_of/router/app_router.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       initialRoute: '/',
       onGenerateRoute: _appRouter.onGenerateRoute,
       title: 'Имена Аллаха',

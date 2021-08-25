@@ -54,6 +54,16 @@ class _MainPageState extends State<MainPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors: [
+              Color(0xFFE3F2FD),
+              Color(0xFFFFFFFF),
+            ],
+          ),
+        ),
         child: Scrollbar(
           child: SingleChildScrollView(
             child: Column(
