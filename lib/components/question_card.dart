@@ -12,6 +12,7 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _questionController = Get.put(QuestionController());
+    bool _onTapState = true;
     return SingleChildScrollView(
       child: Card(
         elevation: 3,
@@ -52,7 +53,11 @@ class QuestionCard extends StatelessWidget {
                   index: index,
                   text: question.options![index],
                   press: () {
-                    _questionController.checkAnswer(question, index);
+                    if (_onTapState) {
+                      _questionController.checkAnswer(
+                          question, index);
+                    }
+                    _onTapState = false;
                   },
                 ),
               ),
