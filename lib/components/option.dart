@@ -15,19 +15,15 @@ class Option extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late bool _tapState = true;
     return GetBuilder<QuestionController>(
       init: QuestionController(),
       builder: (controller) {
         Color getTheRightColor() {
           if (controller.isAnswered) {
             if (index == controller.correctAnswer) {
-              print('$_tapState');
-              _tapState = false;
               return Colors.teal;
             } else if (index == controller.selectedAnswer &&
                 controller.selectedAnswer != controller.correctAnswer) {
-              _tapState = false;
               return Colors.red;
             }
           }
@@ -41,10 +37,10 @@ class Option extends StatelessWidget {
         }
 
         return InkWell(
-          onTap: _tapState ? press : null,
+          onTap: press,
           child: Card(
             elevation: 3,
-            shadowColor: Colors.teal,
+            shadowColor: getTheRightColor(),
             margin: EdgeInsets.all(8),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
