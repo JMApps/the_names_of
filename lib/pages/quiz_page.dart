@@ -9,6 +9,11 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<String> quizCategories = [
+    'Арабско-русский вариант',
+    'Русско-арабский вариант',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,39 +45,21 @@ class _QuizPageState extends State<QuizPage> {
             ],
           ),
         ),
-        child: _buildQuizCategoriesList(),
+        child: _buildCategoriesList(),
       ),
     );
   }
 
-  Widget _buildQuizCategoriesList() {
-    return FutureBuilder<List>(
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Center(
-            child: SelectableText('${snapshot.error}'),
-          );
-        } else if (snapshot.hasData) {
-          return _buildCategoriesList(snapshot);
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
+  Widget _buildCategoriesList() {
+    return ListView(
+      children: [
+        _buildItemCategory(0),
+        _buildItemCategory(1),
+      ],
     );
   }
 
-  Widget _buildCategoriesList(AsyncSnapshot snapshot) {
-    return ListView.builder(
-      itemCount: snapshot.data!.length,
-      itemBuilder: (context, index) {
-        return _buildItemCategory(snapshot.data![index]);
-      },
-    );
-  }
-
-  Widget _buildItemCategory() {
+  Widget _buildItemCategory(int index) {
     return Card(
       elevation: 1,
       shadowColor: Colors.blue,
@@ -89,13 +76,13 @@ class _QuizPageState extends State<QuizPage> {
           ),
           padding: EdgeInsets.only(left: 16, top: 50, right: 16, bottom: 50),
           child: Text(
-            '${item.categoryName}',
+            '${quizCategories[index]}',
             style: TextStyle(fontSize: 20),
             textAlign: TextAlign.center,
           ),
         ),
         onTap: () {
-          //Navigator.pushNamed(context, '/quiz_questions');
+          Navigator.pushNamed(context, '/quiz_question');
         },
       ),
     );
