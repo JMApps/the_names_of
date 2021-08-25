@@ -15,15 +15,19 @@ class Option extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late bool _tapState = true;
     return GetBuilder<QuestionController>(
       init: QuestionController(),
       builder: (controller) {
         Color getTheRightColor() {
           if (controller.isAnswered) {
             if (index == controller.correctAnswer) {
+              print('$_tapState');
+              _tapState = false;
               return Colors.teal;
             } else if (index == controller.selectedAnswer &&
                 controller.selectedAnswer != controller.correctAnswer) {
+              _tapState = false;
               return Colors.red;
             }
           }
@@ -37,10 +41,10 @@ class Option extends StatelessWidget {
         }
 
         return InkWell(
-          onTap: press,
+          onTap: _tapState ? press : null,
           child: Container(
-            margin: EdgeInsets.only(top: 16),
-            padding: EdgeInsets.all(32),
+            margin: EdgeInsets.all(8),
+            padding: EdgeInsets.only(left: 16, top: 32, right: 16, bottom: 32),
             decoration: BoxDecoration(
               border: Border.all(color: getTheRightColor()),
               borderRadius: BorderRadius.circular(15),
@@ -48,6 +52,7 @@ class Option extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     '${index + 1}. $text',
@@ -57,23 +62,26 @@ class Option extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(width: 8),
                 Container(
                   height: 26,
                   width: 26,
                   decoration: BoxDecoration(
-                    color: getTheRightColor() == Colors.grey
+                    color: getTheRightColor() == Colors.grey[700]
                         ? Colors.transparent
                         : getTheRightColor(),
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(color: getTheRightColor()),
                   ),
-                  child: getTheRightColor() == Colors.grey
+                  child: getTheRightColor() == Colors.grey[700]
                       ? null
                       : Icon(
                           getRightIcon(),
                           size: 16,
+                          color: Colors.white,
                         ),
                 ),
+                SizedBox(width: 8),
               ],
             ),
           ),
