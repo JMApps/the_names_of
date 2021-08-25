@@ -1,15 +1,12 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_names_of/model/question.dart';
 import 'package:the_names_of/score/score_page.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
-  late Animation _animation;
-
-  Animation get animation => this._animation;
-
   late PageController _pageController;
 
   PageController get pageController => this._pageController;
@@ -47,9 +44,15 @@ class QuestionController extends GetxController
 
   int get numberOfCorrectAnswer => this._numberOfCorrectAnswer;
 
+  late SharedPreferences _preferences;
+
+  SharedPreferences get preferences => this._preferences;
+
   @override
-  void onInit() {
+  void onInit() async {
     _pageController = PageController();
+    _preferences = await SharedPreferences.getInstance();
+    _pageController.jumpToPage(preferences.getInt('last_page_view_page')!);
     super.onInit();
   }
 
@@ -60,18 +63,19 @@ class QuestionController extends GetxController
   }
 
   checkAnswer(Question question, int selectedIndex) {
+    preferences.setInt('last_page_view_page', _questionNumber.value);
     _isAnswered = true;
     _correctAnswer = question.answer!;
     _selectedAnswer = selectedIndex;
-    if (_correctAnswer == _selectedAnswer) {
-      _numberOfCorrectAnswer++;
-    }
 
     update();
 
     Future.delayed(
       Duration(seconds: 3),
       () {
+        if (_correctAnswer == _selectedAnswer) {
+          _numberOfCorrectAnswer++;
+        }
         nextQuestion();
       },
     );
