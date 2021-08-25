@@ -94,4 +94,13 @@ class QuestionController extends GetxController
   updateQuestionNumber(int index) {
     _questionNumber.value = index + 1;
   }
+
+  bool checkForReplay() {
+    return _questionNumber.value >= 99 ? true : false;
+  }
+
+  resetQuiz() {
+    preferences.remove('last_page_view_page');
+    _pageController.jumpToPage(0);
+  }
 }
