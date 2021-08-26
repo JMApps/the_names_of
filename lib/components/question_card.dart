@@ -14,56 +14,56 @@ class QuestionCard extends StatelessWidget {
     QuestionController _questionController = Get.put(QuestionController());
     bool _onTapState = true;
     return SingleChildScrollView(
-      child: Card(
-        elevation: 3,
-        shadowColor: Colors.teal,
-        margin: EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-        ),
-        child: Container(
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.topLeft,
-              colors: [
-                Color(0xFFE0F7FA),
-                Color(0xFFFFFFFF),
-              ],
+      child: Column(
+        children: [
+          Card(
+            elevation: 3,
+            shadowColor: Colors.teal,
+            margin: EdgeInsets.symmetric(horizontal: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
             ),
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: Column(
-            children: [
-              SizedBox(height: 16),
-              Text(
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.topRight,
+                  colors: [
+                    Color(0xFF4DB6AC),
+                    Color(0xFFB2DFDB),
+                  ],
+                ),
+              ),
+              child: Text(
                 question.question!,
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 40,
+                  fontSize: 50,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Arabic',
                   color: Colors.grey[800],
                 ),
               ),
-              SizedBox(height: 16),
-              ...List.generate(
-                question.options!.length,
-                (index) => Option(
-                  index: index,
-                  text: question.options![index],
-                  press: () {
-                    if (_onTapState) {
-                      _questionController.checkAnswer(
-                          question, index);
-                    }
-                    _onTapState = false;
-                  },
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          SizedBox(height: 16),
+          ...List.generate(
+            question.options!.length,
+            (index) => Option(
+              index: index,
+              text: question.options![index],
+              press: () {
+                if (_onTapState) {
+                  _questionController.checkAnswer(question, index);
+                }
+                _onTapState = false;
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

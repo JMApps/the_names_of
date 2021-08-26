@@ -22,32 +22,31 @@ class QuizBody extends StatelessWidget {
         ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
+          SizedBox(height: 16),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.teal,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            padding: EdgeInsets.all(8),
             child: Obx(
               () => Text.rich(
                 TextSpan(
                   text: 'Вопрос ${_questionController.questionNumber.value}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(color: Colors.teal),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                   children: [
                     TextSpan(
                       text: '/${_questionController.questions.length}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5!
-                          .copyWith(color: Colors.grey[800]),
+                      style: TextStyle(fontSize: 16, color: Colors.grey[300]),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          Divider(thickness: 1, color: Colors.teal, indent: 16, endIndent: 16),
+          SizedBox(height: 16),
           Expanded(
             child: PageView.builder(
               physics: NeverScrollableScrollPhysics(),
@@ -58,7 +57,8 @@ class QuizBody extends StatelessWidget {
                 question: _questionController.questions[index],
               ),
             ),
-          )
+          ),
+          SizedBox(height: 16),
         ],
       ),
     );

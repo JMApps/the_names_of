@@ -18,74 +18,62 @@ class Option extends StatelessWidget {
     return GetBuilder<QuestionController>(
       init: QuestionController(),
       builder: (controller) {
-        Color getTheRightColor() {
+        LinearGradient getTheRightGradient() {
           if (controller.isAnswered) {
             if (index == controller.correctAnswer) {
-              return Colors.teal;
+              return LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.topRight,
+                colors: [
+                  Color(0xFF26A69A),
+                  Color(0xFFB2DFDB),
+                ],
+              );
             } else if (index == controller.selectedAnswer &&
                 controller.selectedAnswer != controller.correctAnswer) {
-              return Colors.red;
+              return LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.topRight,
+                colors: [
+                  Color(0xFFEF5350),
+                  Color(0xFFFFCDD2),
+                ],
+              );
             }
           }
-          return Colors.grey[700]!;
-        }
-
-        IconData getRightIcon() {
-          return getTheRightColor() == Colors.red
-              ? CupertinoIcons.clear
-              : CupertinoIcons.checkmark_alt;
+          return LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors: [
+              Color(0xFFFFFFFF),
+              Color(0xFFFFFFFF),
+            ],
+          );
         }
 
         return InkWell(
           onTap: press,
           child: Card(
-            elevation: 3,
-            shadowColor: getTheRightColor(),
-            margin: EdgeInsets.all(8),
+            elevation: 1,
+            margin: EdgeInsets.only(left: 16, top: 8, right: 16, bottom: 8),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-              side: BorderSide(width: 1, color: getTheRightColor()),
+              borderRadius: BorderRadius.circular(25),
             ),
             child: Container(
-              padding:
-                  EdgeInsets.only(left: 16, top: 32, right: 16, bottom: 32),
+              width: double.infinity,
+              padding: EdgeInsets.all(32),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+                gradient: getTheRightGradient(),
+                borderRadius: BorderRadius.circular(25),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      '${index + 1}. $text',
-                      style: TextStyle(
-                        color: getTheRightColor(),
-                        fontSize: 22,
-                      ),
-                    ),
+              child: Expanded(
+                child: Text(
+                  '${index + 1}. $text',
+                  style: TextStyle(
+                    //color: getTheRightColor(),
+                    fontSize: 23,
                   ),
-                  SizedBox(width: 8),
-                  Container(
-                    height: 26,
-                    width: 26,
-                    decoration: BoxDecoration(
-                      color: getTheRightColor() == Colors.grey[700]
-                          ? Colors.transparent
-                          : getTheRightColor(),
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(color: getTheRightColor(), width: 1.5),
-                    ),
-                    child: getTheRightColor() == Colors.grey[700]
-                        ? null
-                        : Icon(
-                            getRightIcon(),
-                            size: 16,
-                            color: Colors.white,
-                          ),
-                  ),
-                  SizedBox(width: 8),
-                ],
+                ),
               ),
             ),
           ),

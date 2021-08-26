@@ -18,9 +18,21 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Вопросы'),
+        title: Text('Викторина'),
         backgroundColor: Colors.teal,
         elevation: 0,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color(0xFF00796B),
+                Color(0xFF4DB6AC),
+              ],
+            ),
+          ),
+        ),
         actions: [
           _questionController.checkForReplay()
               ? IconButton(

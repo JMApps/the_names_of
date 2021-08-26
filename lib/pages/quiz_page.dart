@@ -30,7 +30,7 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        title: Text('Викторина'),
+        title: Text('Режим викторины'),
         centerTitle: true,
         backgroundColor: Colors.blue[400],
       ),
