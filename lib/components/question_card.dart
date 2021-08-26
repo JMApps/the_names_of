@@ -32,8 +32,8 @@ class QuestionCard extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.topRight,
                   colors: [
-                    Color(0xFF4DB6AC),
-                    Color(0xFFB2DFDB),
+                    Color(0xFF64B5F6),
+                    Color(0xFFBBDEFB),
                   ],
                 ),
               ),

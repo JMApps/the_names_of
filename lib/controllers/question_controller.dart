@@ -52,7 +52,7 @@ class QuestionController extends GetxController
   void onInit() async {
     _pageController = PageController();
     _preferences = await SharedPreferences.getInstance();
-    _pageController.jumpToPage(preferences.getInt('last_page_view_page')!);
+    _pageController.jumpToPage(preferences.getInt('last_page_view_page') ?? 0);
     super.onInit();
   }
 
@@ -67,7 +67,6 @@ class QuestionController extends GetxController
     _isAnswered = true;
     _correctAnswer = question.answer!;
     _selectedAnswer = selectedIndex;
-
     update();
 
     Future.delayed(
@@ -79,6 +78,14 @@ class QuestionController extends GetxController
         nextQuestion();
       },
     );
+  }
+
+  // Пофиксить
+  saveAnswer(int index) {
+    if (index == _correctAnswer) {
+      preferences.setBool('answer_possible_$index', true);
+      print('Saved true');
+    }
   }
 
   nextQuestion() {
@@ -95,10 +102,12 @@ class QuestionController extends GetxController
     _questionNumber.value = index + 1;
   }
 
-  bool checkForReplay() {
+  // Пофиксить
+  bool checkForReset() {
     return _questionNumber.value >= 99 ? true : false;
   }
 
+  // Пофиксить
   resetQuiz() {
     preferences.remove('last_page_view_page');
     _pageController.jumpToPage(0);

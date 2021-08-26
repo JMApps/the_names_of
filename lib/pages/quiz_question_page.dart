@@ -33,18 +33,7 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
             ),
           ),
         ),
-        actions: [
-          _questionController.checkForReplay()
-              ? IconButton(
-                  onPressed: () {
-                    _questionController.resetQuiz();
-                  },
-                  icon: Icon(
-                    CupertinoIcons.arrow_clockwise,
-                  ),
-                )
-              : SizedBox(),
-        ],
+        actions: [],
       ),
       body: QuizBody(),
     );

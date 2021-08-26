@@ -21,6 +21,7 @@ class Option extends StatelessWidget {
         LinearGradient getTheRightGradient() {
           if (controller.isAnswered) {
             if (index == controller.correctAnswer) {
+              controller.saveAnswer(index);
               return LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
@@ -31,6 +32,7 @@ class Option extends StatelessWidget {
               );
             } else if (index == controller.selectedAnswer &&
                 controller.selectedAnswer != controller.correctAnswer) {
+              controller.saveAnswer(index);
               return LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
@@ -66,13 +68,11 @@ class Option extends StatelessWidget {
                 gradient: getTheRightGradient(),
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Expanded(
-                child: Text(
-                  '${index + 1}. $text',
-                  style: TextStyle(
-                    //color: getTheRightColor(),
-                    fontSize: 23,
-                  ),
+              child: Text(
+                '${index + 1}. $text',
+                style: TextStyle(
+                  //color: getTheRightColor(),
+                  fontSize: 23,
                 ),
               ),
             ),
