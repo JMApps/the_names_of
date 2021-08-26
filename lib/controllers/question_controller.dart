@@ -1,6 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_names_of/model/question.dart';
 import 'package:the_names_of/score/score_page.dart';
@@ -53,6 +54,9 @@ class QuestionController extends GetxController
     _pageController = PageController();
     _preferences = await SharedPreferences.getInstance();
     _pageController.jumpToPage(preferences.getInt('last_page_view_page') ?? 0);
+    if (preferences.getInt('last_page_view_page') == _questions.length) {
+      Get.to(ScorePage());
+    }
     super.onInit();
   }
 
@@ -84,7 +88,6 @@ class QuestionController extends GetxController
   saveAnswer(int index) {
     if (index == _correctAnswer) {
       preferences.setBool('answer_possible_$index', true);
-      print('Saved true');
     }
   }
 
@@ -102,14 +105,16 @@ class QuestionController extends GetxController
     _questionNumber.value = index + 1;
   }
 
-  // Пофиксить
-  bool checkForReset() {
-    return _questionNumber.value >= 99 ? true : false;
+  shareResult() {
+    Share.share(
+      'Я ответил правильно по именам Аллаха на \$ вопросов из 99',
+    );
   }
 
-  // Пофиксить
   resetQuiz() {
+    _isAnswered = false;
     preferences.remove('last_page_view_page');
     _pageController.jumpToPage(0);
+    update();
   }
 }

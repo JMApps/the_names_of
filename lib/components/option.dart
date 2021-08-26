@@ -72,7 +72,7 @@ class Option extends StatelessWidget {
                 '${index + 1}. $text',
                 style: TextStyle(
                   //color: getTheRightColor(),
-                  fontSize: 23,
+                  fontSize: 22,
                 ),
               ),
             ),

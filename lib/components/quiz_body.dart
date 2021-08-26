@@ -49,7 +49,7 @@ class QuizBody extends StatelessWidget {
           SizedBox(height: 16),
           Expanded(
             child: PageView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              //physics: NeverScrollableScrollPhysics(),
               controller: _questionController.pageController,
               itemCount: _questionController.questions.length,
               onPageChanged: _questionController.updateQuestionNumber,
