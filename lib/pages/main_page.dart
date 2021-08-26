@@ -44,7 +44,11 @@ class _MainPageState extends State<MainPage> {
         leading: IconButton(
           icon: Icon(CupertinoIcons.bars),
           onPressed: () {
-            widget.zoomDrawerController.toggle()!;
+            if (!widget.zoomDrawerController.isOpen()) {
+              widget.zoomDrawerController.open();
+            } else {
+              widget.zoomDrawerController.close();
+            }
           },
         ),
         actions: [
