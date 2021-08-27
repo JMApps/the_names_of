@@ -1094,6 +1094,13 @@ class Question {
         'Истинный',
       ],
       'answer_index': 1,
+    },
+    {
+      'id': 100,
+      'question': 'Результат',
+      'options': [
+
+      ],
     }
   ];
 }
