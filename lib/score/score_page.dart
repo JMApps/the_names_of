@@ -36,7 +36,7 @@ class ScorePage extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text(
-              '1 из 1',
+              '${_questionController.trueAnswerCount} из ${_questionController.questions.length}',
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.red,
@@ -76,7 +76,7 @@ class ScorePage extends StatelessWidget {
                 Navigator.pop(context);
               },
               child: Text(
-                'Закрыть>',
+                'Закрыть',
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,

@@ -49,6 +49,10 @@ class QuestionController extends GetxController
 
   SharedPreferences get preferences => this._preferences;
 
+  int _trueAnswerCount = 0;
+
+  int get trueAnswerCount => this._trueAnswerCount;
+
   @override
   void onInit() async {
     _pageController = PageController();
@@ -57,6 +61,8 @@ class QuestionController extends GetxController
     if (preferences.getInt('last_page_view_page') == _questions.length) {
       Get.to(ScorePage());
     }
+    _trueAnswerCount = preferences.getInt('key_true_answer') ?? 0;
+    print('$_trueAnswerCount');
     super.onInit();
   }
 
@@ -64,6 +70,12 @@ class QuestionController extends GetxController
   void onClose() {
     _pageController.dispose();
     super.onClose();
+  }
+
+  saveAnswer(int selectedIndex) {
+    if (selectedAnswer == _correctAnswer) {
+      preferences.setInt('key_true_answer', _trueAnswerCount++);
+    }
   }
 
   checkAnswer(Question question, int selectedIndex) {
@@ -104,13 +116,14 @@ class QuestionController extends GetxController
 
   shareResult() {
     Share.share(
-      'Я ответил правильно по именам Аллаха на \$ вопросов из 99',
+      'Я ответил правильно по именам Аллаха на $_trueAnswerCount вопросов из 99',
     );
   }
 
   resetQuiz() {
     _isAnswered = false;
     preferences.remove('last_page_view_page');
+    preferences.remove('key_true_answer');
     _pageController.jumpToPage(0);
     update();
   }

@@ -59,6 +59,7 @@ class QuestionCard extends StatelessWidget {
                 if (!_questionController.checkForLast()) {
                   if (_onTapState) {
                     _questionController.checkAnswer(question, index);
+                    _questionController.saveAnswer(index);
                   }
                   _onTapState = false;
                 } else {
