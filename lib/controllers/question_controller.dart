@@ -84,13 +84,6 @@ class QuestionController extends GetxController
     );
   }
 
-  // Пофиксить
-  saveAnswer(int index) {
-    if (index == _correctAnswer) {
-      preferences.setBool('answer_possible_$index', true);
-    }
-  }
-
   nextQuestion() {
     if (_questionNumber.value != _questions.length) {
       _isAnswered = false;
@@ -103,6 +96,10 @@ class QuestionController extends GetxController
 
   updateQuestionNumber(int index) {
     _questionNumber.value = index + 1;
+  }
+
+  bool checkForLast() {
+    return preferences.getInt('last_page_view_page') == 99 ? true : false;
   }
 
   shareResult() {

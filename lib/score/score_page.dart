@@ -70,6 +70,19 @@ class ScorePage extends StatelessWidget {
                 ),
               ),
             ),
+            MaterialButton(
+              color: Colors.red,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Закрыть>',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),

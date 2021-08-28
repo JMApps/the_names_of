@@ -56,10 +56,14 @@ class QuestionCard extends StatelessWidget {
               index: index,
               text: question.options![index],
               press: () {
-                if (_onTapState) {
-                  _questionController.checkAnswer(question, index);
+                if (!_questionController.checkForLast()) {
+                  if (_onTapState) {
+                    _questionController.checkAnswer(question, index);
+                  }
+                  _onTapState = false;
+                } else {
+                  _onTapState = false;
                 }
-                _onTapState = false;
               },
             ),
           ),

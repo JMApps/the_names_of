@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:the_names_of/components/quiz_body.dart';
 import 'package:the_names_of/controllers/question_controller.dart';
+import 'package:the_names_of/score/score_page.dart';
 
 class QuizQuestionPage extends StatefulWidget {
   const QuizQuestionPage({Key? key}) : super(key: key);
@@ -33,7 +34,14 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
             ),
           ),
         ),
-        actions: [],
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(ScorePage());
+            },
+            icon: Icon(CupertinoIcons.arrow_clockwise),
+          ),
+        ],
       ),
       body: QuizBody(),
     );
