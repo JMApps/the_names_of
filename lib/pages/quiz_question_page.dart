@@ -5,6 +5,7 @@ import 'package:the_names_of/arguments/quiz_arguments.dart';
 import 'package:the_names_of/components/quiz_arabic_body.dart';
 import 'package:the_names_of/components/quiz_russian_body.dart';
 import 'package:the_names_of/score/score_arabic_page.dart';
+import 'package:the_names_of/score/score_russian_page.dart';
 
 class QuizQuestionPage extends StatefulWidget {
   const QuizQuestionPage({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(ScoreArabicPage());
+              Get.to(args!.id! == 0 ? ScoreArabicPage() : ScoreRussianPage());
             },
             icon: Icon(CupertinoIcons.arrow_clockwise),
           ),

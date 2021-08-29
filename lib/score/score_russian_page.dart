@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:the_names_of/controllers/question_arabic_controller.dart';
 
-class ScoreArabicPage extends StatelessWidget {
-  const ScoreArabicPage({Key? key}) : super(key: key);
+class ScoreRussianPage extends StatelessWidget {
+  const ScoreRussianPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
