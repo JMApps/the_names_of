@@ -7,7 +7,7 @@ class QuestionArabic {
 
   static const List sample_data = [
     {
-      'id': 1,
+      '_id': 1,
       'question': 'المَجِيدُ',
       'options': [
         'Последний',
@@ -18,7 +18,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 2,
+      '_id': 2,
       'question': 'الأَحَدُ',
       'options': [
         'Живой',
@@ -29,7 +29,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 3,
+      '_id': 3,
       'question': 'الوَدُودُ',
       'options': [
         'Любящий, Любимый',
@@ -40,7 +40,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 4,
+      '_id': 4,
       'question': '(3) المُقْتَدِرُ',
       'options': [
         'Могущественный',
@@ -51,7 +51,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 5,
+      '_id': 5,
       'question': 'الإِلَهُ',
       'options': [
         'Разъясняющий',
@@ -62,7 +62,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 6,
+      '_id': 6,
       'question': 'الكَرِيمُ',
       'options': [
         'Справедливый Судья',
@@ -73,7 +73,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 7,
+      '_id': 7,
       'question': 'الحَقُّ',
       'options': [
         'Исцеляющий',
@@ -84,7 +84,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 8,
+      '_id': 8,
       'question': 'الآخِرُ',
       'options': [
         'Первый',
@@ -95,7 +95,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 9,
+      '_id': 9,
       'question': 'المُبِينُ',
       'options': [
         'Разъясняющий',
@@ -106,7 +106,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 10,
+      '_id': 10,
       'question': 'الكَبِيرُ',
       'options': [
         'Аллах',
@@ -117,7 +117,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 11,
+      '_id': 11,
       'question': 'الرَّفِيقُ',
       'options': [
         'Дарующий, Щедрый',
@@ -128,7 +128,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 12,
+      '_id': 12,
       'question': '(2) القَهَّارُ',
       'options': [
         'Всемогущий',
@@ -139,7 +139,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 13,
+      '_id': 13,
       'question': 'نُورُ السَّمَوَاتِ وَالأَرْضِ',
       'options': [
         'Первосоздатель небес и земли',
@@ -150,7 +150,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 14,
+      '_id': 14,
       'question': 'المُؤْمِنُ',
       'options': [
         'Оберегающий, Дарующий безопасность',
@@ -161,7 +161,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 15,
+      '_id': 15,
       'question': 'السَّلَامُ',
       'options': [
         'Могучий, Выправляющий, Подчиняющий',
@@ -172,7 +172,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 16,
+      '_id': 16,
       'question': 'الخَلَّاقُ',
       'options': [
         'Создатель',
@@ -183,7 +183,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 17,
+      '_id': 17,
       'question': 'الرَّقِيبُ',
       'options': [
         'Наблюдающий',
@@ -194,7 +194,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 18,
+      '_id': 18,
       'question': 'الرَّازِقُ',
       'options': [
         'Гордый',
@@ -205,7 +205,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 19,
+      '_id': 19,
       'question': 'ذُو الجَلَالِ وَالإِكْرَامِ',
       'options': [
         'Оберегающий, Дарующий безопасность',
@@ -216,7 +216,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 20,
+      '_id': 20,
       'question': 'مَالِكُ المُلْكِ',
       'options': [
         'Собирающий людей',
@@ -227,7 +227,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 21,
+      '_id': 21,
       'question': 'الرَّحْمٰنُ',
       'options': [
         'Милостивый',
@@ -238,7 +238,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 22,
+      '_id': 22,
       'question': 'بَدِيعُ السَّمَوَاتِ وَالأَرْضِ',
       'options': [
         'Обладающий величием и великодушием',
@@ -249,7 +249,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 23,
+      '_id': 23,
       'question': 'اللَّطِيفُ',
       'options': [
         'Самодостаточный',
@@ -260,7 +260,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 24,
+      '_id': 24,
       'question': 'الحَكِيمُ',
       'options': [
         'Принимающий покаяния',
@@ -271,7 +271,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 25,
+      '_id': 25,
       'question': 'الله',
       'options': [
         'Превознесшийся',
@@ -282,7 +282,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 26,
+      '_id': 26,
       'question': '(1) الحَفِيظُ',
       'options': [
         'Хранитель',
@@ -293,7 +293,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 27,
+      '_id': 27,
       'question': 'الهَادِي',
       'options': [
         'Требующий отчета',
@@ -304,7 +304,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 28,
+      '_id': 28,
       'question': 'المَوْلَى',
       'options': [
         'Стыдливый',
@@ -315,7 +315,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 29,
+      '_id': 29,
       'question': 'المُعْطِي',
       'options': [
         'Одаряющий',
@@ -326,7 +326,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 30,
+      '_id': 30,
       'question': 'العَلِيمُ',
       'options': [
         'Превознесшийся',
@@ -337,7 +337,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 31,
+      '_id': 31,
       'question': 'الغَفُورُ',
       'options': [
         'Всепрощающий',
@@ -348,7 +348,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 32,
+      '_id': 32,
       'question': 'الأَعْلَى',
       'options': [
         'Всемогущий (3)',
@@ -359,7 +359,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 33,
+      '_id': 33,
       'question': 'الرَّؤُوفُ',
       'options': [
         'Достаточный',
@@ -370,7 +370,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 34,
+      '_id': 34,
       'question': 'العَزِيزُ',
       'options': [
         'Могущественный',
@@ -381,7 +381,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 35,
+      '_id': 35,
       'question': 'السَّيِّدُ',
       'options': [
         'Господин',
@@ -392,7 +392,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 36,
+      '_id': 36,
       'question': 'الْبَاطِنُ',
       'options': [
         'Большой',
@@ -403,7 +403,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 37,
+      '_id': 37,
       'question': 'المُقِيتُ',
       'options': [
         'Покрывающий, Защищающий',
@@ -414,7 +414,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 38,
+      '_id': 38,
       'question': 'الرَّحِيمُ',
       'options': [
         'Ведающий',
@@ -425,7 +425,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 39,
+      '_id': 39,
       'question': 'المَتِينُ',
       'options': [
         'Великий',
@@ -436,7 +436,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 40,
+      '_id': 40,
       'question': 'الحَيُّ',
       'options': [
         'Прекрасный',
@@ -447,7 +447,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 41,
+      '_id': 41,
       'question': 'الْعَلِيُّ',
       'options': [
         'Всевышний',
@@ -458,7 +458,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 42,
+      '_id': 42,
       'question': 'القَادِرُ',
       'options': [
         'Могучий, Способный',
@@ -469,7 +469,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 43,
+      '_id': 43,
       'question': 'جَامِعُ النَّاسِ',
       'options': [
         'Собирающий людей',
@@ -480,7 +480,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 44,
+      '_id': 44,
       'question': 'الظَّاهِرُ',
       'options': [
         'Превознесшийся',
@@ -491,7 +491,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 45,
+      '_id': 45,
       'question': 'القَابِضُ',
       'options': [
         'Объемлющий',
@@ -502,7 +502,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 46,
+      '_id': 46,
       'question': 'الأَوَّلُ',
       'options': [
         'Первый',
@@ -513,7 +513,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 47,
+      '_id': 47,
       'question': 'البَاسِطُ',
       'options': [
         'Истинный',
@@ -524,7 +524,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 48,
+      '_id': 48,
       'question': 'البَصِيرُ',
       'options': [
         'Видящий',
@@ -535,7 +535,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 49,
+      '_id': 49,
       'question': 'المُقَدِّمُ',
       'options': [
         'Попечитель и Хранитель',
@@ -546,7 +546,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 50,
+      '_id': 50,
       'question': 'المُتَعَالِ',
       'options': [
         'Всемогущий (2)',
@@ -557,7 +557,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 51,
+      '_id': 51,
       'question': 'القَوِيُّ',
       'options': [
         'Возвышенный',
@@ -568,7 +568,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 52,
+      '_id': 52,
       'question': 'العَظِيمُ',
       'options': [
         'Великий',
@@ -579,7 +579,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 53,
+      '_id': 53,
       'question': 'الجَمِيلُ',
       'options': [
         'Стыдливый',
@@ -590,7 +590,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 54,
+      '_id': 54,
       'question': 'السَّمِيعُ',
       'options': [
         'Слышащий',
@@ -601,7 +601,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 55,
+      '_id': 55,
       'question': 'المُجِيبُ',
       'options': [
         'Отзывчивый',
@@ -612,7 +612,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 56,
+      '_id': 56,
       'question': 'الخَبِيرُ',
       'options': [
         'Ближайший',
@@ -623,7 +623,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 57,
+      '_id': 57,
       'question': 'المُتَكَبِّرُ',
       'options': [
         'Властелин',
@@ -634,7 +634,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 58,
+      '_id': 58,
       'question': 'الغَفَّارُ',
       'options': [
         'Знающий',
@@ -645,7 +645,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 59,
+      '_id': 59,
       'question': '(1) القَدِيرُ',
       'options': [
         'Свидетель',
@@ -656,7 +656,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 60,
+      '_id': 60,
       'question': 'الحَمِيدُ',
       'options': [
         'Всепрощающий',
@@ -667,7 +667,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 61,
+      '_id': 61,
       'question': 'السِّتِّيرُ',
       'options': [
         'Покрывающий, Защищающий',
@@ -678,7 +678,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 62,
+      '_id': 62,
       'question': 'الحَيُّ',
       'options': [
         'Удерживающий, Сжимающий',
@@ -689,7 +689,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 63,
+      '_id': 63,
       'question': 'الشَّاكِرُ',
       'options': [
         'Сострадательный',
@@ -700,7 +700,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 64,
+      '_id': 64,
       'question': '(2) المُهَيْمِنُ',
       'options': [
         'Прекрасный',
@@ -711,7 +711,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 65,
+      '_id': 65,
       'question': 'المَلِكُ',
       'options': [
         'Царь',
@@ -722,7 +722,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 66,
+      '_id': 66,
       'question': 'التَّوَّابُ',
       'options': [
         'Любящий, Любимый',
@@ -733,7 +733,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 67,
+      '_id': 67,
       'question': 'الكَافِي',
       'options': [
         'Прекрасный',
@@ -744,7 +744,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 68,
+      '_id': 68,
       'question': 'النَّصِيرُ',
       'options': [
         'Простирающий',
@@ -755,7 +755,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 69,
+      '_id': 69,
       'question': 'السِّتِّيرُ',
       'options': [
         'Достохвальный',
@@ -766,7 +766,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 70,
+      '_id': 70,
       'question': 'الوَلِيُّ',
       'options': [
         'Покровитель',
@@ -777,7 +777,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 71,
+      '_id': 71,
       'question': 'القُدُّوسُ',
       'options': [
         'Одолевающий',
@@ -788,7 +788,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 72,
+      '_id': 72,
       'question': 'الحَلِيمُ',
       'options': [
         'Мудрый',
@@ -799,7 +799,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 73,
+      '_id': 73,
       'question': 'البَارِىءُ',
       'options': [
         'Созидатель',
@@ -810,7 +810,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 74,
+      '_id': 74,
       'question': 'القَيُّومُ',
       'options': [
         'Вседержитель',
@@ -821,7 +821,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 75,
+      '_id': 75,
       'question': 'القَاهِرُ',
       'options': [
         'Простирающий',
@@ -832,7 +832,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 76,
+      '_id': 76,
       'question': 'الفَتَّاحُ',
       'options': [
         'Единый',
@@ -843,7 +843,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 77,
+      '_id': 77,
       'question': 'الوَاسِعُ',
       'options': [
         'Прекрасный',
@@ -854,7 +854,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 78,
+      '_id': 78,
       'question': 'الشَّافِي',
       'options': [
         'Благодарный',
@@ -865,7 +865,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 79,
+      '_id': 79,
       'question': 'المُؤَخِّرُ',
       'options': [
         'Отбрасывающий назад',
@@ -876,7 +876,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 80,
+      '_id': 80,
       'question': 'البَرُّ',
       'options': [
         'Крепкий, Несокрушимый',
@@ -887,7 +887,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 81,
+      '_id': 81,
       'question': 'الغَنِيُّ',
       'options': [
         'Свидетель',
@@ -898,7 +898,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 82,
+      '_id': 82,
       'question': 'الرَّزَّاقُ',
       'options': [
         'Близкий',
@@ -909,7 +909,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 83,
+      '_id': 83,
       'question': 'العَفُوُّ',
       'options': [
         'Бог',
@@ -920,7 +920,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 84,
+      '_id': 84,
       'question': 'القَرِيبُ',
       'options': [
         'Близкий',
@@ -931,7 +931,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 85,
+      '_id': 85,
       'question': 'الحَسِيبُ',
       'options': [
         'Первый',
@@ -942,7 +942,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 86,
+      '_id': 86,
       'question': 'الشَّكُورُ',
       'options': [
         'Покровитель',
@@ -953,7 +953,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 87,
+      '_id': 87,
       'question': 'المُصَوِّرُ',
       'options': [
         'Простирающий',
@@ -964,7 +964,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 88,
+      '_id': 88,
       'question': 'المَلِيكُ',
       'options': [
         'Властелин',
@@ -975,7 +975,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 89,
+      '_id': 89,
       'question': 'الشَّهِيدُ',
       'options': [
         'Дарующий пропитание, Наблюдающий',
@@ -986,7 +986,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 90,
+      '_id': 90,
       'question': 'الحَكَمُ',
       'options': [
         'Гордый',
@@ -997,7 +997,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 91,
+      '_id': 91,
       'question': 'الوَهَّابُ',
       'options': [
         'Судия, Раскрывающий, Дарующий победу',
@@ -1008,7 +1008,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 92,
+      '_id': 92,
       'question': 'الصَّمَدُ',
       'options': [
         'Всевышний',
@@ -1019,7 +1019,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 93,
+      '_id': 93,
       'question': 'الجَبَّارُ',
       'options': [
         'Могучий, Выправляющий, Подчиняющий',
@@ -1030,7 +1030,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 94,
+      '_id': 94,
       'question': 'الوَكِيلُ',
       'options': [
         'Попечитель и Хранитель',
@@ -1041,7 +1041,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 95,
+      '_id': 95,
       'question': 'الرَّبُّ',
       'options': [
         'Слышащий',
@@ -1052,7 +1052,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 96,
+      '_id': 96,
       'question': 'المَنَّانُ',
       'options': [
         'Дарующий, Щедрый',
@@ -1063,7 +1063,7 @@ class QuestionArabic {
       'answer_index': 0,
     },
     {
-      'id': 97,
+      '_id': 97,
       'question': 'الوَاحِدُ',
       'options': [
         'Богатый',
@@ -1074,7 +1074,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 98,
+      '_id': 98,
       'question': 'المُحِيطُ',
       'options': [
         'Всевышний',
@@ -1085,7 +1085,7 @@ class QuestionArabic {
       'answer_index': 1,
     },
     {
-      'id': 99,
+      '_id': 99,
       'question': 'الخَالِقُ',
       'options': [
         'Благодарный',

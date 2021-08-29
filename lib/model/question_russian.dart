@@ -15,7 +15,7 @@ class QuestionRussian {
         'المَجِيدُ',
         'الحَمِيدُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 2,
@@ -26,7 +26,7 @@ class QuestionRussian {
         'العَظِيمُ',
         'الأَحَدُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 3,
@@ -37,7 +37,7 @@ class QuestionRussian {
         'البَصِيرُ',
         'الظَّاهِرُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 4,
@@ -48,7 +48,7 @@ class QuestionRussian {
         'الحَقُّ',
         'المُقْتَدِرُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 5,
@@ -59,7 +59,7 @@ class QuestionRussian {
         'بَدِيعُ السَّمَوَاتِ وَالأَرْضِ',
         'الهَادِي',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 6,
@@ -70,7 +70,7 @@ class QuestionRussian {
         'الكَرِيمُ',
         'المَوْلَى',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 7,
@@ -81,7 +81,7 @@ class QuestionRussian {
         'المُؤَخِّرُ',
         'الأَعْلَى',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 8,
@@ -92,7 +92,7 @@ class QuestionRussian {
         'الحَيُّ',
         'الآخِرُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 9,
@@ -103,7 +103,7 @@ class QuestionRussian {
         'المُقِيتُ',
         'العَلِيمُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 10,
@@ -114,7 +114,7 @@ class QuestionRussian {
         'ذُو الجَلَالِ وَالإِكْرَامِ',
         'القَابِضُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 11,
@@ -125,7 +125,7 @@ class QuestionRussian {
         'الرَّزَّاقُ',
         'الأَكْرَمُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 12,
@@ -136,7 +136,7 @@ class QuestionRussian {
         'القَوِيُّ',
         'القَيُّومُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 13,
@@ -147,7 +147,7 @@ class QuestionRussian {
         'المُقِيتُ',
         'الفَتَّاحُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 14,
@@ -158,7 +158,7 @@ class QuestionRussian {
         'النَّصِيرُ',
         'القَاهِرُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 15,
@@ -169,7 +169,7 @@ class QuestionRussian {
         'مَالِكُ المُلْكِ',
         'السَّلَامُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 16,
@@ -180,7 +180,7 @@ class QuestionRussian {
         'الحَيُّ',
         'الغَنِيُّ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 17,
@@ -191,7 +191,7 @@ class QuestionRussian {
         'المَجِيدُ',
         'البَرُّ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 18,
@@ -202,7 +202,7 @@ class QuestionRussian {
         'الرَّازِقُ',
         'الوَهَّابُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 19,
@@ -213,7 +213,7 @@ class QuestionRussian {
         'السِّتِّيرُ',
         'ذُو الجَلَالِ وَالإِكْرَامِ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 20,
@@ -224,7 +224,7 @@ class QuestionRussian {
         'مَالِكُ المُلْكِ',
         'القَيُّومُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 21,
@@ -235,7 +235,7 @@ class QuestionRussian {
         'المَلِيكُ',
         'البَارِىءُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 22,
@@ -246,7 +246,7 @@ class QuestionRussian {
         'الجَبَّارُ',
         'اللَّطِيفُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 23,
@@ -257,7 +257,7 @@ class QuestionRussian {
         'القَرِيبُ',
         'اللَّطِيفُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 24,
@@ -268,7 +268,7 @@ class QuestionRussian {
         'البَاسِطُ',
         'الحَكِيمُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 25,
@@ -279,7 +279,7 @@ class QuestionRussian {
         'الله',
         'الجَمِيلُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 26,
@@ -290,7 +290,7 @@ class QuestionRussian {
         'الغَنِيُّ',
         'القَادِرُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 27,
@@ -301,7 +301,7 @@ class QuestionRussian {
         'الحَمِيدُ',
         'الوَاسِعُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 28,
@@ -312,7 +312,7 @@ class QuestionRussian {
         'المَوْلَى',
         'النَّصِيرُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 29,
@@ -323,7 +323,7 @@ class QuestionRussian {
         'الحَيُّ',
         'جَامِعُ النَّاسِ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 30,
@@ -334,7 +334,7 @@ class QuestionRussian {
         'الحَكِيمُ',
         'الحَفِيظُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 31,
@@ -345,7 +345,7 @@ class QuestionRussian {
         'الغَفُورُ',
         'الأَوَّلُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 32,
@@ -356,7 +356,7 @@ class QuestionRussian {
         'الوَهَّابُ',
         'الأَعْلَى',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 33,
@@ -367,7 +367,7 @@ class QuestionRussian {
         'الرَّبُّ',
         'الحَسِيبُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 34,
@@ -378,7 +378,7 @@ class QuestionRussian {
         'التَّوَّابُ',
         'الحَكَمُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 35,
@@ -389,7 +389,7 @@ class QuestionRussian {
         'الحَلِيمُ',
         'القَرِيبُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 36,
@@ -400,7 +400,7 @@ class QuestionRussian {
         'الْبَاطِنُ',
         'الشَّكُورُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 37,
@@ -411,7 +411,7 @@ class QuestionRussian {
         'المُعْطِي',
         'الرَّزَّاقُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 38,
@@ -422,7 +422,7 @@ class QuestionRussian {
         'الرَّحِيمُ',
         'الحَمِيدُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 39,
@@ -433,7 +433,7 @@ class QuestionRussian {
         'الرَّفِيقُ',
         'المَتِينُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 40,
@@ -444,7 +444,7 @@ class QuestionRussian {
         'النَّصِيرُ',
         'الحَيُّ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 41,
@@ -455,7 +455,7 @@ class QuestionRussian {
         '(1) القَدِيرُ',
         'القَيُّومُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 42,
@@ -466,7 +466,7 @@ class QuestionRussian {
         'القَوِيُّ',
         'المُحِيطُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 43,
@@ -477,7 +477,7 @@ class QuestionRussian {
         'مَالِكُ المُلْكِ',
         'الهَادِي',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 44,
@@ -488,7 +488,7 @@ class QuestionRussian {
         'الظَّاهِرُ',
         'الغَنِيُّ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 45,
@@ -499,7 +499,7 @@ class QuestionRussian {
         'المَنَّانُ',
         'العَلِيمُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 46,
@@ -510,7 +510,7 @@ class QuestionRussian {
         'البَاسِطُ',
         'الشَّافِي',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 47,
@@ -521,7 +521,7 @@ class QuestionRussian {
         'البَاسِطُ',
         'القَادِرُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 48,
@@ -532,7 +532,7 @@ class QuestionRussian {
         'الأَوَّلُ',
         'السَّمِيعُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 49,
@@ -543,7 +543,7 @@ class QuestionRussian {
         'الوَلِيُّ',
         'المَلِكُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 50,
@@ -554,7 +554,7 @@ class QuestionRussian {
         'النَّصِيرُ',
         'المُتَعَالِ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 51,
@@ -565,7 +565,7 @@ class QuestionRussian {
         'الخَبِيرُ',
         'القَوِيُّ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 52,
@@ -576,7 +576,7 @@ class QuestionRussian {
         'المُؤَخِّرُ',
         'المَوْلَى',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 53,
@@ -587,7 +587,7 @@ class QuestionRussian {
         'الحَمِيدُ',
         'الظَّاهِرُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 54,
@@ -598,7 +598,7 @@ class QuestionRussian {
         'الشَّاكِرُ',
         'القَاهِرُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 55,
@@ -609,7 +609,7 @@ class QuestionRussian {
         'اللَّطِيفُ',
         'الحَفِيظُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 56,
@@ -620,7 +620,7 @@ class QuestionRussian {
         'الخَبِيرُ',
         'الحَسِيبُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 57,
@@ -631,7 +631,7 @@ class QuestionRussian {
         'المُعْطِي',
         'المُبِينُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 58,
@@ -642,7 +642,7 @@ class QuestionRussian {
         'القَرِيبُ',
         'الغَفَّارُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 59,
@@ -653,7 +653,7 @@ class QuestionRussian {
         'القَدِيرُ',
         'الأَحَدُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 60,
@@ -664,7 +664,7 @@ class QuestionRussian {
         'الرَّازِقُ',
         'الحَمِيدُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 61,
@@ -675,7 +675,7 @@ class QuestionRussian {
         'الحَمِيدُ',
         'المَجِيدُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 62,
@@ -686,7 +686,7 @@ class QuestionRussian {
         'الحَقُّ',
         'الكَافِي',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 63,
@@ -697,7 +697,7 @@ class QuestionRussian {
         'القُدُّوسُ',
         'الشَّاكِرُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 64,
@@ -708,7 +708,7 @@ class QuestionRussian {
         'المُهَيْمِنُ',
         'المُبِينُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 65,
@@ -719,7 +719,7 @@ class QuestionRussian {
         'الرَّؤُوفُ',
         'القَاهِرُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 66,
@@ -730,7 +730,7 @@ class QuestionRussian {
         'السَّيِّدُ',
         'القُدُّوسُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 67,
@@ -741,7 +741,7 @@ class QuestionRussian {
         'الكَافِي',
         'الشَّافِي',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 68,
@@ -752,7 +752,7 @@ class QuestionRussian {
         'جَامِعُ النَّاسِ',
         'النَّصِيرُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 69,
@@ -763,7 +763,7 @@ class QuestionRussian {
         'المَلِكُ',
         'السِّتِّيرُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 70,
@@ -774,7 +774,7 @@ class QuestionRussian {
         'الأَكْرَمُ',
         'الجَبَّارُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 71,
@@ -785,7 +785,7 @@ class QuestionRussian {
         'العَفُوُّ',
         'الأَعْلَى',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 72,
@@ -796,7 +796,7 @@ class QuestionRussian {
         'الحَلِيمُ',
         'الفَتَّاحُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 73,
@@ -807,7 +807,7 @@ class QuestionRussian {
         'البَارِىءُ',
         'الحَفِيظُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 74,
@@ -818,7 +818,7 @@ class QuestionRussian {
         'الظَّاهِرُ',
         'الله',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 75,
@@ -829,7 +829,7 @@ class QuestionRussian {
         'المَنَّانُ',
         'المَوْلَى',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 76,
@@ -840,7 +840,7 @@ class QuestionRussian {
         'الفَتَّاحُ',
         'ذُو الجَلَالِ وَالإِكْرَامِ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 77,
@@ -851,7 +851,7 @@ class QuestionRussian {
         'المَلِكُ',
         'الوَاسِعُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 78,
@@ -862,7 +862,7 @@ class QuestionRussian {
         'الحَفِيظُ',
         'الشَّافِي',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 79,
@@ -873,7 +873,7 @@ class QuestionRussian {
         'الرَّحِيمُ',
         'البَصِيرُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 80,
@@ -884,7 +884,7 @@ class QuestionRussian {
         'اللَّطِيفُ',
         '(1) القَدِيرُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 81,
@@ -895,7 +895,7 @@ class QuestionRussian {
         'الغَنِيُّ',
         'الظَّاهِرُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 82,
@@ -906,7 +906,7 @@ class QuestionRussian {
         'الرَّزَّاقُ',
         'الشَّافِي',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 83,
@@ -917,7 +917,7 @@ class QuestionRussian {
         'المُبِينُ',
         'العَفُوُّ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 84,
@@ -928,7 +928,7 @@ class QuestionRussian {
         'جَامِعُ النَّاسِ',
         'الخَبِيرُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 85,
@@ -939,7 +939,7 @@ class QuestionRussian {
         'الرَّبُّ',
         'الأَكْرَمُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 86,
@@ -950,7 +950,7 @@ class QuestionRussian {
         'الرَّحْمٰنُ',
         'الحَيُّ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 87,
@@ -961,7 +961,7 @@ class QuestionRussian {
         'المُصَوِّرُ',
         'مَالِكُ المُلْكِ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 88,
@@ -972,7 +972,7 @@ class QuestionRussian {
         'الوَهَّابُ',
         'بَدِيعُ السَّمَوَاتِ وَالأَرْضِ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 89,
@@ -983,7 +983,7 @@ class QuestionRussian {
         'المُؤْمِنُ',
         'الشَّهِيدُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 90,
@@ -994,7 +994,7 @@ class QuestionRussian {
         'الشَّافِي',
         'الحَكَمُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 91,
@@ -1005,7 +1005,7 @@ class QuestionRussian {
         'الجَبَّارُ',
         'الشَّهِيدُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 92,
@@ -1016,7 +1016,7 @@ class QuestionRussian {
         'الصَّمَدُ',
         'الغَفَّارُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 93,
@@ -1027,7 +1027,7 @@ class QuestionRussian {
         'الرَّازِقُ',
         'الحَيُّ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 94,
@@ -1038,7 +1038,7 @@ class QuestionRussian {
         'البَارِىءُ',
         'المَتِينُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 95,
@@ -1049,7 +1049,7 @@ class QuestionRussian {
         'الرَّبُّ',
         'المَلِيكُ',
       ],
-      'answer_index': '2',
+      'answer_index': 2,
     },
     {
       '_id': 96,
@@ -1060,7 +1060,7 @@ class QuestionRussian {
         'الرَّقِيبُ',
         'الكَبِيرُ',
       ],
-      'answer_index': '0',
+      'answer_index': 0,
     },
     {
       '_id': 97,
@@ -1071,7 +1071,7 @@ class QuestionRussian {
         'الحَفِيظُ',
         'الوَاحِدُ',
       ],
-      'answer_index': '3',
+      'answer_index': 3,
     },
     {
       '_id': 98,
@@ -1082,7 +1082,7 @@ class QuestionRussian {
         'الحَمِيدُ',
         'الحَكِيمُ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     },
     {
       '_id': 99,
@@ -1093,7 +1093,7 @@ class QuestionRussian {
         'الوَهَّابُ',
         'الحَقُّ',
       ],
-      'answer_index': '1',
+      'answer_index': 1,
     }
   ];
 }
