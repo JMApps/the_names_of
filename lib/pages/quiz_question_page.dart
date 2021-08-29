@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:the_names_of/arguments/quiz_arguments.dart';
 import 'package:the_names_of/components/quiz_arabic_body.dart';
+import 'package:the_names_of/components/quiz_russian_body.dart';
 import 'package:the_names_of/score/score_arabic_page.dart';
 
 class QuizQuestionPage extends StatefulWidget {
@@ -44,7 +45,7 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
           ),
         ],
       ),
-      body: args!.id == 0 ? QuizArabicBody() : QuizArabicBody(),
+      body: args!.id! == 0 ? QuizArabicBody() : QuizRussianBody(),
     );
   }
 }

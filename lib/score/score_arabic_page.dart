@@ -27,7 +27,7 @@ class ScoreArabicPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'РЕЗУЛЬТАТ',
+              'РЕЗУЛЬТАТ АР-РУ',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
             ),
             SizedBox(height: 32),

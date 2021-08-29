@@ -79,7 +79,7 @@ class QuestionArabicController extends GetxController
   }
 
   checkAnswer(QuestionArabic question, int selectedIndex) {
-    preferences.setInt('last_page_view_page', _questionNumber.value);
+    preferences.setInt('last_arabic_page_view_page', _questionNumber.value);
     _isAnswered = true;
     _correctAnswer = question.answer!;
     _selectedAnswer = selectedIndex;
