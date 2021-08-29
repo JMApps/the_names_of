@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/question_arabic.dart';
 import 'package:the_names_of/score/score_arabic_page.dart';
 
@@ -10,12 +11,14 @@ class QuestionArabicController extends GetxController
     with SingleGetTickerProviderMixin {
   late PageController _pageController;
 
+  var _databaseQuery = DatabaseQuery();
+
   PageController get pageController => this._pageController;
 
   List<QuestionArabic> _questions = QuestionArabic.sample_data
       .map(
         (question) => QuestionArabic(
-          id: question['id'],
+          id: question['_id'],
           question: question['question'],
           options: question['options'],
           answer: question['answer_index'],
@@ -57,8 +60,7 @@ class QuestionArabicController extends GetxController
   void onInit() async {
     _pageController = PageController();
     _preferences = await SharedPreferences.getInstance();
-    _pageController
-        .jumpToPage(preferences.getInt('last_arabic_page_view_page') ?? 0);
+    _pageController.jumpToPage(preferences.getInt('last_arabic_page_view_page') ?? 0);
     if (preferences.getInt('last_arabic_page_view_page') == _questions.length) {
       Get.to(ScoreArabicPage());
     }
@@ -75,6 +77,9 @@ class QuestionArabicController extends GetxController
   saveAnswer(int selectedIndex) {
     if (selectedAnswer == _correctAnswer) {
       preferences.setInt('key_true_arabic_answer', _trueAnswerCount++);
+      _databaseQuery.changeAnswerState(0, _questionNumber.value);
+    } else {
+      _databaseQuery.changeAnswerState(1, _questionNumber.value);
     }
   }
 

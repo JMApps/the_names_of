@@ -62,4 +62,14 @@ class DatabaseQuery {
     List<ContentItem>? content = res.isNotEmpty ? res.map((c) => ContentItem.fromMap(c)).toList() : null;
     return content!;
   }
+
+  changeAnswerState(int state, int _id) async {
+    var dbClient = await con.db;
+    await dbClient.rawQuery('UPDATE Table_of_names SET answer_state = $state WHERE _id == $_id');
+  }
+
+  resetAnswerState() async {
+    var dbClient = await con.db;
+    await dbClient.rawQuery('UPDATE Table_of_names SET answer_state = null');
+  }
 }

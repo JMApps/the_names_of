@@ -515,6 +515,24 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildQuizItem(NameItem item) {
+    Color? getTheRightColor() {
+      if (item.answerState == 0) {
+        return Colors.green[700];
+      } else if (item.answerState == 1) {
+        return Colors.red[700];
+      }
+      return Colors.grey[200];
+    }
+
+    IconData getTheRightIcon() {
+      if (item.answerState == 0) {
+        return CupertinoIcons.checkmark_alt;
+      } else if (item.answerState == 1) {
+        return CupertinoIcons.clear;
+      }
+      return CupertinoIcons.checkmark_alt;
+    }
+
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 8),
       color: Colors.blue[200],
@@ -555,13 +573,23 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               Align(
-                alignment: Alignment.topRight,
-                child: Checkbox(
-                  onChanged: (bool? value) {},
-                  value: true,
-                  activeColor: Colors.green,
-                ),
-              )
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    margin: EdgeInsets.all(8),
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(color: getTheRightColor()!, width: 1),
+                        color: getTheRightColor()),
+                    child: Center(
+                      child: Icon(
+                        getTheRightIcon(),
+                        color: Colors.grey[200],
+                        size: 20,
+                      ),
+                    ),
+                  ))
             ],
           ),
           Column(
