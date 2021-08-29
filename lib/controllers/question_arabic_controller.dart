@@ -3,18 +3,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_names_of/model/question.dart';
-import 'package:the_names_of/score/score_page.dart';
+import 'package:the_names_of/model/question_arabic.dart';
+import 'package:the_names_of/score/score_arabic_page.dart';
 
-class QuestionController extends GetxController
+class QuestionArabicController extends GetxController
     with SingleGetTickerProviderMixin {
   late PageController _pageController;
 
   PageController get pageController => this._pageController;
 
-  List<Question> _questions = Question.sample_data
+  List<QuestionArabic> _questions = QuestionArabic.sample_data
       .map(
-        (question) => Question(
+        (question) => QuestionArabic(
           id: question['id'],
           question: question['question'],
           options: question['options'],
@@ -23,7 +23,7 @@ class QuestionController extends GetxController
       )
       .toList();
 
-  List<Question> get questions => this._questions;
+  List<QuestionArabic> get questions => this._questions;
 
   bool _isAnswered = false;
 
@@ -57,12 +57,12 @@ class QuestionController extends GetxController
   void onInit() async {
     _pageController = PageController();
     _preferences = await SharedPreferences.getInstance();
-    _pageController.jumpToPage(preferences.getInt('last_page_view_page') ?? 0);
-    if (preferences.getInt('last_page_view_page') == _questions.length) {
-      Get.to(ScorePage());
+    _pageController
+        .jumpToPage(preferences.getInt('last_arabic_page_view_page') ?? 0);
+    if (preferences.getInt('last_arabic_page_view_page') == _questions.length) {
+      Get.to(ScoreArabicPage());
     }
-    _trueAnswerCount = preferences.getInt('key_true_answer') ?? 0;
-    print('$_trueAnswerCount');
+    _trueAnswerCount = preferences.getInt('key_true_arabic_answer') ?? 0;
     super.onInit();
   }
 
@@ -74,11 +74,11 @@ class QuestionController extends GetxController
 
   saveAnswer(int selectedIndex) {
     if (selectedAnswer == _correctAnswer) {
-      preferences.setInt('key_true_answer', _trueAnswerCount++);
+      preferences.setInt('key_true_arabic_answer', _trueAnswerCount++);
     }
   }
 
-  checkAnswer(Question question, int selectedIndex) {
+  checkAnswer(QuestionArabic question, int selectedIndex) {
     preferences.setInt('last_page_view_page', _questionNumber.value);
     _isAnswered = true;
     _correctAnswer = question.answer!;
@@ -102,7 +102,7 @@ class QuestionController extends GetxController
       _pageController.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
     } else {
-      Get.to(ScorePage());
+      Get.to(ScoreArabicPage());
     }
   }
 
@@ -111,7 +111,9 @@ class QuestionController extends GetxController
   }
 
   bool checkForLast() {
-    return preferences.getInt('last_page_view_page') == 99 ? true : false;
+    return preferences.getInt('last_arabic_page_view_page') == 99
+        ? true
+        : false;
   }
 
   shareResult() {
@@ -122,8 +124,8 @@ class QuestionController extends GetxController
 
   resetQuiz() {
     _isAnswered = false;
-    preferences.remove('last_page_view_page');
-    preferences.remove('key_true_answer');
+    preferences.remove('last_arabic_page_view_page');
+    preferences.remove('key_true_arabic_answer');
     _pageController.jumpToPage(0);
     update();
   }
