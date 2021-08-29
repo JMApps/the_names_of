@@ -172,7 +172,7 @@ class QuestionArabic {
       'answer_index': 3,
     },
     {
-      'id': 16,
+      'id': 65,
       'question': 'الخَلَّاقُ',
       'options': [
         'Создатель',
@@ -711,7 +711,7 @@ class QuestionArabic {
       'answer_index': 2,
     },
     {
-      'id': 65,
+      'id': 16,
       'question': 'الحَفِيظُ',
       'options': [
         'Хранитель',
