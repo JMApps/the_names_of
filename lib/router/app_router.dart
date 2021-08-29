@@ -6,7 +6,7 @@ import 'package:the_names_of/pages/quiz_page.dart';
 import 'package:the_names_of/pages/quiz_question_page.dart';
 import 'package:the_names_of/pages/root_page.dart';
 import 'package:the_names_of/pages/tafsirs_page.dart';
-import 'package:the_names_of/score/score_page.dart';
+import 'package:the_names_of/score/score_arabic_page.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
@@ -34,7 +34,7 @@ class AppRouter {
             builder: (_) => QuizQuestionPage(), settings: routeSettings);
       case '/quiz_score':
         return MaterialPageRoute(
-            builder: (_) => ScorePage(), settings: routeSettings);
+            builder: (_) => ScoreArabicPage(), settings: routeSettings);
       default:
         throw Exception('Invalid route');
     }

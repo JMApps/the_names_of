@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/shims/dart_ui.dart';
 import 'package:get/get.dart';
-import 'package:the_names_of/controllers/question_controller.dart';
+import 'package:the_names_of/controllers/question_arabic_controller.dart';
 
-class Option extends StatelessWidget {
-  const Option(
-      {Key? key, required this.text, required this.index, required this.press})
-      : super(key: key);
+class ArabicOption extends StatelessWidget {
+  const ArabicOption({
+    Key? key,
+    required this.text,
+    required this.index,
+    required this.press,
+  }) : super(key: key);
 
   final String text;
   final int index;
@@ -15,8 +18,8 @@ class Option extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<QuestionController>(
-      init: QuestionController(),
+    return GetBuilder<QuestionArabicController>(
+      init: QuestionArabicController(),
       builder: (controller) {
         LinearGradient getTheRightGradient() {
           if (controller.isAnswered) {

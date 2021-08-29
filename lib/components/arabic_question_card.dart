@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:the_names_of/components/option.dart';
-import 'package:the_names_of/controllers/question_controller.dart';
-import 'package:the_names_of/model/question.dart';
+import 'package:the_names_of/components/arabic_option.dart';
+import 'package:the_names_of/controllers/question_arabic_controller.dart';
+import 'package:the_names_of/model/question_arabic.dart';
 
-class QuestionCard extends StatelessWidget {
-  const QuestionCard({Key? key, required this.question}) : super(key: key);
+class ArabicQuestionCard extends StatelessWidget {
+  const ArabicQuestionCard({Key? key, required this.question}) : super(key: key);
 
-  final Question question;
+  final QuestionArabic question;
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController());
+    QuestionArabicController _questionArabicController =
+        Get.put(QuestionArabicController());
     bool _onTapState = true;
     return SingleChildScrollView(
       child: Column(
@@ -52,14 +53,14 @@ class QuestionCard extends StatelessWidget {
           SizedBox(height: 16),
           ...List.generate(
             question.options!.length,
-            (index) => Option(
+            (index) => ArabicOption(
               index: index,
               text: question.options![index],
               press: () {
-                if (!_questionController.checkForLast()) {
+                if (!_questionArabicController.checkForLast()) {
                   if (_onTapState) {
-                    _questionController.checkAnswer(question, index);
-                    _questionController.saveAnswer(index);
+                    _questionArabicController.checkAnswer(question, index);
+                    _questionArabicController.saveAnswer(index);
                   }
                   _onTapState = false;
                 } else {

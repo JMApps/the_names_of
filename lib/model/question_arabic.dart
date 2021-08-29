@@ -1,9 +1,9 @@
-class Question {
+class QuestionArabic {
   int? id, answer;
   String? question;
   List<String>? options;
 
-  Question({this.id, this.answer, this.question, this.options});
+  QuestionArabic({this.id, this.answer, this.question, this.options});
 
   static const List sample_data = [
     {

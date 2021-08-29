@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:the_names_of/components/question_card.dart';
-import 'package:the_names_of/controllers/question_controller.dart';
+import 'package:the_names_of/components/arabic_question_card.dart';
+import 'package:the_names_of/controllers/question_arabic_controller.dart';
 
-class QuizBody extends StatelessWidget {
-  const QuizBody({Key? key}) : super(key: key);
+class QuizArabicBody extends StatelessWidget {
+  const QuizArabicBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController());
+    QuestionArabicController _questionArabicController =
+        Get.put(QuestionArabicController());
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -34,11 +35,12 @@ class QuizBody extends StatelessWidget {
             child: Obx(
               () => Text.rich(
                 TextSpan(
-                  text: 'Вопрос ${_questionController.questionNumber.value}',
+                  text:
+                      'Вопрос ${_questionArabicController.questionNumber.value}',
                   style: TextStyle(fontSize: 18, color: Colors.white),
                   children: [
                     TextSpan(
-                      text: '/${_questionController.questions.length}',
+                      text: '/${_questionArabicController.questions.length}',
                       style: TextStyle(fontSize: 16, color: Colors.grey[300]),
                     ),
                   ],
@@ -50,11 +52,11 @@ class QuizBody extends StatelessWidget {
           Expanded(
             child: PageView.builder(
               physics: NeverScrollableScrollPhysics(),
-              controller: _questionController.pageController,
-              itemCount: _questionController.questions.length,
-              onPageChanged: _questionController.updateQuestionNumber,
-              itemBuilder: (context, index) => QuestionCard(
-                question: _questionController.questions[index],
+              controller: _questionArabicController.pageController,
+              itemCount: _questionArabicController.questions.length,
+              onPageChanged: _questionArabicController.updateQuestionNumber,
+              itemBuilder: (context, index) => ArabicQuestionCard(
+                question: _questionArabicController.questions[index],
               ),
             ),
           ),

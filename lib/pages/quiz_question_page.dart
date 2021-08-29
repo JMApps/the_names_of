@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:the_names_of/components/quiz_body.dart';
-import 'package:the_names_of/controllers/question_controller.dart';
-import 'package:the_names_of/score/score_page.dart';
+import 'package:the_names_of/arguments/quiz_arguments.dart';
+import 'package:the_names_of/components/quiz_arabic_body.dart';
+import 'package:the_names_of/score/score_arabic_page.dart';
 
 class QuizQuestionPage extends StatefulWidget {
   const QuizQuestionPage({Key? key}) : super(key: key);
@@ -13,10 +13,11 @@ class QuizQuestionPage extends StatefulWidget {
 }
 
 class _QuizQuestionPageState extends State<QuizQuestionPage> {
-  QuestionController _questionController = Get.put(QuestionController());
+  late QuizArguments? args;
 
   @override
   Widget build(BuildContext context) {
+    args = ModalRoute.of(context)!.settings.arguments as QuizArguments?;
     return Scaffold(
       appBar: AppBar(
         title: Text('Викторина'),
@@ -37,13 +38,13 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(ScorePage());
+              Get.to(ScoreArabicPage());
             },
             icon: Icon(CupertinoIcons.arrow_clockwise),
           ),
         ],
       ),
-      body: QuizBody(),
+      body: args!.id == 0 ? QuizArabicBody() : QuizArabicBody(),
     );
   }
 }

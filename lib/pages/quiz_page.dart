@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:the_names_of/arguments/quiz_arguments.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({Key? key}) : super(key: key);
@@ -82,7 +83,8 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         onTap: () {
-          Navigator.pushNamed(context, '/quiz_question');
+          Navigator.pushNamed(context, '/quiz_question',
+              arguments: QuizArguments(index));
         },
       ),
     );
