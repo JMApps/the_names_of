@@ -89,7 +89,7 @@ class _MainPageState extends State<MainPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 16, bottom: 8),
                   child: Text(
-                    'Ар-Ру',
+                    'Арабско-русский',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -98,7 +98,7 @@ class _MainPageState extends State<MainPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 16, bottom: 8),
                   child: Text(
-                    'Ру-Ар',
+                    'Русско-арабский',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
