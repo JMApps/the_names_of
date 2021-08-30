@@ -42,7 +42,7 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
             onPressed: () {
               Get.to(args!.id! == 0 ? ScoreArabicPage() : ScoreRussianPage());
             },
-            icon: Icon(CupertinoIcons.arrow_clockwise),
+            icon: Icon(CupertinoIcons.info),
           ),
         ],
       ),

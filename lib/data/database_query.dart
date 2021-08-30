@@ -85,7 +85,7 @@ class DatabaseQuery {
 
   resetArabicAnswerState() async {
     var dbClient = await con.db;
-    await dbClient.rawQuery('UPDATE Table_of_arabic_names_quiz SET answer_state = null');
+    await dbClient.rawQuery('UPDATE Table_of_arabic_names_quiz SET answer_state = NULL');
   }
 
 
@@ -96,6 +96,6 @@ class DatabaseQuery {
 
   resetRussianAnswerState() async {
     var dbClient = await con.db;
-    await dbClient.rawQuery('UPDATE Table_of_russian_names_quiz SET answer_state = null');
+    await dbClient.rawQuery('UPDATE Table_of_russian_names_quiz SET answer_state = NULL');
   }
 }
