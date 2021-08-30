@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jmapps.thenames.of.the_names_of">
    <application
-        android:label="the_names_of"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Имена Аллаха"
+        android:icon="@mipmap/ic_launcher"
+       android:allowBackup="false">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
