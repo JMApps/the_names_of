@@ -60,7 +60,8 @@ class QuestionArabicController extends GetxController
   void onInit() async {
     _pageController = PageController();
     _preferences = await SharedPreferences.getInstance();
-    _pageController.jumpToPage(preferences.getInt('last_arabic_page_view_page') ?? 0);
+    _pageController
+        .jumpToPage(preferences.getInt('last_arabic_page_view_page') ?? 0);
     if (preferences.getInt('last_arabic_page_view_page') == _questions.length) {
       Get.to(ScoreArabicPage());
     }
@@ -77,9 +78,9 @@ class QuestionArabicController extends GetxController
   saveAnswer(int selectedIndex) {
     if (selectedAnswer == _correctAnswer) {
       preferences.setInt('key_true_arabic_answer', _trueAnswerCount++);
-      _databaseQuery.changeAnswerState(0, _questionNumber.value);
+      _databaseQuery.changeArabicAnswerState(0, _questionNumber.value);
     } else {
-      _databaseQuery.changeAnswerState(1, _questionNumber.value);
+      _databaseQuery.changeArabicAnswerState(1, _questionNumber.value);
     }
   }
 
@@ -131,6 +132,7 @@ class QuestionArabicController extends GetxController
     _isAnswered = false;
     preferences.remove('last_arabic_page_view_page');
     preferences.remove('key_true_arabic_answer');
+    _databaseQuery.resetArabicAnswerState();
     _pageController.jumpToPage(0);
     update();
   }

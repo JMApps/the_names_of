@@ -3,12 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/question_russian.dart';
 import 'package:the_names_of/score/score_arabic_page.dart';
 
 class QuestionRussianController extends GetxController
     with SingleGetTickerProviderMixin {
   late PageController _pageController;
+
+  var _databaseQuery = DatabaseQuery();
 
   PageController get pageController => this._pageController;
 
@@ -59,7 +62,8 @@ class QuestionRussianController extends GetxController
     _preferences = await SharedPreferences.getInstance();
     _pageController
         .jumpToPage(preferences.getInt('last_russian_page_view_page') ?? 0);
-    if (preferences.getInt('last_russian_page_view_page') == _questions.length) {
+    if (preferences.getInt('last_russian_page_view_page') ==
+        _questions.length) {
       Get.to(ScoreArabicPage());
     }
     _trueAnswerCount = preferences.getInt('key_true_russian_answer') ?? 0;
@@ -75,6 +79,9 @@ class QuestionRussianController extends GetxController
   saveAnswer(int selectedIndex) {
     if (selectedAnswer == _correctAnswer) {
       preferences.setInt('key_true_russian_answer', _trueAnswerCount++);
+      _databaseQuery.changeArabicAnswerState(0, _questionNumber.value);
+    } else {
+      _databaseQuery.changeArabicAnswerState(1, _questionNumber.value);
     }
   }
 
@@ -126,6 +133,7 @@ class QuestionRussianController extends GetxController
     _isAnswered = false;
     preferences.remove('last_russian_page_view_page');
     preferences.remove('key_true_russian_answer');
+    _databaseQuery.resetRussianAnswerState();
     _pageController.jumpToPage(0);
     update();
   }
