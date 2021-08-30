@@ -2,6 +2,7 @@ import 'package:the_names_of/data/database_helper.dart';
 import 'package:the_names_of/model/ayah_item.dart';
 import 'package:the_names_of/model/content_item.dart';
 import 'package:the_names_of/model/name_item.dart';
+import 'package:the_names_of/model/quiz_item.dart';
 import 'package:the_names_of/model/tafsir_item.dart';
 
 class DatabaseQuery {
@@ -63,13 +64,38 @@ class DatabaseQuery {
     return content!;
   }
 
-  changeAnswerState(int state, int _id) async {
+  Future<List<QuizItem>> getArabicQuizNames() async {
     var dbClient = await con.db;
-    await dbClient.rawQuery('UPDATE Table_of_names SET answer_state = $state WHERE _id == $_id');
+    var res = await dbClient.query('Table_of_arabic_names_quiz');
+    List<QuizItem>? arabicQuiz = res.isNotEmpty ? res.map((c) => QuizItem.fromMap(c)).toList() : null;
+    return arabicQuiz!;
   }
 
-  resetAnswerState() async {
+  Future<List<QuizItem>> getRussianQuizNames() async {
     var dbClient = await con.db;
-    await dbClient.rawQuery('UPDATE Table_of_names SET answer_state = null');
+    var res = await dbClient.query('Table_of_russian_names_quiz');
+    List<QuizItem>? russianQuiz = res.isNotEmpty ? res.map((c) => QuizItem.fromMap(c)).toList() : null;
+    return russianQuiz!;
+  }
+
+  changeArabicAnswerState(int state, int _id) async {
+    var dbClient = await con.db;
+    await dbClient.rawQuery('UPDATE Table_of_arabic_names_quiz SET answer_state = $state WHERE _id == $_id');
+  }
+
+  resetArabicAnswerState() async {
+    var dbClient = await con.db;
+    await dbClient.rawQuery('UPDATE Table_of_arabic_names_quiz SET answer_state = null');
+  }
+
+
+  changeRussianAnswerState(int state, int _id) async {
+    var dbClient = await con.db;
+    await dbClient.rawQuery('UPDATE Table_of_russian_names_quiz SET answer_state = $state WHERE _id == $_id');
+  }
+
+  resetRussianAnswerState() async {
+    var dbClient = await con.db;
+    await dbClient.rawQuery('UPDATE Table_of_russian_names_quiz SET answer_state = null');
   }
 }

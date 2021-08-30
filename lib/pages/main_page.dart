@@ -4,9 +4,11 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:the_names_of/arguments/list_content_arguments.dart';
 import 'package:the_names_of/arguments/list_name_argument.dart';
 import 'package:the_names_of/arguments/list_tafsir_arguments.dart';
+import 'package:the_names_of/arguments/quiz_arguments.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/content_item.dart';
 import 'package:the_names_of/model/name_item.dart';
+import 'package:the_names_of/model/quiz_item.dart';
 import 'package:the_names_of/model/tafsir_item.dart';
 import 'package:the_names_of/pages/support_project_page.dart';
 
@@ -84,7 +86,23 @@ class _MainPageState extends State<MainPage> {
                 _buildGridTafsirContainer(),
                 _buildTextWithButton('/tafsirs', Color(0xFF43A047)),
                 _buildTextWithLine('Викторина', Color(0xFF1565C0)),
-                _buildGridQuizContainer(),
+                Padding(
+                  padding: EdgeInsets.only(left: 16, bottom: 8),
+                  child: Text(
+                    'Ар-Ру',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                _buildGridArabicQuizContainer(),
+                SizedBox(height: 16),
+                Padding(
+                  padding: EdgeInsets.only(left: 16, bottom: 8),
+                  child: Text(
+                    'Ру-Ар',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                _buildGridRussianQuizContainer(),
                 _buildTextWithButton('/quiz', Color(0xFF1E88E5)),
                 _buildTextWithLine('Карточки', Color(0xFF424242)),
                 _buildGridCardNamesContainer(),
@@ -99,7 +117,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildTextWithLine(String text, Color color) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -124,7 +142,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildTextWithButton(String route, Color color) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -209,8 +227,8 @@ class _MainPageState extends State<MainPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      width: 40,
-                      height: 40,
+                      width: 30,
+                      height: 30,
                       decoration: BoxDecoration(
                         color: Colors.orange,
                         borderRadius: BorderRadius.all(
@@ -311,7 +329,7 @@ class _MainPageState extends State<MainPage> {
         borderRadius: BorderRadius.circular(15),
         splashColor: Colors.red,
         child: Ink(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Colors.red[200],
@@ -322,8 +340,8 @@ class _MainPageState extends State<MainPage> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                  width: 40,
-                  height: 40,
+                  width: 30,
+                  height: 30,
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.all(
@@ -423,8 +441,8 @@ class _MainPageState extends State<MainPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      width: 40,
-                      height: 40,
+                      width: 30,
+                      height: 30,
                       decoration: BoxDecoration(
                         color: Colors.green,
                         borderRadius: BorderRadius.all(
@@ -488,10 +506,10 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  /// CONTAINER QUIZ */
-  Widget _buildGridQuizContainer() {
+  /// CONTAINER ARABIC QUIZ */
+  Widget _buildGridArabicQuizContainer() {
     return FutureBuilder<List>(
-      future: _databaseQuery.getAllNames(),
+      future: _databaseQuery.getArabicQuizNames(),
       builder: (context, AsyncSnapshot snapshot) {
         return snapshot.hasData
             ? Container(
@@ -503,7 +521,7 @@ class _MainPageState extends State<MainPage> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1, childAspectRatio: 0.5),
                   itemBuilder: (context, index) {
-                    return _buildQuizItem(snapshot.data![index]);
+                    return _buildArabicQuizItem(snapshot.data![index]);
                   },
                 ),
               )
@@ -514,7 +532,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget _buildQuizItem(NameItem item) {
+  Widget _buildArabicQuizItem(QuizItem item) {
     Color? getTheRightColor() {
       if (item.answerState == 0) {
         return Colors.green[700];
@@ -540,87 +558,205 @@ class _MainPageState extends State<MainPage> {
         borderRadius: BorderRadius.circular(15),
         side: BorderSide(width: 1, color: Colors.blue),
       ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(15),
+        splashColor: Colors.blue,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${item.id}',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                      child: Center(
+                        child: Text(
+                          '${item.id}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    margin: EdgeInsets.all(8),
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: getTheRightColor()!, width: 1),
-                        color: getTheRightColor()),
-                    child: Center(
-                      child: Icon(
-                        getTheRightIcon(),
-                        color: Colors.grey[200],
-                        size: 20,
+                Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      margin: EdgeInsets.all(16),
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          border:
+                              Border.all(color: getTheRightColor()!, width: 1),
+                          color: getTheRightColor()),
+                      child: Center(
+                        child: Icon(
+                          getTheRightIcon(),
+                          color: Colors.grey[200],
+                          size: 20,
+                        ),
+                      ),
+                    ))
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '${item.question}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30, fontFamily: 'Arabic'),
+                ),
+              ],
+            ),
+          ],
+        ),
+        onTap: () {
+          Navigator.pushNamed(context, '/quiz_question',
+              arguments: QuizArguments(0));
+        },
+      ),
+    );
+  }
+
+  /// CONTAINER RUSSIAN QUIZ */
+  Widget _buildGridRussianQuizContainer() {
+    return FutureBuilder<List>(
+      future: _databaseQuery.getRussianQuizNames(),
+      builder: (context, AsyncSnapshot snapshot) {
+        return snapshot.hasData
+            ? Container(
+                height: 150,
+                child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1, childAspectRatio: 0.5),
+                  itemBuilder: (context, index) {
+                    return _buildRussianQuizItem(snapshot.data![index]);
+                  },
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
+    );
+  }
+
+  Widget _buildRussianQuizItem(QuizItem item) {
+    Color? getTheRightColor() {
+      if (item.answerState == 0) {
+        return Colors.green[700];
+      } else if (item.answerState == 1) {
+        return Colors.red[700];
+      }
+      return Colors.grey[200];
+    }
+
+    IconData getTheRightIcon() {
+      if (item.answerState == 0) {
+        return CupertinoIcons.checkmark_alt;
+      } else if (item.answerState == 1) {
+        return CupertinoIcons.clear;
+      }
+      return CupertinoIcons.checkmark_alt;
+    }
+
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      color: Colors.red[200],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+        side: BorderSide(width: 1, color: Colors.red),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(15),
+        splashColor: Colors.red,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${item.id}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
-                  ))
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                '${item.nameArabic}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.red,
-                  fontFamily: 'Arabic',
+                  ),
                 ),
-              ),
-              Text(
-                '${item.nameTranscription}',
+                Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      margin: EdgeInsets.all(8),
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          border:
+                              Border.all(color: getTheRightColor()!, width: 1),
+                          color: getTheRightColor()),
+                      child: Center(
+                        child: Icon(
+                          getTheRightIcon(),
+                          color: Colors.grey[200],
+                          size: 20,
+                        ),
+                      ),
+                    ))
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                '${item.question}',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey[700],
-                ),
+                style: TextStyle(fontSize: 22),
               ),
-              Text(
-                '${item.nameTranslation}',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
+        onTap: () {
+          Navigator.pushNamed(context, '/quiz_question',
+              arguments: QuizArguments(1));
+        },
       ),
     );
   }
@@ -659,7 +795,7 @@ class _MainPageState extends State<MainPage> {
         side: BorderSide(width: 1, color: Colors.grey),
       ),
       child: Ink(
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Colors.white,
@@ -670,8 +806,8 @@ class _MainPageState extends State<MainPage> {
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                width: 40,
-                height: 40,
+                width: 30,
+                height: 30,
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.all(
