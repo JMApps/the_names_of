@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:the_names_of/components/dialog_russian_answer_results.dart';
 import 'package:the_names_of/controllers/question_russian_controller.dart';
 
 class ScoreRussianPage extends StatelessWidget {
@@ -27,8 +29,12 @@ class ScoreRussianPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'РЕЗУЛЬТАТ РУ-АР',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+              'РЕЗУЛЬТАТ: РУССКО-АРАБСКИЙ',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 32),
             Text(
@@ -36,12 +42,24 @@ class ScoreRussianPage extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(height: 16),
-            Text(
-              '${_questionRussianController.trueAnswerCount} из ${_questionRussianController.questions.length}',
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.red,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '${_questionRussianController.trueAnswerCount} из ${_questionRussianController.questions.length}',
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.red,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(CupertinoIcons.info_circle_fill),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/russian_answer_result');
+                  },
+                )
+              ],
             ),
             SizedBox(height: 16),
             MaterialButton(

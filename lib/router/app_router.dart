@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/components/dialog_arabic_answer_results.dart';
+import 'package:the_names_of/components/dialog_russian_answer_results.dart';
 import 'package:the_names_of/pages/card_names_page.dart';
 import 'package:the_names_of/pages/content_page.dart';
 import 'package:the_names_of/pages/names_page.dart';
@@ -35,6 +37,12 @@ class AppRouter {
       case '/quiz_score':
         return MaterialPageRoute(
             builder: (_) => ScoreArabicPage(), settings: routeSettings);
+        case '/russian_answer_result':
+        return MaterialPageRoute(
+            builder: (_) => DialogRussianAnswerResults(), settings: routeSettings);
+        case '/arabic_answer_result':
+        return MaterialPageRoute(
+            builder: (_) => DialogArabicAnswerResults(), settings: routeSettings);
       default:
         throw Exception('Invalid route');
     }
