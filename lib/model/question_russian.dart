@@ -8,9 +8,20 @@ class QuestionRussian {
   static const List sample_data = [
     {
       '_id': 1,
+      'question': 'Творец',
+      'options': [
+        'الشَّكُورُ',
+        'الخَالِقُ',
+        'الوَهَّابُ',
+        'الحَقُّ',
+      ],
+      'answer_index': 1,
+    },
+    {
+      '_id': 2,
       'question': 'Славный',
       'options': [
-        'الآخِرُ',
+        ' الآخِرُ',
         'الرَّفِيقُ',
         'المَجِيدُ',
         'الحَمِيدُ',
@@ -18,7 +29,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 2,
+      '_id': 3,
       'question': 'Единый',
       'options': [
         'الحَيُّ',
@@ -29,7 +40,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 3,
+      '_id': 4,
       'question': 'Любящий, Любимый',
       'options': [
         'الوَدُودُ',
@@ -40,7 +51,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 4,
+      '_id': 5,
       'question': 'Всемогущий (3)',
       'options': [
         'العَزِيزُ',
@@ -51,7 +62,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 5,
+      '_id': 6,
       'question': 'Бог',
       'options': [
         'المُبِينُ',
@@ -62,7 +73,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 6,
+      '_id': 7,
       'question': 'Великодушный',
       'options': [
         'الحَكَمُ',
@@ -73,7 +84,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 7,
+      '_id': 8,
       'question': 'Истинный',
       'options': [
         'الشَّافِي',
@@ -84,7 +95,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 8,
+      '_id': 9,
       'question': 'Последний',
       'options': [
         'الأَوَّلُ',
@@ -95,7 +106,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 9,
+      '_id': 10,
       'question': 'Разъясняющий',
       'options': [
         'المُبِينُ',
@@ -106,7 +117,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 10,
+      '_id': 11,
       'question': 'Большой',
       'options': [
         'الله',
@@ -117,7 +128,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 11,
+      '_id': 12,
       'question': 'Мягкий, Добрый',
       'options': [
         'المَنَّانُ',
@@ -128,7 +139,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 12,
+      '_id': 13,
       'question': 'Всемогущий (2)',
       'options': [
         'القَهَّارُ',
@@ -139,7 +150,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 13,
+      '_id': 14,
       'question': 'Свет небес и земли',
       'options': [
         'بَدِيعُ السَّمَوَاتِ وَالأَرْضِ',
@@ -150,7 +161,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 14,
+      '_id': 15,
       'question': 'Оберегающий, Дарующий безопасность',
       'options': [
         'المُؤْمِنُ',
@@ -161,7 +172,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 15,
+      '_id': 16,
       'question': 'Пречистый, Дарующий мир и благополучие',
       'options': [
         'الجَبَّارُ',
@@ -172,7 +183,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 16,
+      '_id': 17,
       'question': 'Созидатель',
       'options': [
         'البَارِىءُ',
@@ -183,7 +194,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 17,
+      '_id': 18,
       'question': 'Наблюдающий',
       'options': [
         'الرَّقِيبُ',
@@ -194,7 +205,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 18,
+      '_id': 19,
       'question': 'Кормилец',
       'options': [
         'المُتَكَبِّرُ',
@@ -205,7 +216,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 19,
+      '_id': 20,
       'question': 'Обладающий величием и великодушием',
       'options': [
         'المُؤْمِنُ',
@@ -216,7 +227,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 20,
+      '_id': 21,
       'question': 'Обладающий властью',
       'options': [
         'جَامِعُ النَّاسِ',
@@ -227,7 +238,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 21,
+      '_id': 22,
       'question': 'Милостивый',
       'options': [
         'الرَّحْمٰنُ',
@@ -238,7 +249,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 22,
+      '_id': 23,
       'question': 'Первосоздатель небес и земли',
       'options': [
         'ذُو الجَلَالِ وَالإِكْرَامِ',
@@ -249,7 +260,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 23,
+      '_id': 24,
       'question': 'Проницательный, Добрый',
       'options': [
         'الصَّمَدُ',
@@ -260,7 +271,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 24,
+      '_id': 25,
       'question': 'Мудрый',
       'options': [
         'التَّوَّابُ',
@@ -271,7 +282,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 25,
+      '_id': 26,
       'question': 'Аллах',
       'options': [
         'المُتَعَالِ',
@@ -282,7 +293,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 26,
+      '_id': 27,
       'question': 'Хранитель (1)',
       'options': [
         'الحَفِيظُ',
@@ -293,7 +304,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 27,
+      '_id': 28,
       'question': 'Наставляющий',
       'options': [
         'الحَسِيبُ',
@@ -304,7 +315,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 28,
+      '_id': 29,
       'question': 'Господин, Покровитель',
       'options': [
         'الحَيُّ',
@@ -315,7 +326,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 29,
+      '_id': 30,
       'question': 'Одаряющий',
       'options': [
         'المُعْطِي',
@@ -326,7 +337,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 30,
+      '_id': 31,
       'question': 'Знающий',
       'options': [
         'المُتَعَالِ',
@@ -337,7 +348,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 31,
+      '_id': 32,
       'question': 'Прощающий',
       'options': [
         'الغَفَّارُ',
@@ -348,7 +359,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 32,
+      '_id': 33,
       'question': 'Всевышний',
       'options': [
         '(3) المُقْتَدِرُ',
@@ -359,7 +370,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 33,
+      '_id': 34,
       'question': 'Сострадательный',
       'options': [
         'الكَافِي',
@@ -370,7 +381,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 34,
+      '_id': 35,
       'question': 'Могущественный',
       'options': [
         'العَزِيزُ',
@@ -381,7 +392,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 35,
+      '_id': 36,
       'question': 'Господин',
       'options': [
         'السَّيِّدُ',
@@ -392,7 +403,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 36,
+      '_id': 37,
       'question': 'Ближайший',
       'options': [
         'الكَبِيرُ',
@@ -403,7 +414,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 37,
+      '_id': 38,
       'question': 'Дарующий пропитание, Наблюдающий',
       'options': [
         'السِّتِّيرُ',
@@ -414,7 +425,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 38,
+      '_id': 39,
       'question': 'Милосердный',
       'options': [
         'الخَبِيرُ',
@@ -425,7 +436,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 39,
+      '_id': 40,
       'question': 'Крепкий, Несокрушимый',
       'options': [
         'العَظِيمُ',
@@ -436,7 +447,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 40,
+      '_id': 41,
       'question': 'Живой',
       'options': [
         'الجَمِيلُ',
@@ -447,7 +458,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 41,
+      '_id': 42,
       'question': 'Возвышенный',
       'options': [
         'الأَعْلَى',
@@ -458,7 +469,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 42,
+      '_id': 43,
       'question': 'Могучий, Способный',
       'options': [
         'القَادِرُ',
@@ -469,7 +480,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 43,
+      '_id': 44,
       'question': 'Собирающий людей',
       'options': [
         'جَامِعُ النَّاسِ',
@@ -480,7 +491,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 44,
+      '_id': 45,
       'question': 'Высочайший',
       'options': [
         'المُتَعَالِ',
@@ -491,7 +502,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 45,
+      '_id': 46,
       'question': 'Удерживающий, Сжимающий',
       'options': [
         'الوَاسِعُ',
@@ -502,7 +513,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 46,
+      '_id': 47,
       'question': 'Первый',
       'options': [
         'الأَوَّلُ',
@@ -513,7 +524,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 47,
+      '_id': 48,
       'question': 'Простирающий',
       'options': [
         'الحَقُّ',
@@ -524,7 +535,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 48,
+      '_id': 49,
       'question': 'Видящий',
       'options': [
         'البَصِيرُ',
@@ -535,7 +546,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 49,
+      '_id': 50,
       'question': 'Выдвигающий вперед',
       'options': [
         'الوَكِيلُ',
@@ -546,7 +557,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 50,
+      '_id': 51,
       'question': 'Превознесшийся',
       'options': [
         '(2) القَهَّارُ',
@@ -557,7 +568,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 51,
+      '_id': 52,
       'question': 'Всесильный',
       'options': [
         'الْعَلِيُّ',
@@ -568,7 +579,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 52,
+      '_id': 53,
       'question': 'Великий',
       'options': [
         'العَظِيمُ',
@@ -579,7 +590,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 53,
+      '_id': 54,
       'question': 'Прекрасный',
       'options': [
         'الحَيُّ',
@@ -590,7 +601,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 54,
+      '_id': 55,
       'question': 'Слышащий',
       'options': [
         'السَّمِيعُ',
@@ -601,7 +612,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 55,
+      '_id': 56,
       'question': 'Отзывчивый',
       'options': [
         'المُجِيبُ',
@@ -612,7 +623,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 56,
+      '_id': 57,
       'question': 'Ведающий',
       'options': [
         'الْبَاطِنُ',
@@ -623,7 +634,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 57,
+      '_id': 58,
       'question': 'Гордый',
       'options': [
         'المَلِيكُ',
@@ -634,7 +645,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 58,
+      '_id': 59,
       'question': 'Всепрощающий',
       'options': [
         'العَلِيمُ',
@@ -645,7 +656,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 59,
+      '_id': 60,
       'question': 'Всемогущий (1)',
       'options': [
         'الشَّهِيدُ',
@@ -656,7 +667,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 60,
+      '_id': 61,
       'question': 'Достохвальный',
       'options': [
         'الغَفَّارُ',
@@ -667,7 +678,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 61,
+      '_id': 62,
       'question': 'Покрывающий, Защищающий',
       'options': [
         'السِّتِّيرُ',
@@ -678,7 +689,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 62,
+      '_id': 63,
       'question': 'Стыдливый',
       'options': [
         'القَابِضُ',
@@ -689,7 +700,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 63,
+      '_id': 64,
       'question': 'Признательный',
       'options': [
         'الرَّؤُوفُ',
@@ -700,7 +711,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 64,
+      '_id': 65,
       'question': 'Хранитель (2)',
       'options': [
         'الجَمِيلُ',
@@ -711,7 +722,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 65,
+      '_id': 66,
       'question': 'Царь',
       'options': [
         'المَلِكُ',
@@ -722,7 +733,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 66,
+      '_id': 67,
       'question': 'Принимающий покаяния',
       'options': [
         'الوَدُودُ',
@@ -733,7 +744,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 67,
+      '_id': 68,
       'question': 'Достаточный',
       'options': [
         'الجَمِيلُ',
@@ -744,7 +755,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 68,
+      '_id': 69,
       'question': 'Помощник, Защитник',
       'options': [
         'البَاسِطُ',
@@ -755,7 +766,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 69,
+      '_id': 70,
       'question': 'Покрывающий, Защищающий',
       'options': [
         'الحَمِيدُ',
@@ -766,7 +777,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 70,
+      '_id': 71,
       'question': 'Покровитель',
       'options': [
         'الوَلِيُّ',
@@ -777,7 +788,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 71,
+      '_id': 72,
       'question': 'Святой',
       'options': [
         'القَاهِرُ',
@@ -788,7 +799,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 72,
+      '_id': 73,
       'question': 'Выдержанный',
       'options': [
         'الحَكِيمُ',
@@ -799,7 +810,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 73,
+      '_id': 74,
       'question': 'Создатель',
       'options': [
         'الخَلَّاقُ',
@@ -810,7 +821,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 74,
+      '_id': 75,
       'question': 'Вседержитель',
       'options': [
         'القَيُّومُ',
@@ -821,7 +832,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 75,
+      '_id': 76,
       'question': 'Одолевающий',
       'options': [
         'البَاسِطُ',
@@ -832,7 +843,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 76,
+      '_id': 77,
       'question': 'Судия, Раскрывающий, Дарующий победу',
       'options': [
         'الأَحَدُ',
@@ -843,7 +854,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 77,
+      '_id': 78,
       'question': 'Объемлющий',
       'options': [
         'الجَمِيلُ',
@@ -854,7 +865,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 78,
+      '_id': 79,
       'question': 'Исцеляющий',
       'options': [
         'الشَّكُورُ',
@@ -865,7 +876,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 79,
+      '_id': 80,
       'question': 'Отбрасывающий назад',
       'options': [
         'المُؤَخِّرُ',
@@ -876,7 +887,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 80,
+      '_id': 81,
       'question': 'Добродетельный',
       'options': [
         'المَتِينُ',
@@ -887,7 +898,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 81,
+      '_id': 82,
       'question': 'Богатый',
       'options': [
         'الشَّهِيدُ',
@@ -898,7 +909,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 82,
+      '_id': 83,
       'question': 'Наделяющий уделом',
       'options': [
         'القَرِيبُ',
@@ -909,7 +920,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 83,
+      '_id': 84,
       'question': 'Снисходительный',
       'options': [
         'الإِلَهُ',
@@ -920,7 +931,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 84,
+      '_id': 85,
       'question': 'Близкий',
       'options': [
         'القَرِيبُ',
@@ -931,7 +942,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 85,
+      '_id': 86,
       'question': 'Требующий отчета',
       'options': [
         'الأَوَّلُ',
@@ -942,7 +953,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 86,
+      '_id': 87,
       'question': 'Благодарный',
       'options': [
         'الوَلِيُّ',
@@ -953,7 +964,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 87,
+      '_id': 88,
       'question': 'Дарующий облик',
       'options': [
         'البَاسِطُ',
@@ -964,7 +975,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 88,
+      '_id': 89,
       'question': 'Властелин',
       'options': [
         'المَلِيكُ',
@@ -975,7 +986,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 89,
+      '_id': 90,
       'question': 'Свидетель',
       'options': [
         'المُقِيتُ',
@@ -986,7 +997,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 90,
+      '_id': 91,
       'question': 'Справедливый Судья',
       'options': [
         'المُتَكَبِّرُ',
@@ -997,7 +1008,7 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 91,
+      '_id': 92,
       'question': 'Дарующий',
       'options': [
         'الفَتَّاحُ',
@@ -1008,7 +1019,7 @@ class QuestionRussian {
       'answer_index': 1,
     },
     {
-      '_id': 92,
+      '_id': 93,
       'question': 'Самодостаточный',
       'options': [
         'الأَعْلَى',
@@ -1019,7 +1030,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 93,
+      '_id': 94,
       'question': 'Могучий, Выправляющий, Подчиняющий',
       'options': [
         'الجَبَّارُ',
@@ -1030,7 +1041,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 94,
+      '_id': 95,
       'question': 'Попечитель и Хранитель',
       'options': [
         'الوَكِيلُ',
@@ -1041,7 +1052,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 95,
+      '_id': 96,
       'question': 'Господь',
       'options': [
         'السَّمِيعُ',
@@ -1052,7 +1063,7 @@ class QuestionRussian {
       'answer_index': 2,
     },
     {
-      '_id': 96,
+      '_id': 97,
       'question': 'Дарующий, Щедрый',
       'options': [
         'المَنَّانُ',
@@ -1063,7 +1074,7 @@ class QuestionRussian {
       'answer_index': 0,
     },
     {
-      '_id': 97,
+      '_id': 98,
       'question': 'Единственный',
       'options': [
         'الغَنِيُّ',
@@ -1074,24 +1085,13 @@ class QuestionRussian {
       'answer_index': 3,
     },
     {
-      '_id': 98,
+      '_id': 99,
       'question': 'Всеобъемлющий',
       'options': [
         'الأَعْلَى',
         'المُحِيطُ',
         'الحَمِيدُ',
         'الحَكِيمُ',
-      ],
-      'answer_index': 1,
-    },
-    {
-      '_id': 99,
-      'question': 'Творец',
-      'options': [
-        'الشَّكُورُ',
-        'الخَالِقُ',
-        'الوَهَّابُ',
-        'الحَقُّ',
       ],
       'answer_index': 1,
     }
