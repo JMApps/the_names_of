@@ -11,8 +11,7 @@ class RussianQuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionRussianController _questionRussianController =
-        Get.put(QuestionRussianController());
+    QuestionRussianController _questionRussianController = Get.put(QuestionRussianController());
     bool _onTapState = true;
     return SingleChildScrollView(
       child: Column(
@@ -26,7 +25,7 @@ class RussianQuestionCard extends StatelessWidget {
             ),
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(32),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 gradient: LinearGradient(
@@ -42,7 +41,7 @@ class RussianQuestionCard extends StatelessWidget {
                 question.question!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 35,
+                  fontSize: 30,
                   fontWeight: FontWeight.w500,
                   color: Colors.grey[800],
                 ),

@@ -64,16 +64,18 @@ class RussianOption extends StatelessWidget {
             ),
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.all(32),
+              padding:
+                  EdgeInsets.only(left: 32, top: 20, right: 32, bottom: 20),
               decoration: BoxDecoration(
                 gradient: getTheRightGradient(),
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Text(
-                '${index + 1}. $text',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: 'Arabic'
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  '${index + 1}. $text',
+                  style: TextStyle(fontSize: 30, fontFamily: 'Arabic'),
+                  textDirection: TextDirection.rtl,
                 ),
               ),
             ),
