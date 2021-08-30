@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:the_names_of/components/russian_option.dart';
@@ -11,7 +12,8 @@ class RussianQuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionRussianController _questionRussianController = Get.put(QuestionRussianController());
+    QuestionRussianController _questionRussianController =
+        Get.put(QuestionRussianController());
     bool _onTapState = true;
     return SingleChildScrollView(
       child: Column(

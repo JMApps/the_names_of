@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:the_names_of/controllers/question_arabic_controller.dart';
+import 'package:the_names_of/controllers/question_russian_controller.dart';
 
 class ScoreRussianPage extends StatelessWidget {
   const ScoreRussianPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    QuestionArabicController _questionArabicController =
-        Get.put(QuestionArabicController());
+    QuestionRussianController _questionRussianController =
+        Get.put(QuestionRussianController());
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -37,7 +37,7 @@ class ScoreRussianPage extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text(
-              '${_questionArabicController.trueAnswerCount} из ${_questionArabicController.questions.length}',
+              '${_questionRussianController.trueAnswerCount} из ${_questionRussianController.questions.length}',
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.red,
@@ -47,7 +47,7 @@ class ScoreRussianPage extends StatelessWidget {
             MaterialButton(
               color: Colors.orange,
               onPressed: () {
-                _questionArabicController.shareResult();
+                _questionRussianController.shareResult();
               },
               child: Text(
                 'Поделиться',
@@ -57,11 +57,11 @@ class ScoreRussianPage extends StatelessWidget {
                 ),
               ),
             ),
-            _questionArabicController.checkForLast()
+            _questionRussianController.checkForLast()
                 ? MaterialButton(
                     color: Colors.blue,
                     onPressed: () {
-                      _questionArabicController.resetQuiz();
+                      _questionRussianController.resetQuiz();
                       Navigator.pop(context);
                     },
                     child: Text(

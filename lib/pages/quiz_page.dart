@@ -76,10 +76,17 @@ class _QuizPageState extends State<QuizPage> {
             borderRadius: BorderRadius.circular(15),
           ),
           padding: EdgeInsets.only(left: 16, top: 50, right: 16, bottom: 50),
-          child: Text(
-            '${quizCategories[index]}',
-            style: TextStyle(fontSize: 20),
-            textAlign: TextAlign.center,
+          child: TextButton.icon(
+            onPressed: null,
+            label: Text(
+              '${quizCategories[index]}',
+              style: TextStyle(fontSize: 20, color: Colors.grey[800]),
+              textAlign: TextAlign.center,
+            ),
+            icon: Icon(
+              Icons.translate,
+              color: Colors.blue,
+            ),
           ),
         ),
         onTap: () {
