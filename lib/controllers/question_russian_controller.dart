@@ -79,9 +79,9 @@ class QuestionRussianController extends GetxController
   saveAnswer(int selectedIndex) {
     if (selectedAnswer == _correctAnswer) {
       preferences.setInt('key_true_russian_answer', _trueAnswerCount++);
-      _databaseQuery.changeArabicAnswerState(0, _questionNumber.value);
+      _databaseQuery.changeRussianAnswerState(0, _questionNumber.value);
     } else {
-      _databaseQuery.changeArabicAnswerState(1, _questionNumber.value);
+      _databaseQuery.changeRussianAnswerState(1, _questionNumber.value);
     }
   }
 
