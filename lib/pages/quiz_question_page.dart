@@ -40,7 +40,9 @@ class _QuizQuestionPageState extends State<QuizQuestionPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(args!.id! == 0 ? ScoreArabicPage() : ScoreRussianPage());
+              Get.to(
+                  () => args!.id! == 0 ? ScoreArabicPage() : ScoreRussianPage(),
+                  preventDuplicates: false);
             },
             icon: Icon(CupertinoIcons.info),
           ),
