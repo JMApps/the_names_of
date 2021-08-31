@@ -52,8 +52,8 @@ class QuizRussianBody extends StatelessWidget {
           SizedBox(height: 16),
           Expanded(
             child: PageView.builder(
-              //physics: NeverScrollableScrollPhysics(),
-              controller: _questionRussianController.pageController,
+              physics: NeverScrollableScrollPhysics(),
+              controller: _questionRussianController.russianPageController,
               itemCount: _questionRussianController.russianQuestions.length,
               onPageChanged: _questionRussianController.updateQuestionNumber,
               itemBuilder: (context, index) => RussianQuestionCard(

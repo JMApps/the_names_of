@@ -52,7 +52,7 @@ class QuizArabicBody extends StatelessWidget {
           SizedBox(height: 16),
           Expanded(
             child: PageView.builder(
-              //physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               controller: _questionArabicController.arabicPageController,
               itemCount: _questionArabicController.arabicQuestions.length,
               onPageChanged: _questionArabicController.updateQuestionNumber,
