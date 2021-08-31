@@ -16,7 +16,7 @@ class QuestionRussianController extends GetxController
 
   PageController get pageController => this._pageController;
 
-  List<QuestionRussian> _questions = QuestionRussian.sample_data
+  List<QuestionRussian> _russianQuestions = QuestionRussian.sample_data
       .map(
         (question) => QuestionRussian(
           id: question['id'],
@@ -27,45 +27,45 @@ class QuestionRussianController extends GetxController
       )
       .toList();
 
-  List<QuestionRussian> get questions => this._questions;
+  List<QuestionRussian> get russianQuestions => this._russianQuestions;
 
-  bool _isAnswered = false;
+  bool _isRussianAnswered = false;
 
-  bool get isAnswered => this._isAnswered;
+  bool get isRussianAnswered => this._isRussianAnswered;
 
-  late int _correctAnswer;
+  late int _correctRussianAnswer;
 
-  int get correctAnswer => this._correctAnswer;
+  int get correctRussianAnswer => this._correctRussianAnswer;
 
-  late int _selectedAnswer;
+  late int _selectedRussianAnswer;
 
-  int get selectedAnswer => this._selectedAnswer;
+  int get selectedRussianAnswer => this._selectedRussianAnswer;
 
-  RxInt _questionNumber = 1.obs;
+  RxInt _questionRussianNumber = 1.obs;
 
-  RxInt get questionNumber => this._questionNumber;
+  RxInt get questionRussianNumber => this._questionRussianNumber;
 
-  int _numberOfCorrectAnswer = 0;
+  int _numberOfCorrectRussianAnswer = 0;
 
-  int get numberOfCorrectAnswer => this._numberOfCorrectAnswer;
+  int get numberOfCorrectRussianAnswer => this._numberOfCorrectRussianAnswer;
 
   late SharedPreferences _preferences;
 
   SharedPreferences get preferences => this._preferences;
 
-  int _trueAnswerCount = 0;
+  int _trueRussianAnswerCount = 0;
 
-  int get trueAnswerCount => this._trueAnswerCount;
+  int get trueRussianAnswerCount => this._trueRussianAnswerCount;
 
   @override
   void onInit() async {
     _pageController = PageController();
     _preferences = await SharedPreferences.getInstance();
     _pageController.jumpToPage(preferences.getInt(keyLastRussianPage) ?? 0);
-    if (preferences.getInt(keyLastRussianPage) == _questions.length) {
+    if (preferences.getInt(keyLastRussianPage) == _russianQuestions.length) {
       Get.to(ScoreArabicPage());
     }
-    _trueAnswerCount = preferences.getInt(keyTrueRussianAnswer) ?? 0;
+    _trueRussianAnswerCount = preferences.getInt(keyTrueRussianAnswer) ?? 0;
     super.onInit();
   }
 
@@ -76,26 +76,26 @@ class QuestionRussianController extends GetxController
   }
 
   saveAnswer(int selectedIndex) {
-    if (selectedAnswer == _correctAnswer) {
-      preferences.setInt(keyTrueRussianAnswer, _trueAnswerCount++);
-      _databaseQuery.changeRussianAnswerState(0, _questionNumber.value);
+    if (selectedRussianAnswer == _correctRussianAnswer) {
+      preferences.setInt(keyTrueRussianAnswer, _trueRussianAnswerCount++);
+      _databaseQuery.changeRussianAnswerState(0, _questionRussianNumber.value);
     } else {
-      _databaseQuery.changeRussianAnswerState(1, _questionNumber.value);
+      _databaseQuery.changeRussianAnswerState(1, _questionRussianNumber.value);
     }
   }
 
   checkAnswer(QuestionRussian question, int selectedIndex) {
-    preferences.setInt(keyLastRussianPage, _questionNumber.value);
-    _isAnswered = true;
-    _correctAnswer = question.answer!;
-    _selectedAnswer = selectedIndex;
+    preferences.setInt(keyLastRussianPage, _questionRussianNumber.value);
+    _isRussianAnswered = true;
+    _correctRussianAnswer = question.answer!;
+    _selectedRussianAnswer = selectedIndex;
     update();
 
     Future.delayed(
       Duration(seconds: 3),
       () {
-        if (_correctAnswer == _selectedAnswer) {
-          _numberOfCorrectAnswer++;
+        if (_correctRussianAnswer == _selectedRussianAnswer) {
+          _numberOfCorrectRussianAnswer++;
         }
         nextQuestion();
       },
@@ -103,8 +103,8 @@ class QuestionRussianController extends GetxController
   }
 
   nextQuestion() {
-    if (_questionNumber.value != _questions.length) {
-      _isAnswered = false;
+    if (_questionRussianNumber.value != _russianQuestions.length) {
+      _isRussianAnswered = false;
       _pageController.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
     } else {
@@ -113,7 +113,7 @@ class QuestionRussianController extends GetxController
   }
 
   updateQuestionNumber(int index) {
-    _questionNumber.value = index + 1;
+    _questionRussianNumber.value = index + 1;
   }
 
   bool checkForLast() {
@@ -122,17 +122,17 @@ class QuestionRussianController extends GetxController
 
   shareResult() {
     Share.share(
-      'Я ответил правильно по именам Аллаха на $_trueAnswerCount вопросов из 99',
+      'Я ответил правильно на $_trueRussianAnswerCount из 99 вопросов в русско-арабской версии викторины об именах Аллаха',
     );
   }
 
   resetQuiz() async {
-    _isAnswered = false;
+    _isRussianAnswered = false;
+    _trueRussianAnswerCount = 0;
+    _questionRussianNumber.value = 0;
     await preferences.setInt(keyLastRussianPage, 0);
     await preferences.setInt(keyTrueRussianAnswer, 0);
     _databaseQuery.resetArabicAnswerState();
-    _trueAnswerCount = 0;
-    _questionNumber.value = 0;
     _pageController.jumpToPage(0);
     update();
   }

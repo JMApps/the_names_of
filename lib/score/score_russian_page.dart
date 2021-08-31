@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:the_names_of/components/dialog_russian_answer_results.dart';
 import 'package:the_names_of/controllers/question_russian_controller.dart';
 
 class ScoreRussianPage extends StatelessWidget {
@@ -47,7 +46,7 @@ class ScoreRussianPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '${_questionRussianController.trueAnswerCount} из ${_questionRussianController.questions.length}',
+                  '${_questionRussianController.trueRussianAnswerCount} из ${_questionRussianController.russianQuestions.length}',
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.red,
@@ -75,22 +74,23 @@ class ScoreRussianPage extends StatelessWidget {
                 ),
               ),
             ),
-            _questionRussianController.checkForLast()
-                ? MaterialButton(
-                    color: Colors.blue,
-                    onPressed: () {
-                      _questionRussianController.resetQuiz();
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Начать сначала',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                : SizedBox(),
+            // _questionRussianController.checkForLast()
+            //     ?
+            //     : SizedBox(),
+            MaterialButton(
+              color: Colors.blue,
+              onPressed: () {
+                _questionRussianController.resetQuiz();
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Начать сначала',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+              ),
+            ),
             MaterialButton(
               color: Colors.red,
               onPressed: () {

@@ -22,8 +22,8 @@ class RussianOption extends StatelessWidget {
       init: QuestionRussianController(),
       builder: (controller) {
         LinearGradient getTheRightGradient() {
-          if (controller.isAnswered) {
-            if (index == controller.correctAnswer) {
+          if (controller.isRussianAnswered) {
+            if (index == controller.correctRussianAnswer) {
               return LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
@@ -32,8 +32,8 @@ class RussianOption extends StatelessWidget {
                   Color(0xFFB2DFDB),
                 ],
               );
-            } else if (index == controller.selectedAnswer &&
-                controller.selectedAnswer != controller.correctAnswer) {
+            } else if (index == controller.selectedRussianAnswer &&
+                controller.selectedRussianAnswer != controller.correctRussianAnswer) {
               return LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,

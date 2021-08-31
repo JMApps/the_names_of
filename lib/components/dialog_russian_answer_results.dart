@@ -17,7 +17,7 @@ class DialogRussianAnswerResults extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(8),
-        child: FutureBuilder<List>(
+        child: FutureBuilder<List?>(
           future: _databaseQuery.getRussianQuizNames(),
           builder: (context, snapshot) {
             return Scrollbar(
@@ -61,7 +61,8 @@ class DialogRussianAnswerResults extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return _buildAlertDialog(questionRussianController, index);
+                              return _buildAlertDialog(
+                                  questionRussianController, index);
                             },
                           );
                         },
@@ -77,12 +78,12 @@ class DialogRussianAnswerResults extends StatelessWidget {
     );
   }
 
-  Widget _buildAlertDialog(QuestionRussianController questionRussianController, int index) {
+  Widget _buildAlertDialog(
+      QuestionRussianController questionRussianController, int index) {
     return AlertDialog(
       title: Text(
         'Вопрос №${index + 1}',
-        style: TextStyle(
-            fontSize: 22, color: Colors.orange),
+        style: TextStyle(fontSize: 22, color: Colors.orange),
       ),
       content: SingleChildScrollView(
         child: Column(
@@ -112,11 +113,10 @@ class DialogRussianAnswerResults extends StatelessWidget {
                       Color(0xFFBBDEFB),
                     ],
                   ),
-                  borderRadius:
-                  BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  '${questionRussianController.questions[index].question}',
+                  '${questionRussianController.russianQuestions[index].question}',
                   style: TextStyle(
                     fontSize: 22,
                   ),
@@ -136,11 +136,8 @@ class DialogRussianAnswerResults extends StatelessWidget {
               ),
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.only(
-                    left: 16,
-                    top: 8,
-                    right: 16,
-                    bottom: 8),
+                padding:
+                    EdgeInsets.only(left: 16, top: 8, right: 16, bottom: 8),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -150,11 +147,10 @@ class DialogRussianAnswerResults extends StatelessWidget {
                       Color(0xFFB2DFDB),
                     ],
                   ),
-                  borderRadius:
-                  BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  '${questionRussianController.questions[index].options![questionRussianController.questions[index].answer!]}',
+                  '${questionRussianController.russianQuestions[index].options![questionRussianController.russianQuestions[index].answer!]}',
                   style: TextStyle(
                     fontSize: 30,
                     fontFamily: 'Arabic',

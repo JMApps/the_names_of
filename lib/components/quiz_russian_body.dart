@@ -36,11 +36,12 @@ class QuizRussianBody extends StatelessWidget {
               () => Text.rich(
                 TextSpan(
                   text:
-                      'Вопрос ${_questionRussianController.questionNumber.value}',
+                      'Вопрос ${_questionRussianController.questionRussianNumber.value}',
                   style: TextStyle(fontSize: 18, color: Colors.white),
                   children: [
                     TextSpan(
-                      text: '/${_questionRussianController.questions.length}',
+                      text:
+                          '/${_questionRussianController.russianQuestions.length}',
                       style: TextStyle(fontSize: 16, color: Colors.grey[300]),
                     ),
                   ],
@@ -51,12 +52,12 @@ class QuizRussianBody extends StatelessWidget {
           SizedBox(height: 16),
           Expanded(
             child: PageView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              //physics: NeverScrollableScrollPhysics(),
               controller: _questionRussianController.pageController,
-              itemCount: _questionRussianController.questions.length,
+              itemCount: _questionRussianController.russianQuestions.length,
               onPageChanged: _questionRussianController.updateQuestionNumber,
               itemBuilder: (context, index) => RussianQuestionCard(
-                question: _questionRussianController.questions[index],
+                question: _questionRussianController.russianQuestions[index],
               ),
             ),
           ),
