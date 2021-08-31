@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_names_of/components/constants.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/question_russian.dart';
 import 'package:the_names_of/score/score_arabic_page.dart';
@@ -60,13 +61,11 @@ class QuestionRussianController extends GetxController
   void onInit() async {
     _pageController = PageController();
     _preferences = await SharedPreferences.getInstance();
-    _pageController
-        .jumpToPage(preferences.getInt('last_russian_page_view_page') ?? 0);
-    if (preferences.getInt('last_russian_page_view_page') ==
-        _questions.length) {
+    _pageController.jumpToPage(preferences.getInt(keyLastRussianPage) ?? 0);
+    if (preferences.getInt(keyLastRussianPage) == _questions.length) {
       Get.to(ScoreArabicPage());
     }
-    _trueAnswerCount = preferences.getInt('key_true_russian_answer') ?? 0;
+    _trueAnswerCount = preferences.getInt(keyTrueRussianAnswer) ?? 0;
     super.onInit();
   }
 
@@ -78,7 +77,7 @@ class QuestionRussianController extends GetxController
 
   saveAnswer(int selectedIndex) {
     if (selectedAnswer == _correctAnswer) {
-      preferences.setInt('key_true_russian_answer', _trueAnswerCount++);
+      preferences.setInt(keyTrueRussianAnswer, _trueAnswerCount++);
       _databaseQuery.changeRussianAnswerState(0, _questionNumber.value);
     } else {
       _databaseQuery.changeRussianAnswerState(1, _questionNumber.value);
@@ -86,7 +85,7 @@ class QuestionRussianController extends GetxController
   }
 
   checkAnswer(QuestionRussian question, int selectedIndex) {
-    preferences.setInt('last_russian_page_view_page', _questionNumber.value);
+    preferences.setInt(keyLastRussianPage, _questionNumber.value);
     _isAnswered = true;
     _correctAnswer = question.answer!;
     _selectedAnswer = selectedIndex;
@@ -118,9 +117,7 @@ class QuestionRussianController extends GetxController
   }
 
   bool checkForLast() {
-    return preferences.getInt('last_russian_page_view_page') == 99
-        ? true
-        : false;
+    return preferences.getInt(keyLastRussianPage) == 99 ? true : false;
   }
 
   shareResult() {
@@ -129,11 +126,13 @@ class QuestionRussianController extends GetxController
     );
   }
 
-  resetQuiz() {
+  resetQuiz() async {
     _isAnswered = false;
-    preferences.remove('last_russian_page_view_page');
-    preferences.remove('key_true_russian_answer');
-    _databaseQuery.resetRussianAnswerState();
+    await preferences.setInt(keyLastRussianPage, 0);
+    await preferences.setInt(keyTrueRussianAnswer, 0);
+    _databaseQuery.resetArabicAnswerState();
+    _trueAnswerCount = 0;
+    _questionNumber.value = 0;
     _pageController.jumpToPage(0);
     update();
   }

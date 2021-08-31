@@ -53,7 +53,11 @@ class ScoreArabicPage extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(CupertinoIcons.info_circle_fill),
+                  icon: Icon(
+                    CupertinoIcons.info_circle_fill,
+                    size: 30,
+                    color: Colors.black,
+                  ),
                   onPressed: () {
                     Navigator.pushNamed(context, '/arabic_answer_result');
                   },
@@ -74,22 +78,23 @@ class ScoreArabicPage extends StatelessWidget {
                 ),
               ),
             ),
-            _questionArabicController.checkForLast()
-                ? MaterialButton(
-                    color: Colors.blue,
-                    onPressed: () {
-                      _questionArabicController.resetQuiz();
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Начать сначала',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                : SizedBox(),
+            MaterialButton(
+              color: Colors.blue,
+              onPressed: () {
+                _questionArabicController.resetQuiz();
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Начать сначала',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            // _questionArabicController.checkForLast()
+            //     ?
+            //     : SizedBox(),
             MaterialButton(
               color: Colors.red,
               onPressed: () {

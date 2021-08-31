@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_names_of/components/constants.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/question_arabic.dart';
 import 'package:the_names_of/score/score_arabic_page.dart';
@@ -60,11 +61,11 @@ class QuestionArabicController extends GetxController
   void onInit() async {
     _pageController = PageController();
     _preferences = await SharedPreferences.getInstance();
-    _pageController.jumpToPage(preferences.getInt('last_arabic_page_view_page') ?? 0);
-    if (preferences.getInt('last_arabic_page_view_page') == _questions.length) {
+    _pageController.jumpToPage(preferences.getInt(keyLastArabicPage) ?? 0);
+    if (preferences.getInt(keyLastArabicPage) == _questions.length) {
       Get.to(ScoreArabicPage());
     }
-    _trueAnswerCount = preferences.getInt('key_true_arabic_answer') ?? 0;
+    _trueAnswerCount = preferences.getInt(keyTrueArabicAnswer) ?? 0;
     super.onInit();
   }
 
@@ -76,7 +77,7 @@ class QuestionArabicController extends GetxController
 
   saveAnswer(int selectedIndex) {
     if (selectedAnswer == _correctAnswer) {
-      preferences.setInt('key_true_arabic_answer', _trueAnswerCount++);
+      preferences.setInt(keyTrueArabicAnswer, _trueAnswerCount++);
       _databaseQuery.changeArabicAnswerState(0, _questionNumber.value);
     } else {
       _databaseQuery.changeArabicAnswerState(1, _questionNumber.value);
@@ -84,7 +85,7 @@ class QuestionArabicController extends GetxController
   }
 
   checkAnswer(QuestionArabic question, int selectedIndex) {
-    preferences.setInt('last_arabic_page_view_page', _questionNumber.value);
+    preferences.setInt(keyLastArabicPage, _questionNumber.value);
     _isAnswered = true;
     _correctAnswer = question.answer!;
     _selectedAnswer = selectedIndex;
@@ -104,7 +105,8 @@ class QuestionArabicController extends GetxController
   nextQuestion() {
     if (_questionNumber.value != _questions.length) {
       _isAnswered = false;
-      _pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.ease);
+      _pageController.nextPage(
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
     } else {
       Get.to(ScoreArabicPage());
     }
@@ -115,9 +117,7 @@ class QuestionArabicController extends GetxController
   }
 
   bool checkForLast() {
-    return preferences.getInt('last_arabic_page_view_page') == 99
-        ? true
-        : false;
+    return preferences.getInt(keyLastArabicPage) == 99 ? true : false;
   }
 
   shareResult() {
@@ -126,11 +126,12 @@ class QuestionArabicController extends GetxController
     );
   }
 
-  resetQuiz() {
+  resetQuiz() async {
     _isAnswered = false;
-    preferences.remove('last_arabic_page_view_page');
-    preferences.remove('key_true_arabic_answer');
+    await preferences.setInt(keyLastArabicPage, 0);
+    await preferences.setInt(keyTrueArabicAnswer, 0);
     _databaseQuery.resetArabicAnswerState();
+    _trueAnswerCount = 0;
     _questionNumber.value = 0;
     _pageController.jumpToPage(0);
     update();
