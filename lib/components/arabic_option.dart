@@ -23,7 +23,7 @@ class ArabicOption extends StatelessWidget {
       builder: (controller) {
         LinearGradient getTheRightGradient() {
           if (controller.isAnswered) {
-            if (index == controller.correctAnswer) {
+            if (index == controller.correctArabicAnswer) {
               return LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
@@ -32,8 +32,9 @@ class ArabicOption extends StatelessWidget {
                   Color(0xFFB2DFDB),
                 ],
               );
-            } else if (index == controller.selectedAnswer &&
-                controller.selectedAnswer != controller.correctAnswer) {
+            } else if (index == controller.selectedArabicAnswer &&
+                controller.selectedArabicAnswer !=
+                    controller.correctArabicAnswer) {
               return LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,

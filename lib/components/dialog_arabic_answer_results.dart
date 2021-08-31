@@ -16,7 +16,7 @@ class DialogArabicAnswerResults extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(8),
-        child: FutureBuilder<List>(
+        child: FutureBuilder<List?>(
           future: _databaseQuery.getArabicQuizNames(),
           builder: (context, snapshot) {
             return Scrollbar(
@@ -102,7 +102,8 @@ class DialogArabicAnswerResults extends StatelessWidget {
               ),
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.only(left: 16, top: 8, right: 16, bottom: 8),
+                padding:
+                    EdgeInsets.only(left: 16, top: 8, right: 16, bottom: 8),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -115,7 +116,7 @@ class DialogArabicAnswerResults extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  '${questionArabicController.questions[index].question}',
+                  '${questionArabicController.arabicQuestions[index].question}',
                   style: TextStyle(
                     fontSize: 30,
                     fontFamily: 'Arabic',
@@ -150,7 +151,7 @@ class DialogArabicAnswerResults extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
-                  '${questionArabicController.questions[index].options![questionArabicController.questions[index].answer!]}',
+                  '${questionArabicController.arabicQuestions[index].options![questionArabicController.arabicQuestions[index].answer!]}',
                   style: TextStyle(
                     fontSize: 22,
                   ),

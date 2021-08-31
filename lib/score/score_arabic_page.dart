@@ -28,7 +28,7 @@ class ScoreArabicPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'РЕЗУЛЬТАТ: АРБСКО-РУССКИЙ',
+              'РЕЗУЛЬТАТ: АРАБСКО-РУССКИЙ',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w700,
@@ -46,7 +46,7 @@ class ScoreArabicPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '${_questionArabicController.trueAnswerCount} из ${_questionArabicController.questions.length}',
+                  '${_questionArabicController.trueArabicAnswerCount} из ${_questionArabicController.arabicQuestions.length}',
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.red,
@@ -78,6 +78,9 @@ class ScoreArabicPage extends StatelessWidget {
                 ),
               ),
             ),
+            // _questionArabicController.checkForLast()
+            //     ?
+            //     : SizedBox(),
             MaterialButton(
               color: Colors.blue,
               onPressed: () {
@@ -92,9 +95,6 @@ class ScoreArabicPage extends StatelessWidget {
                 ),
               ),
             ),
-            // _questionArabicController.checkForLast()
-            //     ?
-            //     : SizedBox(),
             MaterialButton(
               color: Colors.red,
               onPressed: () {

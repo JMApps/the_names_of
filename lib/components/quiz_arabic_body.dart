@@ -36,11 +36,12 @@ class QuizArabicBody extends StatelessWidget {
               () => Text.rich(
                 TextSpan(
                   text:
-                      'Вопрос ${_questionArabicController.questionNumber.value}',
+                      'Вопрос ${_questionArabicController.questionArabicNumber.value}',
                   style: TextStyle(fontSize: 18, color: Colors.white),
                   children: [
                     TextSpan(
-                      text: '/${_questionArabicController.questions.length}',
+                      text:
+                          '/${_questionArabicController.arabicQuestions.length}',
                       style: TextStyle(fontSize: 16, color: Colors.grey[300]),
                     ),
                   ],
@@ -51,12 +52,12 @@ class QuizArabicBody extends StatelessWidget {
           SizedBox(height: 16),
           Expanded(
             child: PageView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              controller: _questionArabicController.pageController,
-              itemCount: _questionArabicController.questions.length,
+              //physics: NeverScrollableScrollPhysics(),
+              controller: _questionArabicController.arabicPageController,
+              itemCount: _questionArabicController.arabicQuestions.length,
               onPageChanged: _questionArabicController.updateQuestionNumber,
               itemBuilder: (context, index) => ArabicQuestionCard(
-                question: _questionArabicController.questions[index],
+                question: _questionArabicController.arabicQuestions[index],
               ),
             ),
           ),
