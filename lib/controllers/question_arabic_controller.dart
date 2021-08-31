@@ -10,24 +10,27 @@ import 'package:the_names_of/score/score_arabic_page.dart';
 
 class QuestionArabicController extends GetxController
     with SingleGetTickerProviderMixin {
-  late PageController _pageController;
 
   var _databaseQuery = DatabaseQuery();
-
-  PageController get arabicPageController => this._pageController;
 
   List<QuestionArabic> _arabicQuestions = QuestionArabic.sample_data
       .map(
         (question) => QuestionArabic(
-          id: question['_id'],
-          question: question['question'],
-          options: question['options'],
-          answer: question['answer_index'],
-        ),
-      )
+      id: question['_id'],
+      question: question['question'],
+      options: question['options'],
+      answer: question['answer_index'],
+    ),
+  )
       .toList();
 
   List<QuestionArabic> get arabicQuestions => this._arabicQuestions;
+
+  late SharedPreferences _preferences;
+
+  late PageController _pageArabicController;
+
+  PageController get arabicPageController => this._pageArabicController;
 
   bool _isArabicAnswered = false;
 
@@ -49,35 +52,32 @@ class QuestionArabicController extends GetxController
 
   int get numberOfCorrectArabicAnswer => this._numberOfCorrectArabicAnswer;
 
-  late SharedPreferences _preferences;
-
-  SharedPreferences get preferences => this._preferences;
-
   int _trueArabicAnswerCount = 0;
 
   int get trueArabicAnswerCount => this._trueArabicAnswerCount;
 
   @override
   void onInit() async {
-    _pageController = PageController();
+    _pageArabicController = PageController(initialPage: questionArabicNumber.value + 1);
     _preferences = await SharedPreferences.getInstance();
-    _pageController.jumpToPage(preferences.getInt(keyLastArabicPage) ?? 0);
-    if (preferences.getInt(keyLastArabicPage) == _arabicQuestions.length) {
-      Get.to(ScoreArabicPage());
+    _pageArabicController.jumpToPage(_preferences.getInt(keyLastArabicPage) ?? 0);
+    if (_preferences.getInt(keyLastArabicPage) == _arabicQuestions.length) {
+      Get.to(() => ScoreArabicPage(), preventDuplicates:false);
     }
-    _trueArabicAnswerCount = preferences.getInt(keyTrueArabicAnswer) ?? 0;
+    _trueArabicAnswerCount = _preferences.getInt(keyTrueArabicAnswer) ?? 0;
     super.onInit();
   }
 
   @override
   void onClose() {
-    _pageController.dispose();
+    _pageArabicController.dispose();
+    dispose();
     super.onClose();
   }
 
   saveAnswer(int selectedIndex) {
     if (selectedArabicAnswer == _correctArabicAnswer) {
-      preferences.setInt(keyTrueArabicAnswer, _trueArabicAnswerCount++);
+      _preferences.setInt(keyTrueArabicAnswer, _trueArabicAnswerCount++);
       _databaseQuery.changeArabicAnswerState(0, _questionArabicNumber.value);
     } else {
       _databaseQuery.changeArabicAnswerState(1, _questionArabicNumber.value);
@@ -85,14 +85,14 @@ class QuestionArabicController extends GetxController
   }
 
   checkAnswer(QuestionArabic question, int selectedIndex) {
-    preferences.setInt(keyLastArabicPage, _questionArabicNumber.value);
+    _preferences.setInt(keyLastArabicPage, _questionArabicNumber.value);
     _isArabicAnswered = true;
     _correctArabicAnswer = question.answer!;
     _selectedArabicAnswer = selectedIndex;
     update();
 
     Future.delayed(
-      Duration(seconds: 3),
+      Duration(milliseconds: selectedArabicAnswer == _correctArabicAnswer ? 1500 : 3500),
       () {
         if (_correctArabicAnswer == _selectedArabicAnswer) {
           _numberOfCorrectArabicAnswer++;
@@ -105,10 +105,10 @@ class QuestionArabicController extends GetxController
   nextQuestion() {
     if (_questionArabicNumber.value != _arabicQuestions.length) {
       _isArabicAnswered = false;
-      _pageController.nextPage(
-          duration: Duration(milliseconds: 500), curve: Curves.ease);
+      _pageArabicController.nextPage(
+          duration: Duration(milliseconds: 250), curve: Curves.ease);
     } else {
-      Get.to(ScoreArabicPage());
+      Get.to(() => ScoreArabicPage(), preventDuplicates: false);
     }
   }
 
@@ -117,7 +117,7 @@ class QuestionArabicController extends GetxController
   }
 
   bool checkForLast() {
-    return preferences.getInt(keyLastArabicPage) == 99 ? true : false;
+    return _preferences.getInt(keyLastArabicPage) == 99 ? true : false;
   }
 
   shareResult() {
@@ -128,12 +128,12 @@ class QuestionArabicController extends GetxController
 
   resetQuiz() async {
     _isArabicAnswered = false;
-    await preferences.setInt(keyLastArabicPage, 0);
-    await preferences.setInt(keyTrueArabicAnswer, 0);
-    _databaseQuery.resetArabicAnswerState();
     _trueArabicAnswerCount = 0;
     _questionArabicNumber.value = 0;
-    _pageController.jumpToPage(0);
+    await _preferences.setInt(keyLastArabicPage, 0);
+    await _preferences.setInt(keyTrueArabicAnswer, 0);
+    _databaseQuery.resetArabicAnswerState();
+    _pageArabicController.jumpToPage(0);
     update();
   }
 }

@@ -10,24 +10,27 @@ import 'package:the_names_of/score/score_arabic_page.dart';
 
 class QuestionRussianController extends GetxController
     with SingleGetTickerProviderMixin {
-  late PageController _pageController;
 
   var _databaseQuery = DatabaseQuery();
-
-  PageController get pageController => this._pageController;
 
   List<QuestionRussian> _russianQuestions = QuestionRussian.sample_data
       .map(
         (question) => QuestionRussian(
-          id: question['id'],
-          question: question['question'],
-          options: question['options'],
-          answer: question['answer_index'],
-        ),
-      )
+      id: question['_id'],
+      question: question['question'],
+      options: question['options'],
+      answer: question['answer_index'],
+    ),
+  )
       .toList();
 
   List<QuestionRussian> get russianQuestions => this._russianQuestions;
+
+  late SharedPreferences _preferences;
+
+  late PageController _russianPageController;
+
+  PageController get russianPageController => this._russianPageController;
 
   bool _isRussianAnswered = false;
 
@@ -49,35 +52,32 @@ class QuestionRussianController extends GetxController
 
   int get numberOfCorrectRussianAnswer => this._numberOfCorrectRussianAnswer;
 
-  late SharedPreferences _preferences;
-
-  SharedPreferences get preferences => this._preferences;
-
   int _trueRussianAnswerCount = 0;
 
   int get trueRussianAnswerCount => this._trueRussianAnswerCount;
 
   @override
   void onInit() async {
-    _pageController = PageController();
+    _russianPageController = PageController(initialPage: questionRussianNumber.value + 1);
     _preferences = await SharedPreferences.getInstance();
-    _pageController.jumpToPage(preferences.getInt(keyLastRussianPage) ?? 0);
-    if (preferences.getInt(keyLastRussianPage) == _russianQuestions.length) {
-      Get.to(ScoreArabicPage());
+    _russianPageController.jumpToPage(_preferences.getInt(keyLastRussianPage) ?? 0);
+    if (_preferences.getInt(keyLastRussianPage) == _russianQuestions.length) {
+      Get.to(() => ScoreArabicPage(), preventDuplicates: false);
     }
-    _trueRussianAnswerCount = preferences.getInt(keyTrueRussianAnswer) ?? 0;
+    _trueRussianAnswerCount = _preferences.getInt(keyTrueRussianAnswer) ?? 0;
     super.onInit();
   }
 
   @override
   void onClose() {
-    _pageController.dispose();
+    _russianPageController.dispose();
+    dispose();
     super.onClose();
   }
 
   saveAnswer(int selectedIndex) {
     if (selectedRussianAnswer == _correctRussianAnswer) {
-      preferences.setInt(keyTrueRussianAnswer, _trueRussianAnswerCount++);
+      _preferences.setInt(keyTrueRussianAnswer, _trueRussianAnswerCount++);
       _databaseQuery.changeRussianAnswerState(0, _questionRussianNumber.value);
     } else {
       _databaseQuery.changeRussianAnswerState(1, _questionRussianNumber.value);
@@ -85,14 +85,14 @@ class QuestionRussianController extends GetxController
   }
 
   checkAnswer(QuestionRussian question, int selectedIndex) {
-    preferences.setInt(keyLastRussianPage, _questionRussianNumber.value);
+    _preferences.setInt(keyLastRussianPage, _questionRussianNumber.value);
     _isRussianAnswered = true;
     _correctRussianAnswer = question.answer!;
     _selectedRussianAnswer = selectedIndex;
     update();
 
     Future.delayed(
-      Duration(seconds: 3),
+      Duration(milliseconds: selectedRussianAnswer == _correctRussianAnswer ? 1500 : 3500),
       () {
         if (_correctRussianAnswer == _selectedRussianAnswer) {
           _numberOfCorrectRussianAnswer++;
@@ -105,10 +105,10 @@ class QuestionRussianController extends GetxController
   nextQuestion() {
     if (_questionRussianNumber.value != _russianQuestions.length) {
       _isRussianAnswered = false;
-      _pageController.nextPage(
+      _russianPageController.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
     } else {
-      Get.to(ScoreArabicPage());
+      Get.to(() => ScoreArabicPage(), preventDuplicates: false);
     }
   }
 
@@ -117,7 +117,7 @@ class QuestionRussianController extends GetxController
   }
 
   bool checkForLast() {
-    return preferences.getInt(keyLastRussianPage) == 99 ? true : false;
+    return _preferences.getInt(keyLastRussianPage) == 99 ? true : false;
   }
 
   shareResult() {
@@ -130,10 +130,10 @@ class QuestionRussianController extends GetxController
     _isRussianAnswered = false;
     _trueRussianAnswerCount = 0;
     _questionRussianNumber.value = 0;
-    await preferences.setInt(keyLastRussianPage, 0);
-    await preferences.setInt(keyTrueRussianAnswer, 0);
+    await _preferences.setInt(keyLastRussianPage, 0);
+    await _preferences.setInt(keyTrueRussianAnswer, 0);
     _databaseQuery.resetArabicAnswerState();
-    _pageController.jumpToPage(0);
+    _russianPageController.jumpToPage(0);
     update();
   }
 }
