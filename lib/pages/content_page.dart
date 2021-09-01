@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:the_names_of/arguments/list_content_arguments.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/content_item.dart';
+import 'package:html/parser.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({Key? key}) : super(key: key);
@@ -20,6 +23,18 @@ class _ContentPageState extends State<ContentPage> {
   int _selectedPage = 0;
 
   @override
+  void initState() {
+    Future.delayed(
+      Duration.zero,
+      () {
+        _pageViewController
+            .jumpToPage(args != null ? args!.id! - 1 : _selectedPage);
+      },
+    );
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _pageViewController.dispose();
     super.dispose();
@@ -28,8 +43,7 @@ class _ContentPageState extends State<ContentPage> {
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context)!.settings.arguments as ListContentArguments?;
-    _pageViewController =
-        PageController(initialPage: args != null ? args!.id! - 1 : 0);
+    _pageViewController = PageController();
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -82,6 +96,32 @@ class _ContentPageState extends State<ContentPage> {
                   child: Column(
                     children: [
                       _buildContent(index),
+                      FutureBuilder<List>(
+                        future: _databaseQuery.getChapterContents(index + 1),
+                        builder: (context, snapshot) {
+                          return Padding(
+                            padding: EdgeInsets.only(top: 8, bottom: 16),
+                            child: TextButton.icon(
+                              onPressed: () {
+                                Share.share(_parseHtmlString(
+                                    '${snapshot.data![0].contentTitle}\n\n${snapshot.data![0].content}'));
+                              },
+                              label: Text(
+                                'Поделиться главой',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.orange,
+                                ),
+                              ),
+                              icon: Icon(
+                                CupertinoIcons.share,
+                                size: 25,
+                                color: Colors.orange,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -115,6 +155,7 @@ class _ContentPageState extends State<ContentPage> {
         return snapshot.hasData
             ? ListView.builder(
                 shrinkWrap: true,
+                padding: EdgeInsets.zero,
                 physics: BouncingScrollPhysics(),
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
@@ -182,5 +223,12 @@ class _ContentPageState extends State<ContentPage> {
         ),
       ],
     );
+  }
+
+  String _parseHtmlString(String htmlString) {
+    final documentText = parse(htmlString);
+    final String parsedString =
+        parse(documentText.body!.text).documentElement!.text;
+    return parsedString;
   }
 }

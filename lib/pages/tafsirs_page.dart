@@ -1,13 +1,14 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:the_names_of/arguments/list_tafsir_arguments.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/ayah_item.dart';
 import 'package:the_names_of/model/name_item.dart';
 import 'package:the_names_of/model/tafsir_item.dart';
+import 'package:html/parser.dart';
 
 class TafsirsPage extends StatefulWidget {
   const TafsirsPage({Key? key}) : super(key: key);
@@ -17,12 +18,24 @@ class TafsirsPage extends StatefulWidget {
 }
 
 class _TafsirsPageState extends State<TafsirsPage> {
-  var _pageViewController = PageController();
+  late PageController _pageViewController;
 
   var _databaseQuery = DatabaseQuery();
   late ListTafsirArguments? args;
 
   int _selectedPage = 0;
+
+  @override
+  void initState() {
+    Future.delayed(
+      Duration.zero,
+      () {
+        _pageViewController
+            .jumpToPage(args != null ? args!.id! - 1 : _selectedPage);
+      },
+    );
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -33,8 +46,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
   @override
   Widget build(BuildContext context) {
     args = ModalRoute.of(context)!.settings.arguments as ListTafsirArguments?;
-    _pageViewController =
-        PageController(initialPage: args != null ? args!.id! - 1 : 0);
+    _pageViewController = PageController();
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -76,6 +88,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
 
   Widget _buildTafsirPage() {
     return PageView.builder(
+      physics: BouncingScrollPhysics(),
       onPageChanged: (page) {
         setState(() {
           _selectedPage = page;
@@ -91,6 +104,32 @@ class _TafsirsPageState extends State<TafsirsPage> {
                 _buildListNames(index),
                 _buildListAyahs(index),
                 _buildTafsir(index),
+                FutureBuilder<List>(
+                  future: _databaseQuery.getChapterTafsirs(index + 1),
+                  builder: (context, snapshot) {
+                    return Padding(
+                      padding: EdgeInsets.only(top: 8, bottom: 16),
+                      child: TextButton.icon(
+                        onPressed: () {
+                          Share.share(_parseHtmlString(
+                              '${snapshot.data![0].forShare}'));
+                        },
+                        label: Text(
+                          'Поделиться главой',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.green,
+                          ),
+                        ),
+                        icon: Icon(
+                          CupertinoIcons.share,
+                          size: 25,
+                          color: Colors.green,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -112,7 +151,6 @@ class _TafsirsPageState extends State<TafsirsPage> {
     return ListView.builder(
       shrinkWrap: true,
       padding: EdgeInsets.zero,
-      physics: ClampingScrollPhysics(),
       itemCount: snapshot.data!.length,
       itemBuilder: (context, index) {
         return _buildNameItem(snapshot.data![index], index);
@@ -292,6 +330,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
         return snapshot.hasData
             ? ListView.builder(
                 shrinkWrap: true,
+                padding: EdgeInsets.zero,
                 physics: BouncingScrollPhysics(),
                 itemCount: snapshot.data?.length ?? 0,
                 itemBuilder: (context, index) {
@@ -341,5 +380,12 @@ class _TafsirsPageState extends State<TafsirsPage> {
         unselectedSize: Size(5, 5),
       ),
     );
+  }
+
+  String _parseHtmlString(String htmlString) {
+    final documentText = parse(htmlString);
+    final String parsedString =
+        parse(documentText.body!.text).documentElement!.text;
+    return parsedString;
   }
 }
