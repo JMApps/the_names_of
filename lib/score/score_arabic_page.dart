@@ -78,23 +78,22 @@ class ScoreArabicPage extends StatelessWidget {
                 ),
               ),
             ),
-            // _questionArabicController.checkForLast()
-            //     ?
-            //     : SizedBox(),
-            MaterialButton(
-              color: Colors.blue,
-              onPressed: () {
-                _questionArabicController.resetQuiz();
-                Navigator.pop(context);
-              },
-              child: Text(
-                'Начать сначала',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            _questionArabicController.checkForLast()
+                ? MaterialButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      _questionArabicController.resetQuiz();
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Начать сначала',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                : SizedBox(),
             MaterialButton(
               color: Colors.red,
               onPressed: () {

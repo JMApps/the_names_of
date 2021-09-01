@@ -74,23 +74,22 @@ class ScoreRussianPage extends StatelessWidget {
                 ),
               ),
             ),
-            // _questionRussianController.checkForLast()
-            //     ?
-            //     : SizedBox(),
-            MaterialButton(
-              color: Colors.blue,
-              onPressed: () {
-                _questionRussianController.resetQuiz();
-                Navigator.pop(context);
-              },
-              child: Text(
-                'Начать сначала',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            _questionRussianController.checkForLast()
+                ? MaterialButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      _questionRussianController.resetQuiz();
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Начать сначала',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                : SizedBox(),
             MaterialButton(
               color: Colors.red,
               onPressed: () {
