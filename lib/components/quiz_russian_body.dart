@@ -4,13 +4,25 @@ import 'package:get/get.dart';
 import 'package:the_names_of/components/russian_question_card.dart';
 import 'package:the_names_of/controllers/question_russian_controller.dart';
 
-class QuizRussianBody extends StatelessWidget {
+class QuizRussianBody extends StatefulWidget {
   const QuizRussianBody({Key? key}) : super(key: key);
 
   @override
+  _QuizRussianBodyState createState() => _QuizRussianBodyState();
+}
+
+class _QuizRussianBodyState extends State<QuizRussianBody> {
+  late QuestionRussianController _questionRussianController;
+
+  @override
+  void initState() {
+    _questionRussianController = Get.put(QuestionRussianController());
+    _questionRussianController.jumpToPageState();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    QuestionRussianController _questionRussianController =
-        Get.put(QuestionRussianController());
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(

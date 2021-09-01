@@ -4,13 +4,25 @@ import 'package:get/get.dart';
 import 'package:the_names_of/components/arabic_question_card.dart';
 import 'package:the_names_of/controllers/question_arabic_controller.dart';
 
-class QuizArabicBody extends StatelessWidget {
+class QuizArabicBody extends StatefulWidget {
   const QuizArabicBody({Key? key}) : super(key: key);
 
   @override
+  _QuizArabicBodyState createState() => _QuizArabicBodyState();
+}
+
+class _QuizArabicBodyState extends State<QuizArabicBody> {
+  late QuestionArabicController _questionArabicController;
+
+  @override
+  void initState() {
+    _questionArabicController = Get.put(QuestionArabicController());
+    _questionArabicController.jumpToPageState();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    QuestionArabicController _questionArabicController =
-        Get.put(QuestionArabicController());
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(

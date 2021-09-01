@@ -10,18 +10,17 @@ import 'package:the_names_of/score/score_arabic_page.dart';
 
 class QuestionRussianController extends GetxController
     with SingleGetTickerProviderMixin {
-
   var _databaseQuery = DatabaseQuery();
 
   List<QuestionRussian> _russianQuestions = QuestionRussian.sample_data
       .map(
         (question) => QuestionRussian(
-      id: question['_id'],
-      question: question['question'],
-      options: question['options'],
-      answer: question['answer_index'],
-    ),
-  )
+          id: question['_id'],
+          question: question['question'],
+          options: question['options'],
+          answer: question['answer_index'],
+        ),
+      )
       .toList();
 
   List<QuestionRussian> get russianQuestions => this._russianQuestions;
@@ -48,58 +47,63 @@ class QuestionRussianController extends GetxController
 
   RxInt get questionRussianNumber => this._questionRussianNumber;
 
-  int _numberOfCorrectRussianAnswer = 0;
-
-  int get numberOfCorrectRussianAnswer => this._numberOfCorrectRussianAnswer;
-
-  int _trueRussianAnswerCount = 0;
+  late int _trueRussianAnswerCount;
 
   int get trueRussianAnswerCount => this._trueRussianAnswerCount;
 
+  late int _lastRussianPage;
+
+  int get lastRussianPage => this._lastRussianPage;
+
   @override
   void onInit() async {
-    _russianPageController = PageController(initialPage: questionRussianNumber.value + 1);
-    _preferences = await SharedPreferences.getInstance();
-    _russianPageController.jumpToPage(_preferences.getInt(keyLastRussianPage) ?? 0);
-    if (_preferences.getInt(keyLastRussianPage) == _russianQuestions.length) {
-      Get.to(() => ScoreArabicPage(), preventDuplicates: false);
-    }
-    _trueRussianAnswerCount = _preferences.getInt(keyTrueRussianAnswer) ?? 0;
+    _russianPageController = PageController();
+    jumpToPageState();
     super.onInit();
   }
 
   @override
   void onClose() {
     _russianPageController.dispose();
-    dispose();
     super.onClose();
   }
 
-  saveAnswer(int selectedIndex) {
-    if (selectedRussianAnswer == _correctRussianAnswer) {
-      _preferences.setInt(keyTrueRussianAnswer, _trueRussianAnswerCount++);
-      _databaseQuery.changeRussianAnswerState(0, _questionRussianNumber.value);
-    } else {
-      _databaseQuery.changeRussianAnswerState(1, _questionRussianNumber.value);
+  jumpToPageState() async {
+    _preferences = await SharedPreferences.getInstance();
+    _lastRussianPage = _preferences.getInt(keyLastRussianPage) ?? 0;
+    _trueRussianAnswerCount = _preferences.getInt(keyLastRussianPage) ?? 0;
+    _russianPageController.jumpToPage(_trueRussianAnswerCount);
+    if (_lastRussianPage == _russianQuestions.length) {
+      Get.to(() => ScoreArabicPage(), preventDuplicates: false);
     }
   }
 
   checkAnswer(QuestionRussian question, int selectedIndex) {
-    _preferences.setInt(keyLastRussianPage, _questionRussianNumber.value);
     _isRussianAnswered = true;
-    _correctRussianAnswer = question.answer!;
     _selectedRussianAnswer = selectedIndex;
+    _correctRussianAnswer = question.answer!;
+    _preferences.setInt(keyLastRussianPage, _russianPageController.page!.round() + 1);
+    saveAnswer();
     update();
 
     Future.delayed(
-      Duration(milliseconds: selectedRussianAnswer == _correctRussianAnswer ? 1500 : 3500),
+      Duration(
+          milliseconds:
+              _selectedRussianAnswer == _correctRussianAnswer ? 1500 : 3500),
       () {
-        if (_correctRussianAnswer == _selectedRussianAnswer) {
-          _numberOfCorrectRussianAnswer++;
-        }
         nextQuestion();
       },
     );
+  }
+
+  saveAnswer() {
+    if (_selectedRussianAnswer == _correctRussianAnswer) {
+      _trueRussianAnswerCount++;
+      _preferences.setInt(keyTrueRussianAnswer, _trueRussianAnswerCount);
+      _databaseQuery.changeRussianAnswerState(0, _questionRussianNumber.value);
+    } else {
+      _databaseQuery.changeRussianAnswerState(1, _questionRussianNumber.value);
+    }
   }
 
   nextQuestion() {
@@ -129,7 +133,7 @@ class QuestionRussianController extends GetxController
   resetQuiz() async {
     _isRussianAnswered = false;
     _trueRussianAnswerCount = 0;
-    _questionRussianNumber.value = 0;
+    _questionRussianNumber.value = 1;
     await _preferences.setInt(keyLastRussianPage, 0);
     await _preferences.setInt(keyTrueRussianAnswer, 0);
     _databaseQuery.resetArabicAnswerState();

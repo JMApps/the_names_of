@@ -19,58 +19,61 @@ class DialogArabicAnswerResults extends StatelessWidget {
         child: FutureBuilder<List?>(
           future: _databaseQuery.getArabicQuizNames(),
           builder: (context, snapshot) {
-            return Scrollbar(
-              child: SingleChildScrollView(
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  physics: ScrollPhysics(),
-                  itemCount: snapshot.data!.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5, childAspectRatio: 1),
-                  itemBuilder: (context, index) {
-                    Color? getTheRightColor() {
-                      if (snapshot.data![index].answerState == 0) {
-                        return Colors.green[200];
-                      } else if (snapshot.data![index].answerState == 1) {
-                        return Colors.red[200];
-                      }
-                      return Colors.grey[200];
-                    }
+            return snapshot.hasData
+                ? Scrollbar(
+                    child: SingleChildScrollView(
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        physics: ScrollPhysics(),
+                        itemCount: snapshot.data!.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 5, childAspectRatio: 1),
+                        itemBuilder: (context, index) {
+                          Color? getTheRightColor() {
+                            if (snapshot.data![index].answerState == 0) {
+                              return Colors.green[200];
+                            } else if (snapshot.data![index].answerState == 1) {
+                              return Colors.red[200];
+                            }
+                            return Colors.grey[200];
+                          }
 
-                    return Card(
-                      margin: EdgeInsets.all(4),
-                      color: getTheRightColor(),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        side: BorderSide(width: 1, color: Colors.orange),
-                      ),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(15),
-                        splashColor: Colors.orange,
-                        child: Center(
-                          child: Text(
-                            '${snapshot.data![index].id}',
-                            style:
-                                TextStyle(fontSize: 18, color: Colors.blueGrey),
-                          ),
-                        ),
-                        onTap: () {
-                          print('');
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return _buildAlertDialog(
-                                  questionArabicController, index);
-                            },
+                          return Card(
+                            margin: EdgeInsets.all(4),
+                            color: getTheRightColor(),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              side: BorderSide(width: 1, color: Colors.orange),
+                            ),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(15),
+                              splashColor: Colors.orange,
+                              child: Center(
+                                child: Text(
+                                  '${snapshot.data![index].id}',
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.blueGrey),
+                                ),
+                              ),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return _buildAlertDialog(
+                                        questionArabicController, index);
+                                  },
+                                );
+                              },
+                            ),
                           );
                         },
                       ),
-                    );
-                  },
-                ),
-              ),
-            );
+                    ),
+                  )
+                : Center(
+                    child: CircularProgressIndicator(),
+                  );
           },
         ),
       ),

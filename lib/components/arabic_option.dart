@@ -22,7 +22,7 @@ class ArabicOption extends StatelessWidget {
       init: QuestionArabicController(),
       builder: (controller) {
         LinearGradient getTheRightGradient() {
-          if (controller.isAnswered) {
+          if (controller.isArabicAnswered) {
             if (index == controller.correctArabicAnswer) {
               return LinearGradient(
                 begin: Alignment.topLeft,

@@ -60,7 +60,6 @@ class RussianQuestionCard extends StatelessWidget {
                 if (!_questionRussianController.checkForLast()) {
                   if (_onTapState) {
                     _questionRussianController.checkAnswer(question, index);
-                    _questionRussianController.saveAnswer(index);
                   }
                   _onTapState = false;
                 } else {

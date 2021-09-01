@@ -60,7 +60,6 @@ class ArabicQuestionCard extends StatelessWidget {
                 if (!_questionArabicController.checkForLast()) {
                   if (_onTapState) {
                     _questionArabicController.checkAnswer(question, index);
-                    _questionArabicController.saveAnswer(index);
                   }
                   _onTapState = false;
                 } else {
