@@ -88,7 +88,6 @@ class _TafsirsPageState extends State<TafsirsPage> {
 
   Widget _buildTafsirPage() {
     return PageView.builder(
-      physics: BouncingScrollPhysics(),
       onPageChanged: (page) {
         setState(() {
           _selectedPage = page;
@@ -149,6 +148,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
 
   Widget _buildChapterNamesList(AsyncSnapshot snapshot) {
     return ListView.builder(
+      physics: ScrollPhysics(),
       shrinkWrap: true,
       padding: EdgeInsets.zero,
       itemCount: snapshot.data!.length,
@@ -246,9 +246,9 @@ class _TafsirsPageState extends State<TafsirsPage> {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return snapshot.hasData
             ? ListView.builder(
+                physics: ScrollPhysics(),
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
-                physics: ClampingScrollPhysics(),
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   return snapshot.hasData
@@ -329,9 +329,9 @@ class _TafsirsPageState extends State<TafsirsPage> {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return snapshot.hasData
             ? ListView.builder(
+                physics: ScrollPhysics(),
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
-                physics: BouncingScrollPhysics(),
                 itemCount: snapshot.data?.length ?? 0,
                 itemBuilder: (context, index) {
                   return _buildTafsirItem(snapshot.data[index]);
