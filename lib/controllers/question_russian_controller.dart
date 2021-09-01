@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_names_of/components/constants.dart';
 import 'package:the_names_of/data/database_query.dart';
 import 'package:the_names_of/model/question_russian.dart';
-import 'package:the_names_of/score/score_arabic_page.dart';
+import 'package:the_names_of/score/score_russian_page.dart';
 
 class QuestionRussianController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -71,10 +71,10 @@ class QuestionRussianController extends GetxController
   jumpToPageState() async {
     _preferences = await SharedPreferences.getInstance();
     _lastRussianPage = _preferences.getInt(keyLastRussianPage) ?? 0;
-    _trueRussianAnswerCount = _preferences.getInt(keyLastRussianPage) ?? 0;
+    _trueRussianAnswerCount = _preferences.getInt(keyTrueRussianAnswer) ?? 0;
     _russianPageController.jumpToPage(_trueRussianAnswerCount);
     if (_lastRussianPage == _russianQuestions.length) {
-      Get.to(() => ScoreArabicPage(), preventDuplicates: false);
+      Get.to(() => ScoreRussianPage(), preventDuplicates: false);
     }
   }
 
@@ -82,7 +82,8 @@ class QuestionRussianController extends GetxController
     _isRussianAnswered = true;
     _selectedRussianAnswer = selectedIndex;
     _correctRussianAnswer = question.answer!;
-    _preferences.setInt(keyLastRussianPage, _russianPageController.page!.round() + 1);
+    _preferences.setInt(
+        keyLastRussianPage, _russianPageController.page!.round() + 1);
     saveAnswer();
     update();
 
@@ -112,7 +113,7 @@ class QuestionRussianController extends GetxController
       _russianPageController.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
     } else {
-      Get.to(() => ScoreArabicPage(), preventDuplicates: false);
+      Get.to(() => ScoreRussianPage(), preventDuplicates: false);
     }
   }
 
@@ -136,7 +137,7 @@ class QuestionRussianController extends GetxController
     _questionRussianNumber.value = 1;
     await _preferences.setInt(keyLastRussianPage, 0);
     await _preferences.setInt(keyTrueRussianAnswer, 0);
-    _databaseQuery.resetArabicAnswerState();
+    _databaseQuery.resetRussianAnswerState();
     _russianPageController.jumpToPage(0);
     update();
   }
