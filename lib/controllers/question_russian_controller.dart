@@ -128,7 +128,7 @@ class QuestionRussianController extends GetxController
   shareResult() {
     Share.share(
       'Я ответил правильно на $_trueRussianAnswerCount из 99 вопросов в русско-арабской версии викторины об именах Аллаха',
-    );
+        sharePositionOrigin: Rect.fromLTWH(0, 0, 10, 10));
   }
 
   resetQuiz() async {

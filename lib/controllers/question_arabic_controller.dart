@@ -128,6 +128,7 @@ class QuestionArabicController extends GetxController
   shareResult() {
     Share.share(
       'Я ответил правильно на $_trueArabicAnswerCount из 99 вопросов в арабско-русской версии викторины об именах Аллаха',
+      sharePositionOrigin: Rect.fromLTWH(0, 0, 10, 10),
     );
   }
 

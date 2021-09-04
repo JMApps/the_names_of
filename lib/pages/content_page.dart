@@ -42,6 +42,7 @@ class _ContentPageState extends State<ContentPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     args = ModalRoute.of(context)!.settings.arguments as ListContentArguments?;
     _pageViewController = PageController();
     return Scaffold(
@@ -72,12 +73,12 @@ class _ContentPageState extends State<ContentPage> {
             ],
           ),
         ),
-        child: _buildContentPage(),
+        child: _buildContentPage(size),
       ),
     );
   }
 
-  Widget _buildContentPage() {
+  Widget _buildContentPage(Size size) {
     return Column(
       children: [
         _buildDotIndicator(_selectedPage, 16, Colors.orange),
@@ -103,8 +104,12 @@ class _ContentPageState extends State<ContentPage> {
                             padding: EdgeInsets.only(top: 8, bottom: 16),
                             child: TextButton.icon(
                               onPressed: () {
-                                Share.share(_parseHtmlString(
-                                    '${snapshot.data![0].contentTitle}\n\n${snapshot.data![0].content}'));
+                                Share.share(
+                                  _parseHtmlString(
+                                      '${snapshot.data![0].contentTitle}\n\n${snapshot.data![0].content}'),
+                                  sharePositionOrigin: Rect.fromLTWH(
+                                      0, 0, size.width, size.height / 2),
+                                );
                               },
                               label: Text(
                                 'Поделиться главой',

@@ -47,6 +47,7 @@ class _NamesPageState extends State<NamesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     args = ModalRoute.of(context)!.settings.arguments as ListNameArguments?;
     return Scaffold(
       appBar: AppBar(
@@ -75,11 +76,11 @@ class _NamesPageState extends State<NamesPage> {
           ),
         ],
       ),
-      body: _buildFutureList(false),
+      body: _buildFutureList(false, size),
     );
   }
 
-  Widget _buildFutureList(bool shuffle) {
+  Widget _buildFutureList(bool shuffle, Size size) {
     return FutureBuilder<List>(
       future: _databaseQuery.getAllNames(),
       builder: (context, snapshot) {
@@ -95,7 +96,7 @@ class _NamesPageState extends State<NamesPage> {
                     ],
                   ),
                 ),
-                child: _buildListNames(snapshot),
+                child: _buildListNames(snapshot, size),
               )
             : Center(
                 child: CircularProgressIndicator(),
@@ -104,20 +105,20 @@ class _NamesPageState extends State<NamesPage> {
     );
   }
 
-  Widget _buildListNames(AsyncSnapshot snapshot) {
+  Widget _buildListNames(AsyncSnapshot snapshot, Size size) {
     _setupPlayer(snapshot);
     return Scrollbar(
       child: ScrollablePositionedList.builder(
         itemScrollController: _itemScrollController,
         itemCount: snapshot.data!.length,
         itemBuilder: (context, index) {
-          return _buildNameItem(snapshot.data![index], index);
+          return _buildNameItem(snapshot.data![index], index, size);
         },
       ),
     );
   }
 
-  Widget _buildNameItem(NameItem item, int index) {
+  Widget _buildNameItem(NameItem item, int index, Size size) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -230,6 +231,8 @@ class _NamesPageState extends State<NamesPage> {
                       onPressed: () {
                         Share.share(
                           '${item.nameArabic}\n${item.nameTranscription}\n${item.nameTranslation}',
+                          sharePositionOrigin:
+                              Rect.fromLTWH(0, 0, size.width, size.height / 2),
                         );
                       },
                     ),
@@ -239,7 +242,7 @@ class _NamesPageState extends State<NamesPage> {
                         color: Colors.red,
                       ),
                       onPressed: () {
-                        _takeScreenshot(item);
+                        _takeScreenshot(item, size);
                       },
                     ),
                   ],
@@ -344,7 +347,7 @@ class _NamesPageState extends State<NamesPage> {
     );
   }
 
-  _takeScreenshot(NameItem item) async {
+  _takeScreenshot(NameItem item, Size size) async {
     final unit8List =
         await _screenshotController.captureFromWidget(_forScreen(item));
     String tempPath = (Platform.isAndroid
@@ -353,7 +356,10 @@ class _NamesPageState extends State<NamesPage> {
         .path;
     File file = File('$tempPath/image_${item.id}.jpg');
     await file.writeAsBytes(unit8List);
-    await Share.shareFiles([file.path]);
+    await Share.shareFiles(
+      [file.path],
+      sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 2),
+    );
   }
 
   _setupPlayer(AsyncSnapshot snapshot) {

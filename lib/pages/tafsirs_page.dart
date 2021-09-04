@@ -45,6 +45,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     args = ModalRoute.of(context)!.settings.arguments as ListTafsirArguments?;
     _pageViewController = PageController();
     return Scaffold(
@@ -78,7 +79,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
           children: [
             _buildDotIndicator(_selectedPage, 65, Colors.green),
             Expanded(
-              child: _buildTafsirPage(),
+              child: _buildTafsirPage(size),
             ),
           ],
         )),
@@ -86,7 +87,7 @@ class _TafsirsPageState extends State<TafsirsPage> {
     );
   }
 
-  Widget _buildTafsirPage() {
+  Widget _buildTafsirPage(Size size) {
     return PageView.builder(
       onPageChanged: (page) {
         setState(() {
@@ -110,8 +111,11 @@ class _TafsirsPageState extends State<TafsirsPage> {
                       padding: EdgeInsets.only(top: 8, bottom: 16),
                       child: TextButton.icon(
                         onPressed: () {
-                          Share.share(_parseHtmlString(
-                              '${snapshot.data![0].forShare}'));
+                          Share.share(
+                            _parseHtmlString('${snapshot.data![0].forShare}'),
+                            sharePositionOrigin: Rect.fromLTWH(
+                                0, 0, size.width, size.height / 2),
+                          );
                         },
                         label: Text(
                           'Поделиться главой',
