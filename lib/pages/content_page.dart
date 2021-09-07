@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -104,22 +105,33 @@ class _ContentPageState extends State<ContentPage> {
                             padding: EdgeInsets.only(top: 8, bottom: 16),
                             child: TextButton.icon(
                               onPressed: () {
-                                Share.share(
+                                FlutterClipboard.copy(
                                   _parseHtmlString(
                                       '${snapshot.data![0].contentTitle}\n\n${snapshot.data![0].content}'),
-                                  sharePositionOrigin: Rect.fromLTWH(
-                                      0, 0, size.width, size.height / 2),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Colors.orange,
+                                    content: Text(
+                                      'Скопировано',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    duration: Duration(milliseconds: 500),
+                                  ),
                                 );
                               },
                               label: Text(
-                                'Поделиться главой',
+                                'Скопировать главу',
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.orange,
                                 ),
                               ),
                               icon: Icon(
-                                CupertinoIcons.share,
+                                CupertinoIcons.doc_on_doc,
                                 size: 25,
                                 color: Colors.orange,
                               ),
