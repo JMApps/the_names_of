@@ -267,7 +267,7 @@ class _NamesPageState extends State<NamesPage> {
       controller: _screenshotController,
       child: Container(
         padding: EdgeInsets.all(8),
-        width: MediaQuery.of(context).size.width,
+        width: 500,
         height: 300,
         child: Card(
           margin: EdgeInsets.all(16),

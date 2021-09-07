@@ -10,7 +10,6 @@ import 'package:the_names_of/model/content_item.dart';
 import 'package:the_names_of/model/name_item.dart';
 import 'package:the_names_of/model/quiz_item.dart';
 import 'package:the_names_of/model/tafsir_item.dart';
-import 'package:the_names_of/pages/support_project_page.dart';
 
 class MainPage extends StatefulWidget {
   final zoomDrawerController;
