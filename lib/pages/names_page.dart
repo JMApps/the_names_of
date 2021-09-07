@@ -352,9 +352,8 @@ class _NamesPageState extends State<NamesPage> {
         await _screenshotController.captureFromWidget(_forScreen(item));
     String tempPath = (Platform.isAndroid
             ? await getExternalStorageDirectory()
-            : await getApplicationSupportDirectory())!
-        .path;
-    File file = File('$tempPath/image_${item.id}.jpg');
+            : await getApplicationDocumentsDirectory())!.path;
+    File file = File('$tempPath/name_${item.id}.jpg');
     await file.writeAsBytes(unit8List);
     await Share.shareFiles(
       [file.path],
