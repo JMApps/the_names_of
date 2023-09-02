@@ -102,7 +102,8 @@ class Assets {
   static const String audiosName98 = 'assets/audios/name98.mp3';
   static const String audiosName99 = 'assets/audios/name99.mp3';
   static const String databasesTheNames = 'assets/databases/the_names.db';
-  static const String fontsArabic = 'assets/fonts/arabic.ttf';
   static const String fontsGilroyMedium = 'assets/fonts/gilroy_medium.ttf';
+  static const String fontsKhebrat = 'assets/fonts/khebrat.ttf';
+  static const String picturesBackground = 'assets/pictures/background.jpg';
 
 }

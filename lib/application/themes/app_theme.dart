@@ -66,7 +66,23 @@ class AppTheme {
 }
 
 extension ColorSchemeS on ColorScheme {
-  Color get contentColor => brightness == Brightness.light
-      ? const Color(0xFFE65100)
-      : const Color(0xFFE65100);
+  Color get contentColor50 => brightness == Brightness.light
+      ? const Color(0xFFFFF3E0)
+      : const Color(0x1AE65100);
+
+  Color get namesColor50 => brightness == Brightness.light
+      ? const Color(0xFFFFEBEE)
+      : const Color(0x1AB71C1C);
+
+  Color get clarificationsColor50 => brightness == Brightness.light
+      ? const Color(0xFFE8F5E9)
+      : const Color(0x1A1B5E20);
+
+  Color get toContentTileColor => brightness == Brightness.light
+      ? const Color(0xFFBDBDBD)
+      : const Color(0xFF424242);
+
+  Color get mainDefault => brightness == Brightness.light
+      ? const Color(0xFF262626)
+      : const Color(0xFFD5D5D5);
 }

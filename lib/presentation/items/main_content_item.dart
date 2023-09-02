@@ -13,7 +13,8 @@ class MainContentItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
-      margin: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 8),
+      color: appColors.contentColor50,
+      margin: AppStyles.mainMarding,
       child: InkWell(
         onTap: () {},
         borderRadius: AppStyles.mainBorder,
@@ -28,7 +29,7 @@ class MainContentItem extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundColor: appColors.contentColor.withOpacity(0.35),
+                    backgroundColor: Colors.orange.withOpacity(0.75),
                     child: Text(
                       model.id.toString(),
                     ),
