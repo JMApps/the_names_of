@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/data/local/database_query.dart';
-import 'package:the_names_of/domain/models/content_model.dart';
-import 'package:the_names_of/presentation/items/main_content_item.dart';
+import 'package:the_names_of/domain/models/clarification_model.dart';
+import 'package:the_names_of/presentation/items/main_clarification_item.dart';
 import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
 
-class MainContentPages extends StatefulWidget {
-  const MainContentPages({super.key});
+class MainClarificationPage extends StatefulWidget {
+  const MainClarificationPage({super.key});
 
   @override
-  State<MainContentPages> createState() => _MainContentPagesState();
+  State<MainClarificationPage> createState() => _MainClarificationPageState();
 }
 
-class _MainContentPagesState extends State<MainContentPages> {
+class _MainClarificationPageState extends State<MainClarificationPage> {
   final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ContentModel>>(
-      future: DatabaseQuery().getAllContents(),
-      builder:
-          (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
+    return FutureBuilder<List<ClarificationModel>>(
+      future: DatabaseQuery().getAllClarifications(),
+      builder: (BuildContext context, AsyncSnapshot<List<ClarificationModel>> snapshot) {
         if (snapshot.hasData) {
           return Column(
             children: [
@@ -30,15 +29,15 @@ class _MainContentPagesState extends State<MainContentPages> {
                   controller: _pageController,
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final ContentModel model = snapshot.data![index];
-                    return MainContentItem(model: model);
+                    final ClarificationModel model = snapshot.data![index];
+                    return MainClarificationItem(model: model);
                   },
                 ),
               ),
               MainSmoothIndicator(
                 controller: _pageController,
                 count: snapshot.data!.length,
-                dotColor: Colors.orange,
+                dotColor: Colors.green,
               ),
               const SizedBox(height: 16),
             ],

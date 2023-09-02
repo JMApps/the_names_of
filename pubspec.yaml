@@ -25,6 +25,7 @@ dependencies:
   just_audio: ^0.9.34
   hive_flutter: ^1.1.0
   flip_card: ^0.7.0
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -39,10 +40,11 @@ flutter:
   assets:
   - assets/databases/
   - assets/audios/
+  - assets/pictures/
   fonts:
     - family: Gilroy
       fonts:
         - asset: assets/fonts/gilroy_medium.ttf
-    - family: Arabic
+    - family: Khebrat
       fonts:
-        - asset: assets/fonts/arabic.ttf
+        - asset: assets/fonts/khebrat.ttf
