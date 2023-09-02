@@ -1,7 +1,7 @@
 name: the_names_of
 description: The names of Allah
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -26,6 +26,7 @@ dependencies:
   hive_flutter: ^1.1.0
   flip_card: ^0.7.0
   smooth_page_indicator: ^1.1.0
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -38,9 +39,9 @@ flutter:
   uses-material-design: true
 
   assets:
-  - assets/databases/
-  - assets/audios/
-  - assets/pictures/
+    - assets/databases/
+    - assets/audios/
+    - assets/pictures/
   fonts:
     - family: Gilroy
       fonts:

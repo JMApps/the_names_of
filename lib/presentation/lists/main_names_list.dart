@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/data/local/database_query.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
 import 'package:the_names_of/presentation/items/main_name_item.dart';
-import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
 
-class MainNamesList extends StatefulWidget {
+class MainNamesList extends StatelessWidget {
   const MainNamesList({super.key});
-
-  @override
-  State<MainNamesList> createState() => _MainNamesListState();
-}
-
-class _MainNamesListState extends State<MainNamesList> {
-  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,26 +14,13 @@ class _MainNamesListState extends State<MainNamesList> {
       future: DatabaseQuery().getAllNames(),
       builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
         if (snapshot.hasData) {
-          return Column(
-            children: [
-              SizedBox(
-                height: 175,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final NameModel model = snapshot.data![index];
-                    return MainNamesItem(model: model);
-                  },
-                ),
-              ),
-              MainSmoothIndicator(
-                controller: _pageController,
-                count: snapshot.data!.length,
-                dotColor: Colors.red,
-              ),
-              const SizedBox(height: 16),
-            ],
+          return ScrollablePositionedList.builder(
+            padding: AppStyles.mainMardingMini,
+            itemCount: snapshot.data!.length,
+            itemBuilder: (BuildContext context, int index) {
+              final NameModel model = snapshot.data![index];
+              return MainNamesItem(model: model);
+            },
           );
         } else if (snapshot.hasError) {
           return Center(

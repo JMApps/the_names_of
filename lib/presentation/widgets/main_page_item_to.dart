@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 
 class MainPageItemTo extends StatelessWidget {
   const MainPageItemTo({
@@ -14,28 +13,29 @@ class MainPageItemTo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
+    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: ListTile(
         onTap: () {
           Navigator.pushNamed(context, routeName);
         },
-        tileColor: appColors.toContentTileColor.withOpacity(0.25),
-        splashColor: appColors.toContentTileColor.withOpacity(0.25),
+        tileColor: evenItemColor,
+        splashColor: oddItemColor,
         visualDensity: const VisualDensity(vertical: -4),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topRight: Radius.circular(25),
-            bottomRight: Radius.circular(25),
+            topRight: Radius.circular(15),
+            bottomRight: Radius.circular(15),
           ),
         ),
         title: Text(
           title,
-          style: TextStyle(
-            fontFamily: 'Gilroy',
-            color: appColors.mainDefault,
+          style: const TextStyle(
+            fontSize: 20,
           ),
         ),
         trailing: const Icon(CupertinoIcons.forward),

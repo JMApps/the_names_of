@@ -2,31 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
 
-class MainNamesItem extends StatelessWidget {
-  const MainNamesItem({super.key, required this.model});
+class MainNamesPageItem extends StatelessWidget {
+  const MainNamesPageItem({super.key, required this.model});
 
   final NameModel model;
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
-    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: model.id.isOdd ? oddItemColor : evenItemColor,
-            borderRadius: AppStyles.mainBorder,
+    return Card(
+      margin: AppStyles.mainMarding,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 16,
+                top: 16,
+              ),
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.red.withOpacity(0.75),
+                child: Text(model.id.toString()),
+              ),
+            ),
           ),
-          child: InkWell(
-            onTap: () {},
-            borderRadius: AppStyles.mainBorder,
+          Align(
+            alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 16),
                 Text(
                   model.nameArabic,
                   style: const TextStyle(
@@ -47,13 +52,11 @@ class MainNamesItem extends StatelessWidget {
                   model.nameTranslation,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 16),
               ],
             ),
           ),
-        ),
-        const SizedBox(height: 16),
-      ],
+        ],
+      ),
     );
   }
 }

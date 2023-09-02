@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/application/routes/app_routes.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/presentation/pages/main_page.dart';
@@ -13,6 +14,7 @@ class RootPage extends StatelessWidget {
       title: AppStrings.appName,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      onGenerateRoute: AppRoutes.onGenerateRoute,
       home: const MainPage(),
     );
   }
