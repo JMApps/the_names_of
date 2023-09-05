@@ -17,6 +17,9 @@ class BaseHtmlWidget extends StatelessWidget {
           fontSize: FontSize(18),
           textOverflow: TextOverflow.fade,
         ),
+        'small': Style(
+          fontSize: FontSize(14),
+        ),
       },
     );
   }

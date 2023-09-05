@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_names_of/domain/models/arguments/main_args.dart';
 
 class MainPageItemTo extends StatelessWidget {
   const MainPageItemTo({
@@ -20,7 +21,7 @@ class MainPageItemTo extends StatelessWidget {
       padding: const EdgeInsets.only(right: 16),
       child: ListTile(
         onTap: () {
-          Navigator.pushNamed(context, routeName);
+          Navigator.pushNamed(context, routeName, arguments: MainArgs(null));
         },
         tileColor: evenItemColor,
         splashColor: oddItemColor,

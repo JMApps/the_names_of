@@ -53,4 +53,24 @@ class AppTheme {
   );
 }
 
-extension ColorSchemeS on ColorScheme {}
+extension ColorSchemeS on ColorScheme {
+  Color get contentCardColor => brightness == Brightness.light
+      ? const Color(0xFFFFF3E0)
+      : const Color(0x26E65100);
+
+  Color get namesCardColor => brightness == Brightness.light
+      ? const Color(0xFFFFEBEE)
+      : const Color(0x26B71C1C);
+
+  Color get clarificationCardColor => brightness == Brightness.light
+      ? const Color(0xFFE8F5E9)
+      : const Color(0x261B5E20);
+
+  Color get quizCardColor => brightness == Brightness.light
+      ? const Color(0xFFE3F2FD)
+      : const Color(0x260D47A1);
+
+  Color get cardsColor => brightness == Brightness.light
+      ? const Color(0xFFFFFFFF)
+      : const Color(0xBF1E1E1E);
+}

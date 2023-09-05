@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
+import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
 
 class MainNamesPageItem extends StatelessWidget {
@@ -9,8 +10,10 @@ class MainNamesPageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
       margin: AppStyles.mainMarding,
+      color: appColors.namesCardColor,
       child: Stack(
         children: [
           Align(

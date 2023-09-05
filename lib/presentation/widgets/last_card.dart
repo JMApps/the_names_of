@@ -6,15 +6,18 @@ class LastCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.routeName,
+    required this.cardColor,
   });
 
   final String title;
   final String routeName;
+  final Color cardColor;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: AppStyles.mainMardingHorizontal,
+      color: cardColor,
       child: InkWell(
         onTap: () {},
         borderRadius: AppStyles.mainBorder,
