@@ -14,8 +14,17 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.appName),
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: appColors.mainGradient,
+          ),
+          child: AppBar(
+            title: const Text(AppStrings.appName),
+            backgroundColor: Colors.transparent,
+          ),
+        ),
       ),
       body: ListView(
         children: [

@@ -8,12 +8,13 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.light,
       seedColor: Colors.blue,
-      secondary: Colors.red
+      secondary: Colors.red,
     ),
     useMaterial3: true,
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       elevation: 0,
+      scrolledUnderElevation: 0,
     ),
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
@@ -39,6 +40,7 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       elevation: 0,
+      scrolledUnderElevation: 0,
     ),
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
@@ -73,4 +75,68 @@ extension ColorSchemeS on ColorScheme {
   Color get cardsColor => brightness == Brightness.light
       ? const Color(0xFFFFFFFF)
       : const Color(0xBF1E1E1E);
+
+  LinearGradient get mainGradient => brightness == Brightness.light
+      ? const LinearGradient(
+          colors: [
+            Color(0xFF1976D2),
+            Color(0xFF2196F3),
+            Color(0xFF64B5F6),
+          ],
+        )
+      : const LinearGradient(
+          colors: [
+            Color(0xFF082B67),
+            Color(0xFF0D4383),
+            Color(0xFF0B5EB2),
+          ],
+        );
+
+  LinearGradient get contentGradient => brightness == Brightness.light
+      ? const LinearGradient(
+          colors: [
+            Color(0xFFF57C00),
+            Color(0xFFFF9800),
+            Color(0xFFFFB74D),
+          ],
+        )
+      : const LinearGradient(
+          colors: [
+            Color(0x66E65100),
+            Color(0x40EF6C00),
+            Color(0x26F57C00),
+          ],
+        );
+
+  LinearGradient get namesGradient => brightness == Brightness.light
+      ? const LinearGradient(
+          colors: [
+            Color(0xFFD32F2F),
+            Color(0xFFF44336),
+            Color(0xFFE57373),
+          ],
+        )
+      : const LinearGradient(
+          colors: [
+            Color(0x66B71C1C),
+            Color(0x40C62828),
+            Color(0x26D32F2F),
+          ],
+        );
+
+  LinearGradient get clarificationsGradient => brightness == Brightness.light
+      ? const LinearGradient(
+          colors: [
+            Color(0xFF388E3C),
+            Color(0xFF4CAF50),
+            Color(0xFF81C784),
+          ],
+        )
+      : const LinearGradient(
+          colors: [
+            Color(0x661B5E20),
+            Color(0x402E7D32),
+            Color(0x26388e3c),
+          ],
+        );
 }

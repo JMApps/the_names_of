@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
+import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/data/local/database_query.dart';
 import 'package:the_names_of/domain/models/clarification_model.dart';
 import 'package:the_names_of/presentation/items/clarification_item.dart';
@@ -27,15 +28,25 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.clarificationNames),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(CupertinoIcons.share),
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: appColors.clarificationsGradient,
           ),
-        ],
+          child: AppBar(
+            title: const Text(AppStrings.clarificationNames),
+            backgroundColor: Colors.transparent,
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(CupertinoIcons.share),
+              ),
+            ],
+          ),
+        ),
       ),
       body: FutureBuilder<List<ClarificationModel>>(
         future: DatabaseQuery().getAllClarifications(),
