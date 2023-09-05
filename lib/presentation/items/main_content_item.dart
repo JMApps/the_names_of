@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
+import 'package:the_names_of/application/themes/app_theme.dart';
+import 'package:the_names_of/domain/models/arguments/main_args.dart';
 import 'package:the_names_of/domain/models/content_model.dart';
 import 'package:the_names_of/presentation/widgets/base_html_widget.dart';
 
@@ -10,10 +12,18 @@ class MainContentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
       margin: AppStyles.mainMarding,
+      color: appColors.contentCardColor,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            'main_contents_page',
+            arguments: MainArgs(model.id - 1),
+          );
+        },
         borderRadius: AppStyles.mainBorder,
         child: Padding(
           padding: AppStyles.mainMarding,

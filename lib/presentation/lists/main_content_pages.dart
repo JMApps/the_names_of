@@ -19,8 +19,7 @@ class _MainContentPagesState extends State<MainContentPages> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<ContentModel>>(
       future: DatabaseQuery().getAllContents(),
-      builder:
-          (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
         if (snapshot.hasData) {
           return Column(
             children: [
