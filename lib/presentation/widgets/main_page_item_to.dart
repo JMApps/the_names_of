@@ -21,7 +21,7 @@ class MainPageItemTo extends StatelessWidget {
       padding: const EdgeInsets.only(right: 16),
       child: ListTile(
         onTap: () {
-          Navigator.pushNamed(context, routeName, arguments: MainArgs(null));
+          Navigator.pushNamed(context, routeName, arguments: MainArgs(index: 0));
         },
         tileColor: evenItemColor,
         splashColor: oddItemColor,

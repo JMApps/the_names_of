@@ -8,7 +8,10 @@ import 'package:the_names_of/domain/models/content_model.dart';
 import 'package:the_names_of/presentation/widgets/base_html_widget.dart';
 
 class ContentItem extends StatelessWidget {
-  const ContentItem({super.key, required this.model});
+  const ContentItem({
+    super.key,
+    required this.model,
+  });
 
   final ContentModel model;
 

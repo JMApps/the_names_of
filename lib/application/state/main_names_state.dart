@@ -20,4 +20,15 @@ class MainNamesState extends ChangeNotifier {
       );
     }
   }
+
+  toIdItem(int id) {
+    if (_itemScrollController.isAttached) {
+      _itemScrollController.scrollTo(
+        index: id,
+        duration: const Duration(
+          milliseconds: 750,
+        ),
+      );
+    }
+  }
 }

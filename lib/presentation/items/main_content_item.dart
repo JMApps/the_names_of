@@ -6,13 +6,17 @@ import 'package:the_names_of/domain/models/content_model.dart';
 import 'package:the_names_of/presentation/widgets/base_html_widget.dart';
 
 class MainContentItem extends StatelessWidget {
-  const MainContentItem({super.key, required this.model});
+  const MainContentItem(
+      {super.key, required this.model, required this.contentIndex,});
 
   final ContentModel model;
+  final int contentIndex;
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
+    final ColorScheme appColors = Theme
+        .of(context)
+        .colorScheme;
     return Card(
       margin: AppStyles.mainMarding,
       color: appColors.contentCardColor,
@@ -21,7 +25,7 @@ class MainContentItem extends StatelessWidget {
           Navigator.pushNamed(
             context,
             'main_contents_page',
-            arguments: MainArgs(model.id - 1),
+            arguments: MainArgs(index: contentIndex),
           );
         },
         borderRadius: AppStyles.mainBorder,

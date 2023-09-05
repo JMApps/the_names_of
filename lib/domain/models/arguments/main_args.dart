@@ -1,5 +1,5 @@
 class MainArgs {
-  final int? contentId;
+  final int index;
 
-  MainArgs(this.contentId);
+  MainArgs({required this.index});
 }

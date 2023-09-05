@@ -9,11 +9,12 @@ class AppRoutes {
       case 'main_contents_page':
         final MainArgs args = routeSettings.arguments as MainArgs;
         return MaterialPageRoute(
-          builder: (_) => MainContentPage(contentId: args.contentId),
+          builder: (_) => MainContentPage(contentIndex: args.index),
         );
       case 'main_names_page':
+        final MainArgs args = routeSettings.arguments as MainArgs;
         return MaterialPageRoute(
-          builder: (_) => const MainNamesPage(),
+          builder: (_) => MainNamesPage(nameIndex: args.index),
         );
       default:
         throw Exception('Invalid route ${routeSettings.name}');

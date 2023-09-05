@@ -7,8 +7,23 @@ import 'package:the_names_of/data/local/database_query.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
 import 'package:the_names_of/presentation/items/main_name_item.dart';
 
-class MainNamesList extends StatelessWidget {
-  const MainNamesList({super.key});
+class MainNamesList extends StatefulWidget {
+  const MainNamesList({super.key, required this.nameIndex});
+
+  final int nameIndex;
+
+  @override
+  State<MainNamesList> createState() => _MainNamesListState();
+}
+
+class _MainNamesListState extends State<MainNamesList> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 1)).whenComplete(
+      () => context.read<MainNamesState>().toIdItem(widget.nameIndex),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

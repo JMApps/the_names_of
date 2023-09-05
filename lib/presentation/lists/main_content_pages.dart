@@ -30,7 +30,7 @@ class _MainContentPagesState extends State<MainContentPages> {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     final ContentModel model = snapshot.data![index];
-                    return MainContentItem(model: model);
+                    return MainContentItem(model: model, contentIndex: index);
                   },
                 ),
               ),

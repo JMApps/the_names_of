@@ -6,7 +6,9 @@ import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/presentation/lists/main_names_list.dart';
 
 class MainNamesPage extends StatelessWidget {
-  const MainNamesPage({super.key});
+  const MainNamesPage({super.key, required this.nameIndex});
+
+  final int nameIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class MainNamesPage extends StatelessWidget {
             ),
           ],
         ),
-        body: const MainNamesList(),
+        body: MainNamesList(nameIndex: nameIndex),
       ),
     );
   }

@@ -30,7 +30,7 @@ class _MainNamesPagesState extends State<MainNamesPages> {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     final NameModel model = snapshot.data![index];
-                    return MainNamesPageItem(model: model);
+                    return MainNamesPageItem(model: model, index: index);
                   },
                 ),
               ),
