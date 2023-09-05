@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
@@ -17,6 +18,7 @@ class MainContentPage extends StatefulWidget {
 
 class _MainContentPageState extends State<MainContentPage> {
   late final PageController _pageController;
+  late final ContentModel _model;
 
   @override
   void initState() {
@@ -29,6 +31,12 @@ class _MainContentPageState extends State<MainContentPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.descriptionHeads),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(CupertinoIcons.share),
+          ),
+        ],
       ),
       body: FutureBuilder<List<ContentModel>>(
         future: DatabaseQuery().getAllContents(),
@@ -49,8 +57,8 @@ class _MainContentPageState extends State<MainContentPage> {
                     controller: _pageController,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final ContentModel model = snapshot.data![index];
-                      return ContentItem(model: model);
+                      _model = snapshot.data![index];
+                      return ContentItem(model: _model);
                     },
                   ),
                 ),

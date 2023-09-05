@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
@@ -17,6 +18,7 @@ class MainClarificationPage extends StatefulWidget {
 
 class _MainClarificationPageState extends State<MainClarificationPage> {
   late final PageController _pageController;
+  late final ClarificationModel _model;
 
   @override
   void initState() {
@@ -29,6 +31,12 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.clarificationNames),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(CupertinoIcons.share),
+          ),
+        ],
       ),
       body: FutureBuilder<List<ClarificationModel>>(
         future: DatabaseQuery().getAllClarifications(),
@@ -49,8 +57,8 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
                     controller: _pageController,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final ClarificationModel model = snapshot.data![index];
-                      return ClarificationItem(model: model);
+                      _model = snapshot.data![index];
+                      return ClarificationItem(model: _model);
                     },
                   ),
                 ),
