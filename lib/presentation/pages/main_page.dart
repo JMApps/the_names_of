@@ -34,7 +34,7 @@ class MainPage extends StatelessWidget {
             routeName: 'main_clarifications_page',
             title: AppStrings.clarificationNames,
           ),
-          const MainClarificationPage(),
+          const MainClarificationPages(),
           LastCard(
             title: AppStrings.quiz,
             routeName: '',

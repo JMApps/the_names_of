@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
+import 'package:the_names_of/domain/models/arguments/main_args.dart';
 import 'package:the_names_of/domain/models/clarification_model.dart';
 import 'package:the_names_of/presentation/widgets/base_html_widget.dart';
 
 class MainClarificationItem extends StatelessWidget {
-  const MainClarificationItem({super.key, required this.model});
+  const MainClarificationItem({
+    super.key,
+    required this.model,
+    required this.clarificationIndex,
+  });
 
   final ClarificationModel model;
+  final int clarificationIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,13 @@ class MainClarificationItem extends StatelessWidget {
       margin: AppStyles.mainMarding,
       color: appColors.clarificationCardColor,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            'main_clarifications_page',
+            arguments: MainArgs(index: clarificationIndex),
+          );
+        },
         borderRadius: AppStyles.mainBorder,
         child: Padding(
           padding: AppStyles.mainMarding,

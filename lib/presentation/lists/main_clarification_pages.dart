@@ -5,21 +5,22 @@ import 'package:the_names_of/domain/models/clarification_model.dart';
 import 'package:the_names_of/presentation/items/main_clarification_item.dart';
 import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
 
-class MainClarificationPage extends StatefulWidget {
-  const MainClarificationPage({super.key});
+class MainClarificationPages extends StatefulWidget {
+  const MainClarificationPages({super.key});
 
   @override
-  State<MainClarificationPage> createState() => _MainClarificationPageState();
+  State<MainClarificationPages> createState() => _MainClarificationPagesState();
 }
 
-class _MainClarificationPageState extends State<MainClarificationPage> {
+class _MainClarificationPagesState extends State<MainClarificationPages> {
   final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ClarificationModel>>(
       future: DatabaseQuery().getAllClarifications(),
-      builder: (BuildContext context, AsyncSnapshot<List<ClarificationModel>> snapshot) {
+      builder: (BuildContext context,
+          AsyncSnapshot<List<ClarificationModel>> snapshot) {
         if (snapshot.hasData) {
           return Column(
             children: [
@@ -30,7 +31,10 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     final ClarificationModel model = snapshot.data![index];
-                    return MainClarificationItem(model: model);
+                    return MainClarificationItem(
+                      model: model,
+                      clarificationIndex: index,
+                    );
                   },
                 ),
               ),
