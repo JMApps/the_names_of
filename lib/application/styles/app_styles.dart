@@ -10,12 +10,12 @@ class AppStyles {
 
   static const RoundedRectangleBorder mainShape = RoundedRectangleBorder(
     borderRadius: BorderRadius.all(
-      Radius.circular(25),
+      Radius.circular(12.5),
     ),
   );
 
   static const BorderRadius mainBorder = BorderRadius.all(
-    Radius.circular(25),
+    Radius.circular(12.5),
   );
 
   static const EdgeInsets mainMarding = EdgeInsets.all(16);

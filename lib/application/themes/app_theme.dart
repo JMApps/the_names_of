@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/application/styles/app_styles.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
@@ -20,6 +21,10 @@ class AppTheme {
         fontFamily: 'Gilroy',
       ),
     ),
+    listTileTheme: const ListTileThemeData(
+      visualDensity: VisualDensity(vertical: -4),
+      shape: AppStyles.mainShape,
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -40,6 +45,10 @@ class AppTheme {
         fontSize: 20,
         fontFamily: 'Gilroy',
       ),
+    ),
+    listTileTheme: const ListTileThemeData(
+      visualDensity: VisualDensity(vertical: -4),
+      shape: AppStyles.mainShape,
     ),
   );
 }
