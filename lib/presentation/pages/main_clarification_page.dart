@@ -18,7 +18,6 @@ class MainClarificationPage extends StatefulWidget {
 
 class _MainClarificationPageState extends State<MainClarificationPage> {
   late final PageController _pageController;
-  late final ClarificationModel _model;
 
   @override
   void initState() {
@@ -57,8 +56,8 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
                     controller: _pageController,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      _model = snapshot.data![index];
-                      return ClarificationItem(model: _model);
+                      final ClarificationModel model = snapshot.data![index];
+                      return ClarificationItem(model: model);
                     },
                   ),
                 ),

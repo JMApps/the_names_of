@@ -18,7 +18,6 @@ class MainContentPage extends StatefulWidget {
 
 class _MainContentPageState extends State<MainContentPage> {
   late final PageController _pageController;
-  late final ContentModel _model;
 
   @override
   void initState() {
@@ -57,8 +56,8 @@ class _MainContentPageState extends State<MainContentPage> {
                     controller: _pageController,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      _model = snapshot.data![index];
-                      return ContentItem(model: _model);
+                      final ContentModel model = snapshot.data![index];
+                      return ContentItem(model: model);
                     },
                   ),
                 ),
