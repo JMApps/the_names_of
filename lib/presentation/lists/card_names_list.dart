@@ -13,12 +13,12 @@ class CardNamesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MainNamesState mainNamesState = Provider.of<MainNamesState>(context);
     return FutureBuilder<List<NameModel>>(
       future: DatabaseQuery().getAllNames(),
       builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
         if (snapshot.hasData) {
           return ScrollablePositionedList.builder(
+            itemScrollController: context.read<MainNamesState>().getItemScrollController,
             padding: AppStyles.mainMardingMini,
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
