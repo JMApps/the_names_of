@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/data/local/database_query.dart';
 import 'package:the_names_of/domain/models/content_model.dart';
 import 'package:the_names_of/presentation/items/content_item.dart';
@@ -28,25 +27,26 @@ class _MainContentPageState extends State<MainContentPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 60),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: appColors.contentGradient,
+      appBar: AppBar(
+        title: const Text(AppStrings.descriptionHeads),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, 'app_settings_page');
+            },
+            icon: const Icon(
+              CupertinoIcons.settings,
+            ),
           ),
-          child: AppBar(
-            title: const Text(AppStrings.descriptionHeads),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(CupertinoIcons.share),
-              ),
-            ],
-            backgroundColor: Colors.transparent,
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              CupertinoIcons.share,
+            ),
           ),
-        ),
+        ],
+        backgroundColor: Colors.transparent,
       ),
       body: FutureBuilder<List<ContentModel>>(
         future: DatabaseQuery().getAllContents(),

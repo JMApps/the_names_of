@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/presentation/lists/main_clarification_pages.dart';
 import 'package:the_names_of/presentation/lists/main_content_pages.dart';
 import 'package:the_names_of/presentation/lists/main_names_pages.dart';
@@ -12,48 +11,37 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 60),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: appColors.mainGradient,
-          ),
-          child: AppBar(
-            title: const Text(AppStrings.appName),
-            backgroundColor: Colors.transparent,
-          ),
-        ),
+      appBar: AppBar(
+        title: const Text(AppStrings.appName),
+        backgroundColor: Colors.transparent,
       ),
       body: ListView(
-        children: [
-          const SizedBox(height: 16),
-          const MainPageItemTo(
+        children: const [
+          SizedBox(height: 16),
+          MainPageItemTo(
             routeName: 'main_contents_page',
             title: AppStrings.descriptionHeads,
           ),
-          const MainContentPages(),
-          const MainPageItemTo(
+          MainContentPages(),
+          MainPageItemTo(
             routeName: 'main_names_page',
             title: AppStrings.names,
           ),
-          const MainNamesPages(),
-          const MainPageItemTo(
+          MainNamesPages(),
+          MainPageItemTo(
             routeName: 'main_clarifications_page',
             title: AppStrings.clarificationNames,
           ),
-          const MainClarificationPages(),
+          MainClarificationPages(),
           LastCard(
             title: AppStrings.quiz,
             routeName: '',
-            cardColor: appColors.quizCardColor,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           LastCard(
             title: AppStrings.cards,
             routeName: '',
-            cardColor: appColors.cardsColor,
           ),
         ],
       ),

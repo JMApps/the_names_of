@@ -16,23 +16,30 @@ class MainPageItemTo extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
-    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
-    return Padding(
-      padding: const EdgeInsets.only(right: 16),
+    final Color evenItemColor = colorScheme.primary.withOpacity(0.35);
+    return Container(
+      margin: const EdgeInsets.only(right: 16),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(15),
+          bottomRight: Radius.circular(15),
+        ),
+        color: oddItemColor,
+      ),
       child: ListTile(
         onTap: () {
-          Navigator.pushNamed(context, routeName, arguments: MainArgs(index: 0));
+          Navigator.pushNamed(context, routeName,
+              arguments: MainArgs(index: 0));
         },
-        tileColor: evenItemColor,
-        splashColor: oddItemColor,
-        visualDensity: const VisualDensity(vertical: -4),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+        splashColor: evenItemColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(15),
             bottomRight: Radius.circular(15),
           ),
         ),
+        visualDensity: const VisualDensity(vertical: -4),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         title: Text(
           title,
           style: const TextStyle(

@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/domain/models/clarification_model.dart';
-import 'package:the_names_of/presentation/widgets/base_html_widget.dart';
+import 'package:the_names_of/presentation/lists/clarification_ayahs_list.dart';
+import 'package:the_names_of/presentation/lists/clarification_names_list.dart';
+import 'package:the_names_of/presentation/widgets/content_html_widget.dart';
 
 class ClarificationItem extends StatelessWidget {
   const ClarificationItem({
@@ -17,7 +18,6 @@ class ClarificationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return SelectableRegion(
       focusNode: FocusNode(),
       selectionControls: Platform.isIOS
@@ -29,23 +29,9 @@ class ClarificationItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Card(
-                color: appColors.clarificationCardColor,
-                child: Padding(
-                  padding: AppStyles.mainMardingMini,
-                  child: Text(
-                    model.title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              BaseHtmlWidget(
-                content: model.clarification,
-              ),
+              ClarificationNamesList(clarificationId: model.id),
+              ClarificationAyahsList(clarificationId: model.id),
+              ContentHtmlWidget(content: model.clarification),
             ],
           ),
         ),

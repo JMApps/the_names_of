@@ -3,9 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/domain/models/content_model.dart';
-import 'package:the_names_of/presentation/widgets/base_html_widget.dart';
+import 'package:the_names_of/presentation/widgets/content_html_widget.dart';
 
 class ContentItem extends StatelessWidget {
   const ContentItem({
@@ -17,7 +16,6 @@ class ContentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return SelectableRegion(
       focusNode: FocusNode(),
       selectionControls: Platform.isIOS
@@ -30,7 +28,6 @@ class ContentItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Card(
-                color: appColors.contentCardColor,
                 child: Padding(
                   padding: AppStyles.mainMardingMini,
                   child: Text(
@@ -43,7 +40,7 @@ class ContentItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              BaseHtmlWidget(
+              ContentHtmlWidget(
                 content: model.content,
               ),
             ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/domain/models/arguments/main_args.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
 
@@ -19,7 +18,6 @@ class MainNamesPageItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
       margin: AppStyles.mainMarding,
-      color: appColors.namesCardColor,
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(
@@ -52,17 +50,17 @@ class MainNamesPageItem extends StatelessWidget {
                 children: [
                   Text(
                     model.nameArabic,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 20,
                       fontFamily: 'Khebrat',
-                      color: Colors.red,
+                      color: appColors.secondary,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   Text(
                     model.nameTranscription,
-                    style: const TextStyle(
-                      color: Colors.green,
+                    style: TextStyle(
+                      color: appColors.primary,
                     ),
                     textAlign: TextAlign.center,
                   ),
