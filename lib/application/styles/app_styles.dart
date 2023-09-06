@@ -26,4 +26,17 @@ class AppStyles {
 
   static const EdgeInsets mainMardingVertical = EdgeInsets.symmetric(vertical: 16);
   static const EdgeInsets mainMardingVerticalMini = EdgeInsets.symmetric(vertical: 8);
+
+  static const List<String> getFont = [
+    'Gilroy',
+    'Montserrat',
+    'Nexa',
+  ];
+
+  static const List<TextAlign> getAlign = [
+    TextAlign.left,
+    TextAlign.center,
+    TextAlign.right,
+    TextAlign.justify,
+  ];
 }

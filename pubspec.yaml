@@ -23,10 +23,12 @@ dependencies:
   scrollable_positioned_list: ^0.3.8
   screenshot: ^2.1.0
   just_audio: ^0.9.34
-  hive_flutter: ^1.1.0
+  hive_flutter: ^2.0.0-dev
   flip_card: ^0.7.0
   smooth_page_indicator: ^1.1.0
   provider: ^6.0.5
+  flutter_material_color_picker: ^1.2.0
+  wakelock_plus: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +48,15 @@ flutter:
     - family: Gilroy
       fonts:
         - asset: assets/fonts/gilroy_medium.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/montserrat_medium.ttf
+    - family: Nexa
+      fonts:
+        - asset: assets/fonts/nexa_reqular.ttf
     - family: Khebrat
       fonts:
         - asset: assets/fonts/khebrat.ttf
+    - family: Scheherezade
+      fonts:
+        - asset: assets/fonts/scheh.ttf

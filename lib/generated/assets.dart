@@ -104,6 +104,9 @@ class Assets {
   static const String databasesTheNames = 'assets/databases/the_names.db';
   static const String fontsGilroyMedium = 'assets/fonts/gilroy_medium.ttf';
   static const String fontsKhebrat = 'assets/fonts/khebrat.ttf';
+  static const String fontsMontserratMedium = 'assets/fonts/montserrat_medium.ttf';
+  static const String fontsNexaReqular = 'assets/fonts/nexa_reqular.ttf';
+  static const String fontsScheh = 'assets/fonts/scheh.ttf';
   static const String picturesBackground = 'assets/pictures/background.jpg';
 
 }
