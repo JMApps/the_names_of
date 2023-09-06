@@ -3,6 +3,7 @@ import 'package:the_names_of/domain/models/arguments/main_args.dart';
 import 'package:the_names_of/presentation/pages/main_clarification_page.dart';
 import 'package:the_names_of/presentation/pages/main_content_page.dart';
 import 'package:the_names_of/presentation/pages/main_names_page.dart';
+import 'package:the_names_of/presentation/pages/name_cards_page.dart';
 import 'package:the_names_of/presentation/pages/settings_page.dart';
 
 class AppRoutes {
@@ -26,6 +27,10 @@ class AppRoutes {
       case 'app_settings_page':
         return MaterialPageRoute(
           builder: (_) => const SettingsPage(),
+        );
+      case 'name_cards_page':
+        return MaterialPageRoute(
+          builder: (_) => const NameCardsPage(),
         );
       default:
         throw Exception('Invalid route ${routeSettings.name}');

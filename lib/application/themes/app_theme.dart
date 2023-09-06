@@ -4,7 +4,7 @@ import 'package:the_names_of/application/styles/app_styles.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: 'Gilroy',
+    fontFamily: 'Nexa',
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.light,
       seedColor: Colors.blue,
@@ -19,7 +19,7 @@ class AppTheme {
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
         fontSize: 20,
-        fontFamily: 'Gilroy',
+        fontFamily: 'Nexa',
       ),
     ),
     listTileTheme: const ListTileThemeData(
@@ -30,7 +30,7 @@ class AppTheme {
 
   static ThemeData darkTheme = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: 'Gilroy',
+    fontFamily: 'Nexa',
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
       seedColor: Colors.blueGrey,
@@ -44,7 +44,7 @@ class AppTheme {
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
         fontSize: 20,
-        fontFamily: 'Gilroy',
+        fontFamily: 'Nexa',
       ),
     ),
     listTileTheme: const ListTileThemeData(
