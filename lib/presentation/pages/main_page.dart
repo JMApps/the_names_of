@@ -37,12 +37,12 @@ class MainPage extends StatelessWidget {
           MainClarificationPages(),
           LastCard(
             title: AppStrings.quiz,
-            routeName: '',
+            routeName: 'quiz',
           ),
           SizedBox(height: 16),
           LastCard(
             title: AppStrings.cards,
-            routeName: '',
+            routeName: 'name_cards_page',
           ),
         ],
       ),

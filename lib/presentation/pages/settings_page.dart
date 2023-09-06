@@ -20,7 +20,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.settings),
-        backgroundColor: Colors.transparent,
+        backgroundColor: appTheme.colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
         padding: AppStyles.mainMarding,
@@ -34,16 +34,20 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const SizedBox(height: 8),
                 CupertinoSlidingSegmentedControl(
+                  thumbColor: appTheme.colorScheme.inversePrimary,
                   padding: const EdgeInsets.all(4),
-                  children: const <int, Widget>{
+                  children: <int, Widget>{
                     0: Text(
                       'Gilroy',
+                      style: appTheme.textTheme.bodyMedium,
                     ),
                     1: Text(
                       'Montserrat',
+                      style: appTheme.textTheme.bodyMedium,
                     ),
                     2: Text(
                       'Nexa',
+                      style: appTheme.textTheme.bodyMedium,
                     ),
                   },
                   groupValue: settingsState.getFontIndex,
@@ -57,6 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const SizedBox(height: 8),
                 CupertinoSlidingSegmentedControl(
+                  thumbColor: appTheme.colorScheme.inversePrimary,
                   padding: const EdgeInsets.all(4),
                   children: const <int, Widget>{
                     0: Icon(CupertinoIcons.text_alignleft),
@@ -70,7 +75,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 const SizedBox(height: 8),
-                Text(
+                const Text(
                   AppStrings.textSize,
                 ),
                 Slider(
@@ -94,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     title: Text(
                       AppStrings.textColor,
-                      style: appTheme.textTheme.headlineMedium,
+                      style: appTheme.textTheme.bodyMedium,
                     ),
                     leading: Icon(
                       Icons.palette_outlined,
@@ -103,9 +108,11 @@ class _SettingsPageState extends State<SettingsPage> {
                           : settingsState.getLightTextColor,
                     ),
                     trailing: Card(
+                      margin: EdgeInsets.zero,
                       shape: AppStyles.mainShape,
+                      color: appTheme.colorScheme.inversePrimary,
                       child: Padding(
-                        padding: const EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(5),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -204,8 +211,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     settingsState.changeAdaptiveTheme = onChanged!;
                   },
                   contentPadding: AppStyles.mainMardingHorizontalMini,
-                  title: const Text(
+                  title: Text(
                     AppStrings.adaptiveTheme,
+                    style: appTheme.textTheme.bodyMedium,
                   ),
                 ),
                 SwitchListTile(
@@ -216,8 +224,9 @@ class _SettingsPageState extends State<SettingsPage> {
                           settingsState.changeDarkTheme = onChanged!;
                         },
                   contentPadding: AppStyles.mainMardingHorizontalMini,
-                  title: const Text(
+                  title: Text(
                     AppStrings.darkTheme,
+                    style: appTheme.textTheme.bodyMedium,
                   ),
                 ),
                 SwitchListTile(
@@ -226,8 +235,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     settingsState.changeWakeLock = onChanged!;
                   },
                   contentPadding: AppStyles.mainMardingHorizontalMini,
-                  title: const Text(
+                  title: Text(
                     AppStrings.displayAlways,
+                    style: appTheme.textTheme.bodyMedium,
                   ),
                 ),
               ],
