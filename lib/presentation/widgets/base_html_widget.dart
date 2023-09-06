@@ -14,7 +14,7 @@ class BaseHtmlWidget extends StatelessWidget {
         '#': Style(
           padding: HtmlPaddings.zero,
           margin: Margins.zero,
-          fontSize: FontSize(18),
+          fontSize: FontSize(20),
           textOverflow: TextOverflow.fade,
         ),
         'small': Style(
