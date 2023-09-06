@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:the_names_of/application/state/app_player_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
 import 'package:the_names_of/presentation/widgets/main_names_modal.dart';
@@ -14,6 +16,7 @@ class MainNamesItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     final Color oddItemColor = appColors.primary.withOpacity(0.05);
     final Color evenItemColor = appColors.primary.withOpacity(0.15);
+    final AppPlayerState player = Provider.of<AppPlayerState>(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       child: InkWell(
@@ -50,8 +53,18 @@ class MainNamesItem extends StatelessWidget {
                   backgroundColor:
                       model.id.isOdd ? evenItemColor : appColors.background,
                   child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(CupertinoIcons.play_circle),
+                    onPressed: () {
+                      player.playTrack(
+                        nameAudio: model.nameAudio,
+                        trackId: model.id,
+                      );
+                    },
+                    icon: Icon(
+                      player.getCurrentTrackItem == model.id &&
+                          player.getPlayingState
+                          ? CupertinoIcons.stop_circle
+                          : CupertinoIcons.play,
+                    ),
                   ),
                 ),
               ),

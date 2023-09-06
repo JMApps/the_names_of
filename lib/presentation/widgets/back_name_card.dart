@@ -6,9 +6,10 @@ import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
 
 class BackNameCard extends StatelessWidget {
-  const BackNameCard({super.key, required this.model});
+  const BackNameCard({super.key, required this.model, required this.index});
 
   final NameModel model;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class BackNameCard extends StatelessWidget {
       height: 200,
       decoration: BoxDecoration(
         borderRadius: AppStyles.mainBorder,
-        color: model.id.isOdd ? oddItemColor : evenItemColor,
+        color: index.isOdd ? oddItemColor : evenItemColor,
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -31,7 +32,7 @@ class BackNameCard extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: CircleAvatar(
               radius: 20,
-              backgroundColor: model.id.isOdd ? oddItemColor : evenItemColor,
+              backgroundColor: index.isOdd ? oddItemColor : evenItemColor,
               child: IconButton(
                 onPressed: () {
                   player.playTrack(
@@ -73,7 +74,7 @@ class BackNameCard extends StatelessWidget {
             alignment: Alignment.topRight,
             child: CircleAvatar(
               radius: 20,
-              backgroundColor: model.id.isOdd ? evenItemColor : oddItemColor,
+              backgroundColor: index.isOdd ? evenItemColor : oddItemColor,
               child: Text(
                 model.id.toString(),
               ),

@@ -7,16 +7,21 @@ import 'package:the_names_of/presentation/widgets/back_name_card.dart';
 import 'package:the_names_of/presentation/widgets/front_name_card.dart';
 
 class CardNamesItem extends StatelessWidget {
-  const CardNamesItem({super.key, required this.model});
+  const CardNamesItem({super.key, required this.model, required this.index});
 
   final NameModel model;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     final MainNamesState namesState = Provider.of<MainNamesState>(context);
     return FlipCard(
-      front: namesState.getIsFlipCard ? FrontNameCard(model: model) : BackNameCard(model: model),
-      back: namesState.getIsFlipCard ? BackNameCard(model: model) : FrontNameCard(model: model),
+      front: namesState.getIsFlipCard
+          ? FrontNameCard(model: model, index: index)
+          : BackNameCard(model: model, index: index),
+      back: namesState.getIsFlipCard
+          ? BackNameCard(model: model, index: index)
+          : FrontNameCard(model: model, index: index),
     );
   }
 }
