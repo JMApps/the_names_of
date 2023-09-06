@@ -12,10 +12,11 @@ class MainNamesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.names),
-        backgroundColor: Colors.transparent,
+        backgroundColor: appColors.inversePrimary,
         actions: [
           Consumer<MainNamesState>(
             builder: (context, namesState, widget) {

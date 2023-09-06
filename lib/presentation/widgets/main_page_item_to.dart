@@ -14,9 +14,9 @@ class MainPageItemTo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
-    final Color evenItemColor = colorScheme.primary.withOpacity(0.35);
+    final ColorScheme appColors = Theme.of(context).colorScheme;
+    final Color oddItemColor = appColors.primary.withOpacity(0.10);
+    final Color evenItemColor = appColors.inversePrimary;
     return Container(
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
@@ -28,9 +28,13 @@ class MainPageItemTo extends StatelessWidget {
       ),
       child: ListTile(
         onTap: () {
-          Navigator.pushNamed(context, routeName,
-              arguments: MainArgs(index: 0));
+          Navigator.pushNamed(
+            context,
+            routeName,
+            arguments: MainArgs(index: 0),
+          );
         },
+        tileColor: oddItemColor,
         splashColor: evenItemColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

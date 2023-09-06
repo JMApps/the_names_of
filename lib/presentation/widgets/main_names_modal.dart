@@ -34,7 +34,6 @@ class MainNamesModal extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Gilroy',
-                        color: Colors.white,
                       ),
                     ),
                   ),

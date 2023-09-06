@@ -27,9 +27,11 @@ class _MainContentPageState extends State<MainContentPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.descriptionHeads),
+        backgroundColor: appColors.inversePrimary,
         actions: [
           IconButton(
             onPressed: () {
@@ -46,7 +48,6 @@ class _MainContentPageState extends State<MainContentPage> {
             ),
           ),
         ],
-        backgroundColor: Colors.transparent,
       ),
       body: FutureBuilder<List<ContentModel>>(
         future: DatabaseQuery().getAllContents(),

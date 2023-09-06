@@ -27,10 +27,11 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.clarificationNames),
-        backgroundColor: Colors.transparent,
+        backgroundColor: appColors.inversePrimary,
         actions: [
           IconButton(
             onPressed: () {

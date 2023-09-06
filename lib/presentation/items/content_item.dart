@@ -22,29 +22,26 @@ class ContentItem extends StatelessWidget {
           ? CupertinoTextSelectionControls()
           : MaterialTextSelectionControls(),
       child: CupertinoScrollbar(
-        child: SingleChildScrollView(
+        child: ListView(
           padding: AppStyles.mainMardingHorizontal,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Card(
-                child: Padding(
-                  padding: AppStyles.mainMardingMini,
-                  child: Text(
-                    model.contentTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
+          children: [
+            Card(
+              child: Padding(
+                padding: AppStyles.mainMardingMini,
+                child: Text(
+                  model.contentTitle,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 8),
-              ContentHtmlWidget(
-                content: model.content,
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 8),
+            ContentHtmlWidget(
+              content: model.content,
+            ),
+          ],
         ),
       ),
     );
