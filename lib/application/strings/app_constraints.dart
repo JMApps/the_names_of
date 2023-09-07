@@ -1,5 +1,6 @@
 class AppConstraints {
   static const String keyAppSettingsBox = 'key_app_settings_box';
+  static const String keyQuizApp = 'key_app_quiz';
 
   // Settings
   static const String keyFontIndex = 'key_strength_font_index';
@@ -12,4 +13,8 @@ class AppConstraints {
   static const String keyWakeLock = 'key_strength_wake_lock';
   static const String keyLastHead = 'key_strength_last_head';
   static const String keyBookmarkItem = 'key_strength_book_mark_item_';
+
+  // Quiz
+  static const String keyArRuPageIndex = 'key_ar_ru_page_index';
+  static const String keyRuArPageIndex = 'key_ru_ar_page_index';
 }

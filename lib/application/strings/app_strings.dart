@@ -6,8 +6,6 @@ class AppStrings {
   static const String names = 'Имена';
   static const String clarificationNames = 'Разъяснение имён';
   static const String quiz = 'Викторина';
-  static const String arabicRussian = 'Арабско-Русская';
-  static const String russianArabic = 'Русско-Арабская';
   static const String cards = 'Карточки';
 
   static const String copy = 'Копировать';
@@ -30,4 +28,9 @@ class AppStrings {
   static const String adaptiveTheme = 'Адаптивная тема';
   static const String darkTheme = 'Темная тема';
   static const String displayAlways = 'Дисплей всегда включён';
+
+  // Quiz
+  static const String arabicRussian = 'Арабско-Русская';
+  static const String russianArabic = 'Русско-Арабская';
+  static const String question = 'Вопрос';
 }

@@ -4,7 +4,6 @@ import 'package:the_names_of/domain/models/ayah_model.dart';
 import 'package:the_names_of/domain/models/clarification_model.dart';
 import 'package:the_names_of/domain/models/content_model.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
-import 'package:the_names_of/domain/models/quiz_model.dart';
 
 class DatabaseQuery {
   static final DatabaseQuery _instance = DatabaseQuery.internal();
@@ -69,39 +68,4 @@ class DatabaseQuery {
     List<ClarificationModel>? oneClarification = resources.isNotEmpty ? resources.map((c) => ClarificationModel.fromMap(c)).toList() : null;
     return oneClarification!;
   }
-
-  Future<List<QuizModel>> getArabicQuiz() async {
-    final Database database = await _databaseHelper.db;
-    final List<Map<String, dynamic>> resources = await database.query('Table_of_arabic_names_quiz');
-    List<QuizModel>? arabicQuiz = resources.isNotEmpty ? resources.map((c) => QuizModel.fromMap(c)).toList() : null;
-    return arabicQuiz!;
-  }
-
-  Future<List<QuizModel>> getRussianQuiz() async {
-    final Database database = await _databaseHelper.db;
-    final List<Map<String, dynamic>> resources = await database.query('Table_of_russian_names_quiz');
-    List<QuizModel>? russianQuiz = resources.isNotEmpty ? resources.map((c) => QuizModel.fromMap(c)).toList() : null;
-    return russianQuiz!;
-  }
-  //
-  // changeArabicAnswerState(int state, int id) async {
-  //   final Database database = await _databaseHelper.db;
-  //   await database.rawQuery('UPDATE Table_of_arabic_names_quiz SET answer_state = $state WHERE id == $id');
-  // }
-  //
-  // resetArabicAnswerState() async {
-  //   final Database database = await _databaseHelper.db;
-  //   await database.rawQuery('UPDATE Table_of_arabic_names_quiz SET answer_state = NULL');
-  // }
-  //
-  //
-  // changeRussianAnswerState(int state, int id) async {
-  //   final Database database = await _databaseHelper.db;
-  //   await database.rawQuery('UPDATE Table_of_russian_names_quiz SET answer_state = $state WHERE id == $id');
-  // }
-  //
-  // resetRussianAnswerState() async {
-  //   final Database database = await _databaseHelper.db;
-  //   await database.rawQuery('UPDATE Table_of_russian_names_quiz SET answer_state = NULL');
-  // }
 }

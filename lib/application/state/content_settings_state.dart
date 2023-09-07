@@ -4,7 +4,7 @@ import 'package:the_names_of/application/strings/app_constraints.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 class ContentSettingsState extends ChangeNotifier {
-  final _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
+  final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
 
   int _fontIndex = 0;
 

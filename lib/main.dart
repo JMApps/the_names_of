@@ -21,6 +21,7 @@ void main() async {
   }
   await Hive.initFlutter();
   await Hive.openBox(AppConstraints.keyAppSettingsBox);
+  await Hive.openBox(AppConstraints.keyQuizApp);
   runApp(
     MultiProvider(
       providers: [

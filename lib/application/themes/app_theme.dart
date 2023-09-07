@@ -54,4 +54,8 @@ class AppTheme {
   );
 }
 
-extension ColorSchemeS on ColorScheme {}
+extension ColorSchemeS on ColorScheme {
+  Color get incorrectColor => brightness == Brightness.light
+      ? const Color(0xFFE57373)
+      : const Color(0x4DB71C1C);
+}
