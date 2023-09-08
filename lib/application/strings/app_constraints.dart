@@ -15,6 +15,6 @@ class AppConstraints {
   static const String keyBookmarkItem = 'key_strength_book_mark_item_';
 
   // Quiz
-  static const String keyArRuPageIndex = 'key_ar_ru_page_index';
-  static const String keyRuArPageIndex = 'key_ru_ar_page_index';
+  static const String keyArRuPageNumber = 'key_ar_ru_page_number';
+  static const String keyRuArPageNumber = 'key_ru_ar_page_number';
 }
