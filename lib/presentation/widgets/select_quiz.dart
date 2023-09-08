@@ -24,6 +24,7 @@ class SelectQuiz extends StatelessWidget {
           const SizedBox(height: 16),
           ListTile(
             onTap: () {
+              Navigator.pop(context);
               Navigator.pushNamed(context, 'ar_ru_quiz_page');
             },
             title: Text(
@@ -38,7 +39,8 @@ class SelectQuiz extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.pushNamed(context, 're_ar_quiz_page');
+              Navigator.pop(context);
+              Navigator.pushNamed(context, 'ru_ar_quiz_page');
             },
             title: Text(
               AppStrings.russianArabic,

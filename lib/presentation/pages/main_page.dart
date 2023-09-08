@@ -44,6 +44,7 @@ class MainPage extends StatelessWidget {
             title: AppStrings.cards,
             routeName: 'name_cards_page',
           ),
+          SizedBox(height: 8),
         ],
       ),
     );

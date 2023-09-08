@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:the_names_of/application/state/content_settings_state.dart';
 import 'package:the_names_of/application/state/main_names_state.dart';
+import 'package:the_names_of/application/state/quiz_ar_ru_state.dart';
 import 'package:the_names_of/application/strings/app_constraints.dart';
 import 'package:the_names_of/presentation/pages/root_page.dart';
 
@@ -16,6 +17,7 @@ void main() async {
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarContrastEnforced: true,
       ),
     );
   }
@@ -30,6 +32,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => MainNamesState(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => QuizArRuState(),
         ),
       ],
       child: const RootPage(),
