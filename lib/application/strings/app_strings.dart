@@ -10,7 +10,7 @@ class AppStrings {
 
   static const String copy = 'Копировать';
   static const String copied = 'Скопировано';
-  static const String share = 'Поделиться текстом';
+  static const String shareText = 'Поделиться текстом';
   static const String sharePicture = 'Поделиться картинкой';
 
   // Names
@@ -31,6 +31,12 @@ class AppStrings {
 
   // Quiz
   static const String arabicRussian = 'Арабско-Русская';
+  static const String fromArabicRussian = 'Арабско-русский режим';
   static const String russianArabic = 'Русско-Арабская';
+  static const String fromRussianArabic = 'Русско-арабский режим';
   static const String question = 'Вопрос';
+  static const String quizResult = 'Результат:';
+  static const String answersResult = 'Я ответил правильно на:';
+  static const String resultShare = 'Из 99 прекрасных имён Аллаха я знаю наизусть ';
+  static const String share = 'Поделиться';
 }

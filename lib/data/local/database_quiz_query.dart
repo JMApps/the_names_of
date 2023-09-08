@@ -50,6 +50,12 @@ class DatabaseQuizQuery {
     await  database.rawQuery('UPDATE Table_of_ar_ru_quiz SET answer_state = 0');
   }
 
+  Future<List<Map<String, dynamic>>> getRuArTrueAnswers() async {
+    final Database database = await _databaseQuizHelper.db;
+    final List<Map<String, dynamic>> resources =  await database.query('Table_of_ar_ru_quiz', where: 'answer_state = 1');
+    return resources;
+  }
+
   Future<List<QuizModel>> getRussianQuiz() async {
     final Database database = await _databaseQuizHelper.db;
     final List<Map<String, dynamic>> resources = await database.query('Table_of_ru_ar_quiz');
@@ -81,7 +87,7 @@ class DatabaseQuizQuery {
 
   Future<void> setRuArAnswer({required int answerId, required int answerState}) async {
     final Database database = await _databaseQuizHelper.db;
-    await  database.rawQuery('UPDATE Table_of_ru_ar_quiz SET answer_state = $answerState where id == $answerId');
+    await  database.rawQuery('UPDATE Table_of_ru_ar_quiz SET answer_state = $answerState where id = $answerId');
   }
 
   Future<void> resetRuArAnswer() async {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:the_names_of/application/strings/app_constraints.dart';
@@ -13,9 +15,11 @@ class QuizArRuState extends ChangeNotifier {
 
   late final PageController _pageController;
 
+  Timer? _questionTimer;
+
   PageController get getPageController => _pageController;
 
-  int _arRuModePageNumber = 0;
+  int _arRuModePageNumber = 1;
 
   int get getArRuModePageNumber => _arRuModePageNumber;
 
@@ -32,21 +36,21 @@ class QuizArRuState extends ChangeNotifier {
   bool get isCorrectAnswer => _isCorrectAnswer;
 
   QuizArRuState() {
-    _arRuModePageNumber = _contentSettingsBox.get(AppConstraints.keyArRuPageNumber, defaultValue: 0);
-    _pageController = PageController(initialPage: _arRuModePageNumber);
+    _arRuModePageNumber = _contentSettingsBox.get(AppConstraints.keyArRuPageNumber, defaultValue: 1);
+    _pageController = PageController(initialPage: _arRuModePageNumber - 1);
   }
 
   Future<void> answer({required QuizModel model, required int index}) async {
-    if (_arRuModePageNumber < 98) {
+    if (_arRuModePageNumber < 99) {
       if (model.answerState == 0) {
-        _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, model.id - 1);
+        await _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, model.id + 1);
         _isClickedAnswer = false;
         _isCorrectAnswer = model.correct == index;
         _selectedAnswerIndex = index;
-        _databaseQuizQuery.setArRuAnswer(
-            answerId: model.id, answerState: model.correct == index ? 1 : 2);
+        _databaseQuizQuery.setArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
         notifyListeners();
-        await Future.delayed(Duration(milliseconds: model.correct == index ? 1500 : 3000)).then((value) {
+        _questionTimer = Timer(
+          Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
             _isClickedAnswer = true;
             _isCorrectAnswer = false;
             if (_pageController.hasClients) {
@@ -59,15 +63,16 @@ class QuizArRuState extends ChangeNotifier {
           },
         );
       }
-    } else if (_arRuModePageNumber == 98) {
+    } else if (_arRuModePageNumber == 99) {
       if (model.answerState == 0) {
-        _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, model.id - 1);
+        await _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, model.id + 1);
         _isClickedAnswer = false;
         _isCorrectAnswer = model.correct == index;
         _selectedAnswerIndex = index;
         _databaseQuizQuery.setArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
         notifyListeners();
-        await Future.delayed(Duration(milliseconds: model.correct == index ? 1500 : 3000)).then((value) {
+        _questionTimer = Timer(
+          Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
             _isClickedAnswer = true;
             _isCorrectAnswer = false;
             notifyListeners();
@@ -78,7 +83,7 @@ class QuizArRuState extends ChangeNotifier {
   }
 
   Future<int> changePageIndex(int page) async {
-    _arRuModePageNumber = page;
+    _arRuModePageNumber = page + 1;
     notifyListeners();
     return _arRuModePageNumber;
   }
@@ -88,9 +93,10 @@ class QuizArRuState extends ChangeNotifier {
     notifyListeners();
   }
 
-   @override
+  @override
   void dispose() {
     _pageController.dispose();
+    _questionTimer?.cancel();
     super.dispose();
   }
 }
