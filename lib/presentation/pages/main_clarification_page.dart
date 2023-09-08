@@ -37,14 +37,16 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
             onPressed: () {
               Navigator.pushNamed(context, 'app_settings_page');
             },
-            icon: const Icon(
-              CupertinoIcons.settings,
+            icon: Icon(
+              Icons.settings,
+              color: appColors.primary,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(
-              CupertinoIcons.share,
+            icon: Icon(
+              Icons.share,
+              color: appColors.primary,
             ),
           ),
         ],

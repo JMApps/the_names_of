@@ -15,15 +15,13 @@ class CardNamesList extends StatefulWidget {
 }
 
 class _CardNamesListState extends State<CardNamesList> {
-  late final List<NameModel> names;
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<NameModel>>(
       future: DatabaseQuery().getAllNames(),
       builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
         if (snapshot.hasData) {
-          names = snapshot.data!;
+          final List<NameModel> names = snapshot.data!;
           names.shuffle();
           return ScrollablePositionedList.builder(
             itemScrollController: context.read<MainNamesState>().getItemScrollController,

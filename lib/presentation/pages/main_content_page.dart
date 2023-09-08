@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
@@ -37,14 +36,16 @@ class _MainContentPageState extends State<MainContentPage> {
             onPressed: () {
               Navigator.pushNamed(context, 'app_settings_page');
             },
-            icon: const Icon(
-              CupertinoIcons.settings,
+            icon: Icon(
+              Icons.settings,
+              color: appColors.primary,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(
-              CupertinoIcons.share,
+            icon: Icon(
+              Icons.share,
+              color: appColors.primary,
             ),
           ),
         ],

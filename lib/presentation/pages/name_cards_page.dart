@@ -27,13 +27,19 @@ class NameCardsPage extends StatelessWidget {
               onPressed: () {
                 context.read<MainNamesState>().toDefaultItem();
               },
-              icon: const Icon(CupertinoIcons.arrow_3_trianglepath),
+              icon: Icon(
+                Icons.repeat_on,
+                color: appColors.primary,
+              ),
             ),
             IconButton(
               onPressed: () {
                 context.read<MainNamesState>().changeFlipCard();
               },
-              icon: const Icon(CupertinoIcons.creditcard_fill),
+              icon: Icon(
+                CupertinoIcons.creditcard_fill,
+                color: appColors.primary,
+              ),
             ),
           ],
         ),

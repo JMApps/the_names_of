@@ -32,8 +32,9 @@ class MainNamesPage extends StatelessWidget {
                     namesState.toDefaultItem();
                   },
                   tooltip: AppStrings.defaultName,
-                  icon: const Icon(
-                    CupertinoIcons.arrow_2_squarepath,
+                  icon: Icon(
+                    Icons.repeat_on,
+                    color: appColors.primary,
                   ),
                 );
               },

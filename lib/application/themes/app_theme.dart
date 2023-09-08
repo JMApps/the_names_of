@@ -8,11 +8,10 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.light,
       seedColor: Colors.blue,
-      secondary: Colors.red,
+      secondary: Colors.teal,
     ),
     useMaterial3: true,
     appBarTheme: const AppBarTheme(
-      surfaceTintColor: Colors.blue,
       centerTitle: true,
       elevation: 0,
     ),
@@ -33,8 +32,8 @@ class AppTheme {
     fontFamily: 'Nexa',
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
-      seedColor: Colors.blueGrey,
-      secondary: Colors.green,
+      seedColor: Colors.blue,
+      secondary: Colors.grey,
     ),
     useMaterial3: true,
     appBarTheme: const AppBarTheme(
