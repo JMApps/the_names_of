@@ -47,7 +47,7 @@ class MainNamesModal extends StatelessWidget {
                 Navigator.pop(context);
                 namesState.shareContent = names();
               },
-              title: const Text(AppStrings.share),
+              title: const Text(AppStrings.shareText),
               leading: const Icon(CupertinoIcons.share),
             ),
             ListTile(

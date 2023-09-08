@@ -15,7 +15,7 @@ class MainPageItemTo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    final Color oddItemColor = appColors.primary.withOpacity(0.10);
+    final Color oddItemColor = appColors.primary.withOpacity(0.25);
     final Color evenItemColor = appColors.inversePrimary;
     return Container(
       margin: const EdgeInsets.only(right: 16),
@@ -34,7 +34,6 @@ class MainPageItemTo extends StatelessWidget {
             arguments: MainArgs(index: 0),
           );
         },
-        tileColor: oddItemColor,
         splashColor: evenItemColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

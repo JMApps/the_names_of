@@ -57,9 +57,9 @@ extension ColorSchemeS on ColorScheme {
 
   Color get correctColor => brightness == Brightness.light
       ? const Color(0xFF81C784)
-      : const Color(0x4D1B5E20);
+      : const Color(0xBF1B5E20);
 
   Color get incorrectColor => brightness == Brightness.light
       ? const Color(0xFFE57373)
-      : const Color(0x4DB71C1C);
+      : const Color(0xBFB71C1C);
 }
