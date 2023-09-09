@@ -44,6 +44,7 @@ class MainNamesState extends ChangeNotifier {
         duration: const Duration(
           milliseconds: 750,
         ),
+        curve: Curves.easeOutSine,
       );
     }
   }

@@ -38,8 +38,8 @@ class QuizScorePage extends StatelessWidget {
                     ? DatabaseQuizQuery().getArRuTrueAnswers()
                     : DatabaseQuizQuery().getRuArTrueAnswers(),
                 builder: (context, snapshot) {
-                  countNumbers = snapshot.data!.length;
                   if (snapshot.hasData) {
+                    countNumbers = snapshot.data!.length;
                     return Text(
                       '${snapshot.data!.length} из 99',
                       style: const TextStyle(
@@ -55,9 +55,9 @@ class QuizScorePage extends StatelessWidget {
                         padding: AppStyles.mainMarding,
                         child: Text(
                           '${snapshot.error}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
-                            color: Colors.red,
+                            color: appColors.error,
                           ),
                         ),
                       ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
@@ -37,24 +36,15 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
             onPressed: () {
               Navigator.pushNamed(context, 'app_settings_page');
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.settings,
-              color: appColors.primary,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.share,
-              color: appColors.primary,
             ),
           ),
         ],
       ),
       body: FutureBuilder<List<ClarificationModel>>(
         future: DatabaseQuery().getAllClarifications(),
-        builder: (BuildContext context,
-            AsyncSnapshot<List<ClarificationModel>> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<ClarificationModel>> snapshot) {
           if (snapshot.hasData) {
             return Column(
               children: [
@@ -84,8 +74,8 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
                 padding: AppStyles.mainMarding,
                 child: Text(
                   snapshot.error.toString(),
-                  style: const TextStyle(
-                    color: Colors.red,
+                  style: TextStyle(
+                    color: appColors.error,
                   ),
                 ),
               ),

@@ -4,7 +4,7 @@ import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/data/local/database_quiz_query.dart';
 import 'package:the_names_of/domain/models/quiz_model.dart';
-import 'package:the_names_of/presentation/widgets/crib_Item.dart';
+import 'package:the_names_of/presentation/items/crib_Item.dart';
 
 class CribPage extends StatelessWidget {
   const CribPage({super.key, required this.quizMode});

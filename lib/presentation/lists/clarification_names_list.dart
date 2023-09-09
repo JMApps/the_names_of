@@ -11,6 +11,7 @@ class ClarificationNamesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return FutureBuilder<List<NameModel>>(
       future: DatabaseQuery().getChapterNames(chapterId: clarificationId),
       builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
@@ -31,8 +32,8 @@ class ClarificationNamesList extends StatelessWidget {
               padding: AppStyles.mainMarding,
               child: Text(
                 snapshot.error.toString(),
-                style: const TextStyle(
-                  color: Colors.red,
+                style: TextStyle(
+                  color: appColors.error,
                 ),
               ),
             ),

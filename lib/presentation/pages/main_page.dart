@@ -4,7 +4,7 @@ import 'package:the_names_of/presentation/lists/main_clarification_pages.dart';
 import 'package:the_names_of/presentation/lists/main_content_pages.dart';
 import 'package:the_names_of/presentation/lists/main_names_pages.dart';
 import 'package:the_names_of/presentation/widgets/last_card.dart';
-import 'package:the_names_of/presentation/widgets/main_page_item_to.dart';
+import 'package:the_names_of/presentation/items/main_page_item_to.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:the_names_of/application/state/quiz_ru_ar_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
+import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
 import 'package:the_names_of/domain/models/quiz_model.dart';
 
 class QuizRuArAnswerItem extends StatelessWidget {
@@ -33,6 +34,13 @@ class QuizRuArAnswerItem extends StatelessWidget {
       child: InkWell(
         onTap: !quizState.isClickedAnswer ? null : () {
           quizState.answer(model: model, index: index);
+          if (model.id == 99 && model.answerState > 0) {
+            Navigator.pushNamed(
+              context,
+              'quiz_score_page',
+              arguments: QuizModeArgs(quizMode: 2),
+            );
+          }
         },
         borderRadius: AppStyles.mainBorder,
         child: Container(

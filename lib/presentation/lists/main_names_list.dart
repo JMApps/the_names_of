@@ -19,9 +19,11 @@ class MainNamesList extends StatefulWidget {
 class _MainNamesListState extends State<MainNamesList> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 1)).whenComplete(
-      () => context.read<MainNamesState>().toIdItem(widget.nameIndex),
-    );
+    if (widget.nameIndex > 1) {
+      Future.delayed(const Duration(milliseconds: 1500)).whenComplete(
+            () => context.read<MainNamesState>().toIdItem(widget.nameIndex),
+      );
+    }
     super.initState();
   }
 

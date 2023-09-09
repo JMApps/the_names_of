@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:the_names_of/application/state/quiz_ar_ru_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
+import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
 import 'package:the_names_of/domain/models/quiz_model.dart';
 
 class QuizArRuAnswerItem extends StatelessWidget {
@@ -22,7 +23,9 @@ class QuizArRuAnswerItem extends StatelessWidget {
     Color answerColor() {
       if (model.correct == index && !quizState.isClickedAnswer) {
         return appColors.correctColor;
-      } else if (model.correct != index && !quizState.isClickedAnswer && index == quizState.selectedAnswerIndex) {
+      } else if (model.correct != index &&
+          !quizState.isClickedAnswer &&
+          index == quizState.selectedAnswerIndex) {
         return appColors.incorrectColor;
       } else {
         return appColors.primary.withOpacity(0.25);
@@ -32,8 +35,15 @@ class QuizArRuAnswerItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       child: InkWell(
         onTap: !quizState.isClickedAnswer ? null : () {
-          quizState.answer(model: model, index: index);
-        },
+                quizState.answer(model: model, index: index);
+                if (model.id == 99 && model.answerState > 0) {
+                  Navigator.pushNamed(
+                    context,
+                    'quiz_score_page',
+                    arguments: QuizModeArgs(quizMode: 1),
+                  );
+                }
+              },
         borderRadius: AppStyles.mainBorder,
         child: Container(
           padding: AppStyles.mainMarding,

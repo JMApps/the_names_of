@@ -32,9 +32,8 @@ class MainNamesPage extends StatelessWidget {
                     namesState.toDefaultItem();
                   },
                   tooltip: AppStrings.defaultName,
-                  icon: Icon(
-                    Icons.repeat_on,
-                    color: appColors.primary,
+                  icon: const Icon(
+                    Icons.recycling,
                   ),
                 );
               },

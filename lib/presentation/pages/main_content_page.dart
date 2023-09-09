@@ -6,27 +6,15 @@ import 'package:the_names_of/domain/models/content_model.dart';
 import 'package:the_names_of/presentation/items/content_item.dart';
 import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
 
-class MainContentPage extends StatefulWidget {
+class MainContentPage extends StatelessWidget {
   const MainContentPage({super.key, required this.contentIndex});
 
   final int contentIndex;
 
   @override
-  State<MainContentPage> createState() => _MainContentPageState();
-}
-
-class _MainContentPageState extends State<MainContentPage> {
-  late final PageController _pageController;
-
-  @override
-  void initState() {
-    _pageController = PageController(initialPage: widget.contentIndex);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
+    PageController pageController = PageController(initialPage: contentIndex);
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.descriptionHeads),
@@ -36,37 +24,28 @@ class _MainContentPageState extends State<MainContentPage> {
             onPressed: () {
               Navigator.pushNamed(context, 'app_settings_page');
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.settings,
-              color: appColors.primary,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.share,
-              color: appColors.primary,
             ),
           ),
         ],
       ),
       body: FutureBuilder<List<ContentModel>>(
         future: DatabaseQuery().getAllContents(),
-        builder:
-            (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
           if (snapshot.hasData) {
             return Column(
               children: [
                 const SizedBox(height: 8),
                 MainSmoothIndicator(
-                  controller: _pageController,
+                  controller: pageController,
                   count: snapshot.data!.length,
                   dotColor: Colors.orange,
                 ),
                 const SizedBox(height: 8),
                 Expanded(
                   child: PageView.builder(
-                    controller: _pageController,
+                    controller: pageController,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
                       final ContentModel model = snapshot.data![index];
@@ -83,8 +62,8 @@ class _MainContentPageState extends State<MainContentPage> {
                 padding: AppStyles.mainMarding,
                 child: Text(
                   snapshot.error.toString(),
-                  style: const TextStyle(
-                    color: Colors.red,
+                  style: TextStyle(
+                    color: appColors.error,
                   ),
                 ),
               ),

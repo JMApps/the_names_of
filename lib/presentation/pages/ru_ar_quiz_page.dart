@@ -5,7 +5,7 @@ import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
 import 'package:the_names_of/domain/models/quiz_model.dart';
-import 'package:the_names_of/presentation/widgets/ru_ar_quiz_item.dart';
+import 'package:the_names_of/presentation/items/ru_ar_quiz_item.dart';
 
 class RuArQuizPage extends StatelessWidget {
   const RuArQuizPage({super.key});
@@ -73,6 +73,27 @@ class RuArQuizPage extends StatelessWidget {
                           },
                         ),
                       ),
+                      Visibility(
+                        visible: quizState.getRuArModePageNumber == 99,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            right: 16,
+                            bottom: 16,
+                            left: 16,
+                          ),
+                          child: OutlinedButton(
+                            onPressed: () {
+                              quizState.resetQuiz();
+                            },
+                            child: const Text(
+                              AppStrings.reset,
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   );
                 } else if (snapshot.hasError) {
@@ -81,6 +102,10 @@ class RuArQuizPage extends StatelessWidget {
                       padding: AppStyles.mainMarding,
                       child: Text(
                         snapshot.error.toString(),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: appColors.error,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),

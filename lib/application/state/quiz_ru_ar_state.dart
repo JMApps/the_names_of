@@ -89,7 +89,15 @@ class QuizRuArState extends ChangeNotifier {
   }
 
   Future<void> resetQuiz() async {
-    _databaseQuizQuery.resetRuArAnswer();
+    await _databaseQuizQuery.resetRuArAnswer();
+    await _contentSettingsBox.put(AppConstraints.keyRuArPageNumber, 1);
+    await _pageController.animateToPage(
+      0,
+      duration: const Duration(milliseconds: 750),
+      curve: Curves.easeOutSine,
+    );
+    _isClickedAnswer = true;
+    _isCorrectAnswer = false;
     notifyListeners();
   }
 

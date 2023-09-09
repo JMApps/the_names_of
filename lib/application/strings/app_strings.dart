@@ -41,4 +41,5 @@ class AppStrings {
   static const String share = 'Поделиться';
   static const String crib = 'Шпаргалка';
   static const String trueAnswer = 'Правильный ответ';
+  static const String reset = 'Сброс';
 }
