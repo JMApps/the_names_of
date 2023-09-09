@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_names_of/domain/models/arguments/main_args.dart';
 import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
 import 'package:the_names_of/presentation/pages/ar_ru_quiz_page.dart';
+import 'package:the_names_of/presentation/pages/crib_page.dart';
 import 'package:the_names_of/presentation/pages/quiz_score_page.dart';
 import 'package:the_names_of/presentation/pages/ru_ar_quiz_page.dart';
 import 'package:the_names_of/presentation/pages/main_clarification_page.dart';
@@ -48,6 +49,11 @@ class AppRoutes {
         final QuizModeArgs args = routeSettings.arguments as QuizModeArgs;
         return MaterialPageRoute(
           builder: (_) => QuizScorePage(quizMode: args.quizMode),
+        );
+      case 'crib_page':
+        final QuizModeArgs args = routeSettings.arguments as QuizModeArgs;
+        return MaterialPageRoute(
+          builder: (_) => CribPage(quizMode: args.quizMode),
         );
       default:
         throw Exception('Invalid route ${routeSettings.name}');

@@ -39,4 +39,6 @@ class AppStrings {
   static const String answersResult = 'Я ответил правильно на:';
   static const String resultShare = 'Из 99 прекрасных имён Аллаха я знаю наизусть ';
   static const String share = 'Поделиться';
+  static const String crib = 'Шпаргалка';
+  static const String trueAnswer = 'Правильный ответ';
 }
