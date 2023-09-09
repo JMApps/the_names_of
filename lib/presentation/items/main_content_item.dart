@@ -14,7 +14,7 @@ class MainContentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: AppStyles.mainMarding,
+      margin: AppStyles.mainMardingMini,
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(

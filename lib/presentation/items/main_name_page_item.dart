@@ -17,7 +17,7 @@ class MainNamesPageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
-      margin: AppStyles.mainMarding,
+      margin: AppStyles.mainMardingMini,
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(
