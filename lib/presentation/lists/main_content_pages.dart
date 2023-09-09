@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:the_names_of/application/strings/app_constraints.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/data/local/database_query.dart';
 import 'package:the_names_of/domain/models/content_model.dart';
@@ -13,13 +15,24 @@ class MainContentPages extends StatefulWidget {
 }
 
 class _MainContentPagesState extends State<MainContentPages> {
-  final PageController _pageController = PageController();
+  late final PageController _pageController;
+  final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
+  late final int _initialPageIndex;
+
+  @override
+  void initState() {
+    _initialPageIndex = _contentSettingsBox.get(AppConstraints.keyLastMainContentIndex, defaultValue: 0);
+    _pageController = PageController(initialPage: _initialPageIndex);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return FutureBuilder<List<ContentModel>>(
       future: DatabaseQuery().getAllContents(),
-      builder: (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
+      builder:
+          (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
         if (snapshot.hasData) {
           return Column(
             children: [
@@ -39,7 +52,7 @@ class _MainContentPagesState extends State<MainContentPages> {
                 count: snapshot.data!.length,
                 dotColor: Colors.orange,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
             ],
           );
         } else if (snapshot.hasError) {
@@ -48,8 +61,8 @@ class _MainContentPagesState extends State<MainContentPages> {
               padding: AppStyles.mainMarding,
               child: Text(
                 snapshot.error.toString(),
-                style: const TextStyle(
-                  color: Colors.red,
+                style: TextStyle(
+                  color: appColors.error,
                 ),
               ),
             ),

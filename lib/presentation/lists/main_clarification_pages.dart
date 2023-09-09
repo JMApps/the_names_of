@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:the_names_of/application/strings/app_constraints.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/data/local/database_query.dart';
 import 'package:the_names_of/domain/models/clarification_model.dart';
@@ -13,10 +15,24 @@ class MainClarificationPages extends StatefulWidget {
 }
 
 class _MainClarificationPagesState extends State<MainClarificationPages> {
-  final PageController _pageController = PageController();
+  late final PageController _pageController;
+  final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
+  late final int _initialPageIndex;
+
+  @override
+  void initState() {
+    _initialPageIndex = _contentSettingsBox.get(AppConstraints.keyLastMainClarificationIndex, defaultValue: 0);
+    _pageController = PageController(
+        initialPage: _initialPageIndex,
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme
+        .of(context)
+        .colorScheme;
     return FutureBuilder<List<ClarificationModel>>(
       future: DatabaseQuery().getAllClarifications(),
       builder: (BuildContext context,
@@ -43,7 +59,7 @@ class _MainClarificationPagesState extends State<MainClarificationPages> {
                 count: snapshot.data!.length,
                 dotColor: Colors.green,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
             ],
           );
         } else if (snapshot.hasError) {
@@ -52,8 +68,8 @@ class _MainClarificationPagesState extends State<MainClarificationPages> {
               padding: AppStyles.mainMarding,
               child: Text(
                 snapshot.error.toString(),
-                style: const TextStyle(
-                  color: Colors.red,
+                style: TextStyle(
+                  color: appColors.error,
                 ),
               ),
             ),

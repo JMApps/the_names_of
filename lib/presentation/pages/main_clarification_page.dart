@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:the_names_of/application/strings/app_constraints.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/data/local/database_query.dart';
@@ -16,6 +18,7 @@ class MainClarificationPage extends StatefulWidget {
 }
 
 class _MainClarificationPageState extends State<MainClarificationPage> {
+  final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
   late final PageController _pageController;
 
   @override
@@ -62,6 +65,9 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
                     itemBuilder: (BuildContext context, int index) {
                       final ClarificationModel model = snapshot.data![index];
                       return ClarificationItem(model: model);
+                    },
+                    onPageChanged: (int? pageIndex) {
+                      _contentSettingsBox.put(AppConstraints.keyLastMainClarificationIndex, pageIndex!);
                     },
                   ),
                 ),
