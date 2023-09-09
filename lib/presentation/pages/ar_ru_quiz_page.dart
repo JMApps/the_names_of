@@ -42,8 +42,7 @@ class ArRuQuizPage extends StatelessWidget {
           builder: (context, quizState, _) {
             return FutureBuilder<List<QuizModel>>(
               future: quizState.databaseQuizQuery.getArabicQuiz(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<QuizModel>> snapshot) {
+              builder: (BuildContext context, AsyncSnapshot<List<QuizModel>> snapshot) {
                 if (snapshot.hasData) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/quiz_model.dart';
-import 'package:the_names_of/presentation/widgets/quiz_answer_item.dart';
+import 'package:the_names_of/presentation/widgets/quiz_ar_ru_answer_item.dart';
 
 class ArRuQuizItem extends StatelessWidget {
   const ArRuQuizItem({super.key, required this.model, required this.index});
@@ -39,7 +39,7 @@ class ArRuQuizItem extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: model.answers.length,
               itemBuilder: (BuildContext context, int index) {
-                return QuizAnswerItem(
+                return QuizArRuAnswerItem(
                   model: model,
                   index: index,
                 );

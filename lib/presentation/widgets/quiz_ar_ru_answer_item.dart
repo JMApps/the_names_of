@@ -5,8 +5,8 @@ import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/domain/models/quiz_model.dart';
 
-class QuizAnswerItem extends StatelessWidget {
-  const QuizAnswerItem({
+class QuizArRuAnswerItem extends StatelessWidget {
+  const QuizArRuAnswerItem({
     super.key,
     required this.model,
     required this.index,
@@ -44,7 +44,7 @@ class QuizAnswerItem extends StatelessWidget {
           child: Text(
             model.answers[index],
             style: const TextStyle(
-              fontFamily: 'Nexa',
+              fontFamily: 'Montserrat',
               fontSize: 20,
             ),
             textAlign: TextAlign.center,

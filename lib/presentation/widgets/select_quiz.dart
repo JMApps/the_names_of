@@ -21,7 +21,7 @@ class SelectQuiz extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           ListTile(
             onTap: () {
               Navigator.pop(context);
