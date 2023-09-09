@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
+import 'package:the_names_of/application/styles/app_styles.dart';
+import 'package:the_names_of/presentation/items/main_page_item_to.dart';
 import 'package:the_names_of/presentation/lists/main_clarification_pages.dart';
 import 'package:the_names_of/presentation/lists/main_content_pages.dart';
 import 'package:the_names_of/presentation/lists/main_names_pages.dart';
 import 'package:the_names_of/presentation/widgets/last_card.dart';
-import 'package:the_names_of/presentation/items/main_page_item_to.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -17,35 +18,50 @@ class MainPage extends StatelessWidget {
         title: const Text(AppStrings.appName),
         backgroundColor: appColors.inversePrimary,
       ),
-      body: ListView(
-        children: const [
-          SizedBox(height: 16),
-          MainPageItemTo(
-            routeName: 'main_contents_page',
-            title: AppStrings.descriptionHeads,
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 8),
+            MainPageItemTo(
+              routeName: 'main_contents_page',
+              title: AppStrings.descriptionHeads,
+            ),
+            MainContentPages(),
+            MainPageItemTo(
+              routeName: 'main_names_page',
+              title: AppStrings.names,
+            ),
+            MainNamesPages(),
+            MainPageItemTo(
+              routeName: 'main_clarifications_page',
+              title: AppStrings.clarificationNames,
+            ),
+            MainClarificationPages(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: const Card(
+        margin: EdgeInsets.zero,
+        child: Padding(
+          padding: AppStyles.mainMardingMini,
+          child: Row(
+            children: [
+              Expanded(
+                child: LastCard(
+                  title: AppStrings.quiz,
+                  routeName: 'quiz',
+                ),
+              ),
+              SizedBox(width: 8),
+              Expanded(
+                child: LastCard(
+                  title: AppStrings.cards,
+                  routeName: 'name_cards_page',
+                ),
+              ),
+            ],
           ),
-          MainContentPages(),
-          MainPageItemTo(
-            routeName: 'main_names_page',
-            title: AppStrings.names,
-          ),
-          MainNamesPages(),
-          MainPageItemTo(
-            routeName: 'main_clarifications_page',
-            title: AppStrings.clarificationNames,
-          ),
-          MainClarificationPages(),
-          LastCard(
-            title: AppStrings.quiz,
-            routeName: 'quiz',
-          ),
-          SizedBox(height: 16),
-          LastCard(
-            title: AppStrings.cards,
-            routeName: 'name_cards_page',
-          ),
-          SizedBox(height: 8),
-        ],
+        ),
       ),
     );
   }

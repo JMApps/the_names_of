@@ -14,8 +14,9 @@ class LastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: AppStyles.mainMardingHorizontal,
+    final ColorScheme appColors = Theme.of(context).colorScheme;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
       child: InkWell(
         onTap: () {
           if (routeName == 'quiz') {
@@ -28,9 +29,16 @@ class LastCard extends StatelessWidget {
           }
         },
         borderRadius: AppStyles.mainBorder,
-        child: Padding(
-          padding: AppStyles.mainMarding,
-          child: Text(title),
+        child: Container(
+          padding: AppStyles.mainMardingMini,
+          decoration: BoxDecoration(
+            borderRadius: AppStyles.mainBorder,
+            color: appColors.primary.withOpacity(0.25),
+          ),
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

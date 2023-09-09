@@ -18,7 +18,7 @@ class MainPageItemTo extends StatelessWidget {
     final Color oddItemColor = appColors.primary.withOpacity(0.25);
     final Color evenItemColor = appColors.inversePrimary;
     return Container(
-      margin: const EdgeInsets.only(right: 16),
+      margin: const EdgeInsets.only(right: 8),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(15),
@@ -42,7 +42,7 @@ class MainPageItemTo extends StatelessWidget {
           ),
         ),
         visualDensity: const VisualDensity(vertical: -4),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 8),
         title: Text(
           title,
           style: const TextStyle(

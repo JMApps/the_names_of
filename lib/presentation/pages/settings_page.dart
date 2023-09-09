@@ -39,15 +39,15 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: <int, Widget>{
                     0: Text(
                       'Gilroy',
-                      style: appTheme.textTheme.bodyMedium,
+                      style: appTheme.textTheme.bodyLarge,
                     ),
                     1: Text(
                       'Montserrat',
-                      style: appTheme.textTheme.bodyMedium,
+                      style: appTheme.textTheme.bodyLarge,
                     ),
                     2: Text(
                       'Nexa',
-                      style: appTheme.textTheme.bodyMedium,
+                      style: appTheme.textTheme.bodyLarge,
                     ),
                   },
                   groupValue: settingsState.getFontIndex,

@@ -2,6 +2,10 @@ class AppConstraints {
   static const String keyAppSettingsBox = 'key_app_settings_box';
   static const String keyQuizApp = 'key_app_quiz';
 
+  // Main
+  static const String keyLastMainContentIndex = 'key_last_main_content_index';
+  static const String keyLastMainClarificationIndex = 'key_last_main_clarification_index';
+
   // Settings
   static const String keyFontIndex = 'key_strength_font_index';
   static const String keyTextAlign = 'key_strength_text_align';
