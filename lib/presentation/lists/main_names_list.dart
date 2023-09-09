@@ -20,7 +20,7 @@ class _MainNamesListState extends State<MainNamesList> {
   @override
   void initState() {
     if (widget.nameIndex > 1) {
-      Future.delayed(const Duration(milliseconds: 1500)).whenComplete(
+      Future.delayed(const Duration(milliseconds: 250)).whenComplete(
             () => context.read<MainNamesState>().toIdItem(widget.nameIndex),
       );
     }
