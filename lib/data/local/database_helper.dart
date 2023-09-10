@@ -26,7 +26,7 @@ class DatabaseHelper {
         ? await getExternalStorageDirectory()
         : await getApplicationSupportDirectory();
 
-    const String databaseName = 'the_names.db';
+    const String databaseName = 'names_of.db';
 
     String path = join(documentDirectory!.path, databaseName);
     var exists = await databaseExists(path);
