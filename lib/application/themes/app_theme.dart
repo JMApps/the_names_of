@@ -56,10 +56,10 @@ class AppTheme {
 extension ColorSchemeS on ColorScheme {
 
   Color get correctColor => brightness == Brightness.light
-      ? const Color(0xFF81C784)
-      : const Color(0xBF1B5E20);
+      ? const Color(0xFF009688)
+      : const Color(0xBF004D40);
 
   Color get incorrectColor => brightness == Brightness.light
-      ? const Color(0xFFE57373)
+      ? const Color(0xFFF44336)
       : const Color(0xBFB71C1C);
 }

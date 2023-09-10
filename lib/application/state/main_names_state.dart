@@ -68,9 +68,9 @@ class MainNamesState extends ChangeNotifier {
 
     File picture = File('${tempPath!.path}/name_${model.id}.jpg');
 
-    ByteData data = await rootBundle.load(join('assets/audios', 'audio_${model.id}.mp3'));
+    ByteData data = await rootBundle.load(join('assets/audios', 'name${model.id}.mp3'));
     List<int> audioBytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-    String audioPath = join(tempPath.path, 'audio_${model.id}.mp3');
+    String audioPath = join(tempPath.path, 'name${model.id}.mp3');
 
     await picture.writeAsBytes(unit8List);
     await File(audioPath).writeAsBytes(audioBytes, flush: true);
