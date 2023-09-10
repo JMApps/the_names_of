@@ -26,6 +26,8 @@
 	<string>6</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Для данного приложения не нужен микрофон, можете отклонить</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Чтобы добавить изображение в Фото предоставьте разрешение</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
