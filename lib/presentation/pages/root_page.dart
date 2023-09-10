@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_names_of/application/routes/app_routes.dart';
@@ -23,6 +25,15 @@ class RootPage extends StatelessWidget {
           : settings.getDarkTheme
               ? ThemeMode.dark
               : ThemeMode.light,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.trackpad,
+          PointerDeviceKind.unknown,
+        },
+      ),
       home: const MainPage(),
     );
   }
