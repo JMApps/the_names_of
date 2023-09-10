@@ -17,22 +17,18 @@ class MainClarificationPages extends StatefulWidget {
 class _MainClarificationPagesState extends State<MainClarificationPages> {
   late final PageController _pageController;
   final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
-  late final int _initialPageIndex;
+  int _initialPageIndex = 0;
 
   @override
   void initState() {
     _initialPageIndex = _contentSettingsBox.get(AppConstraints.keyLastMainClarificationIndex, defaultValue: 0);
-    _pageController = PageController(
-        initialPage: _initialPageIndex,
-    );
+    _pageController = PageController(initialPage: _initialPageIndex);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme
-        .of(context)
-        .colorScheme;
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return FutureBuilder<List<ClarificationModel>>(
       future: DatabaseQuery().getAllClarifications(),
       builder: (BuildContext context,

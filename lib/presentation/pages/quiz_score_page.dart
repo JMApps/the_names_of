@@ -14,7 +14,6 @@ class QuizScorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     int countNumbers = 0;
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    final Color defPrimary = appColors.primary.withOpacity(0.75);
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -25,9 +24,10 @@ class QuizScorePage extends StatelessWidget {
                 quizMode == 1
                     ? AppStrings.fromArabicRussian
                     : AppStrings.fromRussianArabic,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
+                  color: appColors.primary,
                 ),
               ),
               const SizedBox(height: 16),
@@ -42,9 +42,9 @@ class QuizScorePage extends StatelessWidget {
                     countNumbers = snapshot.data!.length;
                     return Text(
                       '${snapshot.data!.length} из 99',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 25,
-                        color: Colors.red,
+                        color: appColors.error,
                         fontWeight: FontWeight.bold,
                       ),
                     );
@@ -69,7 +69,7 @@ class QuizScorePage extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 16),
-              MaterialButton(
+              OutlinedButton(
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
@@ -77,41 +77,35 @@ class QuizScorePage extends StatelessWidget {
                     arguments: QuizModeArgs(quizMode: quizMode),
                   );
                 },
-                shape: AppStyles.mainShape,
-                color: defPrimary,
                 child: const Text(
                   AppStrings.crib,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white,
                   ),
                 ),
               ),
-              MaterialButton(
+              OutlinedButton(
                 onPressed: () {
-                  Share.share('${AppStrings.resultShare} $countNumbers');
+                  Share.share(
+                    '${AppStrings.resultShare} $countNumbers',
+                    sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2),
+                  );
                 },
-                shape: AppStyles.mainShape,
-                color: defPrimary,
                 child: const Text(
                   AppStrings.share,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white,
                   ),
                 ),
               ),
-              MaterialButton(
+              OutlinedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                shape: AppStyles.mainShape,
-                color: defPrimary,
                 child: const Text(
                   AppStrings.close,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white,
                   ),
                 ),
               ),

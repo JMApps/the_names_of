@@ -54,16 +54,17 @@ class BackNameCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                model.nameTranscription,
-                style: TextStyle(
-                  color: appColors.primary,
+                model.nameTranslation,
+                style: const TextStyle(
                   fontSize: 22,
+                  fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
               Text(
-                model.nameTranslation,
-                style: const TextStyle(
+                model.nameTranscription,
+                style: TextStyle(
+                  color: appColors.primary,
                   fontSize: 22,
                 ),
                 textAlign: TextAlign.center,

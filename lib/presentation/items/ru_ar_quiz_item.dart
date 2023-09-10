@@ -24,8 +24,8 @@ class RuArQuizItem extends StatelessWidget {
               style: const TextStyle(
                 fontFamily: 'Montserrat',
                 fontSize: 25,
+                fontWeight: FontWeight.bold,
               ),
-              textDirection: TextDirection.rtl,
               textAlign: TextAlign.center,
             ),
           ),

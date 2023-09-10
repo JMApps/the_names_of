@@ -21,14 +21,13 @@ class _CardNamesListState extends State<CardNamesList> {
       future: DatabaseQuery().getAllNames(),
       builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
         if (snapshot.hasData) {
-          final List<NameModel> names = snapshot.data!;
-          names.shuffle();
+          snapshot.data!.shuffle();
           return ScrollablePositionedList.builder(
             itemScrollController: context.read<MainNamesState>().getItemScrollController,
             padding: AppStyles.mainMardingMini,
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
-              final NameModel model = names[index];
+              final NameModel model = snapshot.data![index];
               return CardNamesItem(model: model, index: index);
             },
           );

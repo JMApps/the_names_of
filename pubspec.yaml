@@ -43,7 +43,6 @@ flutter:
   assets:
     - assets/databases/
     - assets/audios/
-    - assets/pictures/
   fonts:
     - family: Gilroy
       fonts:

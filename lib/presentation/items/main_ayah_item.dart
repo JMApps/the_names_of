@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:the_names_of/application/state/content_settings_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/ayah_model.dart';
 
@@ -12,6 +14,7 @@ class MainAyahItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     final Color oddItemColor = appColors.secondary.withOpacity(0.05);
     final Color evenItemColor = appColors.secondary.withOpacity(0.15);
+    final ContentSettingsState settings = Provider.of<ContentSettingsState>(context);
     return Container(
       padding: AppStyles.mainMarding,
       margin: const EdgeInsets.only(bottom: 16),
@@ -25,7 +28,7 @@ class MainAyahItem extends StatelessWidget {
           Text(
             model.ayahArabic,
             style: TextStyle(
-              fontSize: 30,
+              fontSize: settings.getTextSize + 10,
               fontFamily: 'Scheherezade',
               color: appColors.secondary,
             ),
@@ -34,12 +37,15 @@ class MainAyahItem extends StatelessWidget {
           ),
           Text(
             model.ayahTranslation,
+            style: TextStyle(
+              fontSize: settings.getTextSize,
+            ),
             textAlign: TextAlign.center,
           ),
           Text(
             model.ayahSource,
-            style: const TextStyle(
-              fontSize: 14,
+            style: TextStyle(
+              fontSize: settings.getTextSize - 6,
             ),
             textAlign: TextAlign.center,
           ),

@@ -66,7 +66,8 @@ class _MainContentPageState extends State<MainContentPage> {
                       final ContentModel model = snapshot.data![index];
                       return ContentItem(model: model);
                     },
-                    onPageChanged: (int? pageIndex) {_contentSettingsBox.put(AppConstraints.keyLastMainContentIndex, pageIndex!);
+                    onPageChanged: (int? pageIndex) {
+                      _contentSettingsBox.put(AppConstraints.keyLastMainContentIndex, pageIndex!);
                     },
                   ),
                 ),

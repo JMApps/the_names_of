@@ -24,7 +24,6 @@ class MainNamesItem extends StatelessWidget {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
-            backgroundColor: Colors.transparent,
             builder: (context) => MainNamesModal(model: model),
           );
         },

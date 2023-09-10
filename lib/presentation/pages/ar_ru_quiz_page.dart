@@ -32,7 +32,7 @@ class ArRuQuizPage extends StatelessWidget {
                 );
               },
               icon: Icon(
-                Icons.info,
+                Icons.info_outline,
                 color: appColors.primary,
               ),
             ),

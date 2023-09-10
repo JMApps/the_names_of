@@ -101,12 +101,12 @@ class Assets {
   static const String audiosName97 = 'assets/audios/name97.mp3';
   static const String audiosName98 = 'assets/audios/name98.mp3';
   static const String audiosName99 = 'assets/audios/name99.mp3';
+  static const String databasesAppQuiz = 'assets/databases/app_quiz.db';
   static const String databasesTheNames = 'assets/databases/the_names.db';
   static const String fontsGilroyMedium = 'assets/fonts/gilroy_medium.ttf';
   static const String fontsKhebrat = 'assets/fonts/khebrat.ttf';
   static const String fontsMontserratMedium = 'assets/fonts/montserrat_medium.ttf';
   static const String fontsNexaReqular = 'assets/fonts/nexa_reqular.ttf';
   static const String fontsScheh = 'assets/fonts/scheh.ttf';
-  static const String picturesBackground = 'assets/pictures/background.jpg';
 
 }

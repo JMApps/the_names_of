@@ -29,6 +29,7 @@ class ContentHtmlWidget extends StatelessWidget {
         ),
         'small': Style(
           fontSize: FontSize(14),
+          color: Colors.grey,
         ),
       },
     );

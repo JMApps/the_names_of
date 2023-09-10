@@ -13,6 +13,7 @@ class CribPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.crib),
@@ -44,9 +45,9 @@ class CribPage extends StatelessWidget {
                 padding: AppStyles.mainMarding,
                 child: Text(
                   snapshot.error.toString(),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
-                    color: Colors.red,
+                    color: appColors.error,
                   ),
                 ),
               ),

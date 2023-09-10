@@ -17,7 +17,7 @@ class MainContentPages extends StatefulWidget {
 class _MainContentPagesState extends State<MainContentPages> {
   late final PageController _pageController;
   final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
-  late final int _initialPageIndex;
+  int _initialPageIndex = 0;
 
   @override
   void initState() {
@@ -31,8 +31,7 @@ class _MainContentPagesState extends State<MainContentPages> {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return FutureBuilder<List<ContentModel>>(
       future: DatabaseQuery().getAllContents(),
-      builder:
-          (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
         if (snapshot.hasData) {
           return Column(
             children: [

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:the_names_of/application/state/content_settings_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/name_model.dart';
 
@@ -12,6 +14,7 @@ class ClarificationNameItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     final Color oddItemColor = appColors.primary.withOpacity(0.05);
     final Color evenItemColor = appColors.primary.withOpacity(0.15);
+    final ContentSettingsState settings = Provider.of<ContentSettingsState>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -41,7 +44,7 @@ class ClarificationNameItem extends StatelessWidget {
                     Text(
                       model.nameArabic,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: settings.getTextSize + 3,
                         fontFamily: 'Khebrat',
                         color: appColors.secondary,
                       ),
@@ -51,12 +54,16 @@ class ClarificationNameItem extends StatelessWidget {
                     Text(
                       model.nameTranscription,
                       style: TextStyle(
+                        fontSize: settings.getTextSize,
                         color: appColors.primary,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       model.nameTranslation,
+                      style: TextStyle(
+                        fontSize: settings.getTextSize,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),

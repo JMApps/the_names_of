@@ -14,56 +14,52 @@ class MainNamesModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MainNamesState namesState = context.read<MainNamesState>();
-    return Card(
-      margin: EdgeInsets.zero,
-      child: Padding(
-        padding: AppStyles.mainMarding,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                namesState.copyContent = names();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    duration: Duration(milliseconds: 350),
-                    content: Text(
-                      AppStrings.copied,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Gilroy',
-                      ),
+    return Padding(
+      padding: AppStyles.mainMarding,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ListTile(
+            onTap: () {
+              Navigator.pop(context);
+              namesState.copyContent = names();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  duration: Duration(milliseconds: 350),
+                  content: Text(
+                    AppStrings.copied,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Gilroy',
                     ),
                   ),
-                );
-              },
-              title: const Text(AppStrings.copy),
-              leading: const Icon(CupertinoIcons.doc_on_doc),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                namesState.shareContent = names();
-              },
-              title: const Text(AppStrings.shareText),
-              leading: const Icon(CupertinoIcons.share),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                namesState.takeScreenshot(model);
-              },
-              title: const Text(AppStrings.sharePicture),
-              leading: const Icon(CupertinoIcons.photo_on_rectangle),
-            ),
-          ],
-        ),
+                ),
+              );
+            },
+            title: const Text(AppStrings.copy),
+            leading: const Icon(CupertinoIcons.doc_on_doc),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.pop(context);
+              namesState.shareContent = names();
+            },
+            title: const Text(AppStrings.shareText),
+            leading: const Icon(CupertinoIcons.share),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.pop(context);
+              namesState.takeScreenshot(model);
+            },
+            title: const Text(AppStrings.sharePicture),
+            leading: const Icon(CupertinoIcons.photo_on_rectangle),
+          ),
+        ],
       ),
     );
   }
 
-  String names() =>
-      '${model.nameArabic}\n${model.nameTranscription}\n${model.nameTranslation}';
+  String names() => '${model.nameArabic}\n${model.nameTranscription}\n${model.nameTranslation}';
 }

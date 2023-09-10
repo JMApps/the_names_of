@@ -55,7 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     settingsState.changeFontIndex = index!;
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
                 const Text(
                   AppStrings.alignText,
                 ),

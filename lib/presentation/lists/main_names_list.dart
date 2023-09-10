@@ -30,6 +30,7 @@ class _MainNamesListState extends State<MainNamesList> {
   @override
   Widget build(BuildContext context) {
     final MainNamesState mainNamesState = Provider.of<MainNamesState>(context);
+    final ColorScheme appColors = Theme.of(context).colorScheme;
     return FutureBuilder<List<NameModel>>(
       future: DatabaseQuery().getAllNames(),
       builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
@@ -49,8 +50,8 @@ class _MainNamesListState extends State<MainNamesList> {
               padding: AppStyles.mainMarding,
               child: Text(
                 snapshot.error.toString(),
-                style: const TextStyle(
-                  color: Colors.red,
+                style: TextStyle(
+                  color: appColors.error
                 ),
               ),
             ),

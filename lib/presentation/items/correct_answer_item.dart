@@ -20,6 +20,10 @@ class CorrectAnswerItem extends StatelessWidget {
         children: [
           Text(
             '${AppStrings.question} ${model.id}',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 22,
+            ),
             textAlign: TextAlign.center,
           ),
           Container(
@@ -31,13 +35,19 @@ class CorrectAnswerItem extends StatelessWidget {
             ),
             child: Text(
               model.question,
-              style: const TextStyle(fontSize: 25, fontFamily: 'Khebrat'),
+              style: const TextStyle(
+                fontSize: 25,
+                fontFamily: 'Khebrat',
+              ),
               textAlign: TextAlign.center,
             ),
           ),
           const Text(
             AppStrings.trueAnswer,
             textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 22,
+            ),
           ),
           Container(
             padding: AppStyles.mainMardingMini,
@@ -48,7 +58,10 @@ class CorrectAnswerItem extends StatelessWidget {
             ),
             child: Text(
               model.answers[model.correct],
-              style: const TextStyle(fontSize: 25, fontFamily: 'Khebrat'),
+              style: const TextStyle(
+                fontSize: 25,
+                fontFamily: 'Khebrat',
+              ),
               textAlign: TextAlign.center,
             ),
           ),

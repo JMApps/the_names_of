@@ -30,9 +30,9 @@ class AppStrings {
   static const String displayAlways = 'Дисплей всегда включён';
 
   // Quiz
-  static const String arabicRussian = 'Арабско-Русская';
+  static const String arabicRussian = 'Арабско-русская';
   static const String fromArabicRussian = 'Арабско-русский режим';
-  static const String russianArabic = 'Русско-Арабская';
+  static const String russianArabic = 'Русско-арабская';
   static const String fromRussianArabic = 'Русско-арабский режим';
   static const String question = 'Вопрос';
   static const String quizResult = 'Результат:';

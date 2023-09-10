@@ -63,8 +63,7 @@ class FrontNameCard extends StatelessWidget {
                   );
                 },
                 icon: Icon(
-                  player.getCurrentTrackItem == model.id &&
-                          player.getPlayingState
+                  player.getCurrentTrackItem == model.id && player.getPlayingState
                       ? CupertinoIcons.stop_circle
                       : CupertinoIcons.play,
                 ),
