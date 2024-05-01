@@ -9,8 +9,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:the_names_of/domain/models/name_entity.dart';
-import 'package:the_names_of/presentation/widgets/name_screen_widget.dart';
+
+import '../../domain/entities/name_entity.dart';
+import '../../presentation/widgets/name_screen_widget.dart';
 
 class MainNamesState extends ChangeNotifier {
   final ItemScrollController _itemScrollController = ItemScrollController();

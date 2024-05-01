@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/quiz_entity.dart';
-import 'package:the_names_of/presentation/items/quiz_ru_ar_answer_item.dart';
+
+import '../../application/styles/app_styles.dart';
+import '../../domain/entities/quiz_entity.dart';
+import 'quiz_ru_ar_answer_item.dart';
 
 class RuArQuizItem extends StatelessWidget {
   const RuArQuizItem({super.key, required this.model, required this.index});

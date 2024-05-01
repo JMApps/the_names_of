@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/application/state/app_player_state.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/name_entity.dart';
-import 'package:the_names_of/presentation/widgets/main_names_modal.dart';
+
+import '../../application/state/app_player_state.dart';
+import '../../application/styles/app_styles.dart';
+import '../../domain/entities/name_entity.dart';
+import '../widgets/main_names_modal.dart';
 
 class MainNamesItem extends StatelessWidget {
-  const MainNamesItem({super.key, required this.model});
+  const MainNamesItem({super.key, required this.nameModel});
 
-  final NameEntity model;
+  final NameEntity nameModel;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +25,14 @@ class MainNamesItem extends StatelessWidget {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
-            builder: (context) => MainNamesModal(model: model),
+            builder: (context) => MainNamesModal(model: nameModel),
           );
         },
         borderRadius: AppStyles.mainBorder,
         child: Container(
           padding: AppStyles.mainMarding,
           decoration: BoxDecoration(
-            color: model.id.isOdd ? oddItemColor : evenItemColor,
+            color: nameModel.id.isOdd ? oddItemColor : evenItemColor,
             borderRadius: AppStyles.mainBorder,
           ),
           child: Stack(
@@ -41,8 +42,8 @@ class MainNamesItem extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 20,
                   backgroundColor:
-                      model.id.isOdd ? evenItemColor : appColors.background,
-                  child: Text(model.id.toString()),
+                      nameModel.id.isOdd ? evenItemColor : appColors.background,
+                  child: Text(nameModel.id.toString()),
                 ),
               ),
               Align(
@@ -50,16 +51,16 @@ class MainNamesItem extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 20,
                   backgroundColor:
-                      model.id.isOdd ? evenItemColor : appColors.background,
+                      nameModel.id.isOdd ? evenItemColor : appColors.background,
                   child: IconButton(
                     onPressed: () {
                       player.playTrack(
-                        nameAudio: model.nameAudio,
-                        trackId: model.id,
+                        nameAudio: nameModel.nameAudio,
+                        trackId: nameModel.id,
                       );
                     },
                     icon: Icon(
-                      player.getCurrentTrackItem == model.id &&
+                      player.getCurrentTrackItem == nameModel.id &&
                           player.getPlayingState
                           ? CupertinoIcons.stop_circle
                           : CupertinoIcons.play,
@@ -74,7 +75,7 @@ class MainNamesItem extends StatelessWidget {
                   children: [
                     const SizedBox(height: 16),
                     Text(
-                      model.nameArabic,
+                      nameModel.nameArabic,
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Khebrat',
@@ -83,14 +84,14 @@ class MainNamesItem extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      model.nameTranscription,
+                      nameModel.nameTranscription,
                       style: TextStyle(
                         color: appColors.primary,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      model.nameTranslation,
+                      nameModel.nameTranslation,
                       textAlign: TextAlign.center,
                     ),
                   ],

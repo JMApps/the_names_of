@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/domain/models/arguments/main_args.dart';
-import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
-import 'package:the_names_of/presentation/pages/ar_ru_quiz_page.dart';
-import 'package:the_names_of/presentation/pages/crib_page.dart';
-import 'package:the_names_of/presentation/pages/quiz_score_page.dart';
-import 'package:the_names_of/presentation/pages/ru_ar_quiz_page.dart';
-import 'package:the_names_of/presentation/pages/main_clarification_page.dart';
-import 'package:the_names_of/presentation/pages/main_content_page.dart';
-import 'package:the_names_of/presentation/pages/main_names_page.dart';
-import 'package:the_names_of/presentation/pages/name_cards_page.dart';
-import 'package:the_names_of/presentation/pages/settings_page.dart';
+
+import '../../data/models/arguments/main_args.dart';
+import '../../data/models/arguments/quiz_mode_args.dart';
+import '../../presentation/pages/ar_ru_quiz_page.dart';
+import '../../presentation/pages/crib_page.dart';
+import '../../presentation/pages/main_clarification_page.dart';
+import '../../presentation/pages/main_content_page.dart';
+import '../../presentation/pages/main_names_page.dart';
+import '../../presentation/pages/name_cards_page.dart';
+import '../../presentation/pages/quiz_score_page.dart';
+import '../../presentation/pages/ru_ar_quiz_page.dart';
+import '../../presentation/pages/settings_page.dart';
 
 class AppRoutes {
   static Route onGenerateRoute(RouteSettings routeSettings) {

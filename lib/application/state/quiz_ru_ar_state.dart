@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:the_names_of/application/strings/app_constraints.dart';
-import 'package:the_names_of/data/repositories/quiz_data_repository.dart';
-import 'package:the_names_of/domain/models/quiz_entity.dart';
+
+import '../../data/repositories/quiz_data_repository.dart';
+import '../../domain/entities/quiz_entity.dart';
+import '../strings/app_constraints.dart';
 
 class QuizRuArState extends ChangeNotifier {
   final QuizDataRepository _databaseQuizQuery = QuizDataRepository();

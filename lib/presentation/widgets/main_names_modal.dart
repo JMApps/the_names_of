@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/application/state/main_names_state.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/name_entity.dart';
+
+import '../../application/state/main_names_state.dart';
+import '../../application/strings/app_strings.dart';
+import '../../application/styles/app_styles.dart';
+import '../../domain/entities/name_entity.dart';
 
 class MainNamesModal extends StatelessWidget {
   const MainNamesModal({super.key, required this.model});

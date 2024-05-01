@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/application/state/content_settings_state.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/entities/ayah_entity.dart';
+
+import '../../application/state/content_settings_state.dart';
+import '../../application/styles/app_styles.dart';
+import '../../domain/entities/ayah_entity.dart';
 
 class MainAyahItem extends StatelessWidget {
-  const MainAyahItem({super.key, required this.model});
+  const MainAyahItem({super.key, required this.ayahModel});
 
-  final AyahModel model;
+  final AyahEntity ayahModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +21,13 @@ class MainAyahItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         borderRadius: AppStyles.mainBorder,
-        color: model.id.isOdd ? oddItemColor : evenItemColor,
+        color: ayahModel.id.isOdd ? oddItemColor : evenItemColor,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            model.ayahArabic,
+            ayahModel.ayahArabic,
             style: TextStyle(
               fontSize: settings.getTextSize + 10,
               fontFamily: 'Scheherezade',
@@ -36,14 +37,14 @@ class MainAyahItem extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Text(
-            model.ayahTranslation,
+            ayahModel.ayahTranslation,
             style: TextStyle(
               fontSize: settings.getTextSize,
             ),
             textAlign: TextAlign.center,
           ),
           Text(
-            model.ayahSource,
+            ayahModel.ayahSource,
             style: TextStyle(
               fontSize: settings.getTextSize - 6,
             ),

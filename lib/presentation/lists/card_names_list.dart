@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:the_names_of/application/state/main_names_state.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
-import 'package:the_names_of/domain/models/name_entity.dart';
-import 'package:the_names_of/presentation/items/card_name_item.dart';
 
-class CardNamesList extends StatefulWidget {
+import '../../application/state/main_names_state.dart';
+import '../../application/styles/app_styles.dart';
+import '../../data/repositories/book_content_data_repository.dart';
+import '../../domain/entities/name_entity.dart';
+import '../../domain/usecases/book_content_use_case.dart';
+import '../items/card_name_item.dart';
+import '../widgets/error_data_text.dart';
+
+class CardNamesList extends StatelessWidget {
   const CardNamesList({super.key});
 
   @override
-  State<CardNamesList> createState() => _CardNamesListState();
-}
-
-class _CardNamesListState extends State<CardNamesList> {
-  @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<NameEntity>>(
-      future: BookContentDataRepository().getAllNames(),
-      builder: (BuildContext context, AsyncSnapshot<List<NameEntity>> snapshot) {
-        if (snapshot.hasData) {
+      future: BookContentUseCase(BookContentDataRepository()).fetchAllNames(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           snapshot.data!.shuffle();
           return ScrollablePositionedList.builder(
-            itemScrollController: context.read<MainNamesState>().getItemScrollController,
+            itemScrollController: Provider.of<MainNamesState>(context, listen: false).getItemScrollController,
             padding: AppStyles.mainMardingMini,
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
@@ -32,17 +30,7 @@ class _CardNamesListState extends State<CardNamesList> {
             },
           );
         } else if (snapshot.hasError) {
-          return Center(
-            child: Padding(
-              padding: AppStyles.mainMarding,
-              child: Text(
-                snapshot.error.toString(),
-                style: const TextStyle(
-                  color: Colors.red,
-                ),
-              ),
-            ),
-          );
+          return ErrorDataText(textData: snapshot.error.toString());
         } else {
           return const Center(
             child: CircularProgressIndicator.adaptive(),

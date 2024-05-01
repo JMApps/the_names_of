@@ -30,7 +30,7 @@ class AppStyles {
   static const List<String> getFont = [
     'Gilroy',
     'Montserrat',
-    'Nexa',
+    'Raleway',
   ];
 
   static const List<TextAlign> getAlign = [

@@ -2,17 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/content_entity.dart';
-import 'package:the_names_of/presentation/widgets/content_html_widget.dart';
+
+import '../../application/styles/app_styles.dart';
+import '../../domain/entities/content_entity.dart';
+import '../widgets/content_html_widget.dart';
 
 class ContentItem extends StatelessWidget {
   const ContentItem({
     super.key,
-    required this.model,
+    required this.contentModel,
   });
 
-  final ContentModel model;
+  final ContentEntity contentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class ContentItem extends StatelessWidget {
               child: Padding(
                 padding: AppStyles.mainMardingMini,
                 child: Text(
-                  model.contentTitle,
+                  contentModel.contentTitle,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -39,7 +40,7 @@ class ContentItem extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             ContentHtmlWidget(
-              content: model.content,
+              content: contentModel.content,
             ),
           ],
         ),

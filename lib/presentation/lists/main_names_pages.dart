@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
-import 'package:the_names_of/domain/models/name_entity.dart';
-import 'package:the_names_of/presentation/items/main_name_page_item.dart';
-import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
+
+import '../../data/repositories/book_content_data_repository.dart';
+import '../../domain/entities/name_entity.dart';
+import '../../domain/usecases/book_content_use_case.dart';
+import '../items/main_name_page_item.dart';
+import '../widgets/error_data_text.dart';
+import '../widgets/main_smooth_indicator.dart';
 
 class MainNamesPages extends StatefulWidget {
   const MainNamesPages({super.key});
@@ -20,16 +22,16 @@ class _MainNamesPagesState extends State<MainNamesPages> {
 
   @override
   void initState() {
-    _pageController  = PageController(initialPage: _random.nextInt(99));
+    _pageController = PageController(initialPage: _random.nextInt(99));
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return FutureBuilder<List<NameEntity>>(
-      future: BookContentDataRepository().getAllNames(),
-      builder: (BuildContext context, AsyncSnapshot<List<NameEntity>> snapshot) {
-        if (snapshot.hasData) {
+      future: BookContentUseCase(BookContentDataRepository()).fetchAllNames(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return Column(
             children: [
               SizedBox(
@@ -38,8 +40,11 @@ class _MainNamesPagesState extends State<MainNamesPages> {
                   controller: _pageController,
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final NameEntity model = snapshot.data![index];
-                    return MainNamesPageItem(model: model, index: index);
+                    final NameEntity nameModel = snapshot.data![index];
+                    return MainNamesPageItem(
+                      nameModel: nameModel,
+                      index: index,
+                    );
                   },
                 ),
               ),
@@ -52,17 +57,7 @@ class _MainNamesPagesState extends State<MainNamesPages> {
             ],
           );
         } else if (snapshot.hasError) {
-          return Center(
-            child: Padding(
-              padding: AppStyles.mainMarding,
-              child: Text(
-                snapshot.error.toString(),
-                style: TextStyle(
-                  color: appColors.error,
-                ),
-              ),
-            ),
-          );
+          return ErrorDataText(textData: snapshot.error.toString());
         } else {
           return const Center(
             child: CircularProgressIndicator.adaptive(),

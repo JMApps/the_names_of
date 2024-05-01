@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:the_names_of/application/strings/app_constraints.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
-import 'package:the_names_of/domain/entities/clarification_entity.dart';
-import 'package:the_names_of/presentation/items/main_clarification_item.dart';
-import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
+
+import '../../application/strings/app_constraints.dart';
+import '../../data/repositories/book_content_data_repository.dart';
+import '../../domain/entities/clarification_entity.dart';
+import '../../domain/usecases/book_content_use_case.dart';
+import '../items/main_clarification_item.dart';
+import '../widgets/error_data_text.dart';
+import '../widgets/main_smooth_indicator.dart';
 
 class MainClarificationPages extends StatefulWidget {
   const MainClarificationPages({super.key});
@@ -28,11 +30,10 @@ class _MainClarificationPagesState extends State<MainClarificationPages> {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
-    return FutureBuilder<List<ClarificationModel>>(
-      future: BookContentDataRepository().getAllClarifications(),
+    return FutureBuilder<List<ClarificationEntity>>(
+      future: BookContentUseCase(BookContentDataRepository()).fetchAllClarifications(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return Column(
             children: [
               SizedBox(
@@ -41,9 +42,9 @@ class _MainClarificationPagesState extends State<MainClarificationPages> {
                   controller: _pageController,
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final ClarificationModel model = snapshot.data![index];
+                    final ClarificationEntity clarificationModel = snapshot.data![index];
                     return MainClarificationItem(
-                      model: model,
+                      clarificationModel: clarificationModel,
                       clarificationIndex: index,
                     );
                   },
@@ -58,17 +59,7 @@ class _MainClarificationPagesState extends State<MainClarificationPages> {
             ],
           );
         } else if (snapshot.hasError) {
-          return Center(
-            child: Padding(
-              padding: AppStyles.mainMarding,
-              child: Text(
-                snapshot.error.toString(),
-                style: TextStyle(
-                  color: appColors.error,
-                ),
-              ),
-            ),
-          );
+          return ErrorDataText(textData: snapshot.error.toString());
         } else {
           return const Center(
             child: CircularProgressIndicator.adaptive(),

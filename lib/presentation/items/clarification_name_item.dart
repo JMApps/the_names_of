@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/application/state/content_settings_state.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/name_entity.dart';
+
+import '../../application/state/content_settings_state.dart';
+import '../../application/styles/app_styles.dart';
+import '../../domain/entities/name_entity.dart';
 
 class ClarificationNameItem extends StatelessWidget {
-  const ClarificationNameItem({super.key, required this.model});
+  const ClarificationNameItem({
+    super.key,
+    required this.nameModel,
+  });
 
-  final NameEntity model;
+  final NameEntity nameModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class ClarificationNameItem extends StatelessWidget {
         Container(
           padding: AppStyles.mainMarding,
           decoration: BoxDecoration(
-            color: model.id.isOdd ? oddItemColor : evenItemColor,
+            color: nameModel.id.isOdd ? oddItemColor : evenItemColor,
             borderRadius: AppStyles.mainBorder,
           ),
           child: Stack(
@@ -31,8 +35,8 @@ class ClarificationNameItem extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 20,
                   backgroundColor:
-                      model.id.isOdd ? evenItemColor : appColors.background,
-                  child: Text(model.id.toString()),
+                  nameModel.id.isOdd ? evenItemColor : appColors.background,
+                  child: Text(nameModel.id.toString()),
                 ),
               ),
               Align(
@@ -42,7 +46,7 @@ class ClarificationNameItem extends StatelessWidget {
                   children: [
                     const SizedBox(height: 16),
                     Text(
-                      model.nameArabic,
+                      nameModel.nameArabic,
                       style: TextStyle(
                         fontSize: settings.getTextSize + 3,
                         fontFamily: 'Khebrat',
@@ -52,7 +56,7 @@ class ClarificationNameItem extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      model.nameTranscription,
+                      nameModel.nameTranscription,
                       style: TextStyle(
                         fontSize: settings.getTextSize,
                         color: appColors.primary,
@@ -60,7 +64,7 @@ class ClarificationNameItem extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      model.nameTranslation,
+                      nameModel.nameTranslation,
                       style: TextStyle(
                         fontSize: settings.getTextSize,
                       ),

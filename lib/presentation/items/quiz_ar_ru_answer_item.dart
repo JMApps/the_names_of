@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/application/state/quiz_ar_ru_state.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
-import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
-import 'package:the_names_of/domain/models/quiz_entity.dart';
+
+import '../../application/state/quiz_ar_ru_state.dart';
+import '../../application/styles/app_styles.dart';
+import '../../data/models/arguments/quiz_mode_args.dart';
+import '../../domain/entities/quiz_entity.dart';
 
 class QuizArRuAnswerItem extends StatelessWidget {
   const QuizArRuAnswerItem({

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/repositories/quiz_data_repository.dart';
-import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
+
+import '../../application/strings/app_strings.dart';
+import '../../application/styles/app_styles.dart';
+import '../../data/models/arguments/quiz_mode_args.dart';
+import '../../data/repositories/quiz_data_repository.dart';
 
 class QuizScorePage extends StatelessWidget {
   const QuizScorePage({super.key, required this.quizMode});

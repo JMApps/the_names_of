@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/arguments/main_args.dart';
-import 'package:the_names_of/domain/models/name_entity.dart';
+
+import '../../application/styles/app_styles.dart';
+import '../../data/models/arguments/main_args.dart';
+import '../../domain/entities/name_entity.dart';
 
 class MainNamesPageItem extends StatelessWidget {
   const MainNamesPageItem({
     super.key,
-    required this.model,
+    required this.nameModel,
     required this.index,
   });
 
-  final NameEntity model;
+  final NameEntity nameModel;
   final int index;
 
   @override
@@ -39,7 +40,7 @@ class MainNamesPageItem extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.red.withOpacity(0.75),
-                  child: Text(model.id.toString()),
+                  child: Text(nameModel.id.toString()),
                 ),
               ),
             ),
@@ -49,7 +50,7 @@ class MainNamesPageItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    model.nameArabic,
+                    nameModel.nameArabic,
                     style: TextStyle(
                       fontSize: 20,
                       fontFamily: 'Khebrat',
@@ -58,14 +59,14 @@ class MainNamesPageItem extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    model.nameTranscription,
+                    nameModel.nameTranscription,
                     style: TextStyle(
                       color: appColors.primary,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    model.nameTranslation,
+                    nameModel.nameTranslation,
                     textAlign: TextAlign.center,
                   ),
                 ],

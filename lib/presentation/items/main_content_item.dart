@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/arguments/main_args.dart';
-import 'package:the_names_of/domain/models/content_entity.dart';
-import 'package:the_names_of/presentation/widgets/base_html_widget.dart';
+
+import '../../application/styles/app_styles.dart';
+import '../../data/models/arguments/main_args.dart';
+import '../../domain/entities/content_entity.dart';
+import '../widgets/base_html_widget.dart';
 
 class MainContentItem extends StatelessWidget {
-  const MainContentItem(
-      {super.key, required this.model, required this.contentIndex,});
+  const MainContentItem({
+    super.key,
+    required this.contentEntity,
+    required this.contentIndex,
+  });
 
-  final ContentModel model;
+  final ContentEntity contentEntity;
   final int contentIndex;
 
   @override
@@ -36,13 +40,13 @@ class MainContentItem extends StatelessWidget {
                     radius: 20,
                     backgroundColor: Colors.orange.withOpacity(0.75),
                     child: Text(
-                      model.id.toString(),
+                      contentEntity.id.toString(),
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      model.contentTitle,
+                      contentEntity.contentTitle,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -55,7 +59,7 @@ class MainContentItem extends StatelessWidget {
               const SizedBox(height: 8),
               Expanded(
                 child: BaseHtmlWidget(
-                  content: model.content,
+                  content: contentEntity.content,
                 ),
               ),
             ],

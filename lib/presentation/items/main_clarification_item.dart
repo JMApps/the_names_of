@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/arguments/main_args.dart';
-import 'package:the_names_of/domain/entities/clarification_entity.dart';
-import 'package:the_names_of/presentation/widgets/base_html_widget.dart';
+
+import '../../application/styles/app_styles.dart';
+import '../../data/models/arguments/main_args.dart';
+import '../../domain/entities/clarification_entity.dart';
+import '../widgets/base_html_widget.dart';
 
 class MainClarificationItem extends StatelessWidget {
   const MainClarificationItem({
     super.key,
-    required this.model,
+    required this.clarificationModel,
     required this.clarificationIndex,
   });
 
-  final ClarificationModel model;
+  final ClarificationEntity clarificationModel;
   final int clarificationIndex;
 
   @override
@@ -39,13 +40,13 @@ class MainClarificationItem extends StatelessWidget {
                     radius: 20,
                     backgroundColor: Colors.green.withOpacity(0.75),
                     child: Text(
-                      model.id.toString(),
+                      clarificationModel.id.toString(),
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      model.title,
+                      clarificationModel.title,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -57,7 +58,7 @@ class MainClarificationItem extends StatelessWidget {
               const SizedBox(height: 8),
               Expanded(
                 child: BaseHtmlWidget(
-                  content: model.clarification,
+                  content: clarificationModel.clarification,
                 ),
               ),
             ],

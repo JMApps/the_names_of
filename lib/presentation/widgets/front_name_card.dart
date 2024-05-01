@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/application/state/app_player_state.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/name_entity.dart';
+
+import '../../application/state/app_player_state.dart';
+import '../../application/styles/app_styles.dart';
+import '../../domain/entities/name_entity.dart';
 
 class FrontNameCard extends StatelessWidget {
   const FrontNameCard({super.key, required this.model, required this.index});

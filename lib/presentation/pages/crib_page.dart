@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/repositories/quiz_data_repository.dart';
-import 'package:the_names_of/domain/models/quiz_entity.dart';
-import 'package:the_names_of/presentation/items/crib_Item.dart';
+
+import '../../application/strings/app_strings.dart';
+import '../../application/styles/app_styles.dart';
+import '../../data/repositories/quiz_data_repository.dart';
+import '../../domain/entities/quiz_entity.dart';
+import '../items/crib_Item.dart';
 
 class CribPage extends StatelessWidget {
   const CribPage({super.key, required this.quizMode});

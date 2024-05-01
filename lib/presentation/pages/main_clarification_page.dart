@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:the_names_of/application/strings/app_constraints.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
-import 'package:the_names_of/domain/entities/clarification_entity.dart';
-import 'package:the_names_of/presentation/items/clarification_item.dart';
-import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
+import 'package:the_names_of/domain/usecases/book_content_use_case.dart';
+import 'package:the_names_of/presentation/widgets/error_data_text.dart';
+
+import '../../application/strings/app_constraints.dart';
+import '../../application/strings/app_strings.dart';
+import '../../data/repositories/book_content_data_repository.dart';
+import '../../domain/entities/clarification_entity.dart';
+import '../items/clarification_item.dart';
+import '../widgets/main_smooth_indicator.dart';
 
 class MainClarificationPage extends StatefulWidget {
   const MainClarificationPage({super.key, required this.clarificationIndex});
@@ -45,10 +47,10 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
           ),
         ],
       ),
-      body: FutureBuilder<List<ClarificationModel>>(
-        future: BookContentDataRepository().getAllClarifications(),
-        builder: (BuildContext context, AsyncSnapshot<List<ClarificationModel>> snapshot) {
-          if (snapshot.hasData) {
+      body: FutureBuilder<List<ClarificationEntity>>(
+        future: BookContentUseCase(BookContentDataRepository()).fetchAllClarifications(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData && snapshot.data!.isNotEmpty) {
             return Column(
               children: [
                 const SizedBox(height: 8),
@@ -63,8 +65,8 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
                     controller: _pageController,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final ClarificationModel model = snapshot.data![index];
-                      return ClarificationItem(model: model);
+                      final ClarificationEntity clarificationModel = snapshot.data![index];
+                      return ClarificationItem(clarificationModel: clarificationModel);
                     },
                     onPageChanged: (int? pageIndex) {
                       _contentSettingsBox.put(AppConstraints.keyLastMainClarificationIndex, pageIndex!);
@@ -75,17 +77,7 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
               ],
             );
           } else if (snapshot.hasError) {
-            return Center(
-              child: Padding(
-                padding: AppStyles.mainMarding,
-                child: Text(
-                  snapshot.error.toString(),
-                  style: TextStyle(
-                    color: appColors.error,
-                  ),
-                ),
-              ),
-            );
+            return ErrorDataText(textData: snapshot.error.toString());
           } else {
             return const Center(
               child: CircularProgressIndicator.adaptive(),

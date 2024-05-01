@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
-import 'package:the_names_of/domain/models/quiz_entity.dart';
+
+import '../../application/strings/app_strings.dart';
+import '../../application/styles/app_styles.dart';
+import '../../domain/entities/quiz_entity.dart';
 
 class CorrectAnswerItem extends StatelessWidget {
   const CorrectAnswerItem({super.key, required this.model});

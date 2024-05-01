@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
+
+import '../styles/app_styles.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: 'Nexa',
+    fontFamily: 'Raleway',
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.light,
       seedColor: Colors.blue,
       secondary: Colors.teal,
     ),
-    useMaterial3: true,
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       elevation: 0,
@@ -18,7 +17,7 @@ class AppTheme {
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
         fontSize: 20,
-        fontFamily: 'Nexa',
+        fontFamily: 'Raleway',
       ),
     ),
     listTileTheme: const ListTileThemeData(
@@ -28,14 +27,12 @@ class AppTheme {
   );
 
   static ThemeData darkTheme = ThemeData(
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: 'Nexa',
+    fontFamily: 'Raleway',
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
       seedColor: Colors.blue,
       secondary: Colors.grey,
     ),
-    useMaterial3: true,
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       elevation: 0,
@@ -43,7 +40,7 @@ class AppTheme {
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
         fontSize: 20,
-        fontFamily: 'Nexa',
+        fontFamily: 'Raleway',
       ),
     ),
     listTileTheme: const ListTileThemeData(

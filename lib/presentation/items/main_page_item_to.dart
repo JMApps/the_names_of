@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_names_of/domain/models/arguments/main_args.dart';
+
+import '../../data/models/arguments/main_args.dart';
 
 class MainPageItemTo extends StatelessWidget {
   const MainPageItemTo({

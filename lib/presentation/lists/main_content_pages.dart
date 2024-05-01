@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:the_names_of/application/strings/app_constraints.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
-import 'package:the_names_of/domain/models/content_entity.dart';
-import 'package:the_names_of/presentation/items/main_content_item.dart';
-import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
+
+import '../../application/strings/app_constraints.dart';
+import '../../data/repositories/book_content_data_repository.dart';
+import '../../domain/entities/content_entity.dart';
+import '../../domain/usecases/book_content_use_case.dart';
+import '../items/main_content_item.dart';
+import '../widgets/error_data_text.dart';
+import '../widgets/main_smooth_indicator.dart';
 
 class MainContentPages extends StatefulWidget {
   const MainContentPages({super.key});
@@ -28,11 +30,10 @@ class _MainContentPagesState extends State<MainContentPages> {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
-    return FutureBuilder<List<ContentModel>>(
-      future: BookContentDataRepository().getAllContents(),
-      builder: (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
-        if (snapshot.hasData) {
+    return FutureBuilder<List<ContentEntity>>(
+      future: BookContentUseCase(BookContentDataRepository()).fetchAllContents(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return Column(
             children: [
               SizedBox(
@@ -41,8 +42,11 @@ class _MainContentPagesState extends State<MainContentPages> {
                   controller: _pageController,
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final ContentModel model = snapshot.data![index];
-                    return MainContentItem(model: model, contentIndex: index);
+                    final ContentEntity contentEntity = snapshot.data![index];
+                    return MainContentItem(
+                      contentEntity: contentEntity,
+                      contentIndex: index,
+                    );
                   },
                 ),
               ),
@@ -55,17 +59,7 @@ class _MainContentPagesState extends State<MainContentPages> {
             ],
           );
         } else if (snapshot.hasError) {
-          return Center(
-            child: Padding(
-              padding: AppStyles.mainMarding,
-              child: Text(
-                snapshot.error.toString(),
-                style: TextStyle(
-                  color: appColors.error,
-                ),
-              ),
-            ),
-          );
+          return ErrorDataText(textData: snapshot.error.toString());
         } else {
           return const Center(
             child: CircularProgressIndicator.adaptive(),
