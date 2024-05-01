@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:the_names_of/application/state/main_names_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/local/database_query.dart';
-import 'package:the_names_of/domain/models/name_model.dart';
+import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
+import 'package:the_names_of/domain/models/name_entity.dart';
 import 'package:the_names_of/presentation/items/main_name_item.dart';
 
 class MainNamesList extends StatefulWidget {
@@ -31,16 +31,16 @@ class _MainNamesListState extends State<MainNamesList> {
   Widget build(BuildContext context) {
     final MainNamesState mainNamesState = Provider.of<MainNamesState>(context);
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    return FutureBuilder<List<NameModel>>(
-      future: DatabaseQuery().getAllNames(),
-      builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
+    return FutureBuilder<List<NameEntity>>(
+      future: BookContentDataRepository().getAllNames(),
+      builder: (BuildContext context, AsyncSnapshot<List<NameEntity>> snapshot) {
         if (snapshot.hasData) {
           return ScrollablePositionedList.builder(
             itemScrollController: mainNamesState.getItemScrollController,
             padding: AppStyles.mainMardingMini,
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
-              final NameModel model = snapshot.data![index];
+              final NameEntity model = snapshot.data![index];
               return MainNamesItem(model: model);
             },
           );

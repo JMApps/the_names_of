@@ -4,7 +4,7 @@ import 'package:the_names_of/application/state/quiz_ar_ru_state.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
-import 'package:the_names_of/domain/models/quiz_model.dart';
+import 'package:the_names_of/domain/models/quiz_entity.dart';
 import 'package:the_names_of/presentation/items/ar_ru_quiz_item.dart';
 
 class ArRuQuizPage extends StatelessWidget {
@@ -40,10 +40,10 @@ class ArRuQuizPage extends StatelessWidget {
         ),
         body: Consumer<QuizArRuState>(
           builder: (context, quizState, _) {
-            return FutureBuilder<List<QuizModel>>(
+            return FutureBuilder<List<QuizEntity>>(
               future: quizState.databaseQuizQuery.getArabicQuiz(),
               builder: (BuildContext context,
-                  AsyncSnapshot<List<QuizModel>> snapshot) {
+                  AsyncSnapshot<List<QuizEntity>> snapshot) {
                 if (snapshot.hasData) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -66,7 +66,7 @@ class ArRuQuizPage extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: snapshot.data!.length,
                           itemBuilder: (BuildContext context, int index) {
-                            final QuizModel model = snapshot.data![index];
+                            final QuizEntity model = snapshot.data![index];
                             return ArRuQuizItem(model: model, index: index);
                           },
                           onPageChanged: (int? pageIndex) {

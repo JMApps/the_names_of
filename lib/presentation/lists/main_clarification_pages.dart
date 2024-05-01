@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:the_names_of/application/strings/app_constraints.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/local/database_query.dart';
-import 'package:the_names_of/domain/models/clarification_model.dart';
+import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
+import 'package:the_names_of/domain/entities/clarification_entity.dart';
 import 'package:the_names_of/presentation/items/main_clarification_item.dart';
 import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
 
@@ -30,9 +30,8 @@ class _MainClarificationPagesState extends State<MainClarificationPages> {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return FutureBuilder<List<ClarificationModel>>(
-      future: DatabaseQuery().getAllClarifications(),
-      builder: (BuildContext context,
-          AsyncSnapshot<List<ClarificationModel>> snapshot) {
+      future: BookContentDataRepository().getAllClarifications(),
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Column(
             children: [

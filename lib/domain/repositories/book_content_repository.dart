@@ -1,7 +1,7 @@
-import '../models/ayah_entity.dart';
-import '../models/clarification_entity.dart';
-import '../models/content_entity.dart';
-import '../models/name_entity.dart';
+import '../entities/ayah_entity.dart';
+import '../entities/clarification_entity.dart';
+import '../entities/content_entity.dart';
+import '../entities/name_entity.dart';
 
 abstract class BookContentRepository {
   Future<List<ContentEntity>> getAllContents();

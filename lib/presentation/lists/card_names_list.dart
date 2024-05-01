@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:the_names_of/application/state/main_names_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/local/database_query.dart';
-import 'package:the_names_of/domain/models/name_model.dart';
+import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
+import 'package:the_names_of/domain/models/name_entity.dart';
 import 'package:the_names_of/presentation/items/card_name_item.dart';
 
 class CardNamesList extends StatefulWidget {
@@ -17,9 +17,9 @@ class CardNamesList extends StatefulWidget {
 class _CardNamesListState extends State<CardNamesList> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<NameModel>>(
-      future: DatabaseQuery().getAllNames(),
-      builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
+    return FutureBuilder<List<NameEntity>>(
+      future: BookContentDataRepository().getAllNames(),
+      builder: (BuildContext context, AsyncSnapshot<List<NameEntity>> snapshot) {
         if (snapshot.hasData) {
           snapshot.data!.shuffle();
           return ScrollablePositionedList.builder(
@@ -27,7 +27,7 @@ class _CardNamesListState extends State<CardNamesList> {
             padding: AppStyles.mainMardingMini,
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
-              final NameModel model = snapshot.data![index];
+              final NameEntity model = snapshot.data![index];
               return CardNamesItem(model: model, index: index);
             },
           );

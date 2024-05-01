@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:the_names_of/application/strings/app_constraints.dart';
-import 'package:the_names_of/data/local/database_quiz_query.dart';
-import 'package:the_names_of/domain/models/quiz_model.dart';
+import 'package:the_names_of/data/repositories/quiz_data_repository.dart';
+import 'package:the_names_of/domain/models/quiz_entity.dart';
 
 class QuizArRuState extends ChangeNotifier {
-  final DatabaseQuizQuery _databaseQuizQuery = DatabaseQuizQuery();
+  final QuizDataRepository _databaseQuizQuery = QuizDataRepository();
 
-  DatabaseQuizQuery get databaseQuizQuery => _databaseQuizQuery;
+  QuizDataRepository get databaseQuizQuery => _databaseQuizQuery;
 
   final Box _contentSettingsBox = Hive.box(AppConstraints.keyQuizApp);
 
@@ -40,7 +40,7 @@ class QuizArRuState extends ChangeNotifier {
     _pageController = PageController(initialPage: _arRuModePageNumber - 1);
   }
 
-  Future<void> answer({required QuizModel model, required int index}) async {
+  Future<void> answer({required QuizEntity model, required int index}) async {
     if (_arRuModePageNumber < 99) {
       if (model.answerState == 0) {
         await _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, model.id + 1);

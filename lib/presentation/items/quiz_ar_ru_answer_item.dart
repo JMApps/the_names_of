@@ -4,7 +4,7 @@ import 'package:the_names_of/application/state/quiz_ar_ru_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
 import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
-import 'package:the_names_of/domain/models/quiz_model.dart';
+import 'package:the_names_of/domain/models/quiz_entity.dart';
 
 class QuizArRuAnswerItem extends StatelessWidget {
   const QuizArRuAnswerItem({
@@ -13,7 +13,7 @@ class QuizArRuAnswerItem extends StatelessWidget {
     required this.index,
   });
 
-  final QuizModel model;
+  final QuizEntity model;
   final int index;
 
   @override

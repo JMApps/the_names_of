@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/clarification_model.dart';
+import 'package:the_names_of/domain/entities/clarification_entity.dart';
 import 'package:the_names_of/presentation/lists/clarification_ayahs_list.dart';
 import 'package:the_names_of/presentation/lists/clarification_names_list.dart';
 import 'package:the_names_of/presentation/widgets/content_html_widget.dart';

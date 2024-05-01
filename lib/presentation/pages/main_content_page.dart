@@ -3,8 +3,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:the_names_of/application/strings/app_constraints.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/local/database_query.dart';
-import 'package:the_names_of/domain/models/content_model.dart';
+import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
+import 'package:the_names_of/domain/models/content_entity.dart';
 import 'package:the_names_of/presentation/items/content_item.dart';
 import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
 
@@ -46,7 +46,7 @@ class _MainContentPageState extends State<MainContentPage> {
         ],
       ),
       body: FutureBuilder<List<ContentModel>>(
-        future: DatabaseQuery().getAllContents(),
+        future: BookContentDataRepository().getAllContents(),
         builder: (BuildContext context, AsyncSnapshot<List<ContentModel>> snapshot) {
           if (snapshot.hasData) {
             return Column(

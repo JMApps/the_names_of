@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/local/database_query.dart';
-import 'package:the_names_of/domain/models/name_model.dart';
+import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
+import 'package:the_names_of/domain/models/name_entity.dart';
 import 'package:the_names_of/presentation/items/main_name_page_item.dart';
 import 'package:the_names_of/presentation/widgets/main_smooth_indicator.dart';
 
@@ -26,9 +26,9 @@ class _MainNamesPagesState extends State<MainNamesPages> {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    return FutureBuilder<List<NameModel>>(
-      future: DatabaseQuery().getAllNames(),
-      builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
+    return FutureBuilder<List<NameEntity>>(
+      future: BookContentDataRepository().getAllNames(),
+      builder: (BuildContext context, AsyncSnapshot<List<NameEntity>> snapshot) {
         if (snapshot.hasData) {
           return Column(
             children: [
@@ -38,7 +38,7 @@ class _MainNamesPagesState extends State<MainNamesPages> {
                   controller: _pageController,
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final NameModel model = snapshot.data![index];
+                    final NameEntity model = snapshot.data![index];
                     return MainNamesPageItem(model: model, index: index);
                   },
                 ),

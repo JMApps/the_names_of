@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/arguments/main_args.dart';
-import 'package:the_names_of/domain/models/name_model.dart';
+import 'package:the_names_of/domain/models/name_entity.dart';
 
 class MainNamesPageItem extends StatelessWidget {
   const MainNamesPageItem({
@@ -10,7 +10,7 @@ class MainNamesPageItem extends StatelessWidget {
     required this.index,
   });
 
-  final NameModel model;
+  final NameEntity model;
   final int index;
 
   @override

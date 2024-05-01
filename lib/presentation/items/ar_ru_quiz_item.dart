@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/quiz_model.dart';
+import 'package:the_names_of/domain/models/quiz_entity.dart';
 import 'package:the_names_of/presentation/items/quiz_ar_ru_answer_item.dart';
 
 class ArRuQuizItem extends StatelessWidget {
   const ArRuQuizItem({super.key, required this.model, required this.index});
 
-  final QuizModel model;
+  final QuizEntity model;
   final int index;
 
   @override

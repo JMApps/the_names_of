@@ -4,10 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseQuizHelper {
-  static final DatabaseQuizHelper _instance = DatabaseQuizHelper.internal();
+class QuizService {
+  static final QuizService _instance = QuizService.internal();
 
-  factory DatabaseQuizHelper() => _instance;
+  factory QuizService() => _instance;
+
+  QuizService.internal();
+
   static Database? _db;
 
   Future<Database> get db async {
@@ -18,30 +21,31 @@ class DatabaseQuizHelper {
     return _db!;
   }
 
-  DatabaseQuizHelper.internal();
-
   Future<Database> initializeDatabase() async {
     const int dbVersion = 1;
-    const String sfqDatabaseName = 'app_quiz.db';
+    const String sfqDatabaseName = 'quiz_app.db';
     final databasePath = await getDatabasesPath();
     String path = join(databasePath, sfqDatabaseName);
 
-    var database = await openDatabase(path);
+    Database database = await openDatabase(path);
 
     if (await database.getVersion() < dbVersion) {
-      database.close();
+
+      await database.close();
       await deleteDatabase(path);
 
       try {
         await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
+      } catch (e) {
+        throw Exception('Error database $e');
+      }
 
       ByteData data = await rootBundle.load(join('assets/databases', sfqDatabaseName));
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);
 
       database = await openDatabase(path);
-      database.setVersion(dbVersion);
+      await database.setVersion(dbVersion);
     }
 
     return database;

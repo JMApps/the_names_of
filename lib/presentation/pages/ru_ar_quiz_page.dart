@@ -4,7 +4,7 @@ import 'package:the_names_of/application/state/quiz_ru_ar_state.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 import 'package:the_names_of/domain/models/arguments/quiz_mode_args.dart';
-import 'package:the_names_of/domain/models/quiz_model.dart';
+import 'package:the_names_of/domain/models/quiz_entity.dart';
 import 'package:the_names_of/presentation/items/ru_ar_quiz_item.dart';
 
 class RuArQuizPage extends StatelessWidget {
@@ -40,9 +40,9 @@ class RuArQuizPage extends StatelessWidget {
         ),
         body: Consumer<QuizRuArState>(
           builder: (context, quizState, _) {
-            return FutureBuilder<List<QuizModel>>(
+            return FutureBuilder<List<QuizEntity>>(
               future: quizState.databaseQuizQuery.getRussianQuiz(),
-              builder: (BuildContext context, AsyncSnapshot<List<QuizModel>> snapshot) {
+              builder: (BuildContext context, AsyncSnapshot<List<QuizEntity>> snapshot) {
                 if (snapshot.hasData) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -65,7 +65,7 @@ class RuArQuizPage extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: snapshot.data!.length,
                           itemBuilder: (BuildContext context, int index) {
-                            final QuizModel model = snapshot.data![index];
+                            final QuizEntity model = snapshot.data![index];
                             return RuArQuizItem(model: model, index: index);
                           },
                           onPageChanged: (int? pageIndex) {

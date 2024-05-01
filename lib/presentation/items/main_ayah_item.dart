@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_names_of/application/state/content_settings_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/ayah_model.dart';
+import 'package:the_names_of/domain/entities/ayah_entity.dart';
 
 class MainAyahItem extends StatelessWidget {
   const MainAyahItem({super.key, required this.model});

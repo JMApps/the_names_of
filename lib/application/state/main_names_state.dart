@@ -9,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:the_names_of/domain/models/name_model.dart';
+import 'package:the_names_of/domain/models/name_entity.dart';
 import 'package:the_names_of/presentation/widgets/name_screen_widget.dart';
 
 class MainNamesState extends ChangeNotifier {
@@ -57,7 +57,7 @@ class MainNamesState extends ChangeNotifier {
     Share.share(content, sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2));
   }
 
-  Future<void> takeScreenshot(NameModel model) async {
+  Future<void> takeScreenshot(NameEntity model) async {
     final unit8List = await _screenshotController.captureFromWidget(
       NameScreenWidget(model: model),
       delay: const Duration(milliseconds: 50),

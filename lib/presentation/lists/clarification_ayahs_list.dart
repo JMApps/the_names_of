@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/data/local/database_query.dart';
-import 'package:the_names_of/domain/models/ayah_model.dart';
+import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
+import 'package:the_names_of/domain/entities/ayah_entity.dart';
 import 'package:the_names_of/presentation/items/main_ayah_item.dart';
 
 class ClarificationAyahsList extends StatelessWidget {
@@ -11,7 +11,7 @@ class ClarificationAyahsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<AyahModel>>(
-      future: DatabaseQuery().getChapterAyahs(chapterId: clarificationId),
+      future: BookContentDataRepository().getChapterAyahs(chapterId: clarificationId),
       builder: (BuildContext context, AsyncSnapshot<List<AyahModel>> snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_names_of/application/state/app_player_state.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/domain/models/name_model.dart';
+import 'package:the_names_of/domain/models/name_entity.dart';
 import 'package:the_names_of/presentation/widgets/main_names_modal.dart';
 
 class MainNamesItem extends StatelessWidget {
   const MainNamesItem({super.key, required this.model});
 
-  final NameModel model;
+  final NameEntity model;
 
   @override
   Widget build(BuildContext context) {

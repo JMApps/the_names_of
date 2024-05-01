@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/data/local/database_query.dart';
-import 'package:the_names_of/domain/models/name_model.dart';
+import 'package:the_names_of/data/repositories/book_content_data_repository.dart';
+import 'package:the_names_of/domain/models/name_entity.dart';
 import 'package:the_names_of/presentation/items/clarification_name_item.dart';
 
 class ClarificationNamesList extends StatelessWidget {
@@ -12,9 +12,9 @@ class ClarificationNamesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    return FutureBuilder<List<NameModel>>(
-      future: DatabaseQuery().getChapterNames(chapterId: clarificationId),
-      builder: (BuildContext context, AsyncSnapshot<List<NameModel>> snapshot) {
+    return FutureBuilder<List<NameEntity>>(
+      future: BookContentDataRepository().getChapterNames(chapterId: clarificationId),
+      builder: (BuildContext context, AsyncSnapshot<List<NameEntity>> snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
             padding: EdgeInsets.zero,
@@ -22,7 +22,7 @@ class ClarificationNamesList extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
-              final NameModel model = snapshot.data![index];
+              final NameEntity model = snapshot.data![index];
               return ClarificationNameItem(model: model);
             },
           );
