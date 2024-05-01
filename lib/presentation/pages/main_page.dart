@@ -12,11 +12,9 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.appName),
-        backgroundColor: appColors.inversePrimary,
       ),
       body: const SingleChildScrollView(
         child: Column(
