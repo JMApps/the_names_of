@@ -3,7 +3,6 @@ import 'package:sqflite/sqlite_api.dart';
 import '../../domain/entities/quiz_entity.dart';
 import '../../domain/repositories/quiz_repository.dart';
 import '../models/question_model.dart';
-import '../models/quiz_model.dart';
 import '../services/quiz_service.dart';
 
 class QuizDataRepository implements QuizRepository {

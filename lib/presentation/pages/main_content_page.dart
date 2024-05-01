@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:the_names_of/domain/usecases/book_content_use_case.dart';
-import 'package:the_names_of/presentation/widgets/error_data_text.dart';
 
 import '../../application/strings/app_constraints.dart';
 import '../../application/strings/app_strings.dart';
-import '../../application/styles/app_styles.dart';
-import '../../data/models/content_model.dart';
 import '../../data/repositories/book_content_data_repository.dart';
 import '../../domain/entities/content_entity.dart';
+import '../../domain/usecases/book_content_use_case.dart';
 import '../items/content_item.dart';
+import '../widgets/error_data_text.dart';
 import '../widgets/main_smooth_indicator.dart';
 
 class MainContentPage extends StatefulWidget {

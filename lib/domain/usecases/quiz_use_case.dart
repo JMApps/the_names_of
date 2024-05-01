@@ -1,9 +1,4 @@
-import '../entities/ayah_entity.dart';
-import '../entities/clarification_entity.dart';
-import '../entities/content_entity.dart';
-import '../entities/name_entity.dart';
 import '../entities/quiz_entity.dart';
-import '../repositories/book_content_repository.dart';
 import '../repositories/quiz_repository.dart';
 
 class QuizUseCase {
