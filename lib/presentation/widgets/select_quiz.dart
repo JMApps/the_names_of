@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/application/routes/route_names.dart';
 import 'package:the_names_of/application/strings/app_strings.dart';
 import 'package:the_names_of/application/styles/app_styles.dart';
 
@@ -25,7 +26,7 @@ class SelectQuiz extends StatelessWidget {
           ListTile(
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, 'ar_ru_quiz_page');
+              Navigator.pushNamed(context, RouteNames.arRuQuizPage);
             },
             title: Text(
               AppStrings.arabicRussian,
@@ -40,7 +41,7 @@ class SelectQuiz extends StatelessWidget {
           ListTile(
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, 'ru_ar_quiz_page');
+              Navigator.pushNamed(context, RouteNames.ruArQuizPage);
             },
             title: Text(
               AppStrings.russianArabic,
