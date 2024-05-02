@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../application/routes/route_names.dart';
 import '../../application/strings/app_strings.dart';
 import '../../application/styles/app_styles.dart';
 import '../../data/models/arguments/quiz_mode_args.dart';
@@ -74,7 +75,7 @@ class QuizScorePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    'crib_page',
+                    RouteNames.cribPage,
                     arguments: QuizModeArgs(quizMode: quizMode),
                   );
                 },
@@ -94,9 +95,7 @@ class QuizScorePage extends StatelessWidget {
                 },
                 child: const Text(
                   AppStrings.share,
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
               OutlinedButton(
@@ -105,9 +104,7 @@ class QuizScorePage extends StatelessWidget {
                 },
                 child: const Text(
                   AppStrings.close,
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
             ],

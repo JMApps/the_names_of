@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../application/routes/route_names.dart';
 import '../../application/state/quiz_ru_ar_state.dart';
 import '../../application/strings/app_strings.dart';
 import '../../application/styles/app_styles.dart';
 import '../../data/models/arguments/quiz_mode_args.dart';
 import '../../domain/entities/quiz_entity.dart';
 import '../items/ru_ar_quiz_item.dart';
+import '../widgets/error_data_text.dart';
 
 class RuArQuizPage extends StatelessWidget {
   const RuArQuizPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
+    final appColors = Theme.of(context).colorScheme;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -28,7 +30,7 @@ class RuArQuizPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  'quiz_score_page',
+                  RouteNames.quizScorePage,
                   arguments: QuizModeArgs(quizMode: 2),
                 );
               },
@@ -42,9 +44,9 @@ class RuArQuizPage extends StatelessWidget {
         body: Consumer<QuizRuArState>(
           builder: (context, quizState, _) {
             return FutureBuilder<List<QuizEntity>>(
-              future: quizState.databaseQuizQuery.getRussianQuiz(),
-              builder: (BuildContext context, AsyncSnapshot<List<QuizEntity>> snapshot) {
-                if (snapshot.hasData) {
+              future: quizState.getQuizUseCase.fetchRussianQuiz(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -67,7 +69,10 @@ class RuArQuizPage extends StatelessWidget {
                           itemCount: snapshot.data!.length,
                           itemBuilder: (BuildContext context, int index) {
                             final QuizEntity model = snapshot.data![index];
-                            return RuArQuizItem(model: model, index: index);
+                            return RuArQuizItem(
+                              model: model,
+                              index: index,
+                            );
                           },
                           onPageChanged: (int? pageIndex) {
                             quizState.changePageIndex(pageIndex!);
@@ -98,19 +103,7 @@ class RuArQuizPage extends StatelessWidget {
                     ],
                   );
                 } else if (snapshot.hasError) {
-                  return Center(
-                    child: Padding(
-                      padding: AppStyles.mainMarding,
-                      child: Text(
-                        snapshot.error.toString(),
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: appColors.error,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  );
+                  return ErrorDataText(textData: snapshot.error.toString());
                 }
                 return const Center(
                   child: CircularProgressIndicator.adaptive(),

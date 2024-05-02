@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:the_names_of/application/routes/route_names.dart';
 
 import '../../application/strings/app_constraints.dart';
 import '../../application/strings/app_strings.dart';
@@ -31,15 +32,13 @@ class _MainContentPageState extends State<MainContentPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.descriptionHeads),
-        backgroundColor: appColors.inversePrimary,
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, 'app_settings_page');
+              Navigator.pushNamed(context, RouteNames.appSettingsPage);
             },
             icon: const Icon(
               Icons.settings,

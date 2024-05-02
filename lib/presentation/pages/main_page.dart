@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
-import 'package:the_names_of/presentation/items/main_page_item_to.dart';
-import 'package:the_names_of/presentation/lists/main_clarification_pages.dart';
-import 'package:the_names_of/presentation/lists/main_content_pages.dart';
-import 'package:the_names_of/presentation/lists/main_names_pages.dart';
-import 'package:the_names_of/presentation/widgets/last_card.dart';
+
+import '../../application/routes/route_names.dart';
+import '../../application/strings/app_strings.dart';
+import '../../application/styles/app_styles.dart';
+import '../items/main_page_item_to.dart';
+import '../lists/main_clarification_pages.dart';
+import '../lists/main_content_pages.dart';
+import '../lists/main_names_pages.dart';
+import '../widgets/last_card.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -21,17 +23,17 @@ class MainPage extends StatelessWidget {
           children: [
             SizedBox(height: 8),
             MainPageItemTo(
-              routeName: 'main_contents_page',
+              routeName: RouteNames.mainContentsPage,
               title: AppStrings.descriptionHeads,
             ),
             MainContentPages(),
             MainPageItemTo(
-              routeName: 'main_names_page',
+              routeName: RouteNames.mainNamesPage,
               title: AppStrings.names,
             ),
             MainNamesPages(),
             MainPageItemTo(
-              routeName: 'main_clarifications_page',
+              routeName: RouteNames.mainClarificationsPage,
               title: AppStrings.clarificationNames,
             ),
             MainClarificationPages(),
@@ -54,7 +56,7 @@ class MainPage extends StatelessWidget {
               Expanded(
                 child: LastCard(
                   title: AppStrings.cards,
-                  routeName: 'name_cards_page',
+                  routeName: RouteNames.nameCardsPage,
                 ),
               ),
             ],

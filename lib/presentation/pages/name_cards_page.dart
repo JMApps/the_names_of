@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/application/state/app_player_state.dart';
-import 'package:the_names_of/application/state/main_names_state.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/presentation/lists/card_names_list.dart';
+
+import '../../application/state/app_player_state.dart';
+import '../../application/state/main_names_state.dart';
+import '../../application/strings/app_strings.dart';
+import '../lists/card_names_list.dart';
 
 class NameCardsPage extends StatelessWidget {
   const NameCardsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -21,7 +21,6 @@ class NameCardsPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(AppStrings.cards),
-          backgroundColor: appColors.inversePrimary,
           actions: [
             IconButton(
               onPressed: () {

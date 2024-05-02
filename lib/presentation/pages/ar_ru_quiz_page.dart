@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../application/routes/route_names.dart';
 import '../../application/state/quiz_ar_ru_state.dart';
 import '../../application/strings/app_strings.dart';
 import '../../application/styles/app_styles.dart';
 import '../../data/models/arguments/quiz_mode_args.dart';
 import '../../domain/entities/quiz_entity.dart';
 import '../items/ar_ru_quiz_item.dart';
+import '../widgets/error_data_text.dart';
 
 class ArRuQuizPage extends StatelessWidget {
   const ArRuQuizPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
+    final appColors = Theme.of(context).colorScheme;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -28,7 +30,7 @@ class ArRuQuizPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  'quiz_score_page',
+                  RouteNames.quizScorePage,
                   arguments: QuizModeArgs(quizMode: 1),
                 );
               },
@@ -42,10 +44,9 @@ class ArRuQuizPage extends StatelessWidget {
         body: Consumer<QuizArRuState>(
           builder: (context, quizState, _) {
             return FutureBuilder<List<QuizEntity>>(
-              future: quizState.databaseQuizQuery.getArabicQuiz(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<QuizEntity>> snapshot) {
-                if (snapshot.hasData) {
+              future: quizState.getQuizUseCase.fetchArabicQuiz(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -63,12 +64,15 @@ class ArRuQuizPage extends StatelessWidget {
                       const SizedBox(height: 4),
                       Expanded(
                         child: PageView.builder(
-                          controller: quizState.getPageController,
                           physics: const NeverScrollableScrollPhysics(),
+                          controller: quizState.getPageController,
                           itemCount: snapshot.data!.length,
                           itemBuilder: (BuildContext context, int index) {
                             final QuizEntity model = snapshot.data![index];
-                            return ArRuQuizItem(model: model, index: index);
+                            return ArRuQuizItem(
+                              model: model,
+                              index: index,
+                            );
                           },
                           onPageChanged: (int? pageIndex) {
                             quizState.changePageIndex(pageIndex!);
@@ -99,19 +103,7 @@ class ArRuQuizPage extends StatelessWidget {
                     ],
                   );
                 } else if (snapshot.hasError) {
-                  return Center(
-                    child: Padding(
-                      padding: AppStyles.mainMarding,
-                      child: Text(
-                        snapshot.error.toString(),
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: appColors.error,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  );
+                  return ErrorDataText(textData: snapshot.error.toString());
                 }
                 return const Center(
                   child: CircularProgressIndicator.adaptive(),

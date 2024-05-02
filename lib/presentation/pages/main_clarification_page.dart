@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:the_names_of/domain/usecases/book_content_use_case.dart';
-import 'package:the_names_of/presentation/widgets/error_data_text.dart';
+import 'package:the_names_of/application/routes/route_names.dart';
 
 import '../../application/strings/app_constraints.dart';
 import '../../application/strings/app_strings.dart';
 import '../../data/repositories/book_content_data_repository.dart';
 import '../../domain/entities/clarification_entity.dart';
+import '../../domain/usecases/book_content_use_case.dart';
 import '../items/clarification_item.dart';
+import '../widgets/error_data_text.dart';
 import '../widgets/main_smooth_indicator.dart';
 
 class MainClarificationPage extends StatefulWidget {
@@ -31,15 +32,13 @@ class _MainClarificationPageState extends State<MainClarificationPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.clarificationNames),
-        backgroundColor: appColors.inversePrimary,
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, 'app_settings_page');
+              Navigator.pushNamed(context, RouteNames.appSettingsPage);
             },
             icon: const Icon(
               Icons.settings,

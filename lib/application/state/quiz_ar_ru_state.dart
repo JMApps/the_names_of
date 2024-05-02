@@ -2,15 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:the_names_of/domain/usecases/quiz_use_case.dart';
 
 import '../../data/repositories/quiz_data_repository.dart';
 import '../../domain/entities/quiz_entity.dart';
 import '../strings/app_constraints.dart';
 
 class QuizArRuState extends ChangeNotifier {
-  final QuizDataRepository _databaseQuizQuery = QuizDataRepository();
+  final _quizUseCase = QuizUseCase(QuizDataRepository());
 
-  QuizDataRepository get databaseQuizQuery => _databaseQuizQuery;
+  QuizUseCase get getQuizUseCase => _quizUseCase;
 
   final Box _contentSettingsBox = Hive.box(AppConstraints.keyQuizApp);
 
@@ -48,7 +49,7 @@ class QuizArRuState extends ChangeNotifier {
         _isClickedAnswer = false;
         _isCorrectAnswer = model.correct == index;
         _selectedAnswerIndex = index;
-        _databaseQuizQuery.setArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
+        _quizUseCase.fetchArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
         notifyListeners();
         _questionTimer = Timer(
           Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
@@ -70,7 +71,7 @@ class QuizArRuState extends ChangeNotifier {
         _isClickedAnswer = false;
         _isCorrectAnswer = model.correct == index;
         _selectedAnswerIndex = index;
-        _databaseQuizQuery.setArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
+        _quizUseCase.fetchArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
         notifyListeners();
         _questionTimer = Timer(
           Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
@@ -90,7 +91,7 @@ class QuizArRuState extends ChangeNotifier {
   }
 
   Future<void> resetQuiz() async {
-    await _databaseQuizQuery.resetArRuAnswer();
+    await _quizUseCase.fetchArRuResetAnswer();
     await _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, 1);
     await _pageController.animateToPage(
       0,
