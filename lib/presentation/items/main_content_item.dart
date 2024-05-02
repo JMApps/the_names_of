@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../application/styles/app_styles.dart';
-import '../../data/models/arguments/main_args.dart';
+import '../../data/models/arguments/index_args.dart';
 import '../../domain/entities/content_entity.dart';
 import '../widgets/base_html_widget.dart';
 
@@ -24,7 +24,7 @@ class MainContentItem extends StatelessWidget {
           Navigator.pushNamed(
             context,
             'main_contents_page',
-            arguments: MainArgs(index: contentIndex),
+            arguments: IndexArgs(index: contentIndex),
           );
         },
         borderRadius: AppStyles.mainBorder,

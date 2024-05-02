@@ -23,7 +23,7 @@ class QuizService {
 
   Future<Database> initializeDatabase() async {
     const int dbVersion = 1;
-    const String sfqDatabaseName = 'quiz_app.db';
+    const String sfqDatabaseName = 'app_quiz.db';
     final databasePath = await getDatabasesPath();
     String path = join(databasePath, sfqDatabaseName);
 

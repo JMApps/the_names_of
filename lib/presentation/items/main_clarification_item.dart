@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../application/styles/app_styles.dart';
-import '../../data/models/arguments/main_args.dart';
+import '../../data/models/arguments/index_args.dart';
 import '../../domain/entities/clarification_entity.dart';
 import '../widgets/base_html_widget.dart';
 
@@ -24,7 +24,7 @@ class MainClarificationItem extends StatelessWidget {
           Navigator.pushNamed(
             context,
             'main_clarifications_page',
-            arguments: MainArgs(index: clarificationIndex),
+            arguments: IndexArgs(index: clarificationIndex),
           );
         },
         borderRadius: AppStyles.mainBorder,

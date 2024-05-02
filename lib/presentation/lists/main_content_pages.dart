@@ -19,7 +19,7 @@ class MainContentPages extends StatefulWidget {
 class _MainContentPagesState extends State<MainContentPages> {
   late final PageController _pageController;
   final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
-  int _initialPageIndex = 0;
+  late int _initialPageIndex;
 
   @override
   void initState() {
