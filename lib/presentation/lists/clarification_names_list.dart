@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../data/repositories/book_content_data_repository.dart';
+import '../../application/state/main_data_state.dart';
 import '../../domain/entities/name_entity.dart';
-import '../../domain/usecases/book_content_use_case.dart';
 import '../items/clarification_name_item.dart';
 import '../widgets/error_data_text.dart';
 
@@ -17,7 +17,7 @@ class ClarificationNamesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<NameEntity>>(
-      future: BookContentUseCase(BookContentDataRepository()).fetchChapterNames(chapterId: clarificationId),
+      future: Provider.of<MainDataState>(context, listen: false).getBookContentUseCase.fetchChapterNames(chapterId: clarificationId),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return ListView.builder(

@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../data/repositories/book_content_data_repository.dart';
+import '../../application/state/main_data_state.dart';
 import '../../domain/entities/name_entity.dart';
-import '../../domain/usecases/book_content_use_case.dart';
 import '../items/main_name_page_item.dart';
 import '../widgets/error_data_text.dart';
 import '../widgets/main_smooth_indicator.dart';
@@ -29,7 +29,7 @@ class _MainNamesPagesState extends State<MainNamesPages> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<NameEntity>>(
-      future: BookContentUseCase(BookContentDataRepository()).fetchAllNames(),
+      future: Provider.of<MainDataState>(context, listen: false).getBookContentUseCase.fetchAllNames(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return Column(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
+import '../../application/state/main_data_state.dart';
 import '../../application/strings/app_constraints.dart';
-import '../../data/repositories/book_content_data_repository.dart';
 import '../../domain/entities/content_entity.dart';
-import '../../domain/usecases/book_content_use_case.dart';
 import '../items/main_content_item.dart';
 import '../widgets/error_data_text.dart';
 import '../widgets/main_smooth_indicator.dart';
@@ -31,7 +31,7 @@ class _MainContentPagesState extends State<MainContentPages> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ContentEntity>>(
-      future: BookContentUseCase(BookContentDataRepository()).fetchAllContents(),
+      future: Provider.of<MainDataState>(context, listen: false).getBookContentUseCase.fetchAllContents(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return Column(

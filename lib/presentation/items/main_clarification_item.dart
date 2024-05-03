@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../application/routes/route_names.dart';
 import '../../application/styles/app_styles.dart';
 import '../../data/models/arguments/index_args.dart';
 import '../../domain/entities/clarification_entity.dart';
@@ -23,7 +24,7 @@ class MainClarificationItem extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            'main_clarifications_page',
+            RouteNames.mainClarificationsPage,
             arguments: IndexArgs(index: clarificationIndex),
           );
         },

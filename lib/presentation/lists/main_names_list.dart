@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+import '../../application/state/main_data_state.dart';
 import '../../application/state/main_names_state.dart';
 import '../../application/styles/app_styles.dart';
-import '../../data/repositories/book_content_data_repository.dart';
 import '../../domain/entities/name_entity.dart';
-import '../../domain/usecases/book_content_use_case.dart';
 import '../items/main_name_item.dart';
 import '../widgets/error_data_text.dart';
 
@@ -32,13 +31,12 @@ class _MainNamesListState extends State<MainNamesList> {
 
   @override
   Widget build(BuildContext context) {
-    final MainNamesState mainNamesState = Provider.of<MainNamesState>(context);
     return FutureBuilder<List<NameEntity>>(
-      future: BookContentUseCase(BookContentDataRepository()).fetchAllNames(),
+      future: Provider.of<MainDataState>(context, listen: false).getBookContentUseCase.fetchAllNames(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return ScrollablePositionedList.builder(
-            itemScrollController: mainNamesState.getItemScrollController,
+            itemScrollController: Provider.of<MainNamesState>(context).getItemScrollController,
             padding: AppStyles.mainMardingMini,
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {

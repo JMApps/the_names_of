@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'application/state/content_settings_state.dart';
+import 'application/state/main_data_state.dart';
 import 'application/state/main_names_state.dart';
 import 'application/strings/app_constraints.dart';
 import 'presentation/pages/root_page.dart';
@@ -15,6 +16,9 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (_) => MainDataState(),
+        ),
         ChangeNotifierProvider(
           create: (_) => ContentSettingsState(),
         ),

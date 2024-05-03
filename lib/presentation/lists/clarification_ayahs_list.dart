@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../data/repositories/book_content_data_repository.dart';
+import '../../application/state/main_data_state.dart';
 import '../../domain/entities/ayah_entity.dart';
-import '../../domain/usecases/book_content_use_case.dart';
 import '../items/main_ayah_item.dart';
 
 class ClarificationAyahsList extends StatelessWidget {
@@ -13,7 +13,7 @@ class ClarificationAyahsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<AyahEntity>>(
-      future: BookContentUseCase(BookContentDataRepository()).fetchChapterAyahs(chapterId: clarificationId),
+      future: Provider.of<MainDataState>(context, listen: false).getBookContentUseCase.fetchChapterAyahs(chapterId: clarificationId),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return ListView.builder(

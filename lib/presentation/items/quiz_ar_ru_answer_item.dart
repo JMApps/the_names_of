@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_names_of/application/themes/app_theme.dart';
 
+import '../../application/routes/route_names.dart';
 import '../../application/state/quiz_ar_ru_state.dart';
 import '../../application/styles/app_styles.dart';
 import '../../data/models/arguments/quiz_mode_args.dart';
@@ -40,7 +41,7 @@ class QuizArRuAnswerItem extends StatelessWidget {
                 if (model.id == 99 && model.answerState > 0) {
                   Navigator.pushNamed(
                     context,
-                    'quiz_score_page',
+                    RouteNames.quizScorePage,
                     arguments: QuizModeArgs(quizMode: 1),
                   );
                 }

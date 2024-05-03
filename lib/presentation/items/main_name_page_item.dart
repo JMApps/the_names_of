@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/application/routes/route_names.dart';
 
 import '../../application/styles/app_styles.dart';
 import '../../data/models/arguments/index_args.dart';
@@ -23,7 +24,7 @@ class MainNamesPageItem extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            'main_names_page',
+            RouteNames.mainNamesPage,
             arguments: IndexArgs(index: index),
           );
         },
