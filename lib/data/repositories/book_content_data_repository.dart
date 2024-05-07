@@ -16,7 +16,7 @@ class BookContentDataRepository implements BookContentRepository {
   factory BookContentDataRepository() => _instance;
   BookContentDataRepository.internal();
 
-  final BookContentService _databaseHelper = BookContentService();
+  final BookContentService _bookContentService = BookContentService();
 
   final String _tableNames = 'Table_of_names';
   final String _tableAyahs = 'Table_of_ayahs';
@@ -25,7 +25,7 @@ class BookContentDataRepository implements BookContentRepository {
 
   @override
   Future<List<NameEntity>> getAllNames() async {
-    final Database database = await _databaseHelper.db;
+    final Database database = await _bookContentService.db;
     final List<Map<String, Object?>> resources = await database.query(_tableNames);
     final List<NameEntity> allNames = resources.isNotEmpty ? resources.map((c) => _nameToEntity(NameModel.fromMap(c))).toList() : [];
     return allNames;
@@ -33,7 +33,7 @@ class BookContentDataRepository implements BookContentRepository {
 
   @override
   Future<List<NameEntity>> getChapterNames({required int chapterId}) async {
-    final Database database = await _databaseHelper.db;
+    final Database database = await _bookContentService.db;
     final List<Map<String, Object?>> resources = await database.query(_tableNames, where: 'sorted_by == $chapterId');
     final List<NameEntity> chapterNames = resources.isNotEmpty ? resources.map((c) => _nameToEntity(NameModel.fromMap(c))).toList() : [];
     return chapterNames;
@@ -41,7 +41,7 @@ class BookContentDataRepository implements BookContentRepository {
 
   @override
   Future<List<AyahEntity>> getChapterAyahs({required int chapterId}) async {
-    final Database database = await _databaseHelper.db;
+    final Database database = await _bookContentService.db;
     final List<Map<String, Object?>> resources = await database.query(_tableAyahs, where: 'sorted_by == $chapterId');
     final List<AyahEntity> chapterAyahs = resources.isNotEmpty ? resources.map((c) => _ayahToEntity(AyahModel.fromMap(c))).toList() : [];
     return chapterAyahs;
@@ -49,7 +49,7 @@ class BookContentDataRepository implements BookContentRepository {
 
   @override
   Future<List<ContentEntity>> getAllContents() async {
-    final Database database = await _databaseHelper.db;
+    final Database database = await _bookContentService.db;
     final List<Map<String, Object?>> resources = await database.query(_tableContents);
     final List<ContentEntity> allContents = resources.isNotEmpty ? resources.map((c) => _contentToEntity(ContentModel.fromMap(c))).toList() : [];
     return allContents;
@@ -57,7 +57,7 @@ class BookContentDataRepository implements BookContentRepository {
 
   @override
   Future<ContentEntity> getContentById({required int contentId}) async {
-    final Database database = await _databaseHelper.db;
+    final Database database = await _bookContentService.db;
     final List<Map<String, Object?>> resources = await database.query(_tableContents, where: 'id == $contentId');
     final ContentEntity? contentById = resources.isNotEmpty ? _contentToEntity(ContentModel.fromMap(resources.first)) : null;
     return contentById!;
@@ -65,7 +65,7 @@ class BookContentDataRepository implements BookContentRepository {
 
   @override
   Future<List<ClarificationEntity>> getAllClarifications() async {
-    final Database database = await _databaseHelper.db;
+    final Database database = await _bookContentService.db;
     final List<Map<String, Object?>> resources = await database.query(_tableClarifications);
     final List<ClarificationEntity> allClarifications = resources.isNotEmpty ? resources.map((c) => _clarificationToEntity(ClarificationModel.fromMap(c))).toList() : [];
     return allClarifications;
@@ -73,7 +73,7 @@ class BookContentDataRepository implements BookContentRepository {
 
   @override
   Future<ClarificationEntity> getClarificationById({required int clarificationId}) async {
-    final Database database = await _databaseHelper.db;
+    final Database database = await _bookContentService.db;
     final List<Map<String, Object?>> resources = await database.query(_tableClarifications, where: 'id == $clarificationId');
     final ClarificationEntity? clarificationById = resources.isNotEmpty ? _clarificationToEntity(ClarificationModel.fromMap(resources.first)) : null;
     return clarificationById!;

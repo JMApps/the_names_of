@@ -6,7 +6,7 @@ import '../../application/styles/app_styles.dart';
 import '../../data/repositories/quiz_data_repository.dart';
 import '../../domain/entities/quiz_entity.dart';
 import '../../domain/usecases/quiz_use_case.dart';
-import '../items/crib_Item.dart';
+import '../items/crib_item.dart';
 import '../widgets/error_data_text.dart';
 
 class CribPage extends StatelessWidget {

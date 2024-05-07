@@ -19,6 +19,7 @@ class SelectQuiz extends StatelessWidget {
             AppStrings.quiz,
             style: TextStyle(
               color: appTheme.colorScheme.primary,
+              fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),

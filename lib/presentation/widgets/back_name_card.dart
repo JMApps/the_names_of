@@ -65,7 +65,7 @@ class BackNameCard extends StatelessWidget {
               Text(
                 model.nameTranscription,
                 style: TextStyle(
-                  color: appColors.primary,
+                  color: appColors.secondary,
                   fontSize: 22,
                 ),
                 textAlign: TextAlign.center,

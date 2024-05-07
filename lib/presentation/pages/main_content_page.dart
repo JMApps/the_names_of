@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:the_names_of/application/routes/route_names.dart';
+import 'package:provider/provider.dart';
 
+import '../../application/routes/route_names.dart';
+import '../../application/state/main_data_state.dart';
 import '../../application/strings/app_constraints.dart';
 import '../../application/strings/app_strings.dart';
-import '../../data/repositories/book_content_data_repository.dart';
 import '../../domain/entities/content_entity.dart';
-import '../../domain/usecases/book_content_use_case.dart';
 import '../items/content_item.dart';
 import '../widgets/error_data_text.dart';
 import '../widgets/main_smooth_indicator.dart';
@@ -47,7 +47,7 @@ class _MainContentPageState extends State<MainContentPage> {
         ],
       ),
       body: FutureBuilder<List<ContentEntity>>(
-        future: BookContentUseCase(BookContentDataRepository()).fetchAllContents(),
+        future: Provider.of<MainDataState>(context, listen: false).getBookContentUseCase.fetchAllContents(),
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data!.isNotEmpty) {
             return Column(

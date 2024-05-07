@@ -44,9 +44,9 @@ class FrontNameCard extends StatelessWidget {
             child: Text(
               model.nameArabic,
               style: TextStyle(
-                fontSize: 35,
-                fontFamily: 'Khebrat',
-                color: appColors.secondary,
+                fontSize: 40,
+                fontFamily: 'Scheherezade',
+                color: appColors.primary,
               ),
               textAlign: TextAlign.center,
             ),

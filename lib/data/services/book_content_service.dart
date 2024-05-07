@@ -12,6 +12,8 @@ class BookContentService {
   BookContentService.internal();
 
   static Database? _db;
+  static const int dbVersion = 1;
+  static const String databaseName = 'names_of.db';
 
   Future<Database> get db async {
     if (_db != null) {
@@ -22,13 +24,11 @@ class BookContentService {
   }
 
   Future<Database> initializeDatabase() async {
-    const int dbVersion = 1;
-    const String sfqDatabaseName = 'names_of.db';
-    final databasePath = await getDatabasesPath();
-    String path = join(databasePath, sfqDatabaseName);
+    final String databasePath = await getDatabasesPath();
+    String path = join(databasePath, databaseName);
 
     Database database = await openDatabase(path);
-    int? version = await database.getVersion();
+    int version = await database.getVersion();
 
     if (version < dbVersion) {
       await database.close();
@@ -40,7 +40,7 @@ class BookContentService {
         throw Exception('Error database $e');
       }
 
-      ByteData data = await rootBundle.load(join('assets/databases', sfqDatabaseName));
+      ByteData data = await rootBundle.load(join('assets/databases', databaseName));
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);
 
