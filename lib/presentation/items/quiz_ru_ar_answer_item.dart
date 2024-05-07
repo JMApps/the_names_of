@@ -54,8 +54,8 @@ class QuizRuArAnswerItem extends StatelessWidget {
           child: Text(
             model.answers[index],
             style: const TextStyle(
-              fontFamily: 'Khebrat',
-              fontSize: 30,
+              fontFamily: 'Scheherezade',
+              fontSize: 35,
             ),
             textAlign: TextAlign.center,
           ),

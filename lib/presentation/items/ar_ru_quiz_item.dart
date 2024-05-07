@@ -23,7 +23,7 @@ class ArRuQuizItem extends StatelessWidget {
             child: Text(
               model.question,
               style: const TextStyle(
-                fontFamily: 'Khebrat',
+                fontFamily: 'Scheherezade',
                 fontSize: 35,
               ),
               textDirection: TextDirection.rtl,

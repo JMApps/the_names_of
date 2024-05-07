@@ -29,7 +29,7 @@ dependencies:
   provider: ^6.1.2
   flutter_material_color_picker: ^1.2.0
   wakelock_plus: ^1.2.4
-  flutter_local_notifications: ^17.1.1
+  flutter_local_notifications: ^17.1.2
   intl: ^0.19.0
   timezone: ^0.9.3
 
@@ -56,9 +56,6 @@ flutter:
     - family: Raleway
       fonts:
         - asset: assets/fonts/raleway_regular.ttf
-    - family: Khebrat
-      fonts:
-        - asset: assets/fonts/khebrat.ttf
     - family: Scheherezade
       fonts:
         - asset: assets/fonts/scheh.ttf

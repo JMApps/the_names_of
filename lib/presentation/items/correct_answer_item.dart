@@ -38,7 +38,7 @@ class CorrectAnswerItem extends StatelessWidget {
               model.question,
               style: const TextStyle(
                 fontSize: 25,
-                fontFamily: 'Khebrat',
+                fontFamily: 'Scheherezade',
               ),
               textAlign: TextAlign.center,
             ),
@@ -60,8 +60,8 @@ class CorrectAnswerItem extends StatelessWidget {
             child: Text(
               model.answers[model.correct],
               style: const TextStyle(
-                fontSize: 25,
-                fontFamily: 'Khebrat',
+                fontSize: 30,
+                fontFamily: 'Scheherezade',
               ),
               textAlign: TextAlign.center,
             ),

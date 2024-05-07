@@ -48,9 +48,9 @@ class ClarificationNameItem extends StatelessWidget {
                     Text(
                       nameModel.nameArabic,
                       style: TextStyle(
-                        fontSize: settings.getTextSize + 3,
-                        fontFamily: 'Khebrat',
-                        color: appColors.secondary,
+                        fontSize: settings.getTextSize + 5,
+                        fontFamily: 'Scheherezade',
+                        color: appColors.primary,
                       ),
                       textDirection: TextDirection.rtl,
                       textAlign: TextAlign.center,
@@ -59,7 +59,7 @@ class ClarificationNameItem extends StatelessWidget {
                       nameModel.nameTranscription,
                       style: TextStyle(
                         fontSize: settings.getTextSize,
-                        color: appColors.primary,
+                        color: appColors.secondary,
                       ),
                       textAlign: TextAlign.center,
                     ),

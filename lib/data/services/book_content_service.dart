@@ -29,24 +29,27 @@ class BookContentService {
 
     Database database = await openDatabase(path);
 
-    if (await database.getVersion() < dbVersion) {
+    await database.getVersion().then((value) async {
+      if (value < dbVersion) {
+        await database.close();
+        await deleteDatabase(path);
 
-      await database.close();
-      await deleteDatabase(path);
+        try {
+          await Directory(dirname(path)).create(recursive: true);
+        } catch (e) {
+          throw Exception('Error database $e');
+        }
 
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (e) {
-        throw Exception('Error database $e');
+        ByteData data =
+            await rootBundle.load(join('assets/databases', sfqDatabaseName));
+        List<int> bytes =
+            data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+        await File(path).writeAsBytes(bytes, flush: true);
+
+        database = await openDatabase(path);
+        await database.setVersion(dbVersion);
       }
-
-      ByteData data = await rootBundle.load(join('assets/databases', sfqDatabaseName));
-      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      await File(path).writeAsBytes(bytes, flush: true);
-
-      database = await openDatabase(path);
-      await database.setVersion(dbVersion);
-    }
+    });
 
     return database;
   }

@@ -53,16 +53,16 @@ class MainNamesPageItem extends StatelessWidget {
                   Text(
                     nameModel.nameArabic,
                     style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Khebrat',
-                      color: appColors.secondary,
+                      fontSize: 25,
+                      fontFamily: 'Scheherezade',
+                      color: appColors.primary,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   Text(
                     nameModel.nameTranscription,
                     style: TextStyle(
-                      color: appColors.primary,
+                      color: appColors.secondary,
                     ),
                     textAlign: TextAlign.center,
                   ),
