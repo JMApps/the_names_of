@@ -18,27 +18,25 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppStrings.appName),
       ),
-      body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 8),
-            MainPageItemTo(
-              routeName: RouteNames.mainContentsPage,
-              title: AppStrings.descriptionHeads,
-            ),
-            MainContentPages(),
-            MainPageItemTo(
-              routeName: RouteNames.mainNamesPage,
-              title: AppStrings.names,
-            ),
-            MainNamesPages(),
-            MainPageItemTo(
-              routeName: RouteNames.mainClarificationsPage,
-              title: AppStrings.clarificationNames,
-            ),
-            MainClarificationPages(),
-          ],
-        ),
+      body: ListView(
+        children: const [
+          SizedBox(height: 8),
+          MainPageItemTo(
+            routeName: RouteNames.mainContentsPage,
+            title: AppStrings.descriptionHeads,
+          ),
+          MainContentPages(),
+          MainPageItemTo(
+            routeName: RouteNames.mainNamesPage,
+            title: AppStrings.names,
+          ),
+          MainNamesPages(),
+          MainPageItemTo(
+            routeName: RouteNames.mainClarificationsPage,
+            title: AppStrings.clarificationNames,
+          ),
+          MainClarificationPages(),
+        ],
       ),
       bottomNavigationBar: const Card(
         margin: EdgeInsets.zero,

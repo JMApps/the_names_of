@@ -12,6 +12,10 @@ import '../models/name_model.dart';
 import '../services/book_content_service.dart';
 
 class BookContentDataRepository implements BookContentRepository {
+  static final BookContentDataRepository _instance = BookContentDataRepository.internal();
+  factory BookContentDataRepository() => _instance;
+  BookContentDataRepository.internal();
+
   final BookContentService _databaseHelper = BookContentService();
 
   final String _tableNames = 'Table_of_names';
