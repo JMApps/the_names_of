@@ -59,7 +59,7 @@ class _MainClarificationPagesState extends State<MainClarificationPages> {
             ],
           );
         } else if (snapshot.hasError) {
-          return ErrorDataText(textData: snapshot.error.toString());
+          return const ErrorDataText(textData: 'Требуется перезапуск приложения');
         } else {
           return const Center(
             child: CircularProgressIndicator.adaptive(),
