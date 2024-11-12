@@ -10,9 +10,11 @@ import 'presentation/pages/root_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
   await Hive.openBox(AppConstraints.keyAppSettingsBox);
   await Hive.openBox(AppConstraints.keyQuizApp);
+
   runApp(
     MultiProvider(
       providers: [

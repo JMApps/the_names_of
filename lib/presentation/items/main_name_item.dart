@@ -42,7 +42,7 @@ class MainNamesItem extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 20,
                   backgroundColor:
-                      nameModel.id.isOdd ? evenItemColor : appColors.background,
+                      nameModel.id.isOdd ? evenItemColor : appColors.surface,
                   child: Text(nameModel.id.toString()),
                 ),
               ),
@@ -51,7 +51,7 @@ class MainNamesItem extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 20,
                   backgroundColor:
-                      nameModel.id.isOdd ? evenItemColor : appColors.background,
+                      nameModel.id.isOdd ? evenItemColor : appColors.surface,
                   child: IconButton(
                     onPressed: () {
                       player.playTrack(

@@ -14,26 +14,30 @@ if (localPropertiesFile.exists()) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '33'
+    flutterVersionCode = '34'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '2.9.2'
+    flutterVersionName = '2.9.3'
 }
 
 android {
     namespace "com.example.the_names_of"
-    compileSdk 34
-    ndkVersion "26.1.10909125"
+    compileSdk 35
+    ndkVersion "27.0.12077973"
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
 
     sourceSets {
@@ -41,9 +45,9 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "jmapps.thenamesof"
-        targetSdk 33
-        compileSdk 34
+        targetSdk 35
         minSdkVersion 21
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
