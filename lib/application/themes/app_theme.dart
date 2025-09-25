@@ -1,60 +1,54 @@
 import 'package:flutter/material.dart';
 
+import '../strings/app_strings.dart';
 import '../styles/app_styles.dart';
 
 class AppTheme {
-  static ThemeData lightTheme = ThemeData(
-    fontFamily: 'Raleway',
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.light,
+  ThemeData get lightTheme => _buildTheme(Brightness.light);
+
+  ThemeData get darkTheme => _buildTheme(Brightness.dark);
+
+  ThemeData _buildTheme(Brightness brightness) {
+    final colorScheme = ColorScheme.fromSeed(
+      brightness: brightness,
       seedColor: Colors.blue,
-    ),
-    appBarTheme: const AppBarTheme(
-      centerTitle: true,
-      elevation: 0,
-    ),
-    textTheme: const TextTheme(
-      bodyMedium: TextStyle(
-        fontSize: 20,
-        fontFamily: 'Raleway',
-      ),
-    ),
-    listTileTheme: const ListTileThemeData(
-      visualDensity: VisualDensity(vertical: -4),
-      shape: AppStyles.mainShape,
-    ),
-  );
-
-  static ThemeData darkTheme = ThemeData(
-    fontFamily: 'Raleway',
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.dark,
-      seedColor: Colors.blue,
-    ),
-    appBarTheme: const AppBarTheme(
-      centerTitle: true,
-      elevation: 0,
-    ),
-    textTheme: const TextTheme(
-      bodyMedium: TextStyle(
-        fontSize: 20,
-        fontFamily: 'Raleway',
-      ),
-    ),
-    listTileTheme: const ListTileThemeData(
-      visualDensity: VisualDensity(vertical: -4),
-      shape: AppStyles.mainShape,
-    ),
-  );
-}
-
-extension ColorSchemeS on ColorScheme {
-
-  Color get correctColor => brightness == Brightness.light
-      ? const Color(0xFF009688)
-      : const Color(0xBF004D40);
-
-  Color get incorrectColor => brightness == Brightness.light
-      ? const Color(0xFFF44336)
-      : const Color(0xBFB71C1C);
+    );
+    return ThemeData(
+        fontFamily: AppStrings.fontRaleway,
+        colorScheme: colorScheme,
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+        ),
+        bottomSheetTheme: const BottomSheetThemeData(
+          showDragHandle: true,
+        ),
+        cardTheme: const CardThemeData(
+          margin: EdgeInsets.zero,
+        ),
+        tooltipTheme: TooltipThemeData(
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: AppStyles.mainBorder,
+            border: Border.all(
+              width: 1.0,
+              color: colorScheme.primary,
+            ),
+          ),
+          textStyle: TextStyle(
+            color: colorScheme.onSurface,
+            fontSize: 16.0,
+            fontFamily: AppStrings.fontRaleway,
+          ),
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+            style: ButtonStyle(
+              shape: WidgetStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            )
+        )
+    );
+  }
 }

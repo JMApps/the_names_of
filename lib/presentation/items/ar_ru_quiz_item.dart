@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/application/strings/app_strings.dart';
 
 import '../../application/styles/app_styles.dart';
 import '../../domain/entities/quiz_entity.dart';
@@ -18,12 +19,19 @@ class ArRuQuizItem extends StatelessWidget {
       children: [
         Card(
           color: appColors.inversePrimary,
+          shape: RoundedRectangleBorder(
+            borderRadius: AppStyles.mainBorder,
+            side: BorderSide(
+              color: appColors.primary,
+              width: 3.0,
+            ),
+          ),
           child: Padding(
             padding: AppStyles.mainMarding,
             child: Text(
               model.question,
               style: const TextStyle(
-                fontFamily: 'Scheherezade',
+                fontFamily: AppStrings.fontScheherezade,
                 fontSize: 35,
               ),
               textDirection: TextDirection.rtl,

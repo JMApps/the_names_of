@@ -4,7 +4,7 @@ class ContentModel {
   final String contentTitle;
   final String content;
 
-  ContentModel({
+  const ContentModel({
     required this.id,
     required this.contentNumber,
     required this.contentTitle,

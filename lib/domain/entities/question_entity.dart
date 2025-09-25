@@ -8,7 +8,7 @@ class QuestionEntity {
   final int correct;
   final int answerState;
 
-  QuestionEntity({
+  const QuestionEntity({
     required this.id,
     required this.question,
     required this.answerA,

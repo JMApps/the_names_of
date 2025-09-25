@@ -4,7 +4,7 @@ class AyahEntity {
   final String ayahTranslation;
   final String ayahSource;
 
-  AyahEntity({
+  const AyahEntity({
     required this.id,
     required this.ayahArabic,
     required this.ayahTranslation,

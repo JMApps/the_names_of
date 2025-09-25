@@ -17,7 +17,7 @@ class LastCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 8),
       child: InkWell(
         onTap: () {
           if (routeName == 'quiz') {
@@ -34,10 +34,13 @@ class LastCard extends StatelessWidget {
           padding: AppStyles.mainMardingMini,
           decoration: BoxDecoration(
             borderRadius: AppStyles.mainBorder,
-            color: appColors.primary.withOpacity(0.25),
+            color: appColors.primary.withAlpha(75),
           ),
           child: Text(
             title,
+            style: TextStyle(
+              fontSize: 18.0,
+            ),
             textAlign: TextAlign.center,
           ),
         ),

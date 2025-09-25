@@ -16,8 +16,8 @@ class ClarificationNameItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    final Color oddItemColor = appColors.primary.withOpacity(0.05);
-    final Color evenItemColor = appColors.primary.withOpacity(0.15);
+    final Color oddItemColor = appColors.primary.withAlpha(15);
+    final Color evenItemColor = appColors.primary.withAlpha(25);
     final ContentSettingsState settings = Provider.of<ContentSettingsState>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,7 +48,7 @@ class ClarificationNameItem extends StatelessWidget {
                     Text(
                       nameModel.nameArabic,
                       style: TextStyle(
-                        fontSize: settings.getTextSize + 5,
+                        fontSize: settings.textSize + 5,
                         fontFamily: 'Scheherezade',
                         color: appColors.primary,
                       ),
@@ -58,7 +58,7 @@ class ClarificationNameItem extends StatelessWidget {
                     Text(
                       nameModel.nameTranscription,
                       style: TextStyle(
-                        fontSize: settings.getTextSize,
+                        fontSize: settings.textSize,
                         color: appColors.secondary,
                       ),
                       textAlign: TextAlign.center,
@@ -66,7 +66,7 @@ class ClarificationNameItem extends StatelessWidget {
                     Text(
                       nameModel.nameTranslation,
                       style: TextStyle(
-                        fontSize: settings.getTextSize,
+                        fontSize: settings.textSize,
                       ),
                       textAlign: TextAlign.center,
                     ),

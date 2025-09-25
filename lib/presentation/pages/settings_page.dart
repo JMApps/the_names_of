@@ -50,9 +50,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       style: appTheme.textTheme.bodyLarge,
                     ),
                   },
-                  groupValue: settingsState.getFontIndex,
+                  groupValue: settingsState.fontIndex,
                   onValueChanged: (int? index) {
-                    settingsState.changeFontIndex = index!;
+                    settingsState.fontIndex = index!;
                   },
                 ),
                 const SizedBox(height: 8),
@@ -69,9 +69,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     2: Icon(CupertinoIcons.text_alignright),
                     3: Icon(CupertinoIcons.text_justify),
                   },
-                  groupValue: settingsState.getTextAlignIndex,
+                  groupValue: settingsState.textAlignIndex,
                   onValueChanged: (int? index) {
-                    settingsState.changeTextAlignIndex = index!;
+                    settingsState.textAlignIndex = index!;
                   },
                 ),
                 const SizedBox(height: 8),
@@ -79,13 +79,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   AppStrings.textSize,
                 ),
                 Slider(
-                  value: settingsState.getTextSize,
+                  value: settingsState.textSize,
                   min: 14,
                   max: 100,
                   divisions: 100,
-                  label: settingsState.getTextSize.round().toString(),
+                  label: settingsState.textSize.round().toString(),
                   onChanged: (double? size) {
-                    settingsState.changeTextSize = size!;
+                    settingsState.textSize = size!;
                   },
                 ),
                 Card(
@@ -104,8 +104,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     leading: Icon(
                       Icons.palette_outlined,
                       color: appTheme.brightness == Brightness.dark
-                          ? settingsState.getDarkTextColor
-                          : settingsState.getLightTextColor,
+                          ? settingsState.darkTextColor
+                          : settingsState.lightTextColor,
                     ),
                     trailing: Card(
                       margin: EdgeInsets.zero,
@@ -131,11 +131,11 @@ class _SettingsPageState extends State<SettingsPage> {
                                       child: MaterialColorPicker(
                                         onlyShadeSelection: true,
                                         onColorChange: (Color color) {
-                                          settingsState.changeLightColor =
+                                          settingsState.lightTextColor =
                                               color;
                                         },
                                         selectedColor:
-                                            settingsState.getLightTextColor,
+                                            settingsState.lightTextColor,
                                       ),
                                     ),
                                     actions: [
@@ -155,7 +155,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               child: CircleAvatar(
                                 radius: 15,
                                 backgroundColor:
-                                    settingsState.getLightTextColor,
+                                    settingsState.lightTextColor,
                               ),
                             ),
                             const SizedBox(width: 8),
@@ -174,10 +174,10 @@ class _SettingsPageState extends State<SettingsPage> {
                                       child: MaterialColorPicker(
                                         onlyShadeSelection: true,
                                         onColorChange: (Color color) {
-                                          settingsState.changeDarkColor = color;
+                                          settingsState.darkTextColor = color;
                                         },
                                         selectedColor:
-                                            settingsState.getDarkTextColor,
+                                            settingsState.darkTextColor,
                                       ),
                                     ),
                                     actions: [
@@ -196,7 +196,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               },
                               child: CircleAvatar(
                                 radius: 15,
-                                backgroundColor: settingsState.getDarkTextColor,
+                                backgroundColor: settingsState.darkTextColor,
                               ),
                             ),
                           ],
@@ -206,33 +206,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 SwitchListTile(
-                  value: settingsState.getAdaptiveTheme,
+                  value: settingsState.wakeLock,
                   onChanged: (bool? onChanged) {
-                    settingsState.changeAdaptiveTheme = onChanged!;
-                  },
-                  contentPadding: AppStyles.mainMardingHorizontalMini,
-                  title: Text(
-                    AppStrings.adaptiveTheme,
-                    style: appTheme.textTheme.bodyMedium,
-                  ),
-                ),
-                SwitchListTile(
-                  value: settingsState.getDarkTheme,
-                  onChanged: settingsState.getAdaptiveTheme
-                      ? null
-                      : (bool? onChanged) {
-                          settingsState.changeDarkTheme = onChanged!;
-                        },
-                  contentPadding: AppStyles.mainMardingHorizontalMini,
-                  title: Text(
-                    AppStrings.darkTheme,
-                    style: appTheme.textTheme.bodyMedium,
-                  ),
-                ),
-                SwitchListTile(
-                  value: settingsState.getWakeLock,
-                  onChanged: (bool? onChanged) {
-                    settingsState.changeWakeLock = onChanged!;
+                    settingsState.wakeLock = onChanged!;
                   },
                   contentPadding: AppStyles.mainMardingHorizontalMini,
                   title: Text(

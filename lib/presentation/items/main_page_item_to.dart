@@ -16,7 +16,7 @@ class MainPageItemTo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    final Color oddItemColor = appColors.primary.withOpacity(0.25);
+    final Color oddItemColor = appColors.primary.withAlpha(75);
     final Color evenItemColor = appColors.inversePrimary;
     return Container(
       margin: const EdgeInsets.only(right: 8),
@@ -47,7 +47,7 @@ class MainPageItemTo extends StatelessWidget {
         title: Text(
           title,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: 20.0,
           ),
         ),
         trailing: const Icon(CupertinoIcons.forward),

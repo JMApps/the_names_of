@@ -42,4 +42,12 @@ class AppStrings {
   static const String crib = 'Шпаргалка';
   static const String trueAnswer = 'Правильный ответ';
   static const String reset = 'Сброс';
+
+  static const String fontGilroy = 'Gilroy';
+
+  static const String fontRaleway = 'Raleway';
+
+  static const String fontMontserrat = 'Montserrat';
+
+  static const String fontScheherezade = 'Scheherezade';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../application/routes/route_names.dart';
+import '../../application/strings/app_strings.dart';
 import '../../application/styles/app_styles.dart';
 import '../../data/models/arguments/index_args.dart';
 import '../../domain/entities/clarification_entity.dart';
@@ -39,9 +40,12 @@ class MainClarificationItem extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundColor: Colors.green.withOpacity(0.75),
+                    backgroundColor: Colors.green.withAlpha(205),
                     child: Text(
                       clarificationModel.id.toString(),
+                      style: TextStyle(
+                        fontFamily: AppStrings.fontGilroy,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -49,11 +53,15 @@ class MainClarificationItem extends StatelessWidget {
                     child: Text(
                       clarificationModel.title,
                       style: const TextStyle(
+                        fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  const SizedBox(width: 16),
+                  const Icon(Icons.arrow_forward_ios_rounded),
+                  const SizedBox(width: 16),
                 ],
               ),
               const SizedBox(height: 8),

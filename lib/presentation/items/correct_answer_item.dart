@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 
 import '../../application/strings/app_strings.dart';
 import '../../application/styles/app_styles.dart';
@@ -54,7 +53,7 @@ class CorrectAnswerItem extends StatelessWidget {
             padding: AppStyles.mainMardingMini,
             margin: const EdgeInsets.only(top: 8, bottom: 8),
             decoration: BoxDecoration(
-              color: appColors.correctColor,
+              color: appColors.inversePrimary,
               borderRadius: AppStyles.mainBorder,
             ),
             child: Text(

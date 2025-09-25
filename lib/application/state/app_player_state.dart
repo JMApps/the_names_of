@@ -14,7 +14,7 @@ class AppPlayerState extends ChangeNotifier {
 
   int get getCurrentTrackItem => _currentTrackItem;
 
-  playTrack({required String nameAudio, required int trackId}) async {
+  Future<void> playTrack({required String nameAudio, required int trackId}) async {
     if (_currentTrackItem != trackId) {
       await _audioPlayer.setAsset('assets/audios/$nameAudio.mp3');
       _currentTrackItem = trackId;

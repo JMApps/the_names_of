@@ -13,8 +13,8 @@ class MainAyahItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    final Color oddItemColor = appColors.secondary.withOpacity(0.05);
-    final Color evenItemColor = appColors.secondary.withOpacity(0.15);
+    final Color oddItemColor = appColors.secondary.withAlpha(15);
+    final Color evenItemColor = appColors.secondary.withAlpha(25);
     final ContentSettingsState settings = Provider.of<ContentSettingsState>(context);
     return Container(
       padding: AppStyles.mainMarding,
@@ -29,7 +29,7 @@ class MainAyahItem extends StatelessWidget {
           Text(
             ayahModel.ayahArabic,
             style: TextStyle(
-              fontSize: settings.getTextSize + 10,
+              fontSize: settings.textSize + 10,
               fontFamily: 'Scheherezade',
               color: appColors.secondary,
             ),
@@ -39,14 +39,14 @@ class MainAyahItem extends StatelessWidget {
           Text(
             ayahModel.ayahTranslation,
             style: TextStyle(
-              fontSize: settings.getTextSize,
+              fontSize: settings.textSize,
             ),
             textAlign: TextAlign.center,
           ),
           Text(
             ayahModel.ayahSource,
             style: TextStyle(
-              fontSize: settings.getTextSize - 6,
+              fontSize: settings.textSize - 6,
             ),
             textAlign: TextAlign.center,
           ),

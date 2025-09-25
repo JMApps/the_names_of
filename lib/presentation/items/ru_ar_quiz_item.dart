@@ -18,6 +18,13 @@ class RuArQuizItem extends StatelessWidget {
       children: [
         Card(
           color: appColors.inversePrimary,
+          shape: RoundedRectangleBorder(
+            borderRadius: AppStyles.mainBorder,
+            side: BorderSide(
+              color: appColors.primary,
+              width: 3.0,
+            ),
+          ),
           child: Padding(
             padding: AppStyles.mainMarding,
             child: Text(

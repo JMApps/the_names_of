@@ -5,7 +5,7 @@ class NameEntity {
   final String nameTranslation;
   final String nameAudio;
 
-  NameEntity({
+  const NameEntity({
     required this.id,
     required this.nameArabic,
     required this.nameTranscription,

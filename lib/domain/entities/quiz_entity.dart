@@ -5,7 +5,7 @@ class QuizEntity {
   final int correct;
   final int answerState;
 
-  QuizEntity({
+  const QuizEntity({
     required this.id,
     required this.question,
     required this.answers,

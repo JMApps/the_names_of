@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 
 import '../../application/routes/route_names.dart';
 import '../../application/state/quiz_ar_ru_state.dart';
@@ -24,13 +23,13 @@ class QuizArRuAnswerItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     Color answerColor() {
       if (model.correct == index && !quizState.isClickedAnswer) {
-        return appColors.correctColor;
+        return appColors.inversePrimary;
       } else if (model.correct != index &&
           !quizState.isClickedAnswer &&
           index == quizState.selectedAnswerIndex) {
-        return appColors.incorrectColor;
+        return appColors.errorContainer;
       } else {
-        return appColors.primary.withOpacity(0.25);
+        return appColors.primary.withAlpha(75);
       }
     }
     return Container(

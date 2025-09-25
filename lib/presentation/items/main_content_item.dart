@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/application/strings/app_strings.dart';
 
 import '../../application/routes/route_names.dart';
 import '../../application/styles/app_styles.dart';
@@ -36,12 +37,16 @@ class MainContentItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundColor: Colors.orange.withOpacity(0.75),
+                    backgroundColor: Colors.orange.withAlpha(205),
                     child: Text(
                       contentEntity.id.toString(),
+                      style: TextStyle(
+                        fontFamily: AppStrings.fontGilroy,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -49,12 +54,16 @@ class MainContentItem extends StatelessWidget {
                     child: Text(
                       contentEntity.contentTitle,
                       style: const TextStyle(
+                        fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  const SizedBox(width: 16),
+                  Icon(Icons.arrow_forward_ios_rounded),
+                  const SizedBox(width: 16),
                 ],
               ),
               const SizedBox(height: 8),

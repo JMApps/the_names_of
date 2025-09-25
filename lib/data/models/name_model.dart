@@ -5,7 +5,7 @@ class NameModel {
   final String nameTranslation;
   final String nameAudio;
 
-  NameModel({
+  const NameModel({
     required this.id,
     required this.nameArabic,
     required this.nameTranscription,

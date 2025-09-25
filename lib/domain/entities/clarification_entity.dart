@@ -3,7 +3,7 @@ class ClarificationEntity {
   final String title;
   final String clarification;
 
-  ClarificationEntity({
+  const ClarificationEntity({
     required this.id,
     required this.title,
     required this.clarification,

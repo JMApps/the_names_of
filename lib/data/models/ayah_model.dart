@@ -4,7 +4,7 @@ class AyahModel {
   final String ayahTranslation;
   final String ayahSource;
 
-  AyahModel({
+  const AyahModel({
     required this.id,
     required this.ayahArabic,
     required this.ayahTranslation,

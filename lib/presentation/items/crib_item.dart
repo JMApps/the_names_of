@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/themes/app_theme.dart';
 
 import '../../application/styles/app_styles.dart';
 import '../../domain/entities/quiz_entity.dart';
@@ -20,11 +19,11 @@ class CribItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     Color cardColor() {
       if (quizModel.answerState == 1) {
-        return appColors.correctColor.withOpacity(0.75);
+        return appColors.inversePrimary.withAlpha(205);
       } else if (quizModel.answerState == 2) {
-        return appColors.incorrectColor.withOpacity(0.75);
+        return appColors.errorContainer.withAlpha(205);
       } else {
-        return appColors.primary.withOpacity(0.25);
+        return appColors.primary.withAlpha(75);
       }
     }
 

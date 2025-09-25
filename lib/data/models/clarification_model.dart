@@ -3,7 +3,7 @@ class ClarificationModel {
   final String title;
   final String clarification;
 
-  ClarificationModel({
+  const ClarificationModel({
     required this.id,
     required this.title,
     required this.clarification,

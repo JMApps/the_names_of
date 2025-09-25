@@ -4,7 +4,7 @@ class ContentEntity {
   final String contentTitle;
   final String content;
 
-  ContentEntity({
+  const ContentEntity({
     required this.id,
     required this.contentNumber,
     required this.contentTitle,

@@ -5,7 +5,7 @@ class QuizModel {
   final int correct;
   final int answerState;
 
-  QuizModel({
+  const QuizModel({
     required this.id,
     required this.question,
     required this.answers,

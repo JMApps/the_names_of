@@ -20,12 +20,12 @@ class ContentHtmlWidget extends StatelessWidget {
         '#': Style(
           padding: HtmlPaddings.zero,
           margin: Margins.zero,
-          fontSize: FontSize(settings.getTextSize),
-          fontFamily: AppStyles.getFont[settings.getFontIndex],
-          textAlign: AppStyles.getAlign[settings.getTextAlignIndex],
+          fontSize: FontSize(settings.textSize),
+          fontFamily: AppStyles.textFonts[settings.fontIndex],
+          textAlign: AppStyles.textAligns[settings.textAlignIndex],
           color: appTheme.brightness == Brightness.dark
-              ? settings.getDarkTextColor
-              : settings.getLightTextColor,
+              ? settings.darkTextColor
+              : settings.lightTextColor,
         ),
         'small': Style(
           fontSize: FontSize(14),

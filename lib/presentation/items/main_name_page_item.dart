@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_names_of/application/routes/route_names.dart';
+import 'package:the_names_of/application/strings/app_strings.dart';
 
 import '../../application/styles/app_styles.dart';
 import '../../data/models/arguments/index_args.dart';
@@ -40,8 +41,13 @@ class MainNamesPageItem extends StatelessWidget {
                 ),
                 child: CircleAvatar(
                   radius: 20,
-                  backgroundColor: Colors.red.withOpacity(0.75),
-                  child: Text(nameModel.id.toString()),
+                  backgroundColor: Colors.red.withAlpha(205),
+                  child: Text(
+                    nameModel.id.toString(),
+                    style: TextStyle(
+                      fontFamily: AppStrings.fontGilroy,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -62,12 +68,16 @@ class MainNamesPageItem extends StatelessWidget {
                   Text(
                     nameModel.nameTranscription,
                     style: TextStyle(
+                      fontSize: 18.0,
                       color: appColors.secondary,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   Text(
                     nameModel.nameTranslation,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ],

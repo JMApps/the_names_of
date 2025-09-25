@@ -8,7 +8,7 @@ class QuestionModel {
   final int correct;
   final int answerState;
 
-  QuestionModel({
+  const QuestionModel({
     required this.id,
     required this.question,
     required this.answerA,
