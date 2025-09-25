@@ -27,7 +27,7 @@ class MainNamesState extends ChangeNotifier {
 
   bool get getIsFlipCard => _isFlipCard;
 
-  toDefaultItem() {
+  void toDefaultItem() {
     if (_itemScrollController.isAttached) {
       _itemScrollController.scrollTo(
         index: random.nextInt(99),
@@ -38,7 +38,7 @@ class MainNamesState extends ChangeNotifier {
     }
   }
 
-  toIdItem(int id) {
+  void toIdItem(int id) {
     if (_itemScrollController.isAttached) {
       _itemScrollController.scrollTo(
         index: id,
@@ -85,7 +85,7 @@ class MainNamesState extends ChangeNotifier {
     );
   }
 
-  changeFlipCard() {
+  void changeFlipCard() {
     _isFlipCard = !_isFlipCard;
     notifyListeners();
   }

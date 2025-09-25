@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +24,17 @@ class RootPage extends StatelessWidget {
           theme: appTheme.lightTheme,
           darkTheme: appTheme.darkTheme,
           themeMode: contentSettings.appThemeMode,
+          builder: (context, child) {
+            final mediaQuery = MediaQuery.of(context);
+            final bottomInset = mediaQuery.viewPadding.bottom;
+            return SafeArea(
+              top: false,
+              right: false,
+              left: false,
+              bottom: Platform.isAndroid && bottomInset > 12.0,
+              child: child!,
+            );
+          },
           home: const MainPage(),
         );
       },
