@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 
-import '../../application/state/content_settings_state.dart';
-import '../../application/styles/app_styles.dart';
+import '../../core/styles/app_styles.dart';
+import '../state/content_settings_state.dart';
 
 class ContentHtmlWidget extends StatelessWidget {
   const ContentHtmlWidget({super.key, required this.content});
@@ -13,24 +13,25 @@ class ContentHtmlWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData appTheme = Theme.of(context);
-    final ContentSettingsState settings = Provider.of<ContentSettingsState>(context);
-    return Html(
-      data: content,
-      style: {
-        '#': Style(
-          padding: HtmlPaddings.zero,
-          margin: Margins.zero,
-          fontSize: FontSize(settings.textSize),
-          fontFamily: AppStyles.textFonts[settings.fontIndex],
-          textAlign: AppStyles.textAligns[settings.textAlignIndex],
-          color: appTheme.brightness == Brightness.dark
-              ? settings.darkTextColor
-              : settings.lightTextColor,
-        ),
-        'small': Style(
-          fontSize: FontSize(14),
-          color: Colors.grey,
-        ),
+    return Consumer<ContentSettingsState>(
+      builder: (context, contentSettingsState, _) {
+        return Html(
+          data: content,
+          style: {
+            '#': Style(
+              padding: HtmlPaddings.zero,
+              margin: Margins.zero,
+              fontSize: FontSize(contentSettingsState.textSize),
+              fontFamily: AppStyles.textFonts[contentSettingsState.fontIndex],
+              textAlign: AppStyles.textAligns[contentSettingsState.textAlignIndex],
+              color: appTheme.brightness == Brightness.dark ? contentSettingsState.darkTextColor : contentSettingsState.lightTextColor,
+            ),
+            'small': Style(
+              fontSize: FontSize(14),
+              color: appTheme.colorScheme.secondary,
+            ),
+          },
+        );
       },
     );
   }

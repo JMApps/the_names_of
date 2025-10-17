@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../application/routes/app_routes.dart';
-import '../../application/state/content_settings_state.dart';
-import '../../application/strings/app_strings.dart';
-import '../../application/themes/app_theme.dart';
+import '../../core/routes/app_routes.dart';
+import '../../core/strings/app_strings.dart';
+import '../../core/themes/app_theme.dart';
+import '../state/content_settings_state.dart';
 import 'main_page.dart';
 
 class RootPage extends StatelessWidget {
@@ -26,7 +26,7 @@ class RootPage extends StatelessWidget {
           themeMode: contentSettings.appThemeMode,
           builder: (context, child) {
             final mediaQuery = MediaQuery.of(context);
-            final bottomInset = mediaQuery.viewPadding.bottom;
+            final double bottomInset = mediaQuery.viewPadding.bottom;
             return SafeArea(
               top: false,
               right: false,

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../application/routes/route_names.dart';
-import '../../application/strings/app_strings.dart';
-import '../../application/styles/app_styles.dart';
-import '../../data/models/arguments/quiz_mode_args.dart';
-import '../../data/repositories/quiz_data_repository.dart';
+import '../../core/routes/route_names.dart';
+import '../../core/strings/app_strings.dart';
+import '../../core/styles/app_styles.dart';
+import '../state/quiz_ar_ru_state.dart';
+import '../state/quiz_ru_ar_state.dart';
 
 class QuizScorePage extends StatelessWidget {
   const QuizScorePage({super.key, required this.quizMode});
@@ -36,9 +37,7 @@ class QuizScorePage extends StatelessWidget {
               const Text(AppStrings.answersResult),
               const SizedBox(height: 16),
               FutureBuilder(
-                future: quizMode == 1
-                    ? QuizDataRepository().getArRuTrueAnswers()
-                    : QuizDataRepository().getRuArTrueAnswers(),
+                future: quizMode == 1 ? Provider.of<QuizArRuState>(context, listen: false).fetchAllArRuQuiz() : Provider.of<QuizRuArState>(context, listen: false).fetchAllRuArQuiz(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     countNumbers = snapshot.data!.length;
@@ -76,7 +75,7 @@ class QuizScorePage extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     RouteNames.cribPage,
-                    arguments: QuizModeArgs(quizMode: quizMode),
+                    arguments: quizMode,
                   );
                 },
                 child: const Text(

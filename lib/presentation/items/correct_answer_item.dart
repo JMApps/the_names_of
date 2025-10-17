@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../application/strings/app_strings.dart';
-import '../../application/styles/app_styles.dart';
+import '../../core/strings/app_strings.dart';
+import '../../core/styles/app_styles.dart';
 import '../../domain/entities/quiz_entity.dart';
 
 class CorrectAnswerItem extends StatelessWidget {

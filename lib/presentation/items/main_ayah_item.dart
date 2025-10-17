@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../application/state/content_settings_state.dart';
-import '../../application/styles/app_styles.dart';
+import '../../core/styles/app_styles.dart';
 import '../../domain/entities/ayah_entity.dart';
+import '../state/content_settings_state.dart';
 
 class MainAyahItem extends StatelessWidget {
   const MainAyahItem({super.key, required this.ayahModel});

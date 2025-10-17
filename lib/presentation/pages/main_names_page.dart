@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../application/state/app_player_state.dart';
-import '../../application/state/main_names_state.dart';
-import '../../application/strings/app_strings.dart';
-import '../lists/main_names_list.dart';
+import '../../core/strings/app_strings.dart';
+import '../names/lists/main_names_list.dart';
+import '../state/app_player_state.dart';
+import '../state/main_names_state.dart';
 
 class MainNamesPage extends StatelessWidget {
   const MainNamesPage({super.key, required this.nameIndex});

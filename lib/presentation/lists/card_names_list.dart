@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import '../../application/state/main_data_state.dart';
-import '../../application/state/main_names_state.dart';
-import '../../application/styles/app_styles.dart';
+import '../../core/styles/app_styles.dart';
 import '../../domain/entities/name_entity.dart';
 import '../items/card_name_item.dart';
+import '../state/main_content_state.dart';
+import '../state/main_names_state.dart';
 import '../widgets/error_data_text.dart';
 
 class CardNamesList extends StatelessWidget {
@@ -15,7 +15,7 @@ class CardNamesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<NameEntity>>(
-      future: Provider.of<MainDataState>(context, listen: false).getBookContentUseCase.fetchAllNames(),
+      future: Provider.of<MainContentState>(context, listen: false).getAllNames(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           snapshot.data!.shuffle();

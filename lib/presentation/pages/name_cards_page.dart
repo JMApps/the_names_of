@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../application/state/app_player_state.dart';
-import '../../application/state/main_names_state.dart';
-import '../../application/strings/app_strings.dart';
+import '../../core/strings/app_strings.dart';
 import '../lists/card_names_list.dart';
+import '../state/app_player_state.dart';
+import '../state/main_names_state.dart';
 
 class NameCardsPage extends StatelessWidget {
   const NameCardsPage({super.key});

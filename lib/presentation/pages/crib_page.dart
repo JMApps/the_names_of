@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../application/strings/app_strings.dart';
-import '../../application/styles/app_styles.dart';
-import '../../data/repositories/quiz_data_repository.dart';
+import '../../core/strings/app_strings.dart';
+import '../../core/styles/app_styles.dart';
 import '../../domain/entities/quiz_entity.dart';
-import '../../domain/usecases/quiz_use_case.dart';
 import '../items/crib_item.dart';
+import '../state/quiz_ar_ru_state.dart';
+import '../state/quiz_ru_ar_state.dart';
 import '../widgets/error_data_text.dart';
 
 class CribPage extends StatelessWidget {
@@ -24,9 +25,7 @@ class CribPage extends StatelessWidget {
         title: const Text(AppStrings.crib),
       ),
       body: FutureBuilder<List<QuizEntity>>(
-        future: quizMode == 1
-            ? QuizUseCase(QuizDataRepository()).fetchArabicQuiz()
-            : QuizUseCase(QuizDataRepository()).fetchRussianQuiz(),
+        future: quizMode == 1 ? Provider.of<QuizArRuState>(context, listen: false).fetchAllArRuQuiz() : Provider.of<QuizRuArState>(context, listen: false).fetchAllRuArQuiz(),
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data!.isNotEmpty) {
             return CupertinoScrollbar(

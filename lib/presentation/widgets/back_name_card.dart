@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../application/state/app_player_state.dart';
-import '../../application/styles/app_styles.dart';
+import '../../core/styles/app_styles.dart';
 import '../../domain/entities/name_entity.dart';
+import '../state/app_player_state.dart';
 
 class BackNameCard extends StatelessWidget {
   const BackNameCard({super.key, required this.model, required this.index});
@@ -15,8 +15,8 @@ class BackNameCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    final Color oddItemColor = appColors.primary.withOpacity(0.05);
-    final Color evenItemColor = appColors.primary.withOpacity(0.15);
+    final Color oddItemColor = appColors.primary.withAlpha(10);
+    final Color evenItemColor = appColors.primary.withAlpha(25);
     final AppPlayerState player = Provider.of<AppPlayerState>(context);
     return Container(
       padding: AppStyles.mainMarding,

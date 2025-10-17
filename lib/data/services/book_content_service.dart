@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../core/strings/database_values.dart';
+
 class BookContentService {
   static final BookContentService _instance = BookContentService.internal();
 
@@ -12,8 +14,6 @@ class BookContentService {
   BookContentService.internal();
 
   static Database? _db;
-  static const int dbVersion = 1;
-  static const String databaseName = 'names_of.db';
 
   Future<Database> get db async {
     if (_db != null) {
@@ -23,29 +23,33 @@ class BookContentService {
     return _db!;
   }
 
+  Future<void> closeDatabase() async {
+    if (_db != null) {
+      await _db!.close();
+      _db = null;
+    }
+  }
+
   Future<Database> initializeDatabase() async {
-    final String databasePath = await getDatabasesPath();
-    String path = join(databasePath, databaseName);
+    final databasePath = await getDatabasesPath();
+    String path = join(databasePath, DatabaseValues.bookContentDatabaseName);
 
-    Database database = await openDatabase(path);
-    int version = await database.getVersion();
+    var database = await openDatabase(path);
 
-    if (version < dbVersion) {
-      await database.close();
+    if (await database.getVersion() < DatabaseValues.bookContentDatabaseVersion) {
+      database.close();
       await deleteDatabase(path);
 
       try {
         await Directory(dirname(path)).create(recursive: true);
-      } catch (e) {
-        throw Exception('Error database $e');
-      }
+      } catch (_) {}
 
-      ByteData data = await rootBundle.load(join('assets/databases', databaseName));
+      ByteData data = await rootBundle.load(join('assets/databases', DatabaseValues.bookContentDatabaseName));
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);
 
       database = await openDatabase(path);
-      await database.setVersion(dbVersion);
+      database.setVersion(DatabaseValues.bookContentDatabaseVersion);
     }
 
     return database;

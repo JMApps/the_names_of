@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../application/state/content_settings_state.dart';
-import '../../application/strings/app_strings.dart';
-import '../../application/styles/app_styles.dart';
+import '../../core/strings/app_strings.dart';
+import '../../core/styles/app_styles.dart';
+import '../state/content_settings_state.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});

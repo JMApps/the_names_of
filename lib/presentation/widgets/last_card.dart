@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../application/styles/app_styles.dart';
+import '../../core/styles/app_styles.dart';
 import 'select_quiz.dart';
 
 class LastCard extends StatelessWidget {

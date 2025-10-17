@@ -1,3 +1,5 @@
+import '../../core/strings/database_values.dart';
+
 class AyahModel {
   final int id;
   final String ayahArabic;
@@ -13,10 +15,10 @@ class AyahModel {
 
   factory AyahModel.fromMap(Map<String, dynamic> map) {
     return AyahModel(
-      id: map['id'] as int,
-      ayahArabic: map['ayah_arabic'] as String,
-      ayahTranslation: map['ayah_translation'] as String,
-      ayahSource: map['ayah_source'] as String,
+      id: map[DatabaseValues.dbId] as int,
+      ayahArabic: map[DatabaseValues.dbAyahArabic] as String,
+      ayahTranslation: map[DatabaseValues.dbAyahTranslation] as String,
+      ayahSource: map[DatabaseValues.dbAyahSource] as String,
     );
   }
 }

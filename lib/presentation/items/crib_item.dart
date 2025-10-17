@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../application/styles/app_styles.dart';
+import '../../core/styles/app_styles.dart';
 import '../../domain/entities/quiz_entity.dart';
 import 'correct_answer_item.dart';
 

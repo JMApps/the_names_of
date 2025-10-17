@@ -1,3 +1,5 @@
+import '../../data/models/question_model.dart';
+
 class QuestionEntity {
   final int id;
   final String question;
@@ -18,4 +20,17 @@ class QuestionEntity {
     required this.correct,
     required this.answerState,
   });
+
+  factory QuestionEntity.fromModel(QuestionModel model) {
+    return QuestionEntity(
+      id: model.id,
+      question: model.question,
+      answerA: model.answerA,
+      answerB: model.answerB,
+      answerC: model.answerC,
+      answerD: model.answerD,
+      correct: model.correct,
+      answerState: model.answerState,
+    );
+  }
 }

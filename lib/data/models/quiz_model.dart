@@ -1,3 +1,5 @@
+import '../../core/strings/database_values.dart';
+
 class QuizModel {
   final int id;
   final String question;
@@ -15,11 +17,11 @@ class QuizModel {
 
   factory QuizModel.fromMap(Map<String, dynamic> map) {
     return QuizModel(
-      id: map['id'] as int,
-      question: map['question'] as String,
-      answers: map['answers'] as List<String>,
-      correct: map['correct'] as int,
-      answerState: map['answer_state'] as int,
+      id: map[DatabaseValues.dbId] as int,
+      question: map[DatabaseValues.dbQuestion] as String,
+      answers: map[DatabaseValues.dbAnswers] as List<String>,
+      correct: map[DatabaseValues.dbCorrect] as int,
+      answerState: map[DatabaseValues.dbAnswerState] as int,
     );
   }
 }

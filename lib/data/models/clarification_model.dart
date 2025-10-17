@@ -1,3 +1,5 @@
+import '../../core/strings/database_values.dart';
+
 class ClarificationModel {
   final int id;
   final String title;
@@ -11,9 +13,9 @@ class ClarificationModel {
 
   factory ClarificationModel.fromMap(Map<String, dynamic> map) {
     return ClarificationModel(
-      id: map['id'] as int,
-      title: map['clarification_title'] as String,
-      clarification: map['clarification_content'] as String,
+      id: map[DatabaseValues.dbId] as int,
+      title: map[DatabaseValues.dbClarificationTitle] as String,
+      clarification: map[DatabaseValues.dbClarificationContent] as String,
     );
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/arguments/index_args.dart';
-
 class MainPageItemTo extends StatelessWidget {
   const MainPageItemTo({
     super.key,
@@ -32,7 +30,7 @@ class MainPageItemTo extends StatelessWidget {
           Navigator.pushNamed(
             context,
             routeName,
-            arguments: IndexArgs(index: 0),
+            arguments: 0,
           );
         },
         splashColor: evenItemColor,

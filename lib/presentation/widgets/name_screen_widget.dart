@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../application/styles/app_styles.dart';
+import '../../core/styles/app_styles.dart';
 import '../../domain/entities/name_entity.dart';
 
 class NameScreenWidget extends StatelessWidget {

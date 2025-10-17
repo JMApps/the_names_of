@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../application/state/main_data_state.dart';
-import '../../application/strings/app_constraints.dart';
+import '../../core/strings/app_constraints.dart';
 import '../../domain/entities/clarification_entity.dart';
-import '../items/main_clarification_item.dart';
+import '../clarification/items/main_clarification_item.dart';
+import '../state/main_content_state.dart';
 import '../widgets/error_data_text.dart';
 import '../widgets/main_smooth_indicator.dart';
 
@@ -31,7 +31,7 @@ class _MainClarificationPagesState extends State<MainClarificationPages> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ClarificationEntity>>(
-      future: Provider.of<MainDataState>(context, listen: false).getBookContentUseCase.fetchAllClarifications(),
+      future: Provider.of<MainContentState>(context, listen: false).getAllClarifications(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return Column(

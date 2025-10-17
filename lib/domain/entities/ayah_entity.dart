@@ -1,3 +1,6 @@
+
+import '../../data/models/ayah_model.dart';
+
 class AyahEntity {
   final int id;
   final String ayahArabic;
@@ -10,4 +13,13 @@ class AyahEntity {
     required this.ayahTranslation,
     required this.ayahSource,
   });
+
+  factory AyahEntity.fromModel(AyahModel model) {
+    return AyahEntity(
+      id: model.id,
+      ayahArabic: model.ayahArabic,
+      ayahTranslation: model.ayahTranslation,
+      ayahSource: model.ayahSource,
+    );
+  }
 }

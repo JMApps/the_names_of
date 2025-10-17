@@ -1,3 +1,5 @@
+import '../../core/strings/database_values.dart';
+
 class NameModel {
   final int id;
   final String nameArabic;
@@ -15,11 +17,11 @@ class NameModel {
 
   factory NameModel.fromMap(Map<String, dynamic> map) {
     return NameModel(
-      id: map['id'] as int,
-      nameArabic: map['name_arabic'] as String,
-      nameTranscription: map['name_transcription'] as String,
-      nameTranslation: map['name_translation'] as String,
-      nameAudio: map['name_audio'] as String,
+      id: map[DatabaseValues.dbId] as int,
+      nameArabic: map[DatabaseValues.dbNameArabic] as String,
+      nameTranscription: map[DatabaseValues.dbNameTranscription] as String,
+      nameTranslation: map[DatabaseValues.dbNameTranslation] as String,
+      nameAudio: map[DatabaseValues.dbNameAudio] as String,
     );
   }
 }

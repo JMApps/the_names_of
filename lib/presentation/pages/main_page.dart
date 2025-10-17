@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../application/routes/route_names.dart';
-import '../../application/strings/app_strings.dart';
-import '../../application/styles/app_styles.dart';
+import '../../core/routes/route_names.dart';
+import '../../core/strings/app_strings.dart';
+import '../../core/styles/app_styles.dart';
 import '../items/main_page_item_to.dart';
 import '../lists/main_clarification_pages.dart';
 import '../lists/main_content_pages.dart';
-import '../lists/main_names_pages.dart';
+import '../names/pages/main_names_pages.dart';
 import '../widgets/last_card.dart';
 
 class MainPage extends StatelessWidget {

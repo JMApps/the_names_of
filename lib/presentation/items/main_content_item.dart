@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
 
-import '../../application/routes/route_names.dart';
-import '../../application/styles/app_styles.dart';
-import '../../data/models/arguments/index_args.dart';
+import '../../core/routes/route_names.dart';
+import '../../core/strings/app_strings.dart';
+import '../../core/styles/app_styles.dart';
 import '../../domain/entities/content_entity.dart';
 import '../widgets/base_html_widget.dart';
 
@@ -26,7 +25,7 @@ class MainContentItem extends StatelessWidget {
           Navigator.pushNamed(
             context,
             RouteNames.mainContentsPage,
-            arguments: IndexArgs(index: contentIndex),
+            arguments: contentIndex,
           );
         },
         borderRadius: AppStyles.mainBorder,

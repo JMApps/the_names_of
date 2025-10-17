@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/application/routes/route_names.dart';
-import 'package:the_names_of/application/strings/app_strings.dart';
-import 'package:the_names_of/application/styles/app_styles.dart';
+
+import '../../core/routes/route_names.dart';
+import '../../core/strings/app_strings.dart';
+import '../../core/styles/app_styles.dart';
 
 class SelectQuiz extends StatelessWidget {
   const SelectQuiz({super.key});

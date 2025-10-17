@@ -8,7 +8,7 @@ class BookContentUseCase {
 
   final BookContentRepository _bookContentRepository;
 
-  BookContentUseCase(this._bookContentRepository);
+  const BookContentUseCase(this._bookContentRepository);
 
   Future<List<ContentEntity>> fetchAllContents() async {
     try {

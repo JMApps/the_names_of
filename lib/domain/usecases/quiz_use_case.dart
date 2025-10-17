@@ -4,7 +4,7 @@ import '../repositories/quiz_repository.dart';
 class QuizUseCase {
   final QuizRepository _quizRepository;
 
-  QuizUseCase(this._quizRepository);
+  const QuizUseCase(this._quizRepository);
 
   Future<List<QuizEntity>> fetchArabicQuiz() async {
     try {

@@ -1,3 +1,5 @@
+import '../../core/strings/database_values.dart';
+
 class ContentModel {
   final int id;
   final String contentNumber;
@@ -13,10 +15,10 @@ class ContentModel {
 
   factory ContentModel.fromMap(Map<String, dynamic> map) {
     return ContentModel(
-      id: map['id'] as int,
-      contentNumber: map['content_number'] as String,
-      contentTitle: map['content_title'] as String,
-      content: map['content'] as String,
+      id: map[DatabaseValues.dbId] as int,
+      contentNumber: map[DatabaseValues.dbContentNumber] as String,
+      contentTitle: map[DatabaseValues.dbContentTitle] as String,
+      content: map[DatabaseValues.dbContent] as String,
     );
   }
 }
