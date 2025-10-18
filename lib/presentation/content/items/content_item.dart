@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_names_of/core/strings/app_strings.dart';
 
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/content_entity.dart';
@@ -16,28 +20,36 @@ class ContentItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final appColors = Theme.of(context).colorScheme;
     return Scrollbar(
-      child: ListView(
-        padding: AppStyles.mainMarding,
-        children: [
-          Card(
-            child: Padding(
-              padding: AppStyles.mainMardingMini,
-              child: Text(
-                contentModel.contentTitle,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: appColors.primary,
-                  fontWeight: FontWeight.bold,
+      child: SelectableRegion(
+        selectionControls: Platform.isAndroid ? MaterialTextSelectionControls() : CupertinoTextSelectionControls(),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const SizedBox(height: 12),
+            Card(
+              shape: AppStyles.rightShape,
+              margin: AppStyles.mardingRightOnly,
+              color: appColors.inversePrimary,
+              elevation: 0,
+              child: Padding(
+                padding: AppStyles.mainMardingMini,
+                child: Text(
+                  '${contentModel.id}. ${contentModel.contentTitle}',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontFamily: AppStrings.fontGilroy,
+                    color: appColors.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          ContentHtmlWidget(
-            content: contentModel.content,
-          ),
-        ],
+            ContentHtmlWidget(
+              content: contentModel.content,
+            ),
+          ],
+        ),
       ),
     );
   }

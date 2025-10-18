@@ -11,6 +11,7 @@ import 'domain/usecases/book_content_use_case.dart';
 import 'domain/usecases/quiz_use_case.dart';
 import 'presentation/pages/root_page.dart';
 import 'presentation/state/content_settings_state.dart';
+import 'presentation/state/content_state.dart';
 import 'presentation/state/main_content_state.dart';
 import 'presentation/state/main_names_state.dart';
 import 'presentation/state/quiz_ar_ru_state.dart';
@@ -26,6 +27,9 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (_) => ContentState(),
+        ),
         ChangeNotifierProvider(
           create: (_) => ContentSettingsState(),
         ),

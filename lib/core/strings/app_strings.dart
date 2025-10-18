@@ -7,6 +7,7 @@ class AppStrings {
   static const String clarificationNames = 'Разъяснение имён';
   static const String quiz = 'Викторина';
   static const String cards = 'Карточки';
+  static const String chapters = 'Главы';
 
   static const String copy = 'Копировать';
   static const String copied = 'Скопировано';
