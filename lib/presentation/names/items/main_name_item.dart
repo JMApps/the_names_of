@@ -7,8 +7,8 @@ import '../../../domain/entities/name_entity.dart';
 import '../../state/app_player_state.dart';
 import '../../widgets/main_names_modal.dart';
 
-class MainNamesItem extends StatelessWidget {
-  const MainNamesItem({super.key, required this.nameModel});
+class MainNameItem extends StatelessWidget {
+  const MainNameItem({super.key, required this.nameModel});
 
   final NameEntity nameModel;
 

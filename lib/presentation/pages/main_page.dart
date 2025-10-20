@@ -6,7 +6,7 @@ import '../../core/styles/app_styles.dart';
 import '../items/main_page_item_to.dart';
 import '../lists/main_clarification_pages.dart';
 import '../lists/main_content_pages.dart';
-import '../names/pages/main_names_pages.dart';
+import '../names/pages/names_main_page.dart';
 import '../widgets/last_card.dart';
 
 class MainPage extends StatelessWidget {
@@ -30,7 +30,7 @@ class MainPage extends StatelessWidget {
             routeName: RouteNames.mainNamesPage,
             title: AppStrings.names,
           ),
-          MainNamesPages(),
+          NamesMainPage(),
           MainPageItemTo(
             routeName: RouteNames.mainClarificationsPage,
             title: AppStrings.clarificationNames,

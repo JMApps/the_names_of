@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_names_of/core/strings/app_strings.dart';
 
+import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/content_entity.dart';
 import '../../widgets/content_html_widget.dart';
 
-class ContentItem extends StatelessWidget {
+class ContentItem extends StatefulWidget {
   const ContentItem({
     super.key,
     required this.contentModel,
@@ -17,12 +17,21 @@ class ContentItem extends StatelessWidget {
   final ContentEntity contentModel;
 
   @override
+  State<ContentItem> createState() => _ContentItemState();
+}
+
+class _ContentItemState extends State<ContentItem> {
+  final ScrollController _mainScrollController = ScrollController();
+
+  @override
   Widget build(BuildContext context) {
     final appColors = Theme.of(context).colorScheme;
     return Scrollbar(
+      controller: _mainScrollController,
       child: SelectableRegion(
         selectionControls: Platform.isAndroid ? MaterialTextSelectionControls() : CupertinoTextSelectionControls(),
         child: ListView(
+          controller: _mainScrollController,
           padding: EdgeInsets.zero,
           children: [
             const SizedBox(height: 12),
@@ -34,7 +43,7 @@ class ContentItem extends StatelessWidget {
               child: Padding(
                 padding: AppStyles.mainMardingMini,
                 child: Text(
-                  '${contentModel.id}. ${contentModel.contentTitle}',
+                  '${widget.contentModel.id}. ${widget.contentModel.contentTitle}',
                   style: TextStyle(
                     fontSize: 18.0,
                     fontFamily: AppStrings.fontGilroy,
@@ -46,7 +55,7 @@ class ContentItem extends StatelessWidget {
               ),
             ),
             ContentHtmlWidget(
-              content: contentModel.content,
+              content: widget.contentModel.content,
             ),
           ],
         ),

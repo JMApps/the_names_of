@@ -4,33 +4,55 @@ import 'dart:math';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../core/strings/app_constraints.dart';
 import '../../domain/entities/name_entity.dart';
 import '../../presentation/widgets/name_screen_widget.dart';
 
 class MainNamesState extends ChangeNotifier {
+
+  final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
+
+  MainNamesState() {
+    _pageMode = _contentSettingsBox.get(AppConstraints.keyNamesPageMode, defaultValue: false);
+  }
+
   final ItemScrollController _itemScrollController = ItemScrollController();
 
-  ItemScrollController get getItemScrollController => _itemScrollController;
+  ItemScrollController get itemScrollController => _itemScrollController;
+
+  final PageController _pageController = PageController();
+
+  PageController get pageController => _pageController;
+
+  int _namePage = 0;
+
+
+  int get namePage => _namePage;
+
+  set namePage(int value) {
+    _namePage = value;
+    notifyListeners();
+  }
 
   final ScreenshotController _screenshotController = ScreenshotController();
 
-  final Random random = Random();
+  final Random _randomValue = Random();
 
   bool _isFlipCard = true;
 
+  bool get isFlipCard => _isFlipCard;
 
-  bool get getIsFlipCard => _isFlipCard;
-
-  void toDefaultItem() {
+  void toListDefaultItem() {
     if (_itemScrollController.isAttached) {
       _itemScrollController.scrollTo(
-        index: random.nextInt(99),
+        index: _randomValue.nextInt(99),
         duration: const Duration(
           milliseconds: 750,
         ),
@@ -38,14 +60,14 @@ class MainNamesState extends ChangeNotifier {
     }
   }
 
-  void toIdItem(int id) {
-    if (_itemScrollController.isAttached) {
-      _itemScrollController.scrollTo(
-        index: id,
+  void toPageDefaultItem() {
+    if (_pageController.hasClients) {
+      _pageController.animateToPage(
+        _randomValue.nextInt(99),
         duration: const Duration(
           milliseconds: 750,
         ),
-        curve: Curves.easeOutSine,
+        curve: Curves.slowMiddle,
       );
     }
   }
@@ -55,7 +77,12 @@ class MainNamesState extends ChangeNotifier {
   }
 
   set shareContent(String content) {
-    Share.share(content, sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2));
+    SharePlus.instance.share(
+      ShareParams(
+        text: content,
+        sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2),
+      ),
+    );
   }
 
   Future<void> takeScreenshot(NameEntity model) async {
@@ -63,9 +90,8 @@ class MainNamesState extends ChangeNotifier {
       NameScreenWidget(model: model),
       delay: const Duration(milliseconds: 50),
     );
-    Directory? tempPath = Platform.isAndroid
-        ? await getExternalStorageDirectory()
-        : await getApplicationDocumentsDirectory();
+
+    Directory? tempPath = Platform.isAndroid ? await getExternalStorageDirectory() : await getApplicationDocumentsDirectory();
 
     File picture = File('${tempPath!.path}/name_${model.id}.jpg');
 
@@ -79,14 +105,26 @@ class MainNamesState extends ChangeNotifier {
     XFile xPicture = XFile(picture.path);
     XFile xAudio = XFile(audioPath);
 
-    await Share.shareXFiles(
-      [xPicture, xAudio],
-      sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2),
+    await SharePlus.instance.share(
+      ShareParams(
+        files: [xPicture, xAudio],
+        sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2),
+      )
     );
   }
 
-  void changeFlipCard() {
+  void get changeFlipCard {
     _isFlipCard = !_isFlipCard;
+    notifyListeners();
+  }
+
+  bool _pageMode = false;
+
+  bool get pageMode => _pageMode;
+
+  void get changePageMode {
+    _pageMode = !_pageMode;
+    _contentSettingsBox.put(AppConstraints.keyNamesPageMode, _pageMode);
     notifyListeners();
   }
 }

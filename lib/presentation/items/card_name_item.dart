@@ -17,8 +17,8 @@ class CardNamesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final MainNamesState namesState = Provider.of<MainNamesState>(context);
     return FlipCard(
-      front: namesState.getIsFlipCard ? FrontNameCard(model: model, index: index) : BackNameCard(model: model, index: index),
-      back: namesState.getIsFlipCard ? BackNameCard(model: model, index: index) : FrontNameCard(model: model, index: index),
+      front: namesState.isFlipCard ? FrontNameCard(model: model, index: index) : BackNameCard(model: model, index: index),
+      back: namesState.isFlipCard ? BackNameCard(model: model, index: index) : FrontNameCard(model: model, index: index),
     );
   }
 }

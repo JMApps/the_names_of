@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../presentation/clarification/pages/main_clarification_page.dart';
 import '../../presentation/content/pages/main_content_page.dart';
 import '../../presentation/pages/crib_page.dart';
-import '../../presentation/pages/main_names_page.dart';
+import '../../presentation/names/pages/main_names_page.dart';
 import '../../presentation/pages/name_cards_page.dart';
 import '../../presentation/pages/quiz_score_page.dart';
 import '../../presentation/quiz/pages/ar_ru_quiz_page.dart';
@@ -19,9 +19,8 @@ class AppRoutes {
           builder: (_) => MainContentPage(contentIndex: indexArgs),
         );
       case RouteNames.mainNamesPage:
-        final int indexArgs = routeSettings.arguments as int;
         return MaterialPageRoute(
-          builder: (_) => MainNamesPage(nameIndex: indexArgs),
+          builder: (_) => MainNamesPage(),
         );
       case RouteNames.mainClarificationsPage:
         final int indexArgs = routeSettings.arguments as int;

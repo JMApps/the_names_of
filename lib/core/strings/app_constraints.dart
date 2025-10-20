@@ -5,6 +5,7 @@ class AppConstraints {
   // Main
   static const String keyLastMainContentIndex = 'key_last_main_content_index';
   static const String keyLastMainClarificationIndex = 'key_last_main_clarification_index';
+  static const String keyNamesPageMode = 'key_names_page_mode';
 
   // Settings
   static const String keyFontIndex = 'key_font_index';

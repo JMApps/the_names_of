@@ -9,14 +9,14 @@ import '../../state/main_content_state.dart';
 import '../../widgets/error_data_text.dart';
 import '../../widgets/main_smooth_indicator.dart';
 
-class MainNamesPages extends StatefulWidget {
-  const MainNamesPages({super.key});
+class NamesMainPage extends StatefulWidget {
+  const NamesMainPage({super.key});
 
   @override
-  State<MainNamesPages> createState() => _MainNamesPagesState();
+  State<NamesMainPage> createState() => _NamesMainPageState();
 }
 
-class _MainNamesPagesState extends State<MainNamesPages> {
+class _NamesMainPageState extends State<NamesMainPage> {
   final Random _random = Random();
   late final PageController _pageController;
 

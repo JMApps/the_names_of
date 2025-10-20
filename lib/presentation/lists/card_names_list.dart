@@ -20,7 +20,7 @@ class CardNamesList extends StatelessWidget {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           snapshot.data!.shuffle();
           return ScrollablePositionedList.builder(
-            itemScrollController: Provider.of<MainNamesState>(context, listen: false).getItemScrollController,
+            itemScrollController: Provider.of<MainNamesState>(context, listen: false).itemScrollController,
             padding: AppStyles.mainMardingMini,
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {

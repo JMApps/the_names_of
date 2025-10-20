@@ -24,7 +24,7 @@ class NameCardsPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                context.read<MainNamesState>().toDefaultItem();
+                context.read<MainNamesState>().toListDefaultItem();
               },
               icon: const Icon(
                 Icons.recycling,
@@ -32,7 +32,7 @@ class NameCardsPage extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                context.read<MainNamesState>().changeFlipCard();
+                context.read<MainNamesState>().changeFlipCard;
               },
               icon: const Icon(
                 CupertinoIcons.creditcard_fill,

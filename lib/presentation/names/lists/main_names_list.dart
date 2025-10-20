@@ -5,14 +5,12 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/name_entity.dart';
 import '../../state/main_content_state.dart';
-import '../items/main_name_item.dart';
 import '../../state/main_names_state.dart';
 import '../../widgets/error_data_text.dart';
+import '../items/main_name_item.dart';
 
 class MainNamesList extends StatefulWidget {
-  const MainNamesList({super.key, required this.nameIndex});
-
-  final int nameIndex;
+  const MainNamesList({super.key});
 
   @override
   State<MainNamesList> createState() => _MainNamesListState();
@@ -20,37 +18,27 @@ class MainNamesList extends StatefulWidget {
 
 class _MainNamesListState extends State<MainNamesList> {
   @override
-  void initState() {
-    if (widget.nameIndex > 1) {
-      Future.delayed(const Duration(milliseconds: 250)).whenComplete(
-        () => context.read<MainNamesState>().toIdItem(widget.nameIndex),
-      );
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<NameEntity>>(
       future: Provider.of<MainContentState>(context, listen: false).getAllNames(),
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return ErrorDataText(textData: snapshot.error.toString());
+        }
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return ScrollablePositionedList.builder(
-            itemScrollController: Provider.of<MainNamesState>(context).getItemScrollController,
+            itemScrollController: Provider.of<MainNamesState>(context, listen: false).itemScrollController,
             padding: AppStyles.mainMardingMini,
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
               final NameEntity nameModel = snapshot.data![index];
-              return MainNamesItem(nameModel: nameModel);
+              return MainNameItem(nameModel: nameModel);
             },
           );
-        } else if (snapshot.hasError) {
-          return ErrorDataText(textData: snapshot.error.toString());
-        } else {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
         }
+        return const Center(
+          child: CircularProgressIndicator.adaptive(),
+        );
       },
     );
   }

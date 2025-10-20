@@ -45,6 +45,7 @@ flutter:
   assets:
     - assets/databases/
     - assets/audios/
+
   fonts:
     - family: Gilroy
       fonts:
@@ -57,4 +58,4 @@ flutter:
         - asset: assets/fonts/raleway_regular.ttf
     - family: Scheherezade
       fonts:
-        - asset: assets/fonts/scheh.ttf
+        - asset: assets/fonts/noto_naskh.ttf
