@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/name_entity.dart';
 import '../../state/app_player_state.dart';
@@ -15,13 +15,12 @@ class MainNameItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    final Color oddItemColor = appColors.primary.withOpacity(0.05);
-    final Color evenItemColor = appColors.primary.withOpacity(0.15);
-    final AppPlayerState player = Provider.of<AppPlayerState>(context);
+    final Color oddItemColor = appColors.primary.withAlpha(10);
+    final Color evenItemColor = appColors.primary.withAlpha(25);
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: AppStyles.mardingBottomOnlyMini,
       child: InkWell(
-        onTap: () {
+        onLongPress: () {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
@@ -40,32 +39,37 @@ class MainNameItem extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor:
-                      nameModel.id.isOdd ? evenItemColor : appColors.surface,
-                  child: Text(nameModel.id.toString()),
+                  backgroundColor: nameModel.id.isOdd ? evenItemColor : appColors.surface,
+                  child: Padding(
+                    padding: AppStyles.mardingTopMicro,
+                    child: Text(
+                      nameModel.id.toString(),
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontFamily: AppStrings.fontGilroy,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Align(
                 alignment: Alignment.topRight,
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor:
-                      nameModel.id.isOdd ? evenItemColor : appColors.surface,
-                  child: IconButton(
-                    onPressed: () {
-                      player.playTrack(
-                        nameAudio: nameModel.nameAudio,
-                        trackId: nameModel.id,
-                      );
-                    },
-                    icon: Icon(
-                      player.getCurrentTrackItem == nameModel.id &&
-                          player.getPlayingState
-                          ? CupertinoIcons.stop_circle
-                          : CupertinoIcons.play,
-                    ),
-                  ),
+                child: Consumer<AppPlayerState>(
+                  builder: (context, player, _) {
+                    return IconButton(
+                      onPressed: () {
+                        player.playTrack(
+                          nameAudio: nameModel.nameAudio,
+                          trackId: nameModel.id,
+                        );
+                      },
+                      icon: Icon(
+                        player.getCurrentTrackItem == nameModel.id && player.getPlayingState ? Icons.stop_circle : Icons.play_circle,
+                      ),
+                      iconSize: 35.0,
+                      color: appColors.secondary,
+                    );
+                  },
                 ),
               ),
               Align(
@@ -77,8 +81,8 @@ class MainNameItem extends StatelessWidget {
                     Text(
                       nameModel.nameArabic,
                       style: TextStyle(
-                        fontSize: 25,
-                        fontFamily: 'Scheherezade',
+                        fontSize: 27.5,
+                        fontFamily: AppStrings.fontScheherezade,
                         color: appColors.primary,
                       ),
                       textAlign: TextAlign.center,
@@ -92,6 +96,9 @@ class MainNameItem extends StatelessWidget {
                     ),
                     Text(
                       nameModel.nameTranslation,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],

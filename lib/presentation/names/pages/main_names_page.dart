@@ -30,7 +30,7 @@ class MainNamesPage extends StatelessWidget {
                   },
                   tooltip: AppStrings.defaultName,
                   icon: Icon(
-                    mainNamesState.pageMode ? Icons.view_list_rounded : Icons.menu_book,
+                    mainNamesState.pageMode ? Icons.list_alt_rounded : Icons.menu_book,
                   ),
                 ),
                 IconButton(

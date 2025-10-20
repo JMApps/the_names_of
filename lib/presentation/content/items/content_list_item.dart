@@ -41,7 +41,7 @@ class ContentListItem extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: appColors.secondaryContainer,
           child: Padding(
-            padding: const EdgeInsets.only(top: 2),
+            padding: AppStyles.mardingTopMicro,
             child: Text(
               contentModel.id.toString(),
               style: TextStyle(

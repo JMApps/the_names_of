@@ -34,9 +34,7 @@ class MainNamePageItem extends StatelessWidget {
                   );
                 },
                 icon: Icon(
-                  player.getCurrentTrackItem == nameModel.id && player.getPlayingState
-                      ? Icons.stop_circle_rounded
-                      : Icons.play_circle_fill_rounded,
+                  player.getCurrentTrackItem == nameModel.id && player.getPlayingState ? Icons.stop_circle_rounded : Icons.play_circle_fill_rounded,
                 ),
                 iconSize: 45.0,
                 color: appColors.primary,

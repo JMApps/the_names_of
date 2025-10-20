@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/core/strings/app_strings.dart';
-import 'package:the_names_of/core/styles/app_styles.dart';
-import 'package:the_names_of/presentation/state/main_names_state.dart';
 
+import '../../../core/strings/app_strings.dart';
+import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/name_entity.dart';
 import '../../state/main_content_state.dart';
+import '../../state/main_names_state.dart';
 import '../../widgets/error_data_text.dart';
 import '../items/main_name_page_item.dart';
 
@@ -58,7 +58,7 @@ class _MainNamesPageListState extends State<MainNamesPageList> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
+                        IconButton.filledTonal(
                           onPressed: () {
                             mainNamesState.pageController.previousPage(
                               duration: Duration(milliseconds: 350),
@@ -66,10 +66,10 @@ class _MainNamesPageListState extends State<MainNamesPageList> {
                             );
                           },
                           icon: Icon(
-                            Icons.arrow_circle_left_outlined,
+                            Icons.arrow_back_ios_new_rounded,
                             color: appColors.primary,
                           ),
-                          iconSize: 45.0,
+                          iconSize: 35.0,
                         ),
                         Text(
                           '${mainNamesState.namePage + 1} из 99',
@@ -78,7 +78,7 @@ class _MainNamesPageListState extends State<MainNamesPageList> {
                             fontFamily: AppStrings.fontGilroy,
                           ),
                         ),
-                        IconButton(
+                        IconButton.filledTonal(
                           onPressed: () {
                             mainNamesState.pageController.nextPage(
                               duration: Duration(milliseconds: 350),
@@ -86,10 +86,10 @@ class _MainNamesPageListState extends State<MainNamesPageList> {
                             );
                           },
                           icon: Icon(
-                            Icons.arrow_circle_right_outlined,
+                            Icons.arrow_forward_ios_rounded,
                             color: appColors.primary,
                           ),
-                          iconSize: 45.0,
+                          iconSize: 35.0,
                         ),
                       ],
                     ),
