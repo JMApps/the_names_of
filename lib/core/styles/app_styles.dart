@@ -20,6 +20,7 @@ class AppStyles {
   static const EdgeInsets mainMardingVertical = EdgeInsets.symmetric(vertical: 16);
 
   static const EdgeInsets mardingTopMicro = EdgeInsets.only(top: 4);
+  static const EdgeInsets mardingBottomOnly = EdgeInsets.only(bottom: 16);
   static const EdgeInsets mardingBottomOnlyMini = EdgeInsets.only(bottom: 8);
   static const EdgeInsets mardingRightOnly = EdgeInsets.only(right: 16);
 

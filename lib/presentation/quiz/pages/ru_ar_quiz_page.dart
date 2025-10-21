@@ -5,9 +5,9 @@ import '../../../core/routes/route_names.dart';
 import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/quiz_entity.dart';
-import '../items/ru_ar_quiz_item.dart';
 import '../../state/quiz_ru_ar_state.dart';
 import '../../widgets/error_data_text.dart';
+import '../items/ru_ar_quiz_item.dart';
 
 class RuArQuizPage extends StatelessWidget {
   const RuArQuizPage({super.key});
@@ -27,6 +27,7 @@ class RuArQuizPage extends StatelessWidget {
                 arguments: 2,
               );
             },
+            tooltip: AppStrings.information,
             icon: Icon(
               Icons.info_outline,
               color: appColors.primary,
@@ -37,19 +38,27 @@ class RuArQuizPage extends StatelessWidget {
       body: Consumer<QuizRuArState>(
         builder: (context, quizState, _) {
           return FutureBuilder<List<QuizEntity>>(
-            future: Provider.of<QuizRuArState>(context, listen: false).fetchAllRuArQuiz(),
+            future: quizState.fetchAllRuArQuiz(),
             builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return ErrorDataText(textData: snapshot.error.toString());
+              }
               if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 4),
                     Card(
                       margin: AppStyles.mainMardingMini,
+                      elevation: 0,
+                      color: appColors.inversePrimary.withAlpha(75),
                       child: Padding(
                         padding: AppStyles.mainMardingMini,
                         child: Text(
                           '${AppStrings.question} ${quizState.getRuArModePageNumber}/99',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontFamily: AppStrings.fontGilroy,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -67,27 +76,28 @@ class RuArQuizPage extends StatelessWidget {
                             index: index,
                           );
                         },
-                        onPageChanged: (int? pageIndex) {
-                          quizState.changePageIndex(pageIndex!);
+                        onPageChanged: (int page) {
+                          quizState.changePageIndex(page);
                         },
                       ),
                     ),
                     Visibility(
                       visible: quizState.getRuArModePageNumber == 99,
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                          right: 16,
-                          bottom: 16,
-                          left: 16,
-                        ),
-                        child: OutlinedButton(
+                        padding: AppStyles.mainMarding,
+                        child: MaterialButton(
                           onPressed: () {
                             quizState.resetQuiz();
                           },
-                          child: const Text(
-                            AppStrings.reset,
+                          padding: AppStyles.mainMarding,
+                          color: appColors.primary,
+                          shape: AppStyles.mainShape,
+                          elevation: 0,
+                          child: Text(
+                            AppStrings.resetQuiz,
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 18.0,
+                              color: appColors.surface,
                             ),
                           ),
                         ),
@@ -95,8 +105,6 @@ class RuArQuizPage extends StatelessWidget {
                     ),
                   ],
                 );
-              } else if (snapshot.hasError) {
-                return ErrorDataText(textData: snapshot.error.toString());
               }
               return const Center(
                 child: CircularProgressIndicator.adaptive(),

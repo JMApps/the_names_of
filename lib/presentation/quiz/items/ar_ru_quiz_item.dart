@@ -6,7 +6,11 @@ import '../../../domain/entities/quiz_entity.dart';
 import 'quiz_ar_ru_answer_item.dart';
 
 class ArRuQuizItem extends StatelessWidget {
-  const ArRuQuizItem({super.key, required this.model, required this.index});
+  const ArRuQuizItem({
+    super.key,
+    required this.model,
+    required this.index,
+  });
 
   final QuizEntity model;
   final int index;
@@ -14,42 +18,43 @@ class ArRuQuizItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    return ListView(
-      padding: AppStyles.mainMardingHorizontal,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Card(
-          color: appColors.inversePrimary,
-          shape: RoundedRectangleBorder(
-            borderRadius: AppStyles.mainBorder,
-            side: BorderSide(
-              color: appColors.primary,
-              width: 3.0,
-            ),
-          ),
+          shape: AppStyles.mainShape,
+          margin: AppStyles.mainMardingHorizontalMini,
           child: Padding(
             padding: AppStyles.mainMarding,
             child: Text(
               model.question,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: AppStrings.fontNotoNaskh,
-                fontSize: 35,
+                fontSize: 50.0,
+                color: appColors.primary,
               ),
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.center,
             ),
           ),
         ),
-        const SizedBox(height: 14),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: model.answers.length,
-          itemBuilder: (BuildContext context, int index) {
-            return QuizArRuAnswerItem(
-              model: model,
-              index: index,
-            );
-          },
+        Expanded(
+          child: Center(
+            child: SingleChildScrollView(
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: AppStyles.mainMarding,
+                itemCount: model.answers.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return QuizArRuAnswerItem(
+                    model: model,
+                    index: index,
+                  );
+                },
+              ),
+            ),
+          ),
         ),
       ],
     );

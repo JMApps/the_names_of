@@ -38,11 +38,13 @@ class AppStrings {
   static const String question = 'Вопрос';
   static const String quizResult = 'Результат:';
   static const String answersResult = 'Я ответил правильно на:';
-  static const String resultShare = 'Из 99 прекрасных имён Аллаха я знаю наизусть ';
+  static const String resultShare = 'Вы ответили правильно на:';
   static const String share = 'Поделиться';
   static const String crib = 'Шпаргалка';
   static const String trueAnswer = 'Правильный ответ';
-  static const String reset = 'Сброс';
+  static const String resetQuiz = 'Пройти снова';
+
+  static const String information = 'Информация';
 
   static const String fontGilroy = 'Gilroy';
 

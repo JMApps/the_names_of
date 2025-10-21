@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_names_of/core/strings/app_strings.dart';
 
 import '../../../core/routes/route_names.dart';
 import '../../../core/styles/app_styles.dart';
@@ -20,17 +21,19 @@ class QuizRuArAnswerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final QuizRuArState quizState = Provider.of<QuizRuArState>(context);
     final ColorScheme appColors = Theme.of(context).colorScheme;
+    final Color correctAnswerColor = Colors.teal.withAlpha(155);
+    final Color incorrectAnswerColor = Colors.red.withAlpha(155);
     Color answerColor() {
       if (model.correct == index && !quizState.isClickedAnswer) {
-        return appColors.inversePrimary;
+        return correctAnswerColor;
       } else if (model.correct != index && !quizState.isClickedAnswer && index == quizState.selectedAnswerIndex) {
-        return appColors.errorContainer;
+        return incorrectAnswerColor;
       } else {
-        return appColors.primary.withAlpha(75);
+        return appColors.primary.withAlpha(25);
       }
     }
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: AppStyles.mardingBottomOnly,
       child: InkWell(
         onTap: !quizState.isClickedAnswer ? null : () {
           quizState.answer(model: model, index: index);
@@ -47,13 +50,16 @@ class QuizRuArAnswerItem extends StatelessWidget {
           padding: AppStyles.mainMarding,
           decoration: BoxDecoration(
             borderRadius: AppStyles.mainBorder,
-            color: answerColor(),
+            border: Border.all(
+              color: answerColor(),
+              width: 2.5,
+            ),
           ),
           child: Text(
             model.answers[index],
             style: const TextStyle(
-              fontFamily: 'Scheherezade',
-              fontSize: 35,
+              fontFamily: AppStrings.fontNotoNaskh,
+              fontSize: 30.0,
             ),
             textAlign: TextAlign.center,
           ),

@@ -31,7 +31,7 @@ class RootPage extends StatelessWidget {
               top: false,
               right: false,
               left: false,
-              bottom: Platform.isAndroid && bottomInset > 12.0,
+              bottom: Platform.isAndroid && bottomInset > 12.0 || Platform.isAndroid && bottomInset > 24.0,
               child: child!,
             );
           },

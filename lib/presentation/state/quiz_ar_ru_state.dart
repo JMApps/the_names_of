@@ -8,27 +8,23 @@ import '../../domain/entities/quiz_entity.dart';
 import '../../domain/usecases/quiz_use_case.dart';
 
 class QuizArRuState extends ChangeNotifier {
-
   final Box _contentSettingsBox = Hive.box(AppConstraints.keyQuizApp);
 
   final QuizUseCase _quizUseCase;
-
   QuizArRuState(this._quizUseCase) {
     _arRuModePageNumber = _contentSettingsBox.get(AppConstraints.keyArRuPageNumber, defaultValue: 1);
-    _pageController = PageController(initialPage: _arRuModePageNumber - 1);
+    _pageController = PageController(initialPage: _arRuModePageNumber);
   }
-
-  QuizUseCase get getQuizUseCase => _quizUseCase;
 
   late final PageController _pageController;
 
+  PageController get pageController => _pageController;
+
   Timer? _questionTimer;
 
-  PageController get getPageController => _pageController;
+  int _arRuModePageNumber = 0;
 
-  int _arRuModePageNumber = 1;
-
-  int get getArRuModePageNumber => _arRuModePageNumber;
+  int get arRuModePageNumber => _arRuModePageNumber;
 
   int _selectedAnswerIndex = -1;
 
@@ -54,7 +50,8 @@ class QuizArRuState extends ChangeNotifier {
         _quizUseCase.fetchArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
         notifyListeners();
         _questionTimer = Timer(
-          Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
+          Duration(milliseconds: model.correct == index ? 1500 : 3000),
+          () {
             _isClickedAnswer = true;
             _isCorrectAnswer = false;
             if (_pageController.hasClients) {
@@ -76,7 +73,8 @@ class QuizArRuState extends ChangeNotifier {
         _quizUseCase.fetchArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
         notifyListeners();
         _questionTimer = Timer(
-          Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
+          Duration(milliseconds: model.correct == index ? 1500 : 3000),
+          () {
             _isClickedAnswer = true;
             _isCorrectAnswer = false;
             notifyListeners();
@@ -86,10 +84,9 @@ class QuizArRuState extends ChangeNotifier {
     }
   }
 
-  Future<int> changePageIndex(int page) async {
-    _arRuModePageNumber = page + 1;
+  void changePageIndex(int page) {
+    _arRuModePageNumber = page;
     notifyListeners();
-    return _arRuModePageNumber;
   }
 
   Future<void> resetQuiz() async {
@@ -98,7 +95,7 @@ class QuizArRuState extends ChangeNotifier {
     await _pageController.animateToPage(
       0,
       duration: const Duration(milliseconds: 750),
-      curve: Curves.easeOutSine,
+      curve: Curves.easeInOutBack,
     );
     _isClickedAnswer = true;
     _isCorrectAnswer = false;

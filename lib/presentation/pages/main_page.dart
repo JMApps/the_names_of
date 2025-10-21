@@ -54,17 +54,30 @@ class MainPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        MaterialButton(
-                          onPressed: () {
+                        ListTile(
+                          onTap: () {
                             Navigator.pushNamed(context, RouteNames.arRuQuizPage);
                           },
-                          child: Text('AR-RU'),
+                          contentPadding: AppStyles.mainMardingHorizontalMini,
+                          visualDensity: VisualDensity.compact,
+                          tileColor: appColors.primaryContainer.withAlpha(105),
+                          shape: AppStyles.mainShape,
+                          title: Text('Арабско-русская'),
+                          leading: Icon(Icons.translate_rounded),
+                          trailing: Icon(Icons.arrow_forward_ios),
                         ),
-                        MaterialButton(
-                          onPressed: () {
+                        const SizedBox(height: 16),
+                        ListTile(
+                          onTap: () {
                             Navigator.pushNamed(context, RouteNames.ruArQuizPage);
                           },
-                          child: Text('RU-AR'),
+                          contentPadding: AppStyles.mainMardingHorizontalMini,
+                          visualDensity: VisualDensity.compact,
+                          tileColor: appColors.primaryContainer.withAlpha(105),
+                          shape: AppStyles.mainShape,
+                          title: Text('Русско-арабская'),
+                          leading: Icon(Icons.translate_rounded),
+                          trailing: Icon(Icons.arrow_forward_ios),
                         ),
                       ],
                     ),

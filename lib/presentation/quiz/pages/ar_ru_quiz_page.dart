@@ -5,9 +5,9 @@ import '../../../core/routes/route_names.dart';
 import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/quiz_entity.dart';
-import '../items/ar_ru_quiz_item.dart';
 import '../../state/quiz_ar_ru_state.dart';
 import '../../widgets/error_data_text.dart';
+import '../items/ar_ru_quiz_item.dart';
 
 class ArRuQuizPage extends StatelessWidget {
   const ArRuQuizPage({super.key});
@@ -27,8 +27,9 @@ class ArRuQuizPage extends StatelessWidget {
                 arguments: 1,
               );
             },
+            tooltip: AppStrings.information,
             icon: Icon(
-              Icons.info_outline,
+              Icons.info_outline_rounded,
               color: appColors.primary,
             ),
           ),
@@ -37,19 +38,27 @@ class ArRuQuizPage extends StatelessWidget {
       body: Consumer<QuizArRuState>(
         builder: (context, quizState, _) {
           return FutureBuilder<List<QuizEntity>>(
-            future: quizState.getQuizUseCase.fetchArabicQuiz(),
+            future: quizState.fetchAllArRuQuiz(),
             builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return ErrorDataText(textData: snapshot.error.toString());
+              }
               if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 4),
                     Card(
                       margin: AppStyles.mainMardingMini,
+                      elevation: 0,
+                      color: appColors.inversePrimary.withAlpha(75),
                       child: Padding(
                         padding: AppStyles.mainMardingMini,
                         child: Text(
-                          '${AppStrings.question} ${quizState.getArRuModePageNumber}/99',
+                          '${AppStrings.question} ${quizState.arRuModePageNumber}/99',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontFamily: AppStrings.fontGilroy,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -58,7 +67,7 @@ class ArRuQuizPage extends StatelessWidget {
                     Expanded(
                       child: PageView.builder(
                         physics: const NeverScrollableScrollPhysics(),
-                        controller: quizState.getPageController,
+                        controller: quizState.pageController,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (BuildContext context, int index) {
                           final QuizEntity model = snapshot.data![index];
@@ -67,27 +76,28 @@ class ArRuQuizPage extends StatelessWidget {
                             index: index,
                           );
                         },
-                        onPageChanged: (int? pageIndex) {
-                          quizState.changePageIndex(pageIndex!);
+                        onPageChanged: (int page) {
+                          quizState.changePageIndex(page);
                         },
                       ),
                     ),
                     Visibility(
-                      visible: quizState.getArRuModePageNumber == 99,
+                      visible: quizState.arRuModePageNumber == 99,
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                          right: 16,
-                          bottom: 16,
-                          left: 16,
-                        ),
-                        child: OutlinedButton(
+                        padding: AppStyles.mainMarding,
+                        child: MaterialButton(
                           onPressed: () {
                             quizState.resetQuiz();
                           },
-                          child: const Text(
-                            AppStrings.reset,
+                          padding: AppStyles.mainMarding,
+                          color: appColors.primary,
+                          shape: AppStyles.mainShape,
+                          elevation: 0,
+                          child: Text(
+                            AppStrings.resetQuiz,
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 18.0,
+                              color: appColors.surface,
                             ),
                           ),
                         ),
@@ -95,8 +105,6 @@ class ArRuQuizPage extends StatelessWidget {
                     ),
                   ],
                 );
-              } else if (snapshot.hasError) {
-                return ErrorDataText(textData: snapshot.error.toString());
               }
               return const Center(
                 child: CircularProgressIndicator.adaptive(),

@@ -22,34 +22,19 @@ class QuizScorePage extends StatelessWidget {
         child: SingleChildScrollView(
           padding: AppStyles.mainMarding,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                quizMode == 1
-                    ? AppStrings.fromArabicRussian
-                    : AppStrings.fromRussianArabic,
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: appColors.primary,
-                ),
+              const Text(
+                AppStrings.resultShare,
+                style: AppStyles.mainTextStyle,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
-              const Text(AppStrings.answersResult),
-              const SizedBox(height: 16),
               FutureBuilder(
-                future: quizMode == 1 ? Provider.of<QuizArRuState>(context, listen: false).fetchAllArRuQuiz() : Provider.of<QuizRuArState>(context, listen: false).fetchAllRuArQuiz(),
+                future: quizMode == 1
+                    ? Provider.of<QuizArRuState>(context, listen: false).fetchAllArRuQuiz()
+                    : Provider.of<QuizRuArState>(context, listen: false).fetchAllRuArQuiz(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    countNumbers = snapshot.data!.length;
-                    return Text(
-                      '${snapshot.data!.length} из 99',
-                      style: TextStyle(
-                        fontSize: 25,
-                        color: appColors.error,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  }
                   if (snapshot.hasError) {
                     return Center(
                       child: Padding(
@@ -57,9 +42,22 @@ class QuizScorePage extends StatelessWidget {
                         child: Text(
                           '${snapshot.error}',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18.0,
                             color: appColors.error,
                           ),
+                        ),
+                      ),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    countNumbers = snapshot.data!.length;
+                    return Card(
+                      child: Padding(
+                        padding: AppStyles.mainMarding,
+                        child: Text(
+                          '${snapshot.data!.length} из 99',
+                          style: TextStyle(fontSize: 25.0, fontFamily: AppStrings.fontGilroy),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     );
@@ -96,15 +94,6 @@ class QuizScorePage extends StatelessWidget {
                 },
                 child: const Text(
                   AppStrings.share,
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  AppStrings.close,
                   style: TextStyle(fontSize: 18),
                 ),
               ),
