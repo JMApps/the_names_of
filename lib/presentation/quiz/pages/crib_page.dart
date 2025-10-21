@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/strings/app_strings.dart';
-import '../../core/styles/app_styles.dart';
-import '../../domain/entities/quiz_entity.dart';
-import '../items/crib_item.dart';
-import '../state/quiz_ar_ru_state.dart';
-import '../state/quiz_ru_ar_state.dart';
-import '../widgets/error_data_text.dart';
+import '../../../core/strings/app_strings.dart';
+import '../../../core/styles/app_styles.dart';
+import '../../../domain/entities/quiz_entity.dart';
+import '../widgets/crib_item.dart';
+import '../../state/quiz_ar_ru_state.dart';
+import '../../state/quiz_ru_ar_state.dart';
+import '../../widgets/error_data_text.dart';
 
 class CribPage extends StatelessWidget {
   const CribPage({

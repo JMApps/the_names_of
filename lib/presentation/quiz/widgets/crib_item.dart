@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/styles/app_styles.dart';
-import '../../domain/entities/quiz_entity.dart';
+import '../../../core/styles/app_styles.dart';
+import '../../../domain/entities/quiz_entity.dart';
 import 'correct_answer_item.dart';
 
 class CribItem extends StatelessWidget {

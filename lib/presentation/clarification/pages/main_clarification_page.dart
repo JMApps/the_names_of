@@ -1,88 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/routes/route_names.dart';
-import '../../../core/strings/app_constraints.dart';
 import '../../../core/strings/app_strings.dart';
+import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/clarification_entity.dart';
-import '../items/clarification_item.dart';
+import '../../settings/settings_column.dart';
+import '../../state/app_player_state.dart';
+import '../../state/clarification_state.dart';
 import '../../state/main_content_state.dart';
 import '../../widgets/error_data_text.dart';
-import '../../widgets/main_smooth_indicator.dart';
+import '../items/clarification_item.dart';
+import '../lists/clarification_chapters_list.dart';
 
-class MainClarificationPage extends StatefulWidget {
-  const MainClarificationPage({super.key, required this.clarificationIndex});
-
-  final int clarificationIndex;
-
-  @override
-  State<MainClarificationPage> createState() => _MainClarificationPageState();
-}
-
-class _MainClarificationPageState extends State<MainClarificationPage> {
-  final Box _contentSettingsBox = Hive.box(AppConstraints.keyAppSettingsBox);
-  late final PageController _pageController;
-
-  @override
-  void initState() {
-    _pageController = PageController(initialPage: widget.clarificationIndex);
-    super.initState();
-  }
+class MainClarificationPage extends StatelessWidget {
+  const MainClarificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.clarificationNames),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, RouteNames.appSettingsPage);
-            },
-            icon: const Icon(
-              Icons.settings,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AppPlayerState(),
+        ),
+      ],
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(AppStrings.clarificationNames),
+          actions: [
+            IconButton(
+              onPressed: () {
+                /// Bottom sheet with clarification chapters
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  useSafeArea: true,
+                  builder: (context) => ClarificationChaptersList(),
+                );
+              },
+              tooltip: AppStrings.chapters,
+              icon: const Icon(
+                Icons.view_headline_sharp,
+              ),
             ),
-          ),
-        ],
-      ),
-      body: FutureBuilder<List<ClarificationEntity>>(
-        future: Provider.of<MainContentState>(context, listen: false).getAllClarifications(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-            return Column(
-              children: [
-                const SizedBox(height: 8),
-                MainSmoothIndicator(
-                  controller: _pageController,
-                  count: snapshot.data!.length,
-                  dotColor: Colors.green,
-                ),
-                const SizedBox(height: 8),
-                Expanded(
-                  child: PageView.builder(
-                    controller: _pageController,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final ClarificationEntity clarificationModel = snapshot.data![index];
-                      return ClarificationItem(clarificationModel: clarificationModel);
-                    },
-                    onPageChanged: (int? pageIndex) {
-                      _contentSettingsBox.put(AppConstraints.keyLastMainClarificationIndex, pageIndex!);
-                    },
-                  ),
-                ),
-                const SizedBox(height: 16),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return ErrorDataText(textData: snapshot.error.toString());
-          } else {
+            IconButton(
+              onPressed: () {
+                /// Bottom sheet with clarification settings
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => SettingsColumn(),
+                );
+              },
+              tooltip: AppStrings.settings,
+              icon: const Icon(
+                Icons.settings_outlined,
+              ),
+            ),
+          ],
+        ),
+        body: FutureBuilder<List<ClarificationEntity>>(
+          future: Provider.of<MainContentState>(context, listen: false).getAllClarifications(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return ErrorDataText(textData: snapshot.error.toString());
+            }
+            if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+              return Consumer<ClarificationState>(
+                builder: (context, clarificationState, _) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: AppStyles.mainMardingHorizontal,
+                        child: LinearProgressIndicator(
+                          minHeight: 6,
+                          value: clarificationState.clarificationPage / 65,
+                          year2023: false,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Expanded(
+                        child: PageView.builder(
+                          controller: clarificationState.pageController,
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final ClarificationEntity clarificationModel = snapshot.data![index];
+                            return ClarificationItem(clarificationModel: clarificationModel);
+                          },
+                          onPageChanged: (int page) {
+                            clarificationState.clarificationPage = page;
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
             return const Center(
               child: CircularProgressIndicator.adaptive(),
             );
-          }
-        },
+          },
+        ),
       ),
     );
   }

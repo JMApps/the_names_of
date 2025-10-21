@@ -5,7 +5,7 @@ import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/name_entity.dart';
 import '../../state/app_player_state.dart';
-import '../../widgets/main_names_modal.dart';
+import '../widgets/main_names_modal.dart';
 
 class MainNamePageItem extends StatelessWidget {
   const MainNamePageItem({super.key, required this.nameModel});
@@ -25,7 +25,7 @@ class MainNamePageItem extends StatelessWidget {
         child: Stack(
           children: [
             Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.bottomCenter,
               child: IconButton(
                 onPressed: () {
                   player.playTrack(
@@ -33,10 +33,12 @@ class MainNamePageItem extends StatelessWidget {
                     trackId: nameModel.id,
                   );
                 },
+                padding: EdgeInsets.zero,
+                visualDensity: VisualDensity.compact,
                 icon: Icon(
-                  player.getCurrentTrackItem == nameModel.id && player.getPlayingState ? Icons.stop_circle_rounded : Icons.play_circle_fill_rounded,
+                  player.getCurrentTrackItem == nameModel.id && player.getPlayingState ? Icons.stop_circle_outlined : Icons.play_circle_outline_rounded,
                 ),
-                iconSize: 45.0,
+                iconSize: 50.0,
                 color: appColors.primary,
               ),
             ),
@@ -61,7 +63,7 @@ class MainNamePageItem extends StatelessWidget {
                     nameModel.nameArabic,
                     style: TextStyle(
                       fontSize: 50.0,
-                      fontFamily: AppStrings.fontScheherezade,
+                      fontFamily: AppStrings.fontNotoNaskh,
                       color: appColors.primary,
                     ),
                     textAlign: TextAlign.center,
@@ -70,14 +72,14 @@ class MainNamePageItem extends StatelessWidget {
                     nameModel.nameTranscription,
                     style: TextStyle(
                       color: appColors.secondary,
-                      fontSize: 18.0,
+                      fontSize: 22.5,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   Text(
                     nameModel.nameTranslation,
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 22.5,
                     ),
                     textAlign: TextAlign.center,
                   ),

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../core/routes/route_names.dart';
-import '../../core/strings/app_strings.dart';
-import '../../core/styles/app_styles.dart';
-import '../state/quiz_ar_ru_state.dart';
-import '../state/quiz_ru_ar_state.dart';
+import '../../../core/routes/route_names.dart';
+import '../../../core/strings/app_strings.dart';
+import '../../../core/styles/app_styles.dart';
+import '../../state/quiz_ar_ru_state.dart';
+import '../../state/quiz_ru_ar_state.dart';
 
 class QuizScorePage extends StatelessWidget {
   const QuizScorePage({super.key, required this.quizMode});
@@ -87,9 +87,11 @@ class QuizScorePage extends StatelessWidget {
               ),
               OutlinedButton(
                 onPressed: () {
-                  Share.share(
-                    '${AppStrings.resultShare} $countNumbers',
-                    sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2),
+                  SharePlus.instance.share(
+                    ShareParams(
+                      text: '${AppStrings.resultShare} $countNumbers',
+                      sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10 / 2),
+                    ),
                   );
                 },
                 child: const Text(

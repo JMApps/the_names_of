@@ -34,11 +34,11 @@ class _ContentItemState extends State<ContentItem> {
           controller: _mainScrollController,
           padding: EdgeInsets.zero,
           children: [
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
             Card(
               shape: AppStyles.rightShape,
               margin: AppStyles.mardingRightOnly,
-              color: appColors.inversePrimary,
+              color: appColors.inversePrimary.withAlpha(155),
               elevation: 0,
               child: Padding(
                 padding: AppStyles.mainMardingMini,
@@ -47,15 +47,16 @@ class _ContentItemState extends State<ContentItem> {
                   style: TextStyle(
                     fontSize: 18.0,
                     fontFamily: AppStrings.fontGilroy,
-                    color: appColors.primary,
-                    fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
             ),
-            ContentHtmlWidget(
-              content: widget.contentModel.content,
+            Padding(
+              padding: AppStyles.mainMardingMini,
+              child: ContentHtmlWidget(
+                content: widget.contentModel.content,
+              ),
             ),
           ],
         ),

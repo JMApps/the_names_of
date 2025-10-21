@@ -3,62 +3,87 @@ import 'package:flutter/material.dart';
 import '../../core/routes/route_names.dart';
 import '../../core/strings/app_strings.dart';
 import '../../core/styles/app_styles.dart';
-import '../items/main_page_item_to.dart';
-import '../lists/main_clarification_pages.dart';
-import '../lists/main_content_pages.dart';
-import '../names/pages/names_main_page.dart';
-import '../widgets/last_card.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppStrings.appName),
+        title: Text(AppStrings.appName),
       ),
-      body: ListView(
-        children: const [
-          SizedBox(height: 8),
-          MainPageItemTo(
-            routeName: RouteNames.mainContentsPage,
-            title: AppStrings.descriptionHeads,
-          ),
-          MainContentPages(),
-          MainPageItemTo(
-            routeName: RouteNames.mainNamesPage,
-            title: AppStrings.names,
-          ),
-          NamesMainPage(),
-          MainPageItemTo(
-            routeName: RouteNames.mainClarificationsPage,
-            title: AppStrings.clarificationNames,
-          ),
-          MainClarificationPages(),
-        ],
-      ),
-      bottomNavigationBar: const Card(
-        margin: EdgeInsets.zero,
-        child: Padding(
-          padding: AppStyles.mainMardingMini,
-          child: Row(
-            children: [
-              Expanded(
-                child: LastCard(
-                  title: AppStrings.quiz,
-                  routeName: 'quiz',
-                ),
-              ),
-              SizedBox(width: 8),
-              Expanded(
-                child: LastCard(
-                  title: AppStrings.cards,
-                  routeName: RouteNames.nameCardsPage,
-                ),
-              ),
-            ],
-          ),
+      body: Padding(
+        padding: AppStyles.mainMarding,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RouteNames.mainContentsPage);
+              },
+              color: appColors.primaryContainer,
+              shape: AppStyles.mainShape,
+              child: Text('Изложение основ'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RouteNames.mainNamesPage);
+              },
+              color: appColors.primaryContainer,
+              shape: AppStyles.mainShape,
+              child: Text('Имена'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RouteNames.mainClarificationsPage);
+              },
+              color: appColors.primaryContainer,
+              shape: AppStyles.mainShape,
+              child: Text('Толкование'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => Padding(
+                    padding: AppStyles.mardingWithoutTop,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        MaterialButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, RouteNames.arRuQuizPage);
+                          },
+                          child: Text('AR-RU'),
+                        ),
+                        MaterialButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, RouteNames.ruArQuizPage);
+                          },
+                          child: Text('RU-AR'),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              color: appColors.primaryContainer,
+              shape: AppStyles.mainShape,
+              child: Text('Викторина'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RouteNames.cardsNamePage);
+              },
+              color: appColors.primaryContainer,
+              shape: AppStyles.mainShape,
+              child: Text('Карточки'),
+            ),
+          ],
         ),
       ),
     );

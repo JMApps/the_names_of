@@ -56,6 +56,9 @@ flutter:
     - family: Raleway
       fonts:
         - asset: assets/fonts/raleway_regular.ttf
-    - family: Scheherezade
+    - family: Noto Naskh
       fonts:
         - asset: assets/fonts/noto_naskh.ttf
+    - family: Hafs
+      fonts:
+        - asset: assets/fonts/hafs.ttf

@@ -50,5 +50,7 @@ class AppStrings {
 
   static const String fontMontserrat = 'Montserrat';
 
-  static const String fontScheherezade = 'Scheherezade';
+  static const String fontNotoNaskh = 'Noto Naskh';
+
+  static const String fontHafs = 'Hafs';
 }

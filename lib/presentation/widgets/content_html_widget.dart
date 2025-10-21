@@ -19,7 +19,7 @@ class ContentHtmlWidget extends StatelessWidget {
           data: content,
           style: {
             '#': Style(
-              padding: HtmlPaddings.all(8),
+              padding: HtmlPaddings.zero,
               margin: Margins.zero,
               fontSize: FontSize(contentSettingsState.textSize),
               fontFamily: AppStyles.textFonts[contentSettingsState.fontIndex],

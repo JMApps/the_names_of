@@ -5,7 +5,7 @@ import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/name_entity.dart';
 import '../../state/app_player_state.dart';
-import '../../widgets/main_names_modal.dart';
+import '../widgets/main_names_modal.dart';
 
 class MainNameItem extends StatelessWidget {
   const MainNameItem({super.key, required this.nameModel});
@@ -39,7 +39,6 @@ class MainNameItem extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: CircleAvatar(
-                  backgroundColor: nameModel.id.isOdd ? evenItemColor : appColors.surface,
                   child: Padding(
                     padding: AppStyles.mardingTopMicro,
                     child: Text(
@@ -63,8 +62,10 @@ class MainNameItem extends StatelessWidget {
                           trackId: nameModel.id,
                         );
                       },
+                      padding: EdgeInsets.zero,
+                      visualDensity: VisualDensity.compact,
                       icon: Icon(
-                        player.getCurrentTrackItem == nameModel.id && player.getPlayingState ? Icons.stop_circle : Icons.play_circle,
+                        player.getCurrentTrackItem == nameModel.id && player.getPlayingState ? Icons.stop_circle_outlined : Icons.play_circle_outline_rounded,
                       ),
                       iconSize: 35.0,
                       color: appColors.secondary,
@@ -82,7 +83,7 @@ class MainNameItem extends StatelessWidget {
                       nameModel.nameArabic,
                       style: TextStyle(
                         fontSize: 27.5,
-                        fontFamily: AppStrings.fontScheherezade,
+                        fontFamily: AppStrings.fontNotoNaskh,
                         color: appColors.primary,
                       ),
                       textAlign: TextAlign.center,

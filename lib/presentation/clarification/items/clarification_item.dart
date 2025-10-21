@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/clarification_entity.dart';
+import '../../widgets/content_html_widget.dart';
 import '../lists/clarification_ayahs_list.dart';
 import '../lists/clarification_names_list.dart';
-import '../../widgets/content_html_widget.dart';
 
 class ClarificationItem extends StatelessWidget {
   const ClarificationItem({
@@ -21,16 +21,19 @@ class ClarificationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectableRegion(
       focusNode: FocusNode(),
-      selectionControls: Platform.isIOS ? CupertinoTextSelectionControls() : MaterialTextSelectionControls(),
-      child: CupertinoScrollbar(
+      selectionControls: Platform.isAndroid ? MaterialTextSelectionControls() : CupertinoTextSelectionControls(),
+      child: Scrollbar(
         child: SingleChildScrollView(
-          padding: AppStyles.mainMardingHorizontal,
+          padding: EdgeInsets.zero,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ClarificationNamesList(clarificationId: clarificationModel.id),
               ClarificationAyahsList(clarificationId: clarificationModel.id),
-              ContentHtmlWidget(content: clarificationModel.clarification),
+              Padding(
+                padding: AppStyles.mardingWithoutTop,
+                child: ContentHtmlWidget(content: clarificationModel.clarification),
+              ),
             ],
           ),
         ),

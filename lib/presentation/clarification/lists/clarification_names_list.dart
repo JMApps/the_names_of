@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/entities/name_entity.dart';
-import '../items/clarification_name_item.dart';
 import '../../state/main_content_state.dart';
 import '../../widgets/error_data_text.dart';
+import '../items/clarification_name_item.dart';
 
 class ClarificationNamesList extends StatelessWidget {
   const ClarificationNamesList({
@@ -19,6 +19,9 @@ class ClarificationNamesList extends StatelessWidget {
     return FutureBuilder<List<NameEntity>>(
       future: Provider.of<MainContentState>(context, listen: false).getChapterNames(chapterId: clarificationId),
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return ErrorDataText(textData: snapshot.error.toString());
+        }
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
@@ -30,13 +33,10 @@ class ClarificationNamesList extends StatelessWidget {
               return ClarificationNameItem(nameModel: nameModel);
             },
           );
-        } else if (snapshot.hasError) {
-          return ErrorDataText(textData: snapshot.error.toString());
-        } else {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
         }
+        return const Center(
+          child: CircularProgressIndicator.adaptive(),
+        );
       },
     );
   }

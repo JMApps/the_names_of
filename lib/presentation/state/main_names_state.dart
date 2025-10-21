@@ -13,7 +13,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../core/strings/app_constraints.dart';
 import '../../domain/entities/name_entity.dart';
-import '../../presentation/widgets/name_screen_widget.dart';
+import '../names/widgets/name_screen_widget.dart';
 
 class MainNamesState extends ChangeNotifier {
 

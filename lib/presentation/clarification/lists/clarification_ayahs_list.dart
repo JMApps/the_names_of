@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/entities/ayah_entity.dart';
-import '../../items/main_ayah_item.dart';
 import '../../state/main_content_state.dart';
+import '../items/clarification_ayah_item.dart';
 
 class ClarificationAyahsList extends StatelessWidget {
-  const ClarificationAyahsList({super.key, required this.clarificationId});
+  const ClarificationAyahsList({
+    super.key,
+    required this.clarificationId,
+  });
 
   final int clarificationId;
 
@@ -23,7 +26,7 @@ class ClarificationAyahsList extends StatelessWidget {
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
               final AyahEntity ayahModel = snapshot.data![index];
-              return MainAyahItem(ayahModel: ayahModel);
+              return ClarificationAyahItem(ayahModel: ayahModel);
             },
           );
         } else {

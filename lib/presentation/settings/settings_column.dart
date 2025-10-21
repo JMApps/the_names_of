@@ -28,8 +28,10 @@ class SettingsColumn extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               CupertinoSlidingSegmentedControl(
+                proportionalWidth: true,
+                backgroundColor: appColors.secondaryContainer.withAlpha(155),
                 thumbColor: appColors.inversePrimary,
-                padding: const EdgeInsets.all(4),
+                padding: AppStyles.mainMardingMicro,
                 children: <int, Widget>{
                   0: Text(
                     AppStrings.fontGilroy,
@@ -56,8 +58,10 @@ class SettingsColumn extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               CupertinoSlidingSegmentedControl(
+                proportionalWidth: true,
+                backgroundColor: appColors.secondaryContainer.withAlpha(155),
                 thumbColor: appColors.inversePrimary,
-                padding: const EdgeInsets.all(4),
+                padding: AppStyles.mainMardingMicro,
                 children: const <int, Widget>{
                   0: Icon(CupertinoIcons.text_alignleft),
                   1: Icon(CupertinoIcons.text_aligncenter),
@@ -75,6 +79,7 @@ class SettingsColumn extends StatelessWidget {
                 style: AppStyles.mainTextStyle,
               ),
               Slider(
+                padding: AppStyles.mainMardingMicro,
                 value: settingsState.textSize,
                 min: 14,
                 max: 100,
@@ -84,7 +89,9 @@ class SettingsColumn extends StatelessWidget {
                   settingsState.textSize = size!;
                 },
               ),
+              const SizedBox(height: 8),
               Card(
+                shape: AppStyles.bigShape,
                 child: ListTile(
                   shape: AppStyles.mainShape,
                   contentPadding: AppStyles.mainMardingMini,
@@ -104,10 +111,10 @@ class SettingsColumn extends StatelessWidget {
                   ),
                   trailing: Card(
                     margin: EdgeInsets.zero,
-                    shape: AppStyles.mainShape,
+                    shape: AppStyles.bigShape,
                     color: appColors.inversePrimary,
                     child: Padding(
-                      padding: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(4),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -152,7 +159,7 @@ class SettingsColumn extends StatelessWidget {
                               backgroundColor: settingsState.lightTextColor,
                             ),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 4),
                           GestureDetector(
                             onTap: () {
                               showDialog(

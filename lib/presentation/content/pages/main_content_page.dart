@@ -6,9 +6,7 @@ import '../lists/content_chapters_list.dart';
 import '../lists/content_pages_list.dart';
 
 class MainContentPage extends StatelessWidget {
-  const MainContentPage({super.key, required this.contentIndex});
-
-  final int contentIndex;
+  const MainContentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
