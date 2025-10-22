@@ -22,7 +22,7 @@ class BackNamePageCard extends StatelessWidget {
     final Color oddItemColor = appColors.primary.withAlpha(10);
     final Color evenItemColor = appColors.primary.withAlpha(25);
     return Container(
-      padding: AppStyles.mainMardingMini,
+      padding: AppStyles.mainMarding,
       margin: AppStyles.mardingBottomOnlyMini,
       height: 200,
       decoration: BoxDecoration(
