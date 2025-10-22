@@ -56,6 +56,7 @@ class MainPage extends StatelessWidget {
                       children: [
                         ListTile(
                           onTap: () {
+                            Navigator.pop(context);
                             Navigator.pushNamed(context, RouteNames.arRuQuizPage);
                           },
                           contentPadding: AppStyles.mainMardingHorizontalMini,
@@ -69,6 +70,7 @@ class MainPage extends StatelessWidget {
                         const SizedBox(height: 16),
                         ListTile(
                           onTap: () {
+                            Navigator.pop(context);
                             Navigator.pushNamed(context, RouteNames.ruArQuizPage);
                           },
                           contentPadding: AppStyles.mainMardingHorizontalMini,

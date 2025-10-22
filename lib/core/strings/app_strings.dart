@@ -38,7 +38,7 @@ class AppStrings {
   static const String question = 'Вопрос';
   static const String quizResult = 'Результат:';
   static const String answersResult = 'Я ответил правильно на:';
-  static const String resultShare = 'Вы ответили правильно на:';
+  static const String resultShare = 'Из 99 прекрасных имен Аллаха, я знаю наизусть';
   static const String share = 'Поделиться';
   static const String crib = 'Шпаргалка';
   static const String trueAnswer = 'Правильный ответ';

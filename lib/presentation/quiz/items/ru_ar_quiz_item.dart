@@ -30,7 +30,7 @@ class RuArQuizItem extends StatelessWidget {
               model.question,
               style: TextStyle(
                 fontFamily: AppStrings.fontMontserrat,
-                fontSize: 35.0,
+                fontSize: 25.0,
                 color: appColors.primary,
               ),
               textAlign: TextAlign.center,

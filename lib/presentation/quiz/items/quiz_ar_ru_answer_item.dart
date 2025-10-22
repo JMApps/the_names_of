@@ -47,7 +47,9 @@ class QuizArRuAnswerItem extends StatelessWidget {
           }
         },
         borderRadius: AppStyles.mainBorder,
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
           padding: AppStyles.mainMarding,
           decoration: BoxDecoration(
             borderRadius: AppStyles.mainBorder,

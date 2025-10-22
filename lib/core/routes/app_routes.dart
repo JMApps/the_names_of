@@ -5,7 +5,6 @@ import '../../presentation/clarification/pages/main_clarification_page.dart';
 import '../../presentation/content/pages/main_content_page.dart';
 import '../../presentation/names/pages/main_names_page.dart';
 import '../../presentation/quiz/pages/ar_ru_quiz_page.dart';
-import '../../presentation/quiz/pages/crib_page.dart';
 import '../../presentation/quiz/pages/quiz_score_page.dart';
 import '../../presentation/quiz/pages/ru_ar_quiz_page.dart';
 import 'route_names.dart';
@@ -37,11 +36,6 @@ class AppRoutes {
         final int quizModeArgs = routeSettings.arguments as int;
         return MaterialPageRoute(
           builder: (_) => QuizScorePage(quizMode: quizModeArgs),
-        );
-      case RouteNames.cribPage:
-        final int quizModeArgs = routeSettings.arguments as int;
-        return MaterialPageRoute(
-          builder: (_) => CribPage(quizMode: quizModeArgs),
         );
       case RouteNames.cardsNamePage:
         return MaterialPageRoute(

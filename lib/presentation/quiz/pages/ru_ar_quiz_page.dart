@@ -47,14 +47,23 @@ class RuArQuizPage extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    Padding(
+                      padding: AppStyles.mainMardingHorizontal,
+                      child: LinearProgressIndicator(
+                        minHeight: 6,
+                        value: quizState.ruArModePageNumber / 99,
+                        year2023: false,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
                     Card(
                       margin: AppStyles.mainMardingMini,
                       elevation: 0,
-                      color: appColors.inversePrimary.withAlpha(75),
+                      color: appColors.secondary.withAlpha(75),
                       child: Padding(
                         padding: AppStyles.mainMardingMini,
                         child: Text(
-                          '${AppStrings.question} ${quizState.getRuArModePageNumber}/99',
+                          '${AppStrings.question} ${quizState.ruArModePageNumber}/99',
                           style: TextStyle(
                             fontSize: 18.0,
                             fontFamily: AppStrings.fontGilroy,
@@ -66,7 +75,7 @@ class RuArQuizPage extends StatelessWidget {
                     const SizedBox(height: 4),
                     Expanded(
                       child: PageView.builder(
-                        controller: quizState.getPageController,
+                        controller: quizState.pageController,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: snapshot.data!.length,
                         itemBuilder: (BuildContext context, int index) {
@@ -82,7 +91,7 @@ class RuArQuizPage extends StatelessWidget {
                       ),
                     ),
                     Visibility(
-                      visible: quizState.getRuArModePageNumber == 99,
+                      visible: quizState.ruArModePageNumber == 99,
                       child: Padding(
                         padding: AppStyles.mainMarding,
                         child: MaterialButton(

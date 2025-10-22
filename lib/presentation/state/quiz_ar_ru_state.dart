@@ -13,7 +13,7 @@ class QuizArRuState extends ChangeNotifier {
   final QuizUseCase _quizUseCase;
   QuizArRuState(this._quizUseCase) {
     _arRuModePageNumber = _contentSettingsBox.get(AppConstraints.keyArRuPageNumber, defaultValue: 1);
-    _pageController = PageController(initialPage: _arRuModePageNumber);
+    _pageController = PageController(initialPage: _arRuModePageNumber - 1);
   }
 
   late final PageController _pageController;
@@ -22,7 +22,7 @@ class QuizArRuState extends ChangeNotifier {
 
   Timer? _questionTimer;
 
-  int _arRuModePageNumber = 0;
+  int _arRuModePageNumber = 1;
 
   int get arRuModePageNumber => _arRuModePageNumber;
 
@@ -39,6 +39,10 @@ class QuizArRuState extends ChangeNotifier {
   bool get isCorrectAnswer => _isCorrectAnswer;
 
   Future<List<QuizEntity>> fetchAllArRuQuiz() async => _quizUseCase.fetchArabicQuiz();
+
+  Future<List<Map<String, dynamic>>> fetchArRuTrueAnswers() async {
+    return await _quizUseCase.fetchArRuTrueAnswers();
+  }
 
   Future<void> answer({required QuizEntity model, required int index}) async {
     if (_arRuModePageNumber < 99) {
@@ -85,7 +89,7 @@ class QuizArRuState extends ChangeNotifier {
   }
 
   void changePageIndex(int page) {
-    _arRuModePageNumber = page;
+    _arRuModePageNumber = page + 1;
     notifyListeners();
   }
 

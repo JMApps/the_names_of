@@ -47,10 +47,19 @@ class ArRuQuizPage extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    Padding(
+                      padding: AppStyles.mainMardingHorizontal,
+                      child: LinearProgressIndicator(
+                        minHeight: 6,
+                        value: quizState.arRuModePageNumber / 99,
+                        year2023: false,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
                     Card(
                       margin: AppStyles.mainMardingMini,
                       elevation: 0,
-                      color: appColors.inversePrimary.withAlpha(75),
+                      color: appColors.secondary.withAlpha(75),
                       child: Padding(
                         padding: AppStyles.mainMardingMini,
                         child: Text(

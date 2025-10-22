@@ -22,11 +22,11 @@ class QuizRuArState extends ChangeNotifier {
 
   Timer? _questionTimer;
 
-  PageController get getPageController => _pageController;
+  PageController get pageController => _pageController;
 
   int _ruArModePageNumber = 1;
 
-  int get getRuArModePageNumber => _ruArModePageNumber;
+  int get ruArModePageNumber => _ruArModePageNumber;
 
   int _selectedAnswerIndex = -1;
 
@@ -41,6 +41,10 @@ class QuizRuArState extends ChangeNotifier {
   bool get isCorrectAnswer => _isCorrectAnswer;
 
   Future<List<QuizEntity>> fetchAllRuArQuiz() async => _quizUseCase.fetchRussianQuiz();
+
+  Future<List<Map<String, dynamic>>> fetchRuArTrueAnswers() async {
+    return await _quizUseCase.fetchRuArTrueAnswers();
+  }
 
   Future<void> answer({required QuizEntity model, required int index}) async {
     if (_ruArModePageNumber < 99) {
@@ -96,7 +100,7 @@ class QuizRuArState extends ChangeNotifier {
     await _pageController.animateToPage(
       0,
       duration: const Duration(milliseconds: 750),
-      curve: Curves.easeOutSine,
+      curve: Curves.easeInOutBack,
     );
     _isClickedAnswer = true;
     _isCorrectAnswer = false;

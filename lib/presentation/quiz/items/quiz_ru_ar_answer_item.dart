@@ -46,7 +46,9 @@ class QuizRuArAnswerItem extends StatelessWidget {
           }
         },
         borderRadius: AppStyles.mainBorder,
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
           padding: AppStyles.mainMarding,
           decoration: BoxDecoration(
             borderRadius: AppStyles.mainBorder,
@@ -58,7 +60,7 @@ class QuizRuArAnswerItem extends StatelessWidget {
           child: Text(
             model.answers[index],
             style: const TextStyle(
-              fontFamily: AppStrings.fontNotoNaskh,
+              fontFamily: AppStrings.fontHafs,
               fontSize: 30.0,
             ),
             textAlign: TextAlign.center,

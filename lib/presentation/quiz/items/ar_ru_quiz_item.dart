@@ -29,7 +29,7 @@ class ArRuQuizItem extends StatelessWidget {
             child: Text(
               model.question,
               style: TextStyle(
-                fontFamily: AppStrings.fontNotoNaskh,
+                fontFamily: AppStrings.fontHafs,
                 fontSize: 50.0,
                 color: appColors.primary,
               ),
