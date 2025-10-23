@@ -24,9 +24,9 @@ class ContentListItem extends StatelessWidget {
     return Padding(
       padding: AppStyles.mardingBottomOnlyMini,
       child: ListTile(
-        contentPadding: AppStyles.mainMardingMini,
+        contentPadding: AppStyles.mainMarding,
         shape: AppStyles.mainShape,
-        tileColor: index.isEven ? itemOddColor : itemEvenColor,
+        tileColor: Provider.of<ContentState>(context, listen: false).contentPage == index ? appColors.inversePrimary : index.isEven ? itemOddColor : itemEvenColor,
         onTap: () {
           Provider.of<ContentState>(context, listen: false).toPage(index);
           Navigator.pop(context);
@@ -39,7 +39,7 @@ class ContentListItem extends StatelessWidget {
           ),
         ),
         leading: CircleAvatar(
-          backgroundColor: appColors.secondaryContainer,
+          backgroundColor: appColors.secondary.withAlpha(35),
           child: Padding(
             padding: AppStyles.mardingTopMicro,
             child: Text(
@@ -47,7 +47,6 @@ class ContentListItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16.0,
                 fontFamily: AppStrings.fontGilroy,
-                color: appColors.secondary,
               ),
             ),
           ),

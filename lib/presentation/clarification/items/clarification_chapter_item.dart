@@ -24,9 +24,9 @@ class ClarificationChapterItem extends StatelessWidget {
     return Padding(
       padding: AppStyles.mardingBottomOnlyMini,
       child: ListTile(
-        contentPadding: AppStyles.mainMardingMini,
+        contentPadding: AppStyles.mainMarding,
         shape: AppStyles.mainShape,
-        tileColor: index.isEven ? itemOddColor : itemEvenColor,
+        tileColor: Provider.of<ClarificationState>(context, listen: false).clarificationPage == index ? appColors.inversePrimary : index.isEven ? itemOddColor : itemEvenColor,
         onTap: () {
           Provider.of<ClarificationState>(context, listen: false).toPage(index);
           Navigator.pop(context);
@@ -39,7 +39,8 @@ class ClarificationChapterItem extends StatelessWidget {
           ),
         ),
         leading: CircleAvatar(
-          backgroundColor: appColors.surface,
+          backgroundColor: appColors.secondary.withAlpha(35),
+          radius: 17.5,
           child: Padding(
             padding: AppStyles.mardingTopMicro,
             child: Text(

@@ -21,78 +21,87 @@ class BackNameCard extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     final Color oddItemColor = appColors.primary.withAlpha(10);
     final Color evenItemColor = appColors.primary.withAlpha(25);
-    return Container(
-      padding: AppStyles.mainMardingMini,
+    return Card(
       margin: AppStyles.mardingBottomOnlyMini,
-      height: 200,
-      decoration: BoxDecoration(
-        borderRadius: AppStyles.mainBorder,
-        color: index.isOdd ? oddItemColor : evenItemColor,
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: Consumer<AppPlayerState>(
-              builder: (context, appPlayerState, _) {
-                return IconButton(
-                  onPressed: () {
-                    appPlayerState.playTrack(
-                      nameAudio: model.nameAudio,
-                      trackId: model.id,
-                    );
-                  },
-                  padding: EdgeInsets.zero,
-                  visualDensity: VisualDensity.compact,
-                  icon: Icon(
-                    appPlayerState.getCurrentTrackItem == model.id && appPlayerState.getPlayingState
-                        ? Icons.stop_circle_outlined : Icons.play_circle_outline_rounded,
-                    size: 35.0,
-                  ),
-                  color: appColors.primary,
-                );
-              },
+      child: Container(
+        padding: AppStyles.mainMarding,
+        height: 225,
+        decoration: BoxDecoration(
+          borderRadius: AppStyles.mainBorder,
+          color: index.isOdd ? oddItemColor : evenItemColor,
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: Consumer<AppPlayerState>(
+                builder: (context, appPlayerState, _) {
+                  return IconButton.filledTonal(
+                    onPressed: () {
+                      appPlayerState.playTrack(
+                        nameAudio: model.nameAudio,
+                        trackId: model.id,
+                      );
+                    },
+                    padding: EdgeInsets.zero,
+                    visualDensity: VisualDensity.compact,
+                    icon: Icon(
+                      appPlayerState.getCurrentTrackItem == model.id && appPlayerState.getPlayingState ? Icons.stop_circle_outlined : Icons.play_circle_outline_rounded,
+                      size: 40.0,
+                    ),
+                    color: appColors.primary,
+                  );
+                },
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: CircleAvatar(
-              backgroundColor: appColors.surface,
-              child: Padding(
-                padding: AppStyles.mardingTopMicro,
-                child: Text(
-                  model.id.toString(),
+            Align(
+              alignment: Alignment.topLeft,
+              child: CircleAvatar(
+                backgroundColor: appColors.secondary.withAlpha(35),
+                radius: 17.5,
+                child: Padding(
+                  padding: AppStyles.mardingTopMicro,
+                  child: Text(
+                    model.id.toString(),
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontFamily: AppStrings.fontGilroy,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  model.nameTranslation,
+                  style: const TextStyle(
+                    fontSize: 25.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  model.nameTranscription,
                   style: TextStyle(
-                    fontSize: 16.0,
-                    fontFamily: AppStrings.fontGilroy,
+                    color: appColors.secondary,
+                    fontSize: 20.0,
                   ),
+                  textAlign: TextAlign.center,
                 ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Icon(
+                Icons.change_circle_outlined,
+                color: Colors.grey,
               ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                model.nameTranslation,
-                style: const TextStyle(
-                  fontSize: 25.0,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                model.nameTranscription,
-                style: TextStyle(
-                  color: appColors.secondary,
-                  fontSize: 20.0,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
@@ -8,15 +7,20 @@ import '../../../domain/entities/name_entity.dart';
 import '../../state/main_names_state.dart';
 
 class MainNamesModal extends StatelessWidget {
-  const MainNamesModal({super.key, required this.model});
+  const MainNamesModal({
+    super.key,
+    required this.model,
+    required this.mainNamesState,
+  });
 
   final NameEntity model;
+  final MainNamesState mainNamesState;
 
   @override
   Widget build(BuildContext context) {
-    final MainNamesState namesState = context.read<MainNamesState>();
+    final appColors = Theme.of(context).colorScheme;
     return Padding(
-      padding: AppStyles.mainMarding,
+      padding: AppStyles.mardingWithoutTop,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -24,15 +28,16 @@ class MainNamesModal extends StatelessWidget {
           ListTile(
             onTap: () {
               Navigator.pop(context);
-              namesState.copyContent = names();
+              mainNamesState.copyContent = names();
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
+                SnackBar(
+                  backgroundColor: appColors.primary,
                   duration: Duration(milliseconds: 350),
                   content: Text(
                     AppStrings.copied,
                     style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Gilroy',
+                      fontSize: 20.0,
+                      fontFamily: AppStrings.fontGilroy,
                     ),
                   ),
                 ),
@@ -44,7 +49,7 @@ class MainNamesModal extends StatelessWidget {
           ListTile(
             onTap: () {
               Navigator.pop(context);
-              namesState.shareContent = names();
+              mainNamesState.shareContent = names();
             },
             title: const Text(AppStrings.shareText),
             leading: const Icon(CupertinoIcons.share),
@@ -52,7 +57,7 @@ class MainNamesModal extends StatelessWidget {
           ListTile(
             onTap: () {
               Navigator.pop(context);
-              namesState.takeScreenshot(model);
+              mainNamesState.takeScreenshot(model);
             },
             title: const Text(AppStrings.sharePicture),
             leading: const Icon(CupertinoIcons.photo_on_rectangle),

@@ -15,6 +15,9 @@ class MainNamesPage extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (_) => MainNamesState(),
+        ),
+        ChangeNotifierProvider(
           create: (_) => AppPlayerState(),
         ),
       ],
@@ -28,9 +31,9 @@ class MainNamesPage extends StatelessWidget {
                   onPressed: () {
                     mainNamesState.changePageMode;
                   },
-                  tooltip: AppStrings.defaultName,
+                  tooltip: mainNamesState.pageMode ? AppStrings.listMode : AppStrings.pageMode,
                   icon: Icon(
-                    mainNamesState.pageMode ? Icons.list_alt_rounded : Icons.menu_book,
+                    mainNamesState.pageMode ? Icons.format_list_numbered_rounded : Icons.menu_book_rounded,
                   ),
                 ),
                 IconButton(
@@ -43,7 +46,7 @@ class MainNamesPage extends StatelessWidget {
                   },
                   tooltip: AppStrings.defaultName,
                   icon: const Icon(
-                    Icons.shuffle,
+                    Icons.shuffle_rounded,
                   ),
                 ),
               ],

@@ -58,7 +58,7 @@ class _MainNamesPageListState extends State<MainNamesPageList> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton.filledTonal(
+                        IconButton.filled(
                           onPressed: () {
                             mainNamesState.pageController.previousPage(
                               duration: Duration(milliseconds: 350),
@@ -67,7 +67,7 @@ class _MainNamesPageListState extends State<MainNamesPageList> {
                           },
                           icon: Icon(
                             Icons.arrow_back_ios_new_rounded,
-                            color: appColors.primary,
+                            color: appColors.inversePrimary,
                           ),
                           iconSize: 35.0,
                         ),
@@ -78,7 +78,7 @@ class _MainNamesPageListState extends State<MainNamesPageList> {
                             fontFamily: AppStrings.fontGilroy,
                           ),
                         ),
-                        IconButton.filledTonal(
+                        IconButton.filled(
                           onPressed: () {
                             mainNamesState.pageController.nextPage(
                               duration: Duration(milliseconds: 350),
@@ -87,7 +87,7 @@ class _MainNamesPageListState extends State<MainNamesPageList> {
                           },
                           icon: Icon(
                             Icons.arrow_forward_ios_rounded,
-                            color: appColors.primary,
+                            color: appColors.inversePrimary,
                           ),
                           iconSize: 35.0,
                         ),

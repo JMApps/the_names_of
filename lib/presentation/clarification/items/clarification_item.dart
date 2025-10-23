@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_names_of/core/strings/app_strings.dart';
 
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/clarification_entity.dart';
@@ -30,6 +31,15 @@ class ClarificationItem extends StatelessWidget {
             children: [
               ClarificationNamesList(clarificationId: clarificationModel.id),
               ClarificationAyahsList(clarificationId: clarificationModel.id),
+              Padding(
+                padding: AppStyles.mardingHorVerMini,
+                child: Text(
+                  AppStrings.clarification,
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
               Padding(
                 padding: AppStyles.mardingWithoutTop,
                 child: ContentHtmlWidget(content: clarificationModel.clarification),

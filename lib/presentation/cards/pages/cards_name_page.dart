@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/strings/app_strings.dart';
 import '../../state/app_player_state.dart';
-import '../../state/card_names_state.dart';
+import '../../state/main_names_state.dart';
 import '../lists/card_names_page_list.dart';
 import '../lists/cards_name_list.dart';
 
@@ -15,47 +15,52 @@ class CardsNamePage extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (_) => MainNamesState(),
+        ),
+        ChangeNotifierProvider(
           create: (_) => AppPlayerState(),
         ),
       ],
-      child: Consumer<CardNamesState>(
-        builder: (context, cardNamesState, _) {
+      child: Consumer<MainNamesState>(
+        builder: (context, mainNamesState, _) {
           return Scaffold(
             appBar: AppBar(
               title: const Text(AppStrings.cards),
               actions: [
                 IconButton(
                   onPressed: () {
-                    cardNamesState.changePageMode;
+                    mainNamesState.changePageMode;
                   },
-                  tooltip: AppStrings.defaultName,
+                  tooltip: mainNamesState.pageMode ? AppStrings.listMode : AppStrings.pageMode,
                   icon: Icon(
-                    cardNamesState.pageMode ? Icons.list_alt_rounded : Icons.menu_book,
+                    mainNamesState.pageMode ? Icons.format_list_numbered_rounded : Icons.menu_book_rounded,
                   ),
                 ),
                 IconButton(
                   onPressed: () {
-                    if (cardNamesState.pageMode) {
-                      cardNamesState.toPageDefaultItem();
+                    if (mainNamesState.pageMode) {
+                      mainNamesState.toPageDefaultItem();
                     } else {
-                      cardNamesState.toListDefaultItem();
+                      mainNamesState.toListDefaultItem();
                     }
                   },
+                  tooltip: AppStrings.defaultName,
                   icon: const Icon(
-                    Icons.shuffle,
+                    Icons.shuffle_rounded,
                   ),
                 ),
                 IconButton(
                   onPressed: () {
-                    cardNamesState.changeFlipCard;
+                    mainNamesState.changeFlipCard;
                   },
+                  tooltip: AppStrings.turnCards,
                   icon: Icon(
                     Icons.change_circle_outlined,
                   ),
                 ),
               ],
             ),
-            body: cardNamesState.pageMode ? CardNamesPageList() : CardsNameList(),
+            body: mainNamesState.pageMode ? CardNamesPageList() : CardsNameList(),
           );
         },
       ),

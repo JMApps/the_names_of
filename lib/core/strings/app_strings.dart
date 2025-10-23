@@ -16,6 +16,11 @@ class AppStrings {
 
   // Names
   static const String defaultName = 'Случайное имя';
+  static const String turnCards = 'Перевернуть карточки';
+  static const String clarification = 'Разъяснение';
+
+  static const String listMode = 'Режим списка';
+  static const String pageMode = 'Книжный режим';
 
   // Settings
   static const String settings = 'Настройки';
@@ -31,19 +36,18 @@ class AppStrings {
   static const String displayAlways = 'Дисплей всегда включён';
 
   // Quiz
-  static const String arabicRussian = 'Арабско-русская';
+  static const String quizMode = 'Режим викторины';
+  static const String arabicRussian = 'Арабско-русский';
   static const String fromArabicRussian = 'Арабско-русский режим';
-  static const String russianArabic = 'Русско-арабская';
+  static const String russianArabic = 'Русско-арабский';
   static const String fromRussianArabic = 'Русско-арабский режим';
   static const String question = 'Вопрос';
   static const String quizResult = 'Результат:';
   static const String answersResult = 'Я ответил правильно на:';
   static const String resultShare = 'Из 99 прекрасных имен Аллаха, я знаю наизусть';
   static const String share = 'Поделиться';
-  static const String crib = 'Шпаргалка';
   static const String trueAnswer = 'Правильный ответ';
   static const String resetQuiz = 'Пройти снова';
-
   static const String information = 'Информация';
 
   static const String fontGilroy = 'Gilroy';

@@ -39,7 +39,7 @@ class MainClarificationPage extends StatelessWidget {
               },
               tooltip: AppStrings.chapters,
               icon: const Icon(
-                Icons.view_headline_sharp,
+                Icons.view_headline_rounded,
               ),
             ),
             IconButton(
@@ -52,7 +52,7 @@ class MainClarificationPage extends StatelessWidget {
               },
               tooltip: AppStrings.settings,
               icon: const Icon(
-                Icons.settings_outlined,
+                Icons.settings_rounded,
               ),
             ),
           ],

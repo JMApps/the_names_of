@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/name_entity.dart';
-import '../../state/card_names_state.dart';
+import '../../state/main_names_state.dart';
 import 'back_name_page_card.dart';
 import 'front_name_page_card.dart';
 
@@ -20,27 +20,27 @@ class CardNamePageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CardNamesState>(
-      builder: (context, cardNamesState, _) {
+    return Consumer<MainNamesState>(
+      builder: (context, mainNamesState, _) {
         return Padding(
           padding: AppStyles.mainMardingMini,
           child: FlipCard(
-            front: cardNamesState.isFlipCard
+            front: mainNamesState.isFlipCard
                 ? FrontNamePageCard(
-                    model: nameModel,
+                    nameModel: nameModel,
                     index: index,
                   )
                 : BackNamePageCard(
-                    model: nameModel,
+                    nameModel: nameModel,
                     index: index,
                   ),
-            back: cardNamesState.isFlipCard
+            back: mainNamesState.isFlipCard
                 ? BackNamePageCard(
-                    model: nameModel,
+                    nameModel: nameModel,
                     index: index,
                   )
                 : FrontNamePageCard(
-                    model: nameModel,
+                    nameModel: nameModel,
                     index: index,
                   ),
           ),

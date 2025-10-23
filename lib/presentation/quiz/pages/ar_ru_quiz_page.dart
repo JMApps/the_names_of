@@ -59,7 +59,7 @@ class ArRuQuizPage extends StatelessWidget {
                     Card(
                       margin: AppStyles.mainMardingMini,
                       elevation: 0,
-                      color: appColors.secondary.withAlpha(75),
+                      color: appColors.secondary.withAlpha(35),
                       child: Padding(
                         padding: AppStyles.mainMardingMini,
                         child: Text(

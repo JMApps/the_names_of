@@ -18,95 +18,93 @@ class ClarificationNameItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    final Color oddItemColor = appColors.primary.withAlpha(15);
-    final Color evenItemColor = appColors.primary.withAlpha(25);
-    return Container(
+    return Card(
       margin: AppStyles.mardingWithoutTopMini,
-      padding: AppStyles.mainMarding,
-      decoration: BoxDecoration(
-        color: nameModel.id.isOdd ? oddItemColor : evenItemColor,
-        borderRadius: AppStyles.mainBorder,
-      ),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: CircleAvatar(
-              backgroundColor: appColors.surface,
-              child: Padding(
-                padding: AppStyles.mardingTopMicro,
-                child: Text(
-                  nameModel.id.toString(),
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontFamily: AppStrings.fontGilroy,
+      child: Container(
+        padding: AppStyles.mainMardingMini,
+        height: 150,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: CircleAvatar(
+                backgroundColor: appColors.secondary.withAlpha(35),
+                radius: 17.5,
+                child: Padding(
+                  padding: AppStyles.mardingTopMicro,
+                  child: Text(
+                    nameModel.id.toString(),
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontFamily: AppStrings.fontGilroy,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Consumer<AppPlayerState>(
-              builder: (context, player, _) {
-                return IconButton(
-                  onPressed: () {
-                    player.playTrack(
-                      nameAudio: nameModel.nameAudio,
-                      trackId: nameModel.id,
-                    );
-                  },
-                  padding: EdgeInsets.zero,
-                  visualDensity: VisualDensity.compact,
-                  icon: Icon(
-                    player.getCurrentTrackItem == nameModel.id && player.getPlayingState ? Icons.stop_circle_outlined : Icons.play_circle_outline_rounded,
-                  ),
-                  iconSize: 35.0,
-                  color: appColors.secondary,
-                );
-              },
+            Align(
+              alignment: Alignment.topRight,
+              child: Consumer<AppPlayerState>(
+                builder: (context, player, _) {
+                  return IconButton.filledTonal(
+                    onPressed: () {
+                      player.playTrack(
+                        nameAudio: nameModel.nameAudio,
+                        trackId: nameModel.id,
+                      );
+                    },
+                    padding: EdgeInsets.zero,
+                    visualDensity: VisualDensity.compact,
+                    icon: Icon(
+                      player.getCurrentTrackItem == nameModel.id && player.getPlayingState
+                          ? Icons.stop_circle_outlined
+                          : Icons.play_circle_outline_rounded,
+                    ),
+                    iconSize: 40.0,
+                    color: appColors.secondary,
+                  );
+                },
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Consumer<ContentSettingsState>(
-              builder: (context, contentSettingsState, _) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 8),
-                    Text(
-                      nameModel.nameArabic,
-                      style: TextStyle(
-                        fontSize: contentSettingsState.textSize + 5,
-                        fontFamily: AppStrings.fontNotoNaskh,
-                        color: appColors.primary,
+            Align(
+              alignment: Alignment.center,
+              child: Consumer<ContentSettingsState>(
+                builder: (context, contentSettingsState, _) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        nameModel.nameArabic,
+                        style: TextStyle(
+                          fontSize: contentSettingsState.textSize + 5,
+                          fontFamily: AppStrings.fontNotoNaskh,
+                          color: appColors.primary,
+                        ),
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
                       ),
-                      textDirection: TextDirection.rtl,
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      nameModel.nameTranscription,
-                      style: TextStyle(
-                        fontSize: contentSettingsState.textSize,
-                        color: appColors.secondary,
+                      Text(
+                        nameModel.nameTranscription,
+                        style: TextStyle(
+                          fontSize: contentSettingsState.textSize,
+                          color: appColors.secondary,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      nameModel.nameTranslation,
-                      style: TextStyle(
-                        fontSize: contentSettingsState.textSize,
+                      Text(
+                        nameModel.nameTranslation,
+                        style: TextStyle(
+                          fontSize: contentSettingsState.textSize,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 8),
-                  ],
-                );
-              },
+                    ],
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

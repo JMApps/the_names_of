@@ -54,33 +54,44 @@ class MainPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        ListTile(
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, RouteNames.arRuQuizPage);
-                          },
-                          contentPadding: AppStyles.mainMardingHorizontalMini,
-                          visualDensity: VisualDensity.compact,
-                          tileColor: appColors.primaryContainer.withAlpha(105),
-                          shape: AppStyles.mainShape,
-                          title: Text('Арабско-русская'),
-                          leading: Icon(Icons.translate_rounded),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                        Text(
+                          AppStrings.quizMode,
+                          style: AppStyles.mainTextStyle,
+                          textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
-                        ListTile(
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, RouteNames.ruArQuizPage);
-                          },
-                          contentPadding: AppStyles.mainMardingHorizontalMini,
-                          visualDensity: VisualDensity.compact,
-                          tileColor: appColors.primaryContainer.withAlpha(105),
-                          shape: AppStyles.mainShape,
-                          title: Text('Русско-арабская'),
-                          leading: Icon(Icons.translate_rounded),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                        Card(
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(context, RouteNames.arRuQuizPage);
+                            },
+                            contentPadding: AppStyles.mainMardingHorizontal,
+                            visualDensity: VisualDensity.compact,
+                            tileColor: appColors.primaryContainer.withAlpha(105),
+                            shape: AppStyles.mainShape,
+                            title: Text(AppStrings.arabicRussian),
+                            leading: Icon(Icons.translate_rounded),
+                            trailing: Icon(Icons.arrow_forward_ios),
+                          ),
                         ),
+                        const SizedBox(height: 16),
+                        Card(
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(context, RouteNames.ruArQuizPage);
+                            },
+                            contentPadding: AppStyles.mainMardingHorizontal,
+                            visualDensity: VisualDensity.compact,
+                            tileColor: appColors.primaryContainer.withAlpha(105),
+                            shape: AppStyles.mainShape,
+                            title: Text(AppStrings.russianArabic),
+                            leading: Icon(Icons.translate_rounded),
+                            trailing: Icon(Icons.arrow_forward_ios),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
                       ],
                     ),
                   ),

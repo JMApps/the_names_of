@@ -26,19 +26,27 @@ class _QuizScorePageState extends State<QuizScorePage> {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(widget.quizMode == 1 ? AppStrings.arabicRussian : AppStrings.russianArabic),
+      ),
       body: Padding(
-        padding: AppStyles.mardingWithoutTop,
+        padding: AppStyles.mainMardingHorizontal,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Expanded(
+              flex: 2,
+              child: const SizedBox(),
+            ),
             const Text(
               AppStrings.answersResult,
-              style: AppStyles.mainTextStyle,
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 15),
             FutureBuilder(
               future: widget.quizMode == 1 ? Provider.of<QuizArRuState>(context, listen: false).fetchArRuTrueAnswers() : Provider.of<QuizRuArState>(context, listen: false).fetchRuArTrueAnswers(),
               builder: (context, snapshot) {
@@ -49,7 +57,7 @@ class _QuizScorePageState extends State<QuizScorePage> {
                       child: Text(
                         '${snapshot.error}',
                         style: TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 20.0,
                           color: appColors.error,
                         ),
                       ),
@@ -59,6 +67,7 @@ class _QuizScorePageState extends State<QuizScorePage> {
                 if (snapshot.hasData) {
                   _countNumbers = snapshot.data!.length;
                   return Card(
+                    margin: EdgeInsets.zero,
                     child: Padding(
                       padding: AppStyles.mainMarding,
                       child: Text(
@@ -77,8 +86,23 @@ class _QuizScorePageState extends State<QuizScorePage> {
                 );
               },
             ),
-            const SizedBox(height: 16),
-            OutlinedButton(
+            Expanded(child: const SizedBox()),
+            MaterialButton(
+              onPressed: () {},
+              color: appColors.primary,
+              elevation: 0,
+              shape: AppStyles.mainShape,
+              padding: AppStyles.mainMardingBig,
+              child: Text(
+                AppStrings.resetQuiz,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: appColors.surface,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            MaterialButton(
               onPressed: () {
                 SharePlus.instance.share(
                   ShareParams(
@@ -87,6 +111,10 @@ class _QuizScorePageState extends State<QuizScorePage> {
                   ),
                 );
               },
+              color: appColors.primary.withAlpha(55),
+              elevation: 0,
+              shape: AppStyles.mainShape,
+              padding: AppStyles.mainMardingBig,
               child: const Text(
                 AppStrings.share,
                 style: TextStyle(
@@ -94,6 +122,7 @@ class _QuizScorePageState extends State<QuizScorePage> {
                 ),
               ),
             ),
+            Expanded(child: const SizedBox()),
           ],
         ),
       ),

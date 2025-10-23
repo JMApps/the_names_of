@@ -17,47 +17,46 @@ class ClarificationAyahItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
-    return Container(
-      padding: AppStyles.mainMarding,
+    return Card(
       margin: AppStyles.mardingWithoutTopMini,
-      decoration: BoxDecoration(
-        borderRadius: AppStyles.mainBorder,
-        color: appColors.tertiary.withAlpha(15),
-      ),
-      child: Consumer<ContentSettingsState>(
-        builder: (context, contentSettingsState, _) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                ayahModel.ayahArabic,
-                style: TextStyle(
-                  fontSize: contentSettingsState.textSize + 5,
-                  fontFamily: AppStrings.fontHafs,
-                  color: appColors.secondary,
+      child: Padding(
+        padding: AppStyles.mainMarding,
+        child: Consumer<ContentSettingsState>(
+          builder: (context, contentSettingsState, _) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              spacing: 8,
+              children: [
+                Text(
+                  ayahModel.ayahArabic,
+                  style: TextStyle(
+                    fontSize: contentSettingsState.textSize + 5,
+                    fontFamily: AppStrings.fontHafs,
+                    color: appColors.secondary,
+                  ),
+                  textDirection: TextDirection.rtl,
+                  textAlign: TextAlign.center,
                 ),
-                textDirection: TextDirection.rtl,
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                ayahModel.ayahTranslation,
-                style: TextStyle(
-                  fontSize: contentSettingsState.textSize,
+                Text(
+                  ayahModel.ayahTranslation,
+                  style: TextStyle(
+                    fontSize: contentSettingsState.textSize,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 2),
-              Text(
-                ayahModel.ayahSource,
-                style: TextStyle(
-                  fontSize: contentSettingsState.textSize - 6,
-                  fontFamily: AppStrings.fontGilroy,
+                Text(
+                  ayahModel.ayahSource,
+                  style: TextStyle(
+                    fontSize: contentSettingsState.textSize - 6,
+                    fontFamily: AppStrings.fontGilroy,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }

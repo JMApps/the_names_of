@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/entities/name_entity.dart';
-import '../../state/card_names_state.dart';
+import '../../state/main_names_state.dart';
 import 'back_name_card.dart';
 import 'front_name_card.dart';
 
@@ -19,10 +19,10 @@ class CardNameItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CardNamesState>(
-      builder: (context, cardNamesState, _) {
+    return Consumer<MainNamesState>(
+      builder: (context, mainNamesState, _) {
         return FlipCard(
-          front: cardNamesState.isFlipCard
+          front: mainNamesState.isFlipCard
               ? FrontNameCard(
                   model: model,
                   index: index,
@@ -31,7 +31,7 @@ class CardNameItem extends StatelessWidget {
                   model: model,
                   index: index,
                 ),
-          back: cardNamesState.isFlipCard
+          back: mainNamesState.isFlipCard
               ? BackNameCard(
                   model: model,
                   index: index,

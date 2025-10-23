@@ -12,7 +12,7 @@ class ContentChaptersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<List<ContentEntity>>(
       future: Provider.of<MainContentState>(context, listen: false).getAllContents(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
