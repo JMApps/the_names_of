@@ -18,7 +18,7 @@ dependencies:
   flutter_html: ^3.0.0-beta.2
   html: ^0.15.6
   sqflite: ^2.4.2
-  share_plus: ^12.0.0
+  share_plus: ^12.0.1
   screenshot: ^3.0.0
   clipboard: ^2.0.2
   scrollable_positioned_list: ^0.3.8
@@ -31,6 +31,7 @@ dependencies:
   wakelock_plus: ^1.4.0
   intl: ^0.20.2
   timezone: ^0.10.1
+  responsive_builder: ^0.7.1
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/presentation/widgets/main_quiz_card.dart';
 
 import '../../core/routes/route_names.dart';
 import '../../core/strings/app_strings.dart';
@@ -12,21 +13,34 @@ class MainPage extends StatelessWidget {
     final appColors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.appName),
+        title: Text(
+          AppStrings.appName,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            tooltip: AppStrings.share,
+            icon: Icon(
+              Icons.ios_share_rounded,
+              color: appColors.primary,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: AppStyles.mainMarding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          spacing: 8,
           children: [
-            MaterialButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RouteNames.mainContentsPage);
-              },
-              color: appColors.primaryContainer,
-              shape: AppStyles.mainShape,
-              child: Text('Изложение основ'),
+            Card(
+              child: SizedBox(
+                height: 100.0,
+                child: Text(
+                  'Толкование',
+                ),
+              ),
             ),
             MaterialButton(
               onPressed: () {
@@ -50,50 +64,6 @@ class MainPage extends StatelessWidget {
                   context: context,
                   builder: (context) => Padding(
                     padding: AppStyles.mardingWithoutTop,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          AppStrings.quizMode,
-                          style: AppStyles.mainTextStyle,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 16),
-                        Card(
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(context, RouteNames.arRuQuizPage);
-                            },
-                            contentPadding: AppStyles.mainMardingHorizontal,
-                            visualDensity: VisualDensity.compact,
-                            tileColor: appColors.primaryContainer.withAlpha(105),
-                            shape: AppStyles.mainShape,
-                            title: Text(AppStrings.arabicRussian),
-                            leading: Icon(Icons.translate_rounded),
-                            trailing: Icon(Icons.arrow_forward_ios),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Card(
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(context, RouteNames.ruArQuizPage);
-                            },
-                            contentPadding: AppStyles.mainMardingHorizontal,
-                            visualDensity: VisualDensity.compact,
-                            tileColor: appColors.primaryContainer.withAlpha(105),
-                            shape: AppStyles.mainShape,
-                            title: Text(AppStrings.russianArabic),
-                            leading: Icon(Icons.translate_rounded),
-                            trailing: Icon(Icons.arrow_forward_ios),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                      ],
-                    ),
                   ),
                 );
               },
@@ -108,6 +78,23 @@ class MainPage extends StatelessWidget {
               color: appColors.primaryContainer,
               shape: AppStyles.mainShape,
               child: Text('Карточки'),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: MainQuizCard(
+                    quizTitle: AppStrings.arabicRussian,
+                    routeName: RouteNames.arRuQuizPage,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: MainQuizCard(
+                    quizTitle: AppStrings.russianArabic,
+                    routeName: RouteNames.ruArQuizPage,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
