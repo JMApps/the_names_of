@@ -20,6 +20,9 @@ class MainClarificationPage extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (_) => ClarificationState(),
+        ),
+        ChangeNotifierProvider(
           create: (_) => AppPlayerState(),
         ),
       ],
@@ -27,20 +30,29 @@ class MainClarificationPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text(AppStrings.clarificationNames),
           actions: [
-            IconButton(
-              onPressed: () {
-                /// Bottom sheet with clarification chapters
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  useSafeArea: true,
-                  builder: (context) => ClarificationChaptersList(),
+            Consumer<ClarificationState>(
+              builder: (context, clarificationState, _) {
+                return IconButton(
+                  onPressed: () {
+                    /// Bottom sheet with clarification chapters
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      builder: (context) => ChangeNotifierProvider.value(
+                        value: clarificationState,
+                        child: ClarificationChaptersList(
+                          clarificationState: clarificationState,
+                        ),
+                      ),
+                    );
+                  },
+                  tooltip: AppStrings.chapters,
+                  icon: const Icon(
+                    Icons.view_headline_rounded,
+                  ),
                 );
               },
-              tooltip: AppStrings.chapters,
-              icon: const Icon(
-                Icons.view_headline_rounded,
-              ),
             ),
             IconButton(
               onPressed: () {

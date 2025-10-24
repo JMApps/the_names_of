@@ -6,8 +6,8 @@ import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/content_entity.dart';
 import '../../state/content_state.dart';
 
-class ContentListItem extends StatelessWidget {
-  const ContentListItem({
+class ContentChapterItem extends StatelessWidget {
+  const ContentChapterItem({
     super.key,
     required this.contentModel,
     required this.index,

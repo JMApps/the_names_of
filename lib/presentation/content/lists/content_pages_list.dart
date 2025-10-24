@@ -21,21 +21,21 @@ class ContentPagesList extends StatelessWidget {
         }
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return Consumer<ContentState>(
-            builder: (context, clarificationState, _) {
+            builder: (context, contentState, _) {
               return Column(
                 children: [
                   Padding(
                     padding: AppStyles.mainMardingHorizontal,
                     child: LinearProgressIndicator(
                       minHeight: 6,
-                      value: clarificationState.contentPage / 15,
+                      value: contentState.contentPage / 15,
                       year2023: false,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Expanded(
                     child: PageView.builder(
-                      controller: clarificationState.pageController,
+                      controller: contentState.pageController,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (BuildContext context, int index) {
                         final ContentEntity contentModel = snapshot.data![index];
@@ -44,7 +44,7 @@ class ContentPagesList extends StatelessWidget {
                         );
                       },
                       onPageChanged: (int? pageIndex) {
-                        clarificationState.contentPage = pageIndex!;
+                        contentState.contentPage = pageIndex!;
                       },
                     ),
                   ),

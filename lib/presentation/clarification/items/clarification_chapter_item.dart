@@ -28,8 +28,8 @@ class ClarificationChapterItem extends StatelessWidget {
         shape: AppStyles.mainShape,
         tileColor: Provider.of<ClarificationState>(context, listen: false).clarificationPage == index ? appColors.inversePrimary : index.isEven ? itemOddColor : itemEvenColor,
         onTap: () {
-          Provider.of<ClarificationState>(context, listen: false).toPage(index);
           Navigator.pop(context);
+          Provider.of<ClarificationState>(context, listen: false).toPage(index);
         },
         title: Text(
           clarificationModel.title,
