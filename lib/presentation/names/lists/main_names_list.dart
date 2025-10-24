@@ -9,14 +9,9 @@ import '../../state/main_names_state.dart';
 import '../../widgets/error_data_text.dart';
 import '../items/main_name_item.dart';
 
-class MainNamesList extends StatefulWidget {
+class MainNamesList extends StatelessWidget {
   const MainNamesList({super.key});
 
-  @override
-  State<MainNamesList> createState() => _MainNamesListState();
-}
-
-class _MainNamesListState extends State<MainNamesList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<NameEntity>>(

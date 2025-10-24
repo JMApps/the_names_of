@@ -9,14 +9,9 @@ import '../../state/main_names_state.dart';
 import '../../widgets/error_data_text.dart';
 import '../items/main_name_page_item.dart';
 
-class MainNamesPageList extends StatefulWidget {
+class MainNamesPageList extends StatelessWidget {
   const MainNamesPageList({super.key});
 
-  @override
-  State<MainNamesPageList> createState() => _MainNamesPageListState();
-}
-
-class _MainNamesPageListState extends State<MainNamesPageList> {
   @override
   Widget build(BuildContext context) {
     final appColors = Theme.of(context).colorScheme;

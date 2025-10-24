@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_names_of/presentation/names/lists/root_names_page_list.dart';
 import 'package:the_names_of/presentation/widgets/main_quiz_card.dart';
 
 import '../../core/routes/route_names.dart';
@@ -18,7 +19,9 @@ class MainPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              /// Shape app links
+            },
             tooltip: AppStrings.share,
             icon: Icon(
               Icons.ios_share_rounded,
@@ -27,59 +30,66 @@ class MainPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: AppStyles.mainMarding,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          spacing: 8,
-          children: [
-            Card(
-              child: SizedBox(
-                height: 100.0,
-                child: Text(
-                  'Толкование',
-                ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: 8,
+        children: [
+          Card(
+            child: SizedBox(
+              height: 100.0,
+              child: Text(
+                'Разъяснение основ',
               ),
             ),
-            MaterialButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RouteNames.mainNamesPage);
-              },
-              color: appColors.primaryContainer,
-              shape: AppStyles.mainShape,
-              child: Text('Имена'),
+          ),
+          Card(
+            shape: AppStyles.rightShape,
+            margin: AppStyles.mardingRightOnly,
+            color: appColors.inversePrimary,
+            child: Padding(
+              padding: AppStyles.mainMardingMini,
+              child: Text(
+                AppStrings.names,
+                style: AppStyles.mainTextStyle,
+              ),
             ),
-            MaterialButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RouteNames.mainClarificationsPage);
-              },
-              color: appColors.primaryContainer,
-              shape: AppStyles.mainShape,
-              child: Text('Толкование'),
+          ),
+          SizedBox(
+            height: 150.0,
+            child: RootNamesPageList(),
+          ),
+          MaterialButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RouteNames.mainClarificationsPage);
+            },
+            color: appColors.primaryContainer,
+            shape: AppStyles.mainShape,
+            child: Text('Толкование'),
+          ),
+          MaterialButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RouteNames.cardsNamePage);
+            },
+            color: appColors.primaryContainer,
+            shape: AppStyles.mainShape,
+            child: Text('Карточки'),
+          ),
+          Card(
+            shape: AppStyles.rightShape,
+            margin: AppStyles.mardingRightOnly,
+            color: appColors.inversePrimary,
+            child: Padding(
+              padding: AppStyles.mainMardingMini,
+              child: Text(
+                AppStrings.quiz,
+                style: AppStyles.mainTextStyle,
+              ),
             ),
-            MaterialButton(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) => Padding(
-                    padding: AppStyles.mardingWithoutTop,
-                  ),
-                );
-              },
-              color: appColors.primaryContainer,
-              shape: AppStyles.mainShape,
-              child: Text('Викторина'),
-            ),
-            MaterialButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RouteNames.cardsNamePage);
-              },
-              color: appColors.primaryContainer,
-              shape: AppStyles.mainShape,
-              child: Text('Карточки'),
-            ),
-            Row(
+          ),
+          Padding(
+            padding: AppStyles.mardingHorVerMini,
+            child: Row(
               children: [
                 Expanded(
                   child: MainQuizCard(
@@ -96,8 +106,8 @@ class MainPage extends StatelessWidget {
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

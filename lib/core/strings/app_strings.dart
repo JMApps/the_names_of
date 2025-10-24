@@ -37,9 +37,9 @@ class AppStrings {
 
   // Quiz
   static const String quizMode = 'Режим викторины';
-  static const String arabicRussian = 'Арабско-русский';
+  static const String arabicRussian = 'Арабско-русская';
   static const String fromArabicRussian = 'Арабско-русский режим';
-  static const String russianArabic = 'Русско-арабский';
+  static const String russianArabic = 'Русско-арабская';
   static const String fromRussianArabic = 'Русско-арабский режим';
   static const String question = 'Вопрос';
   static const String quizResult = 'Результат:';
