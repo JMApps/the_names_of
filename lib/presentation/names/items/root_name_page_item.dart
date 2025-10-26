@@ -35,7 +35,7 @@ class RootNamePageItem extends StatelessWidget {
                 nameModel.nameArabic,
                 style: TextStyle(
                   fontSize: 22.0,
-                  fontFamily: AppStrings.fontNotoNaskh,
+                  fontFamily: AppStrings.fontHafs,
                   color: appColors.primary,
                 ),
                 textAlign: TextAlign.end,

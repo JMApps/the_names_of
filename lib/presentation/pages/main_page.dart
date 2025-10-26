@@ -38,8 +38,11 @@ class MainPage extends StatelessWidget {
           Card(
             child: SizedBox(
               height: 100.0,
-              child: Text(
-                'Разъяснение основ',
+              child: Center(
+                child: Text(
+                  'Разъяснение основ',
+                  style: AppStyles.mainTextStyle,
+                ),
               ),
             ),
           ),
