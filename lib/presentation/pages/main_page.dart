@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/presentation/names/lists/root_names_page_list.dart';
-import 'package:the_names_of/presentation/widgets/main_quiz_card.dart';
 
 import '../../core/routes/route_names.dart';
 import '../../core/strings/app_strings.dart';
 import '../../core/styles/app_styles.dart';
+import '../names/lists/root_names_page_list.dart';
+import '../widgets/main_quiz_card.dart';
+import '../widgets/main_screen_item.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -20,7 +21,7 @@ class MainPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              /// Shape app links
+              /// Share app links
             },
             tooltip: AppStrings.share,
             icon: Icon(
@@ -33,80 +34,99 @@ class MainPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        spacing: 8,
         children: [
-          Card(
-            child: SizedBox(
-              height: 100.0,
-              child: Center(
-                child: Text(
-                  'Разъяснение основ',
-                  style: AppStyles.mainTextStyle,
-                ),
-              ),
-            ),
-          ),
-          Card(
-            shape: AppStyles.rightShape,
-            margin: AppStyles.mardingRightOnly,
-            color: appColors.inversePrimary,
-            child: Padding(
-              padding: AppStyles.mainMardingMini,
-              child: Text(
-                AppStrings.names,
-                style: AppStyles.mainTextStyle,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 150.0,
+          Expanded(
+            flex: 3,
             child: RootNamesPageList(),
           ),
-          MaterialButton(
-            onPressed: () {
-              Navigator.pushNamed(context, RouteNames.mainClarificationsPage);
-            },
-            color: appColors.primaryContainer,
-            shape: AppStyles.mainShape,
-            child: Text('Толкование'),
+          const SizedBox(height: 10),
+          Expanded(
+            child: Padding(
+              padding: AppStyles.mardingBottomOnly,
+              child: Row(
+                spacing: 16,
+                children: [
+                  const SizedBox(),
+                  Expanded(
+                    child: MainScreenItem(
+                      routeName: RouteNames.mainContentsPage,
+                      title: AppStrings.descriptionHeads,
+                      isIndicator: true,
+                      pageNumber: 50,
+                    ),
+                  ),
+                  Expanded(
+                    child: MainScreenItem(
+                      routeName: RouteNames.mainClarificationsPage,
+                      title: AppStrings.clarification,
+                      isIndicator: true,
+                      pageNumber: 78,
+                    ),
+                  ),
+                  const SizedBox(),
+                ],
+              ),
+            ),
           ),
-          MaterialButton(
-            onPressed: () {
-              Navigator.pushNamed(context, RouteNames.cardsNamePage);
-            },
-            color: appColors.primaryContainer,
-            shape: AppStyles.mainShape,
-            child: Text('Карточки'),
+          Expanded(
+            child: Padding(
+              padding: AppStyles.mardingBottomOnly,
+              child: Row(
+                spacing: 16,
+                children: [
+                  const SizedBox(),
+                  Expanded(
+                    child: MainScreenItem(
+                      routeName: RouteNames.mainNamesPage,
+                      title: AppStrings.names,
+                      isIndicator: false,
+                      pageNumber: 0,
+                    ),
+                  ),
+                  Expanded(
+                    child: MainScreenItem(
+                      routeName: RouteNames.cardsNamePage,
+                      title: AppStrings.cards,
+                      isIndicator: false,
+                      pageNumber: 0,
+                    ),
+                  ),
+                  const SizedBox(),
+                ],
+              ),
+            ),
           ),
           Card(
-            shape: AppStyles.rightShape,
-            margin: AppStyles.mardingRightOnly,
             color: appColors.inversePrimary,
+            margin: AppStyles.mainMardingHorizontal,
             child: Padding(
               padding: AppStyles.mainMardingMini,
               child: Text(
                 AppStrings.quiz,
                 style: AppStyles.mainTextStyle,
+                textAlign: TextAlign.center,
               ),
             ),
           ),
           Padding(
-            padding: AppStyles.mardingHorVerMini,
+            padding: AppStyles.mardingVertical,
             child: Row(
+              spacing: 16,
               children: [
+                const SizedBox(),
                 Expanded(
                   child: MainQuizCard(
                     quizTitle: AppStrings.arabicRussian,
                     routeName: RouteNames.arRuQuizPage,
                   ),
                 ),
-                const SizedBox(width: 16),
                 Expanded(
                   child: MainQuizCard(
                     quizTitle: AppStrings.russianArabic,
                     routeName: RouteNames.ruArQuizPage,
                   ),
                 ),
+                const SizedBox(),
               ],
             ),
           ),

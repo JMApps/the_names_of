@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/routes/route_names.dart';
 import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/name_entity.dart';
@@ -17,50 +16,60 @@ class RootNamePageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
-      margin: AppStyles.mardingHorVerMini,
+      margin: AppStyles.mardingWithoutTopMini,
       child: ListTile(
-        onTap: () {
-          Navigator.pushNamed(context, RouteNames.mainNamesPage);
-        },
         contentPadding: AppStyles.mainMarding,
         visualDensity: VisualDensity.standard,
-        splashColor: appColors.inversePrimary,
-        tileColor: appColors.primaryContainer.withAlpha(105),
         shape: AppStyles.mainShape,
-        title: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                nameModel.nameArabic,
-                style: TextStyle(
-                  fontSize: 22.0,
-                  fontFamily: AppStrings.fontHafs,
-                  color: appColors.primary,
+        title: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 4,
+              children: [
+                Text(
+                  nameModel.nameArabic,
+                  style: TextStyle(
+                    fontSize: 50.0,
+                    fontFamily: AppStrings.fontHafs,
+                    color: appColors.primary,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.end,
-              ),
-              Text(
-                nameModel.nameTranscription,
-                style: TextStyle(
-                  color: appColors.secondary,
-                  fontSize: 16.5,
+                Text(
+                  nameModel.nameTranscription,
+                  style: TextStyle(
+                    color: appColors.secondary,
+                    fontSize: 18.5,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.start,
-              ),
-              Text(
-                nameModel.nameTranslation,
-                style: TextStyle(
-                  fontSize: 16.5,
+                Text(
+                  nameModel.nameTranslation,
+                  style: TextStyle(
+                    fontSize: 22.5,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.start,
-              ),
-            ],
+                const SizedBox(),
+                CircleAvatar(
+                  radius: 17.5,
+                  backgroundColor: appColors.secondary.withAlpha(35),
+                  child: Padding(
+                    padding: AppStyles.mardingTopMicro,
+                    child: Text(
+                      nameModel.id.toString(),
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontFamily: AppStrings.fontGilroy,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        trailing: Padding(
-          padding: AppStyles.mardingBottomOnlyMini,
-          child: Icon(Icons.arrow_forward_ios_rounded),
         ),
       ),
     );

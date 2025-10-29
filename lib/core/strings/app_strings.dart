@@ -2,7 +2,7 @@ class AppStrings {
   static const String appName = 'Имена Аллаха';
 
   // Main
-  static const String descriptionHeads = 'Изложение основ';
+  static const String descriptionHeads = 'Основы';
   static const String names = 'Имена';
   static const String clarificationNames = 'Разъяснение имён';
   static const String quiz = 'Викторина';

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../core/strings/app_constraints.dart';
@@ -54,6 +55,11 @@ class QuizRuArState extends ChangeNotifier {
         _isCorrectAnswer = model.correct == index;
         _selectedAnswerIndex = index;
         _quizUseCase.fetchRuArAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
+        if (!_isCorrectAnswer) {
+          HapticFeedback.vibrate();
+        } else {
+          HapticFeedback.lightImpact();
+        }
         notifyListeners();
         _questionTimer = Timer(
           Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
@@ -95,6 +101,7 @@ class QuizRuArState extends ChangeNotifier {
   }
 
   Future<void> resetQuiz() async {
+    HapticFeedback.lightImpact();
     await _quizUseCase.fetchRuArResetAnswer();
     await _contentSettingsBox.put(AppConstraints.keyRuArPageNumber, 1);
     await _pageController.animateToPage(

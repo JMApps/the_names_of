@@ -16,6 +16,7 @@ class RootNamesPageList extends StatefulWidget {
 }
 
 class _RootNamesPageListState extends State<RootNamesPageList> {
+  final PageController _mainNamesController = PageController(viewportFraction: 0.90);
   late final Future<List<NameEntity>> _futureNames;
 
   @override
@@ -45,6 +46,7 @@ class _RootNamesPageListState extends State<RootNamesPageList> {
         }
         if (snapshot.hasData) {
           return PageView.builder(
+            controller: _mainNamesController,
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               final nameModel = snapshot.data![index];

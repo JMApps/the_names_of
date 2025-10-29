@@ -32,6 +32,7 @@ dependencies:
   intl: ^0.20.2
   timezone: ^0.10.1
   responsive_builder: ^0.7.1
+  vibration: ^3.1.4
 
 dev_dependencies:
   flutter_test:

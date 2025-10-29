@@ -17,20 +17,20 @@ class MainQuizCard extends StatelessWidget {
     final appColors = Theme.of(context).colorScheme;
     return Card(
       child: ListTile(
-        onTap: () {
-          Navigator.pushNamed(context, routeName);
-        },
         contentPadding: AppStyles.mainMardingMini,
         visualDensity: VisualDensity.compact,
         splashColor: appColors.inversePrimary,
-        tileColor: appColors.primaryContainer.withAlpha(105),
         shape: AppStyles.mainShape,
+        onTap: () {
+          Navigator.pushNamed(context, routeName);
+        },
         title: Text(
           quizTitle,
+          style: AppStyles.mainTextStyle,
           textAlign: TextAlign.center,
         ),
         leading: Icon(Icons.translate_rounded),
-        trailing: Icon(Icons.arrow_forward_ios),
+        trailing: Icon(Icons.arrow_forward_ios_rounded),
       ),
     );
   }

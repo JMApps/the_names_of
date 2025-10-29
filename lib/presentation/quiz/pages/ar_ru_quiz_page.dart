@@ -51,6 +51,7 @@ class ArRuQuizPage extends StatelessWidget {
                       padding: AppStyles.mainMardingHorizontal,
                       child: LinearProgressIndicator(
                         minHeight: 6,
+                        borderRadius: AppStyles.mainBorder,
                         value: quizState.arRuModePageNumber / 99,
                         year2023: false,
                       ),

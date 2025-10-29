@@ -88,7 +88,14 @@ class _QuizScorePageState extends State<QuizScorePage> {
             ),
             Expanded(child: const SizedBox()),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+                if (widget.quizMode == 1) {
+                  Provider.of<QuizArRuState>(context, listen: false).resetQuiz();
+                } else {
+                  Provider.of<QuizRuArState>(context, listen: false).resetQuiz();
+                }
+              },
               color: appColors.primary,
               elevation: 0,
               shape: AppStyles.mainShape,
