@@ -37,7 +37,9 @@ class QuizArRuState extends ChangeNotifier {
 
   bool _isCorrectAnswer = false;
 
-  bool get isCorrectAnswer => _isCorrectAnswer;
+  bool _toScorePage = false;
+
+  bool get toScorePage => _toScorePage;
 
   Future<List<QuizEntity>> fetchAllArRuQuiz() async => _quizUseCase.fetchArabicQuiz();
 
@@ -46,50 +48,42 @@ class QuizArRuState extends ChangeNotifier {
   }
 
   Future<void> answer({required QuizEntity model, required int index}) async {
-    if (_arRuModePageNumber < 99) {
+    if (_arRuModePageNumber <= 99) {
       if (model.answerState == 0) {
-        await _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, model.id + 1);
+        await _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, model.id);
         _isClickedAnswer = false;
         _isCorrectAnswer = model.correct == index;
+        _isCorrectAnswer ? HapticFeedback.lightImpact() : HapticFeedback.vibrate();
         _selectedAnswerIndex = index;
-        _quizUseCase.fetchArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
-        if (!_isCorrectAnswer) {
-          HapticFeedback.vibrate();
-        } else {
-          HapticFeedback.lightImpact();
-        }
+
+        await _quizUseCase.fetchArRuAnswer(
+          answerId: model.id,
+          answerState: model.correct == index ? 1 : 2,
+        );
+
         notifyListeners();
+
         _questionTimer = Timer(
-          Duration(milliseconds: model.correct == index ? 1500 : 3000),
-          () {
+          Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
             _isClickedAnswer = true;
             _isCorrectAnswer = false;
-            if (_pageController.hasClients) {
-              _pageController.nextPage(
+
+            if (_pageController.hasClients && _arRuModePageNumber < 99) {
+              _pageController.animateToPage(
+                _arRuModePageNumber,
                 duration: const Duration(milliseconds: 150),
                 curve: Curves.easeIn,
               );
             }
+
             notifyListeners();
           },
         );
-      }
-    } else if (_arRuModePageNumber == 99) {
-      if (model.answerState == 0) {
-        await _contentSettingsBox.put(AppConstraints.keyArRuPageNumber, model.id + 1);
-        _isClickedAnswer = false;
-        _isCorrectAnswer = model.correct == index;
-        _selectedAnswerIndex = index;
-        _quizUseCase.fetchArRuAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
-        notifyListeners();
-        _questionTimer = Timer(
-          Duration(milliseconds: model.correct == index ? 1500 : 3000),
-          () {
-            _isClickedAnswer = true;
-            _isCorrectAnswer = false;
-            notifyListeners();
-          },
-        );
+      } else {
+        if (_arRuModePageNumber == 99) {
+          _toScorePage = true;
+          notifyListeners();
+        }
       }
     }
   }
@@ -108,8 +102,11 @@ class QuizArRuState extends ChangeNotifier {
       duration: const Duration(milliseconds: 750),
       curve: Curves.easeInOutBack,
     );
+
+    _toScorePage = false;
     _isClickedAnswer = true;
     _isCorrectAnswer = false;
+
     notifyListeners();
   }
 

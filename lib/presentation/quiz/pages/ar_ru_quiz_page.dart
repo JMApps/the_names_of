@@ -43,7 +43,7 @@ class ArRuQuizPage extends StatelessWidget {
               if (snapshot.hasError) {
                 return ErrorDataText(textData: snapshot.error.toString());
               }
-              if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+              if (snapshot.hasData) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -56,7 +56,7 @@ class ArRuQuizPage extends StatelessWidget {
                         year2023: false,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 8),
                     Card(
                       margin: AppStyles.mainMardingMini,
                       elevation: 0,
@@ -73,7 +73,7 @@ class ArRuQuizPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 8),
                     Expanded(
                       child: PageView.builder(
                         physics: const NeverScrollableScrollPhysics(),
@@ -89,28 +89,6 @@ class ArRuQuizPage extends StatelessWidget {
                         onPageChanged: (int page) {
                           quizState.changePageIndex(page);
                         },
-                      ),
-                    ),
-                    Visibility(
-                      visible: quizState.arRuModePageNumber == 99,
-                      child: Padding(
-                        padding: AppStyles.mainMarding,
-                        child: MaterialButton(
-                          onPressed: () {
-                            quizState.resetQuiz();
-                          },
-                          padding: AppStyles.mainMarding,
-                          color: appColors.primary,
-                          shape: AppStyles.mainShape,
-                          elevation: 0,
-                          child: Text(
-                            AppStrings.resetQuiz,
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              color: appColors.surface,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ],

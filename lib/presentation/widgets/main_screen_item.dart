@@ -8,6 +8,7 @@ class MainScreenItem extends StatelessWidget {
     required this.routeName,
     required this.title,
     required this.isIndicator,
+    required this.totalPages,
     required this.pageNumber,
   });
 
@@ -15,39 +16,36 @@ class MainScreenItem extends StatelessWidget {
   final String title;
 
   final bool isIndicator;
+  final int totalPages;
   final int pageNumber;
 
   @override
   Widget build(BuildContext context) {
     final appColors = Theme.of(context).colorScheme;
     return Card(
-      color: appColors.secondaryContainer,
       child: InkWell(
         borderRadius: AppStyles.mainBorder,
         splashColor: appColors.inversePrimary,
         onTap: () {
           Navigator.pushNamed(context, routeName);
         },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            Expanded(
-              child: Padding(
-                padding: AppStyles.mardingTopOnly,
-                child: Row(
-                  spacing: 16,
-                  children: [
-                    const SizedBox(),
-                    Expanded(
-                      child: Text(
-                        title,
-                        style: AppStyles.mainTextStyle,
-                      ),
+            Align(
+              alignment: Alignment.center,
+              child: Row(
+                spacing: 16,
+                children: [
+                  const SizedBox(),
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: AppStyles.mainTextStyle,
                     ),
-                    Icon(Icons.arrow_forward_ios_rounded),
-                    const SizedBox(),
-                  ],
-                ),
+                  ),
+                  Icon(Icons.arrow_forward_ios_rounded),
+                  const SizedBox(),
+                ],
               ),
             ),
             Visibility(
@@ -55,14 +53,17 @@ class MainScreenItem extends StatelessWidget {
               maintainAnimation: true,
               maintainSize: true,
               maintainState: true,
-              child: Padding(
-                padding: AppStyles.mardingWithoutTop,
-                child: LinearProgressIndicator(
-                  minHeight: 6,
-                  borderRadius: AppStyles.mainBorder,
-                  backgroundColor: appColors.surface.withAlpha(155),
-                  value: pageNumber / 99,
-                  year2023: false,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: AppStyles.mardingWithoutTop,
+                  child: LinearProgressIndicator(
+                    backgroundColor: appColors.secondaryContainer,
+                    minHeight: 6,
+                    borderRadius: AppStyles.mainBorder,
+                    value: pageNumber / totalPages,
+                    year2023: false,
+                  ),
                 ),
               ),
             ),

@@ -17,58 +17,53 @@ class RootNamePageItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
       margin: AppStyles.mardingWithoutTopMini,
-      child: ListTile(
-        contentPadding: AppStyles.mainMarding,
-        visualDensity: VisualDensity.standard,
-        shape: AppStyles.mainShape,
-        title: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 4,
-              children: [
-                Text(
-                  nameModel.nameArabic,
-                  style: TextStyle(
-                    fontSize: 50.0,
-                    fontFamily: AppStrings.fontHafs,
-                    color: appColors.primary,
-                  ),
-                  textAlign: TextAlign.center,
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 4,
+            children: [
+              Text(
+                nameModel.nameArabic,
+                style: TextStyle(
+                  fontSize: 45.0,
+                  fontFamily: AppStrings.fontHafs,
+                  color: appColors.primary,
                 ),
-                Text(
-                  nameModel.nameTranscription,
-                  style: TextStyle(
-                    color: appColors.secondary,
-                    fontSize: 18.5,
-                  ),
-                  textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                nameModel.nameTranscription,
+                style: TextStyle(
+                  color: appColors.secondary,
+                  fontSize: 17.5,
                 ),
-                Text(
-                  nameModel.nameTranslation,
-                  style: TextStyle(
-                    fontSize: 22.5,
-                  ),
-                  textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                nameModel.nameTranslation,
+                style: TextStyle(
+                  fontSize: 21.5,
                 ),
-                const SizedBox(),
-                CircleAvatar(
-                  radius: 17.5,
-                  backgroundColor: appColors.secondary.withAlpha(35),
-                  child: Padding(
-                    padding: AppStyles.mardingTopMicro,
-                    child: Text(
-                      nameModel.id.toString(),
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontFamily: AppStrings.fontGilroy,
-                      ),
-                      textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(),
+              CircleAvatar(
+                radius: 17.5,
+                backgroundColor: appColors.secondary.withAlpha(35),
+                child: Padding(
+                  padding: AppStyles.mardingTopMicro,
+                  child: Text(
+                    nameModel.id.toString(),
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontFamily: AppStrings.fontGilroy,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

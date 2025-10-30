@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_names_of/core/strings/app_strings.dart';
 
+import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/name_entity.dart';
 

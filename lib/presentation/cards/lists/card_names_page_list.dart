@@ -17,27 +17,37 @@ class CardNamesPageList extends StatefulWidget {
 }
 
 class _CardNamesPageListState extends State<CardNamesPageList> {
+  late final Future<List<NameEntity>> _futureNames;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureNames = Provider.of<MainContentState>(context, listen: false).getAllNames();
+  }
   @override
   Widget build(BuildContext context) {
     final appColors = Theme.of(context).colorScheme;
     return FutureBuilder<List<NameEntity>>(
-      future: Provider.of<MainContentState>(context, listen: false).getAllNames(),
+      future: _futureNames,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return ErrorDataText(textData: snapshot.error.toString());
         }
-        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+        if (snapshot.hasData) {
           return Consumer<MainNamesState>(
             builder: (context, mainNamesState, _) {
               return Column(
                 children: [
-                  const SizedBox(height: 8),
                   Padding(
                     padding: AppStyles.mainMardingHorizontalMini,
-                    child: LinearProgressIndicator(
-                      minHeight: 6,
-                      value: mainNamesState.namePage / 99,
-                      year2023: false,
+                    child: Padding(
+                      padding: AppStyles.mardingRightOnlyMicro,
+                      child: LinearProgressIndicator(
+                        minHeight: 6,
+                        borderRadius: AppStyles.mainBorder,
+                        value: mainNamesState.namePage / 99,
+                        year2023: false,
+                      ),
                     ),
                   ),
                   Expanded(

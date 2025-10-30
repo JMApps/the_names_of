@@ -1,9 +1,9 @@
 class DatabaseValues {
 
-  static const int bookContentDatabaseVersion = 1;
+  static const int bookContentDatabaseVersion = 2;
   static const String bookContentDatabaseName = 'names_of.db';
 
-  static const int quizDatabaseVersion = 1;
+  static const int quizDatabaseVersion = 2;
   static const String quizDatabaseName = 'app_quiz.db';
 
   static const String dbTableNames = 'Table_of_names';

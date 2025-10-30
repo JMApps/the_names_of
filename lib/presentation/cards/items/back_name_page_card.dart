@@ -23,7 +23,7 @@ class BackNamePageCard extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     final mainNamesState = Provider.of<MainNamesState>(context, listen: false);
     return Card(
-      margin: AppStyles.mardingBottomOnlyMini,
+      margin: AppStyles.mainMardingMini,
       child: Padding(
         padding: AppStyles.mainMarding,
         child: Stack(
@@ -32,6 +32,7 @@ class BackNamePageCard extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: CircleAvatar(
+                radius: 17.5,
                 backgroundColor: appColors.secondary.withAlpha(35),
                 child: Padding(
                   padding: AppStyles.mardingTopMicro,
@@ -43,6 +44,13 @@ class BackNamePageCard extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: Icon(
+                Icons.change_circle_outlined,
+                color: Colors.grey,
               ),
             ),
             Column(

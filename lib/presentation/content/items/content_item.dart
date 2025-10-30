@@ -38,7 +38,7 @@ class _ContentItemState extends State<ContentItem> {
             Card(
               shape: AppStyles.rightShape,
               margin: AppStyles.mardingRightOnly,
-              color: appColors.inversePrimary.withAlpha(155),
+              color: appColors.primaryContainer,
               elevation: 0,
               child: Padding(
                 padding: AppStyles.mainMardingMini,
@@ -53,7 +53,7 @@ class _ContentItemState extends State<ContentItem> {
               ),
             ),
             Padding(
-              padding: AppStyles.mainMardingMini,
+              padding: AppStyles.mainMarding,
               child: ContentHtmlWidget(
                 content: widget.contentModel.content,
               ),

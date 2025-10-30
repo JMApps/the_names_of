@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_names_of/core/strings/app_strings.dart';
 
+import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/content_entity.dart';
+import '../../state/content_clarification_state.dart';
 import '../../state/content_state.dart';
 
 class ContentChapterItem extends StatelessWidget {
@@ -26,10 +27,10 @@ class ContentChapterItem extends StatelessWidget {
       child: ListTile(
         contentPadding: AppStyles.mainMarding,
         shape: AppStyles.mainShape,
-        tileColor: Provider.of<ContentState>(context, listen: false).contentPage == index ? appColors.inversePrimary : index.isEven ? itemOddColor : itemEvenColor,
+        tileColor: Provider.of<ContentClarificationState>(context, listen: false).contentPage == index ? appColors.inversePrimary.withAlpha(175) : index.isEven ? itemOddColor : itemEvenColor,
         onTap: () {
-          Provider.of<ContentState>(context, listen: false).toPage(index);
           Navigator.pop(context);
+          Provider.of<ContentState>(context, listen: false).toPage(contentPage: index);
         },
         title: Text(
           contentModel.contentTitle,
@@ -39,6 +40,7 @@ class ContentChapterItem extends StatelessWidget {
           ),
         ),
         leading: CircleAvatar(
+          radius: 17.5,
           backgroundColor: appColors.secondary.withAlpha(35),
           child: Padding(
             padding: AppStyles.mardingTopMicro,

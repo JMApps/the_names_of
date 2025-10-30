@@ -18,7 +18,7 @@ class ClarificationAyahItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
-      margin: AppStyles.mardingWithoutTopMini,
+      margin: AppStyles.mardingBottomOnlyMini,
       child: Padding(
         padding: AppStyles.mainMarding,
         child: Consumer<ContentSettingsState>(
@@ -33,6 +33,7 @@ class ClarificationAyahItem extends StatelessWidget {
                     fontSize: contentSettingsState.textSize + 5,
                     fontFamily: AppStrings.fontHafs,
                     color: appColors.secondary,
+                    height: 1.75,
                   ),
                   textDirection: TextDirection.rtl,
                   textAlign: TextAlign.center,
@@ -50,6 +51,7 @@ class ClarificationAyahItem extends StatelessWidget {
                   style: TextStyle(
                     fontSize: contentSettingsState.textSize - 6,
                     fontFamily: AppStrings.fontGilroy,
+                    color: appColors.secondary,
                   ),
                   textAlign: TextAlign.center,
                 ),

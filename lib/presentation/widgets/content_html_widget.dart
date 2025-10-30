@@ -27,7 +27,9 @@ class ContentHtmlWidget extends StatelessWidget {
               color: appTheme.brightness == Brightness.dark ? contentSettingsState.darkTextColor : contentSettingsState.lightTextColor,
             ),
             'small': Style(
-              fontSize: FontSize(14),
+              fontSize: FontSize(12),
+              padding: HtmlPaddings.zero,
+              margin: Margins.zero,
               color: appTheme.colorScheme.secondary,
             ),
           },

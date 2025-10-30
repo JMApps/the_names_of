@@ -7,6 +7,7 @@ import '../../../domain/entities/clarification_entity.dart';
 import '../../settings/settings_column.dart';
 import '../../state/app_player_state.dart';
 import '../../state/clarification_state.dart';
+import '../../state/content_clarification_state.dart';
 import '../../state/main_content_state.dart';
 import '../../widgets/error_data_text.dart';
 import '../items/clarification_item.dart';
@@ -20,7 +21,7 @@ class MainClarificationPage extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ClarificationState(),
+          create: (_) => ClarificationState(Provider.of<ContentClarificationState>(context, listen: false).clarificationPage),
         ),
         ChangeNotifierProvider(
           create: (_) => AppPlayerState(),
@@ -75,16 +76,17 @@ class MainClarificationPage extends StatelessWidget {
             if (snapshot.hasError) {
               return ErrorDataText(textData: snapshot.error.toString());
             }
-            if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-              return Consumer<ClarificationState>(
-                builder: (context, clarificationState, _) {
+            if (snapshot.hasData) {
+              return Consumer2<ClarificationState, ContentClarificationState>(
+                builder: (context, clarificationState, contentClarificationState, _) {
                   return Column(
                     children: [
                       Padding(
                         padding: AppStyles.mainMardingHorizontal,
                         child: LinearProgressIndicator(
                           minHeight: 6,
-                          value: clarificationState.clarificationPage / 65,
+                          borderRadius: AppStyles.mainBorder,
+                          value: contentClarificationState.clarificationPage / 64,
                           year2023: false,
                         ),
                       ),
@@ -98,7 +100,7 @@ class MainClarificationPage extends StatelessWidget {
                             return ClarificationItem(clarificationModel: clarificationModel);
                           },
                           onPageChanged: (int page) {
-                            clarificationState.clarificationPage = page;
+                            contentClarificationState.clarificationPage = page;
                           },
                         ),
                       ),

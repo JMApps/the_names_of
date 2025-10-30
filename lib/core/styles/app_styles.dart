@@ -10,11 +10,13 @@ class AppStyles {
   static const EdgeInsets mainMardingBig = EdgeInsets.all(24);
   static const EdgeInsets mainMarding = EdgeInsets.all(16);
   static const EdgeInsets mardingWithoutTop = EdgeInsets.only(left: 16, bottom: 16, right: 16);
+  static const EdgeInsets mardingHorBottomMini = EdgeInsets.only(left: 16, bottom: 8, right: 16);
 
   static const EdgeInsets mardingWithoutTopMini = EdgeInsets.only(left: 8, bottom: 8, right: 8);
   static const EdgeInsets mainMardingMini = EdgeInsets.all(8);
   static const EdgeInsets mainMardingMicro = EdgeInsets.all(4);
   static const EdgeInsets mardingHorVerMini = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
+  static const EdgeInsets mardingHorVerMicro = EdgeInsets.symmetric(vertical: 4, horizontal: 16);
 
   static const EdgeInsets mardingVertical = EdgeInsets.symmetric(vertical: 16);
 
@@ -23,12 +25,12 @@ class AppStyles {
 
   static const EdgeInsets mainMardingVertical = EdgeInsets.symmetric(vertical: 16);
 
+  static const EdgeInsets mardingTopMini = EdgeInsets.only(top: 8);
   static const EdgeInsets mardingTopMicro = EdgeInsets.only(top: 4);
-  static const EdgeInsets mardingBottomMicro = EdgeInsets.only(bottom: 4);
   static const EdgeInsets mardingBottomOnly = EdgeInsets.only(bottom: 16);
-  static const EdgeInsets mardingTopOnly = EdgeInsets.only(top: 16);
   static const EdgeInsets mardingBottomOnlyMini = EdgeInsets.only(bottom: 8);
   static const EdgeInsets mardingRightOnly = EdgeInsets.only(right: 16);
+  static const EdgeInsets mardingRightOnlyMicro = EdgeInsets.only(right: 4);
 
   static const mainTextStyle = TextStyle(
     fontSize: 18.0,
@@ -36,9 +38,9 @@ class AppStyles {
   );
 
   static const List<String> textFonts = [
-    'Gilroy',
-    'Montserrat',
-    'Raleway',
+    AppStrings.fontGilroy,
+    AppStrings.fontMontserrat,
+    AppStrings.fontRaleway,
   ];
 
   static const List<TextAlign> textAligns = [

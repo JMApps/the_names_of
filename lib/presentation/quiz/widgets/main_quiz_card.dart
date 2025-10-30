@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/styles/app_styles.dart';
+import '../../../core/styles/app_styles.dart';
 
 class MainQuizCard extends StatelessWidget {
   const MainQuizCard({

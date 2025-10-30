@@ -19,7 +19,7 @@ class ClarificationNameItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     return Card(
-      margin: AppStyles.mardingWithoutTopMini,
+      margin: AppStyles.mardingBottomOnlyMini,
       child: Container(
         padding: AppStyles.mainMardingMini,
         height: 150,
@@ -56,9 +56,7 @@ class ClarificationNameItem extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     visualDensity: VisualDensity.compact,
                     icon: Icon(
-                      player.getCurrentTrackItem == nameModel.id && player.getPlayingState
-                          ? Icons.stop_circle_outlined
-                          : Icons.play_circle_outline_rounded,
+                      player.getCurrentTrackItem == nameModel.id && player.getPlayingState ? Icons.stop_circle_outlined : Icons.play_circle_outline_rounded,
                     ),
                     iconSize: 40.0,
                     color: appColors.secondary,

@@ -21,7 +21,7 @@ class MainNamePageItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     final mainNamesState = Provider.of<MainNamesState>(context, listen: false);
     return Card(
-      margin: AppStyles.mainMardingMini,
+      margin: AppStyles.mainMarding,
       child: Padding(
         padding: AppStyles.mainMarding,
         child: Stack(
@@ -29,6 +29,7 @@ class MainNamePageItem extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: CircleAvatar(
+                radius: 17.5,
                 backgroundColor: appColors.secondary.withAlpha(35),
                 child: Padding(
                   padding: AppStyles.mardingTopMicro,

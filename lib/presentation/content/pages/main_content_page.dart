@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/strings/app_strings.dart';
 import '../../settings/settings_column.dart';
+import '../../state/content_clarification_state.dart';
 import '../../state/content_state.dart';
 import '../lists/content_chapters_list.dart';
 import '../lists/content_pages_list.dart';
@@ -15,7 +16,7 @@ class MainContentPage extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ContentState(),
+          create: (_) => ContentState(Provider.of<ContentClarificationState>(context, listen: false).contentPage),
         ),
       ],
       child: Scaffold(

@@ -9,7 +9,6 @@ import '../../domain/entities/quiz_entity.dart';
 import '../../domain/usecases/quiz_use_case.dart';
 
 class QuizRuArState extends ChangeNotifier {
-
   final Box _contentSettingsBox = Hive.box(AppConstraints.keyQuizApp);
 
   final QuizUseCase _quizUseCase;
@@ -21,9 +20,9 @@ class QuizRuArState extends ChangeNotifier {
 
   late final PageController _pageController;
 
-  Timer? _questionTimer;
-
   PageController get pageController => _pageController;
+
+  Timer? _questionTimer;
 
   int _ruArModePageNumber = 1;
 
@@ -39,7 +38,9 @@ class QuizRuArState extends ChangeNotifier {
 
   bool _isCorrectAnswer = false;
 
-  bool get isCorrectAnswer => _isCorrectAnswer;
+  bool _toScorePage = false;
+
+  bool get toScorePage => _toScorePage;
 
   Future<List<QuizEntity>> fetchAllRuArQuiz() async => _quizUseCase.fetchRussianQuiz();
 
@@ -48,56 +49,49 @@ class QuizRuArState extends ChangeNotifier {
   }
 
   Future<void> answer({required QuizEntity model, required int index}) async {
-    if (_ruArModePageNumber < 99) {
+    if (_ruArModePageNumber <= 99) {
       if (model.answerState == 0) {
         await _contentSettingsBox.put(AppConstraints.keyRuArPageNumber, model.id + 1);
         _isClickedAnswer = false;
         _isCorrectAnswer = model.correct == index;
+        _isCorrectAnswer ? HapticFeedback.lightImpact() : HapticFeedback.vibrate();
         _selectedAnswerIndex = index;
-        _quizUseCase.fetchRuArAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
-        if (!_isCorrectAnswer) {
-          HapticFeedback.vibrate();
-        } else {
-          HapticFeedback.lightImpact();
-        }
+
+        await _quizUseCase.fetchRuArAnswer(
+          answerId: model.id,
+          answerState: model.correct == index ? 1 : 2,
+        );
+
         notifyListeners();
+
         _questionTimer = Timer(
           Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
             _isClickedAnswer = true;
             _isCorrectAnswer = false;
-            if (_pageController.hasClients) {
-              _pageController.nextPage(
+
+            if (_pageController.hasClients && _ruArModePageNumber < 99) {
+              _pageController.animateToPage(
+                _ruArModePageNumber,
                 duration: const Duration(milliseconds: 150),
                 curve: Curves.easeIn,
               );
             }
+
             notifyListeners();
           },
         );
-      }
-    } else if (_ruArModePageNumber == 99) {
-      if (model.answerState == 0) {
-        await _contentSettingsBox.put(AppConstraints.keyRuArPageNumber, model.id + 1);
-        _isClickedAnswer = false;
-        _isCorrectAnswer = model.correct == index;
-        _selectedAnswerIndex = index;
-        _quizUseCase.fetchRuArAnswer(answerId: model.id, answerState: model.correct == index ? 1 : 2);
-        notifyListeners();
-        _questionTimer = Timer(
-          Duration(milliseconds: model.correct == index ? 1500 : 3000), () {
-            _isClickedAnswer = true;
-            _isCorrectAnswer = false;
-            notifyListeners();
-          },
-        );
+      } else {
+        if (_ruArModePageNumber == 99) {
+          _toScorePage = true;
+          notifyListeners();
+        }
       }
     }
   }
 
-  Future<int> changePageIndex(int page) async {
+  void changePageIndex(int page) async {
     _ruArModePageNumber = page + 1;
     notifyListeners();
-    return _ruArModePageNumber;
   }
 
   Future<void> resetQuiz() async {
@@ -109,8 +103,11 @@ class QuizRuArState extends ChangeNotifier {
       duration: const Duration(milliseconds: 750),
       curve: Curves.easeInOutBack,
     );
+
+    _toScorePage = false;
     _isClickedAnswer = true;
     _isCorrectAnswer = false;
+
     notifyListeners();
   }
 

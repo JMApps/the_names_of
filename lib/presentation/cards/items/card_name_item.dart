@@ -23,23 +23,11 @@ class CardNameItem extends StatelessWidget {
       builder: (context, mainNamesState, _) {
         return FlipCard(
           front: mainNamesState.isFlipCard
-              ? FrontNameCard(
-                  model: model,
-                  index: index,
-                )
-              : BackNameCard(
-                  model: model,
-                  index: index,
-                ),
+              ? FrontNameCard(model: model, index: index)
+              : BackNameCard(model: model, index: index),
           back: mainNamesState.isFlipCard
-              ? BackNameCard(
-                  model: model,
-                  index: index,
-                )
-              : FrontNameCard(
-                  model: model,
-                  index: index,
-                ),
+              ? BackNameCard(model: model, index: index)
+              : FrontNameCard(model: model, index: index),
         );
       },
     );

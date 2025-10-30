@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_names_of/core/strings/app_strings.dart';
 
+import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/clarification_entity.dart';
 import '../../widgets/content_html_widget.dart';
@@ -25,14 +25,13 @@ class ClarificationItem extends StatelessWidget {
       selectionControls: Platform.isAndroid ? MaterialTextSelectionControls() : CupertinoTextSelectionControls(),
       child: Scrollbar(
         child: SingleChildScrollView(
-          padding: EdgeInsets.zero,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ClarificationNamesList(clarificationId: clarificationModel.id),
               ClarificationAyahsList(clarificationId: clarificationModel.id),
               Padding(
-                padding: AppStyles.mardingHorVerMini,
+                padding: AppStyles.mardingHorVerMicro,
                 child: Text(
                   AppStrings.clarification,
                   style: TextStyle(

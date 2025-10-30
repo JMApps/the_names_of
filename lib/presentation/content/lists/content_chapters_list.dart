@@ -4,6 +4,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/content_entity.dart';
+import '../../state/content_clarification_state.dart';
 import '../../state/content_state.dart';
 import '../../state/main_content_state.dart';
 import '../../widgets/error_data_text.dart';
@@ -36,12 +37,14 @@ class _ContentChaptersListState extends State<ContentChaptersList> {
           if (!_scrolledOnce) {
             _scrolledOnce = true;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
+              final contentPage = Provider.of<ContentClarificationState>(context, listen: false).contentPage;
               await Future.delayed(const Duration(milliseconds: 50));
-              if (widget.contentState.itemScrollController.isAttached) {
-                widget.contentState.scrollToPage();
+              if (widget.contentState.itemScrollController.isAttached && contentPage > 5) {
+                widget.contentState.scrollToPage(contentPage: contentPage);
               }
             });
           }
+
           return ScrollablePositionedList.builder(
             itemScrollController: Provider.of<ContentState>(context, listen: false).itemScrollController,
             padding: AppStyles.mardingWithoutTopMini,

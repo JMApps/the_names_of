@@ -18,12 +18,11 @@ class MainNameItem extends StatelessWidget {
     final ColorScheme appColors = Theme.of(context).colorScheme;
     final Color oddItemColor = appColors.primary.withAlpha(10);
     final Color evenItemColor = appColors.primary.withAlpha(25);
-    final mainNamesState = Provider.of<MainNamesState>(context, listen: false);
     return Card(
       margin: AppStyles.mardingBottomOnlyMini,
       child: Container(
         padding: AppStyles.mainMarding,
-        height: 225,
+        height: 225.0,
         decoration: BoxDecoration(
           color: nameModel.id.isOdd ? oddItemColor : evenItemColor,
           borderRadius: AppStyles.mainBorder,
@@ -33,8 +32,8 @@ class MainNameItem extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: CircleAvatar(
-                backgroundColor: appColors.secondary.withAlpha(35),
                 radius: 17.5,
+                backgroundColor: appColors.secondary.withAlpha(35),
                 child: Padding(
                   padding: AppStyles.mardingTopMicro,
                   child: Text(
@@ -71,8 +70,8 @@ class MainNameItem extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomRight,
-              child: Consumer<AppPlayerState>(
-                builder: (context, player, _) {
+              child: Consumer2<AppPlayerState, MainNamesState>(
+                builder: (context, player, mainNamesState, _) {
                   return IconButton(
                     onPressed: () {
                       showModalBottomSheet(

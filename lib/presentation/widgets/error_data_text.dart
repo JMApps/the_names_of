@@ -18,7 +18,7 @@ class ErrorDataText extends StatelessWidget {
       child: Text(
         textData,
         style: TextStyle(
-          fontSize: 18,
+          fontSize: 18.0,
           color: Theme.of(context).colorScheme.error,
         ),
         textAlign: TextAlign.center,

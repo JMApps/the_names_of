@@ -36,8 +36,8 @@ class FrontNameCard extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: CircleAvatar(
-                backgroundColor: appColors.secondary.withAlpha(35),
                 radius: 17.5,
+                backgroundColor: appColors.secondary.withAlpha(35),
                 child: Padding(
                   padding: AppStyles.mardingTopMicro,
                   child: Text(

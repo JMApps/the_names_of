@@ -26,23 +26,11 @@ class CardNamePageItem extends StatelessWidget {
           padding: AppStyles.mainMardingMini,
           child: FlipCard(
             front: mainNamesState.isFlipCard
-                ? FrontNamePageCard(
-                    nameModel: nameModel,
-                    index: index,
-                  )
-                : BackNamePageCard(
-                    nameModel: nameModel,
-                    index: index,
-                  ),
+                ? FrontNamePageCard(nameModel: nameModel, index: index)
+                : BackNamePageCard(nameModel: nameModel, index: index),
             back: mainNamesState.isFlipCard
-                ? BackNamePageCard(
-                    nameModel: nameModel,
-                    index: index,
-                  )
-                : FrontNamePageCard(
-                    nameModel: nameModel,
-                    index: index,
-                  ),
+                ? BackNamePageCard(nameModel: nameModel, index: index)
+                : FrontNamePageCard(nameModel: nameModel, index: index),
           ),
         );
       },

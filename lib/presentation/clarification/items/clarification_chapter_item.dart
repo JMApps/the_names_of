@@ -5,6 +5,7 @@ import '../../../core/strings/app_strings.dart';
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/clarification_entity.dart';
 import '../../state/clarification_state.dart';
+import '../../state/content_clarification_state.dart';
 
 class ClarificationChapterItem extends StatelessWidget {
   const ClarificationChapterItem({
@@ -26,10 +27,10 @@ class ClarificationChapterItem extends StatelessWidget {
       child: ListTile(
         contentPadding: AppStyles.mainMarding,
         shape: AppStyles.mainShape,
-        tileColor: Provider.of<ClarificationState>(context, listen: false).clarificationPage == index ? appColors.inversePrimary : index.isEven ? itemOddColor : itemEvenColor,
+        tileColor: Provider.of<ContentClarificationState>(context, listen: false).clarificationPage == index ? appColors.inversePrimary.withAlpha(175) : index.isEven ? itemOddColor : itemEvenColor,
         onTap: () {
           Navigator.pop(context);
-          Provider.of<ClarificationState>(context, listen: false).toPage(index);
+          Provider.of<ClarificationState>(context, listen: false).toPage(clarificationPage: index);
         },
         title: Text(
           clarificationModel.title,
@@ -39,8 +40,8 @@ class ClarificationChapterItem extends StatelessWidget {
           ),
         ),
         leading: CircleAvatar(
-          backgroundColor: appColors.secondary.withAlpha(35),
           radius: 17.5,
+          backgroundColor: appColors.secondary.withAlpha(35),
           child: Padding(
             padding: AppStyles.mardingTopMicro,
             child: Text(
@@ -48,7 +49,6 @@ class ClarificationChapterItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16.0,
                 fontFamily: AppStrings.fontGilroy,
-                color: appColors.secondary,
               ),
             ),
           ),

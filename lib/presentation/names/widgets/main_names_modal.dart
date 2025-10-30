@@ -43,6 +43,7 @@ class MainNamesModal extends StatelessWidget {
                 ),
               );
             },
+            shape: AppStyles.mainShape,
             title: const Text(AppStrings.copy),
             leading: const Icon(CupertinoIcons.doc_on_doc),
           ),
@@ -51,6 +52,7 @@ class MainNamesModal extends StatelessWidget {
               Navigator.pop(context);
               mainNamesState.shareContent = names();
             },
+            shape: AppStyles.mainShape,
             title: const Text(AppStrings.shareText),
             leading: const Icon(CupertinoIcons.share),
           ),
@@ -59,6 +61,7 @@ class MainNamesModal extends StatelessWidget {
               Navigator.pop(context);
               mainNamesState.takeScreenshot(model);
             },
+            shape: AppStyles.mainShape,
             title: const Text(AppStrings.sharePicture),
             leading: const Icon(CupertinoIcons.photo_on_rectangle),
           ),

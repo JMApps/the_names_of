@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/styles/app_styles.dart';
 import '../../../domain/entities/content_entity.dart';
+import '../../state/content_clarification_state.dart';
 import '../../state/content_state.dart';
 import '../../state/main_content_state.dart';
 import '../../widgets/error_data_text.dart';
@@ -19,20 +20,24 @@ class ContentPagesList extends StatelessWidget {
         if (snapshot.hasError) {
           return ErrorDataText(textData: snapshot.error.toString());
         }
-        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-          return Consumer<ContentState>(
-            builder: (context, contentState, _) {
+        if (snapshot.hasData) {
+          return Consumer2<ContentState, ContentClarificationState>(
+            builder: (context, contentState,  contentClarificationState, _) {
               return Column(
                 children: [
                   Padding(
                     padding: AppStyles.mainMardingHorizontal,
-                    child: LinearProgressIndicator(
-                      minHeight: 6,
-                      value: contentState.contentPage / 15,
-                      year2023: false,
+                    child: Padding(
+                      padding: AppStyles.mardingRightOnlyMicro,
+                      child: LinearProgressIndicator(
+                        minHeight: 6,
+                        value: contentClarificationState.contentPage / 15,
+                        borderRadius: AppStyles.mainBorder,
+                        year2023: false,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 8),
                   Expanded(
                     child: PageView.builder(
                       controller: contentState.pageController,
@@ -44,7 +49,7 @@ class ContentPagesList extends StatelessWidget {
                         );
                       },
                       onPageChanged: (int? pageIndex) {
-                        contentState.contentPage = pageIndex!;
+                        contentClarificationState.contentPage = pageIndex!;
                       },
                     ),
                   ),

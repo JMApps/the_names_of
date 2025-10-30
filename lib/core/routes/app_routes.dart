@@ -10,39 +10,57 @@ import '../../presentation/quiz/pages/ru_ar_quiz_page.dart';
 import 'route_names.dart';
 
 class AppRoutes {
-  static Route onGenerateRoute(RouteSettings routeSettings) {
-    switch (routeSettings.name) {
+  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    final args = settings.arguments;
+
+    Widget page;
+    switch (settings.name) {
       case RouteNames.mainContentsPage:
-        return MaterialPageRoute(
-          builder: (_) => MainContentPage(),
-        );
+        page = const MainContentPage();
+        break;
       case RouteNames.mainNamesPage:
-        return MaterialPageRoute(
-          builder: (_) => MainNamesPage(),
-        );
+        page = const MainNamesPage();
+        break;
       case RouteNames.mainClarificationsPage:
-        return MaterialPageRoute(
-          builder: (_) => MainClarificationPage(),
-        );
+        page = const MainClarificationPage();
+        break;
       case RouteNames.arRuQuizPage:
-        return MaterialPageRoute(
-          builder: (_) => const ArRuQuizPage(),
-        );
+        page = const ArRuQuizPage();
+        break;
       case RouteNames.ruArQuizPage:
-        return MaterialPageRoute(
-          builder: (_) => const RuArQuizPage(),
-        );
-      case RouteNames.quizScorePage:
-        final int quizModeArgs = routeSettings.arguments as int;
-        return MaterialPageRoute(
-          builder: (_) => QuizScorePage(quizMode: quizModeArgs),
-        );
+        page = const RuArQuizPage();
+        break;
       case RouteNames.cardsNamePage:
-        return MaterialPageRoute(
-          builder: (_) => const CardsNamePage(),
-        );
+        page = const CardsNamePage();
+        break;
+      case RouteNames.quizScorePage:
+        final quizMode = args is int ? args : 0;
+        page = QuizScorePage(quizMode: quizMode);
+        break;
       default:
-        throw Exception('Invalid route ${routeSettings.name}');
+        page = _errorRoute(settings.name);
+        break;
     }
+
+    return _buildRoute(page, settings);
+  }
+
+  static MaterialPageRoute<dynamic> _buildRoute(Widget page, RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (_) => page,
+      settings: settings,
+    );
+  }
+
+  static Widget _errorRoute(String? name) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Ошибка маршрута')),
+      body: Center(
+        child: Text(
+          'Неизвестный маршрут:\n$name',
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
   }
 }

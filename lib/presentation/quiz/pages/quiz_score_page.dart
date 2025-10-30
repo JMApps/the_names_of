@@ -69,7 +69,7 @@ class _QuizScorePageState extends State<QuizScorePage> {
                   return Card(
                     margin: EdgeInsets.zero,
                     child: Padding(
-                      padding: AppStyles.mainMarding,
+                      padding: AppStyles.mainMardingBig,
                       child: Text(
                         '$_countNumbers из 99',
                         style: TextStyle(

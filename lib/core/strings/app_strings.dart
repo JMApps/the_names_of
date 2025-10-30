@@ -1,8 +1,11 @@
 class AppStrings {
   static const String appName = 'Имена Аллаха';
+  static const String fullAppName = 'Толкование прекрасных имен Аллаха';
 
   // Main
-  static const String descriptionHeads = 'Основы';
+  static const String descriptionHeads = 'Разъяснение основ';
+  static const String heads = 'Основы';
+  static const String name = 'Имя';
   static const String names = 'Имена';
   static const String clarificationNames = 'Разъяснение имён';
   static const String quiz = 'Викторина';
@@ -18,6 +21,9 @@ class AppStrings {
   static const String defaultName = 'Случайное имя';
   static const String turnCards = 'Перевернуть карточки';
   static const String clarification = 'Разъяснение';
+
+  static const String ayah = 'Аят';
+  static const String ayahs = 'Аяты';
 
   static const String listMode = 'Режим списка';
   static const String pageMode = 'Книжный режим';
@@ -59,4 +65,7 @@ class AppStrings {
   static const String fontNotoNaskh = 'Noto Naskh';
 
   static const String fontHafs = 'Hafs';
+
+  static const String iOSLink = 'https://apps.apple.com/ru/app/имена-Аллаха/id1584057836';
+  static const String androidLink = 'https://apps.apple.com/ru/app/имена-Аллаха/id1584057836';
 }
